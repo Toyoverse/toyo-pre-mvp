@@ -1,0 +1,342 @@
+fileFormatVersion: 2
+guid: 050d5d4754fefe84caca21bccd7288b0
+ModelImporter:
+  serializedVersion: 21202
+  internalIDToNameTable:
+  - first:
+      74: -203655887218126122
+    second: Catwalk Walk Forward HighKnees
+  externalObjects: {}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 1
+    motionNodeName: mixamorig:Hips
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Catwalk Walk Forward HighKnees
+      takeName: mixamo.com
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton:
+    - name: Datu - Mixamo Rig(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Datu1
+      parentName: Datu - Mixamo Rig(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.000000081460335, y: 0, z: -0, w: 1}
+      scale: {x: 0.01, y: 0.01, z: 0.01}
+    - name: matte.001
+      parentName: Datu - Mixamo Rig(Clone)
+      position: {x: 0.00000015258775, y: 139.19261, z: -5.3308053}
+      rotation: {x: -0.7071068, y: -0.00000001380309, z: -0.000000011379655, w: 0.7071067}
+      scale: {x: 0.99999976, y: 0.99999976, z: 1}
+    - name: matte_0.001
+      parentName: Datu - Mixamo Rig(Clone)
+      position: {x: -20.99676, y: 120.56117, z: -10.6876}
+      rotation: {x: -0.7071068, y: 0.0000000067434955, z: 0.000000010115247, w: 0.7071067}
+      scale: {x: 1, y: 0.99999976, z: 0.99999976}
+    - name: matte_0.002
+      parentName: Datu - Mixamo Rig(Clone)
+      position: {x: -7.9086432, y: 77.54916, z: -0.33009914}
+      rotation: {x: -0.7071068, y: 0.0000000033440835, z: 0.0000000033908119, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: matte_0.003
+      parentName: Datu - Mixamo Rig(Clone)
+      position: {x: 52.06788, y: 76.90101, z: -2.1730456}
+      rotation: {x: -0.7071068, y: 0.000000009272309, z: -0.000000013486993, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: matte_0.004
+      parentName: Datu - Mixamo Rig(Clone)
+      position: {x: -52.06788, y: 76.901, z: -2.1730459}
+      rotation: {x: -0.7071068, y: 8.4293633e-10, z: -0.0000000042146855, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: matte_0.005
+      parentName: Datu - Mixamo Rig(Clone)
+      position: {x: 7.9086437, y: 77.54916, z: -0.33009943}
+      rotation: {x: -0.7071068, y: -3.6878572e-10, z: 0.0000000026605198, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: matte_0.006
+      parentName: Datu - Mixamo Rig(Clone)
+      position: {x: 18.516218, y: 15.027886, z: -10.737284}
+      rotation: {x: -0.7071068, y: 7.902483e-11, z: 0.000000009219625, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: matte_0.007
+      parentName: Datu - Mixamo Rig(Clone)
+      position: {x: -18.516216, y: 15.027887, z: -10.737285}
+      rotation: {x: -0.7071068, y: -0.0000000025551545, z: 0.000000007085938, w: 0.7071067}
+      scale: {x: 0.99999976, y: 1, z: 1}
+    - name: matte_0.008
+      parentName: Datu - Mixamo Rig(Clone)
+      position: {x: 3.5527137e-14, y: 125.685875, z: -8.732943}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: matte_0.009
+      parentName: Datu - Mixamo Rig(Clone)
+      position: {x: 20.996767, y: 120.56118, z: -10.687599}
+      rotation: {x: -0.7071068, y: 0.0000000067435, z: -0.000000010958181, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: matte_1.001
+      parentName: Datu - Mixamo Rig(Clone)
+      position: {x: -0.00000022888183, y: 101.345604, z: 0.899356}
+      rotation: {x: -0.7071068, y: -0.000000010958182, z: -0.000000002528813, w: 0.7071067}
+      scale: {x: 0.99999976, y: 0.99999976, z: 1}
+    - name: matte_1.002
+      parentName: Datu - Mixamo Rig(Clone)
+      position: {x: -18.668213, y: 3.541404, z: 5.3341002}
+      rotation: {x: -0.76524156, y: 0.0053194026, z: 0.0015322306, w: 0.64371943}
+      scale: {x: 1.2176174, y: 1.2176166, z: 1.2176168}
+    - name: matte_1.003
+      parentName: Datu - Mixamo Rig(Clone)
+      position: {x: 18.668211, y: 3.5414038, z: 5.334099}
+      rotation: {x: -0.7652415, y: -0.00531939, z: -0.0015322252, w: 0.6437195}
+      scale: {x: 1, y: 0.99999994, z: 0.99999994}
+    - name: matte_1.004
+      parentName: Datu - Mixamo Rig(Clone)
+      position: {x: 12.80015, y: 48.74399, z: -5.0282063}
+      rotation: {x: -0.7071068, y: 7.902483e-11, z: 0.000000009219625, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: matte_1.005
+      parentName: Datu - Mixamo Rig(Clone)
+      position: {x: 36.546146, y: 99.80518, z: -13.218328}
+      rotation: {x: -0.7071068, y: 0.0000000033717502, z: 0.000000008429371, w: 0.7071067}
+      scale: {x: 0.99999976, y: 1, z: 1}
+    - name: matte_1.006
+      parentName: Datu - Mixamo Rig(Clone)
+      position: {x: -12.800151, y: 48.744, z: -5.0282073}
+      rotation: {x: -0.7071068, y: -0.0000000025551545, z: 0.000000007085938, w: 0.7071067}
+      scale: {x: 0.99999976, y: 1, z: 1}
+    - name: matte_1.007
+      parentName: Datu - Mixamo Rig(Clone)
+      position: {x: -36.54615, y: 99.80518, z: -13.218328}
+      rotation: {x: -0.7071068, y: -0.000000002528813, z: 0.000000006743495, w: 0.7071067}
+      scale: {x: 0.99999976, y: 1, z: 1}
+    - name: matte_2.001
+      parentName: Datu - Mixamo Rig(Clone)
+      position: {x: 0.00000030511887, y: 87.3145, z: 0.5240716}
+      rotation: {x: -0.7071068, y: 0.0000000033440835, z: 0.0000000033908119, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: matte_3.001
+      parentName: Datu - Mixamo Rig(Clone)
+      position: {x: 0.00000030511887, y: 87.3145, z: 0.52407146}
+      rotation: {x: -0.7071068, y: 0.0000000033440835, z: 0.0000000033908119, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: matte_11.001
+      parentName: Datu - Mixamo Rig(Clone)
+      position: {x: 51.166286, y: 75.10573, z: 7.0215597}
+      rotation: {x: -0.7071068, y: 0.000000003371747, z: 0.000000008007905, w: 0.7071067}
+      scale: {x: 0.99999976, y: 1, z: 0.99999976}
+    - name: matte_11.002
+      parentName: Datu - Mixamo Rig(Clone)
+      position: {x: -51.166294, y: 75.10573, z: 7.0215597}
+      rotation: {x: -0.7071068, y: -0.0000000037932137, z: -0.000000018333882, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: matte_12.001
+      parentName: Datu - Mixamo Rig(Clone)
+      position: {x: 49.377552, y: 71.623146, z: 12.167128}
+      rotation: {x: -0.7071068, y: 0.0000000033717489, z: -0.0000000033717473, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: matte_12.002
+      parentName: Datu - Mixamo Rig(Clone)
+      position: {x: -49.377552, y: 71.623146, z: 12.167128}
+      rotation: {x: -0.7071068, y: 0.0000000016858744, z: -0.0000000033717495, w: 0.7071067}
+      scale: {x: 0.99999976, y: 1, z: 1}
+    - name: matte_21.001
+      parentName: Datu - Mixamo Rig(Clone)
+      position: {x: -57.576633, y: 67.986824, z: 9.234908}
+      rotation: {x: -0.7071068, y: -0.000000003793218, z: 0.0000000018966095, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: matte_21.002
+      parentName: Datu - Mixamo Rig(Clone)
+      position: {x: 57.576633, y: 67.986824, z: 9.234907}
+      rotation: {x: -0.7071068, y: 0.000000023602245, z: -0.0000000054790887, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 0.99999976}
+    - name: matte_22.001
+      parentName: Datu - Mixamo Rig(Clone)
+      position: {x: 59.883274, y: 61.83965, z: 13.204963}
+      rotation: {x: -0.7071068, y: 0.000000023602245, z: -0.0000000054790887, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 0.99999976}
+    - name: matte_22.002
+      parentName: Datu - Mixamo Rig(Clone)
+      position: {x: -59.883274, y: 61.83965, z: 13.204962}
+      rotation: {x: -0.7071068, y: -0.000000003793218, z: 0.0000000018966095, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: matte_31.001
+      parentName: Datu - Mixamo Rig(Clone)
+      position: {x: 58.030193, y: 65.934006, z: 5.2429376}
+      rotation: {x: -0.7071068, y: 0.000000009272309, z: -0.000000013486993, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: matte_31.002
+      parentName: Datu - Mixamo Rig(Clone)
+      position: {x: -58.030197, y: 65.934006, z: 5.242938}
+      rotation: {x: -0.7071068, y: -0.0000000025288096, z: -0.0000000042146864, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: matte_32.001
+      parentName: Datu - Mixamo Rig(Clone)
+      position: {x: 60.259613, y: 59.078144, z: 8.748335}
+      rotation: {x: -0.7071068, y: -0.000000011590382, z: -2.1073374e-10, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: matte_32.002
+      parentName: Datu - Mixamo Rig(Clone)
+      position: {x: -60.259613, y: 59.078144, z: 8.748335}
+      rotation: {x: -0.7071068, y: -0.0000000025288096, z: -0.0000000042146864, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: matte_41.001
+      parentName: Datu - Mixamo Rig(Clone)
+      position: {x: -57.37923, y: 64.4251, z: 1.3039967}
+      rotation: {x: -0.7071068, y: -0.0000000059005645, z: 0.000000016015807, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: matte_41.002
+      parentName: Datu - Mixamo Rig(Clone)
+      position: {x: 57.37924, y: 64.425095, z: 1.3039967}
+      rotation: {x: -0.7071068, y: -0.000000010958185, z: 0.000000006743497, w: 0.7071067}
+      scale: {x: 0.99999976, y: 1, z: 0.99999976}
+    - name: matte_42.001
+      parentName: Datu - Mixamo Rig(Clone)
+      position: {x: 59.93449, y: 57.7654, z: 3.6264246}
+      rotation: {x: -0.7071068, y: 0.000000009272308, z: -0.000000013486991, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: matte_42.002
+      parentName: Datu - Mixamo Rig(Clone)
+      position: {x: -59.93449, y: 57.765396, z: 3.626425}
+      rotation: {x: -0.7071068, y: -0.0000000059005645, z: 0.000000016015807, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: matte_51.001
+      parentName: Datu - Mixamo Rig(Clone)
+      position: {x: 56.618725, y: 62.876003, z: -2.3811078}
+      rotation: {x: -0.7071068, y: -0.000000010958185, z: 0.000000006743497, w: 0.7071067}
+      scale: {x: 0.99999976, y: 1, z: 0.99999976}
+    - name: matte_51.002
+      parentName: Datu - Mixamo Rig(Clone)
+      position: {x: -56.61873, y: 62.87601, z: -2.3811078}
+      rotation: {x: -0.7071068, y: -0.0000000025288096, z: -0.0000000042146864, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: matte_52.001
+      parentName: Datu - Mixamo Rig(Clone)
+      position: {x: 58.766922, y: 57.100296, z: -0.952764}
+      rotation: {x: -0.7071068, y: 0.000000009272308, z: -0.000000013486991, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: matte_52.002
+      parentName: Datu - Mixamo Rig(Clone)
+      position: {x: -58.766922, y: 57.100296, z: -0.952764}
+      rotation: {x: -0.7071068, y: -0.0000000059005645, z: 0.000000016015807, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: mixamorig:Hips
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: d054cd1ede7605c4b92b60cc2914bdb5, type: 3}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 2
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
