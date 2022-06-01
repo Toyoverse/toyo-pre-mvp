@@ -1,0 +1,20 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/Styles/menuStyle.uss?fileID=7433441132597879392&amp;guid=9bf11cd79e85c3845bec6c228384c2d8&amp;type=3#menuStyle" />
+    <ui:VisualElement name="Background" class="backgroundStyle" style="background-color: rgb(43, 43, 43);">
+        <ui:GroupBox name="moneyBox" style="align-items: center; width: 100%; height: 5%; position: absolute; margin-top: 2%; left: auto; margin-right: 2%; margin-left: 2%; margin-bottom: 2%; justify-content: flex-end; flex-direction: row;">
+            <ui:VisualElement name="CoinImage" style="width: 80px; height: 80px; background-color: rgb(0, 224, 255); margin-right: 25px; margin-left: 0; white-space: normal; -unity-text-align: upper-left; position: relative; left: auto;" />
+            <ui:Label text="2.109" display-tooltip-when-elided="true" style="font-size: 36px; -unity-font-style: bold; align-items: center; justify-content: center; color: rgb(255, 255, 255);" />
+        </ui:GroupBox>
+        <ui:GroupBox name="LateralButtons" class="groupBox" style="left: auto; align-items: flex-start; justify-content: center;">
+            <ui:Button text="Boxes" display-tooltip-when-elided="true" name="boxes" class="lateralButtonStyle" style="margin-left: 0;" />
+            <ui:Button text="Others" display-tooltip-when-elided="true" name="others" class="lateralButtonStyle" style="position: relative; font-size: 50px; margin-left: 0; background-color: rgba(103, 103, 103, 0.39); color: rgba(255, 255, 255, 0.39);" />
+        </ui:GroupBox>
+        <ui:GroupBox name="infoBox" class="groupBox" style="flex-direction: column; align-items: center; justify-content: center;">
+            <ui:VisualElement name="infoDescription" style="height: 60%; width: 80%; top: auto; border-left-width: 10px; border-right-width: 10px; border-top-width: 10px; border-bottom-width: 10px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);">
+                <ui:Label text="Greetings Future ToyoMaster!" display-tooltip-when-elided="true" name="infoTitle" style="font-size: 40px; -unity-font-style: bold; -unity-text-align: upper-center; margin-top: 20px; margin-bottom: 20px; margin-right: 20px; margin-left: 20px; color: rgb(255, 255, 255);" />
+                <ui:Label display-tooltip-when-elided="true" name="descriptionText" text="Welcome to simulation H64!&#10;&#10;Interdimentional travel is not safe for humans yet, so I&apos;ll be your guide to this universe. while Toyos are the main attraction here.&#10;&#10;Oh.... I couldn&apos;t fint a Toyo bounded to you in my records. If you have a box, you can open it to stabilish a connection.&#10;&#10;You can buy boxes and Toyos from some of the trusted sources bellow." style="font-size: 30px; -unity-font-style: normal; -unity-text-align: middle-left; height: 80%; white-space: normal; margin-right: 10px; margin-left: 10px; color: rgb(255, 255, 255);" />
+            </ui:VisualElement>
+            <ui:Button text="OpenSea" display-tooltip-when-elided="true" name="openSea" class="yellowButtonStyle" style="align-items: flex-start; justify-content: flex-start;" />
+        </ui:GroupBox>
+    </ui:VisualElement>
+</ui:UXML>

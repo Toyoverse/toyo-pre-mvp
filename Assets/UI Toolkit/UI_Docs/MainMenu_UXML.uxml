@@ -1,0 +1,13 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/Styles/mainMenuStyle.uss?fileID=7433441132597879392&amp;guid=1ecb6d2681172d2468a275d022486df0&amp;type=3#mainMenuStyle" />
+    <ui:VisualElement name="Background" class="backgroundStyle" style="background-color: rgb(43, 43, 43); flex-direction: column; justify-content: flex-start;">
+        <ui:GroupBox name="LateralButtons" class="groupBox" style="left: auto; align-items: flex-start; justify-content: center; width: auto; height: 80%;">
+            <ui:Button text="Boxes" display-tooltip-when-elided="true" name="boxes" class="lateralButtonStyle" style="margin-left: 0; width: 20%;" />
+            <ui:Button text="Others" display-tooltip-when-elided="true" name="others" class="lateralButtonStyle" style="position: relative; font-size: 50px; margin-left: 0; background-color: rgba(103, 103, 103, 0.39); color: rgba(255, 255, 255, 0.39); width: 20%;" />
+        </ui:GroupBox>
+        <ui:GroupBox name="lowerBox" class="groupBox" style="flex-direction: row; align-items: center; justify-content: space-around; display: flex; visibility: visible; width: auto; height: 20%;">
+            <ui:Button text="Mode" display-tooltip-when-elided="true" name="modeButton" class="yellowButtonStyle" style="align-items: center; justify-content: flex-start; margin-right: 20px; position: absolute; width: 600px; white-space: normal; left: 582px;" />
+            <ui:Button text="Start" display-tooltip-when-elided="true" name="startButton" class="yellowButtonStyle" style="align-items: flex-start; justify-content: flex-start; left: 38%; position: relative; height: 100%; bottom: 20%; font-size: 80px;" />
+        </ui:GroupBox>
+    </ui:VisualElement>
+</ui:UXML>
