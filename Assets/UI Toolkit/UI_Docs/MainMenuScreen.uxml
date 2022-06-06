@@ -1,0 +1,37 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/Styles/mainMenuStyle.uss?fileID=7433441132597879392&amp;guid=1ecb6d2681172d2468a275d022486df0&amp;type=3#mainMenuStyle" />
+    <ui:VisualElement name="ScreenTotalArea" style="flex-grow: 1; visibility: visible;">
+        <ui:VisualElement name="MenuArea" class="backgroundStyle" style="background-color: rgba(43, 43, 43, 0); flex-direction: column; justify-content: center; align-items: stretch;">
+            <ui:GroupBox name="LateralButtonsArea" class="groupBox" style="left: auto; align-items: flex-start; justify-content: center; width: 20%; height: 80%;">
+                <ui:Button text="Boxes" display-tooltip-when-elided="true" name="boxesButton" class="lateralButtonStyle" style="margin-left: 0; width: 80%;" />
+                <ui:Button text="Others" display-tooltip-when-elided="true" name="othersButton" class="lateralButtonStyle" style="position: relative; font-size: 50px; margin-left: 0; background-color: rgba(103, 103, 103, 0.39); color: rgba(255, 255, 255, 0.39); width: 80%; visibility: hidden;" />
+            </ui:GroupBox>
+            <ui:GroupBox name="modeButtonArea" class="groupBox" style="flex-direction: column-reverse; align-items: center; justify-content: center; width: 50%; height: 20%; position: absolute; top: 85%; left: 25%;">
+                <ui:Button text="Mode" display-tooltip-when-elided="true" name="modeButton" class="yellowButtonStyle" style="align-items: center; justify-content: flex-start; margin-right: 20px; position: absolute; width: 65%; white-space: normal; left: auto;" />
+            </ui:GroupBox>
+            <ui:GroupBox name="StartButtonArea" class="groupBox" style="flex-direction: column; align-items: center; justify-content: flex-end; width: 20%; height: 100%; position: absolute; left: 80%;">
+                <ui:Button text="Start" display-tooltip-when-elided="true" name="startButton" class="yellowButtonStyle" style="align-items: flex-start; justify-content: flex-start; left: auto; position: relative; height: 20%; bottom: auto; font-size: 80px; width: 100%;" />
+            </ui:GroupBox>
+            <ui:GroupBox name="ToyoButtonArea" class="groupBox" style="flex-direction: column-reverse; align-items: center; justify-content: center; width: 50%; height: 80%; position: absolute; top: 5%; left: 25%;">
+                <ui:Button display-tooltip-when-elided="true" name="ToyoButton" class="yellowButtonStyle" style="align-items: center; justify-content: flex-start; margin-right: 20px; position: absolute; width: 100%; white-space: normal; left: auto; height: 100%; background-color: rgba(255, 224, 0, 0);" />
+            </ui:GroupBox>
+        </ui:VisualElement>
+        <ui:VisualElement name="TrainingBackground" class="backgroundStyle" style="background-color: rgba(43, 43, 43, 0.78); justify-content: center; position: absolute; width: 100%; height: 100%; align-items: center; visibility: hidden;">
+            <ui:VisualElement name="NormalMode" class="modeStyle" style="background-color: rgb(156, 111, 111);">
+                <ui:Label text="ABEZNY" display-tooltip-when-elided="true" name="normalTitle" style="font-size: 40px; -unity-font-style: bold;" />
+                <ui:VisualElement name="normalImage" style="height: 60%; background-color: rgb(158, 102, 168);" />
+                <ui:Label text="COMING SOON" display-tooltip-when-elided="true" name="normalDescription" style="font-size: 30px; height: 30%; white-space: normal;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="RankedMode" class="modeStyle" style="background-color: rgb(164, 121, 121);">
+                <ui:Label text="ENAXRQ" display-tooltip-when-elided="true" name="rankedTitle" style="font-size: 40px; -unity-font-style: bold;" />
+                <ui:VisualElement name="rankedImage" style="height: 60%; background-color: rgb(158, 102, 168);" />
+                <ui:Label text="COMING SOON" display-tooltip-when-elided="true" name="rankedDescription" style="font-size: 30px; height: 30%; white-space: normal;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="TrainingMode" class="modeStyle" style="background-color: rgb(94, 154, 109);">
+                <ui:Label text="TRAINING MODULES" display-tooltip-when-elided="true" name="trainingTitle" style="font-size: 40px; -unity-font-style: bold;" />
+                <ui:VisualElement name="trainingImage" style="height: 60%; background-color: rgb(158, 102, 168);" />
+                <ui:Label text="Send your Toyo&apos;s into quests and win resources passively" display-tooltip-when-elided="true" name="trainingDescription" style="font-size: 30px; height: 30%; white-space: normal;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

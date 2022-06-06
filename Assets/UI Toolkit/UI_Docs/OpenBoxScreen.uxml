@@ -1,0 +1,36 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/Styles/OpenBoxStyle.uss?fileID=7433441132597879392&amp;guid=c6ed6229d3575de4b9e145964e582737&amp;type=3#OpenBoxStyle" />
+    <ui:VisualElement name="ScreenTotalArea" class="backgroundStyle" style="background-color: rgba(43, 43, 43, 0); flex-direction: row; align-items: stretch; justify-content: space-between; visibility: visible;">
+        <ui:GroupBox name="backArea" style="width: 10%; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 1%; padding-right: 1%; padding-top: 1%; padding-bottom: 1%; visibility: hidden;">
+            <ui:Button text="Back" display-tooltip-when-elided="true" name="backButton" style="width: 100%; height: 8%; font-size: 30px;" />
+        </ui:GroupBox>
+        <ui:GroupBox name="ToyoArea" style="width: 50%; height: 100%; align-items: center; justify-content: space-between; flex-direction: column-reverse; padding-left: 2%; padding-right: 2%; padding-top: 2%; padding-bottom: 2%; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0;">
+            <ui:Button text="AWESOME!" display-tooltip-when-elided="true" name="awesomeButton" class="yellowButtonStyle" style="font-size: 40px; -unity-font-style: bold;" />
+        </ui:GroupBox>
+        <ui:GroupBox name="infoArea" class="groupBox" style="flex-direction: column; align-items: flex-end; justify-content: center; padding-right: 2%; padding-left: 2%; padding-top: 2%; padding-bottom: 2%; width: 40%; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0;">
+            <ui:GroupBox name="tabsBox" style="flex-direction: row; justify-content: flex-start; width: 100%; margin-bottom: 0; padding-bottom: 0; align-items: flex-end; visibility: hidden;">
+                <ui:Button text="Overview" display-tooltip-when-elided="true" name="overviewButton" class="tabButton" />
+                <ui:Button text="Toyoparts" display-tooltip-when-elided="true" name="toyopartsButton" class="tabButton" style="width: 30%; height: 30px;" />
+            </ui:GroupBox>
+            <ui:VisualElement name="infoDescription" style="height: 85%; width: 100%; top: auto; border-left-width: 10px; border-right-width: 10px; border-top-width: 10px; border-bottom-width: 10px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); align-items: center; justify-content: flex-start; flex-direction: column; padding-top: 20px; padding-bottom: 20px;">
+                <ui:GroupBox style="width: 90%; height: 20%; flex-direction: row; justify-content: space-between; margin-top: 30px; margin-left: 30px; margin-right: 30px; margin-bottom: 30px; padding-left: 60px; padding-right: 60px;">
+                    <ui:VisualElement name="avgLevel" style="width: 40%; height: 100%; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; background-color: rgb(160, 160, 160);" />
+                    <ui:VisualElement name="avgHB" style="width: 40%; height: 100%; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; background-color: rgb(160, 160, 160);" />
+                </ui:GroupBox>
+                <ui:ProgressBar title="Vitality" name="Vitality" class="progresStyle" />
+                <ui:ProgressBar title="Armor" name="Armor" class="progresStyle" />
+                <ui:ProgressBar title="Strength" name="Strength" class="progresStyle" />
+                <ui:ProgressBar title="Cyber Force" name="CyberForce" class="progresStyle" />
+                <ui:ProgressBar title="Resistance" name="Resistance" class="progresStyle" />
+                <ui:ProgressBar title="Resilience" name="Resilience" class="progresStyle" />
+                <ui:ProgressBar title="Speed" name="Speed" class="progresStyle" />
+                <ui:ProgressBar title="Agility" name="Agility" class="progresStyle" />
+                <ui:ProgressBar title="Technique" name="Technique" class="progresStyle" />
+                <ui:ProgressBar title="Analysis" name="Analysis" class="progresStyle" />
+                <ui:ProgressBar title="Stamina" name="Stamina" class="progresStyle" />
+                <ui:ProgressBar title="Luck" name="Luck" class="progresStyle" />
+                <ui:ProgressBar title="Precision" name="Precision" class="progresStyle" />
+            </ui:VisualElement>
+        </ui:GroupBox>
+    </ui:VisualElement>
+</ui:UXML>

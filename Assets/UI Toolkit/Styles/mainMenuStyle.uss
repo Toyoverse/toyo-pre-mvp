@@ -74,6 +74,32 @@
     white-space: normal;
 }
 
+.lateralButtonStyle:active {
+    position: relative;
+    font-size: 50px;
+    width: 40%;
+    height: 10%;
+    background-color: rgb(224, 224, 224);
+    color: rgb(0, 0, 0);
+    -unity-font-style: normal;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    -unity-text-align: middle-center;
+    white-space: normal;
+}
+
+.modeStyle {
+    width: 25%;
+    height: 50%;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    background-color: rgba(156, 156, 156, 255);
+}
+
 .yellowButtonStyle:hover {
     position: relative;
     font-size: 50px;
@@ -81,8 +107,8 @@
     border-bottom-left-radius: 60px;
     border-top-right-radius: 60px;
     border-bottom-right-radius: 60px;
-    width: 40%;
-    height: 10%;
+    width: 20%;
+    height: 50%;
     border-left-color: rgb(0, 0, 0);
     border-right-color: rgb(0, 0, 0);
     border-top-color: rgb(0, 0, 0);
@@ -91,7 +117,7 @@
     border-right-width: 10px;
     border-top-width: 10px;
     border-bottom-width: 10px;
-    background-color: rgb(255, 160, 0);
+    background-color: rgb(255, 154, 0);
     color: rgb(0, 0, 0);
     -unity-font-style: normal;
     margin-left: 20px;
@@ -107,8 +133,8 @@
     border-bottom-left-radius: 60px;
     border-top-right-radius: 60px;
     border-bottom-right-radius: 60px;
-    width: 40%;
-    height: 10%;
+    width: 20%;
+    height: 50%;
     border-left-color: rgb(0, 0, 0);
     border-right-color: rgb(0, 0, 0);
     border-top-color: rgb(0, 0, 0);
@@ -117,27 +143,11 @@
     border-right-width: 10px;
     border-top-width: 10px;
     border-bottom-width: 10px;
-    background-color: rgb(255, 95, 0);
+    background-color: rgb(255, 115, 0);
     color: rgb(255, 255, 255);
     -unity-font-style: normal;
     margin-left: 20px;
     margin-right: 20px;
     margin-top: 20px;
     margin-bottom: 20px;
-}
-
-.lateralButtonStyle:active {
-    position: relative;
-    font-size: 50px;
-    width: 40%;
-    height: 10%;
-    background-color: rgb(224, 224, 224);
-    color: rgb(0, 0, 0);
-    -unity-font-style: normal;
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    -unity-text-align: middle-center;
-    white-space: normal;
 }
