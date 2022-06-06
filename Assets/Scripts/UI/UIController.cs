@@ -13,22 +13,19 @@ namespace UI
         protected VisualElement root;
         public List<CustomButton> Buttons;
 
-        private bool buttonEventsEnabled = false;
-
         public virtual void OnDestroy() => DisableButtonEvents();
 
-        public virtual void EnableButtonEvents()
+        public void EnableButtonEvents()
         {
             root = UIDoc.rootVisualElement;
-
+            
             if(Buttons.Count <= 0 || root == null)
                 return;
-
             foreach (var cb in Buttons)
             {
                 if (root?.Q<Button>(cb.Name) != null)
                 {
-                    cb.Button ??= root.Q<Button>(cb.Name);
+                    cb.Button = root.Q<Button>(cb.Name);
                     cb.Button.clickable.clicked += cb.OnClickEvent.Invoke;
                 }
                 else
@@ -38,15 +35,16 @@ namespace UI
             }
         }
 
-        public virtual void DisableButtonEvents()
+        public void DisableButtonEvents()
         {
-            if(Buttons.Count <= 0 || root == null)
+            if (Buttons.Count <= 0 || root == null)
                 return;
+
             foreach (var cb in Buttons)
             {
                 if (root?.Q<Button>(cb.Name) != null)
                 {
-                    cb.Button ??= root.Q<Button>(cb.Name);
+                    cb.Button = root.Q<Button>(cb.Name);
                     cb.Button.clickable.clicked -= cb.OnClickEvent.Invoke;
                 }
                 else
@@ -57,6 +55,11 @@ namespace UI
         }
 
         public virtual void BackButton() => ScreenManager.Instance.BackToOldScreen();
+
+        public void Test()
+        {
+            Debug.Log("TESTE!");
+        }
     }
 
     [Serializable]

@@ -13,35 +13,23 @@ namespace UI
         private const string trainingModeString = "TrainingMode";
 
         public static GAME_MODE GameMode { get; private set; }
-        
-       /* public override void EnableButtonEvents()
-        {
-            base.EnableButtonEvents();
-            trainingBackground = root.Query<VisualElement>(modeBackgroundString);
-            AddModeEvents();
-        }*/
 
-        public override void OnDestroy()
-        {
-            base.OnDestroy();
-            RemoveModeEvents();
-        }
-        
         private void AddModeEvents()
         {
             root?.Q<VisualElement>(normalModeString).RegisterCallback<ClickEvent>
             (evt 
-                    => { EnableTrainingModeScreen(false); 
+                    =>
+                {   DisableTrainingModeScreen(); 
                     SetMode(GAME_MODE.NORMAL); }
             );
             root?.Q<VisualElement>(rankedModeString).RegisterCallback<ClickEvent>
             (evt 
-                    => { EnableTrainingModeScreen(false); 
+                    => { DisableTrainingModeScreen(); 
                     SetMode(GAME_MODE.RANKED); }
             );
             root?.Q<VisualElement>(trainingModeString).RegisterCallback<ClickEvent>
             (evt 
-                    => { EnableTrainingModeScreen(false); 
+                    => { DisableTrainingModeScreen();  
                     SetMode(GAME_MODE.TRAINING); }
             );
         }
@@ -50,17 +38,17 @@ namespace UI
         {
             root?.Q<VisualElement>(normalModeString).UnregisterCallback<ClickEvent>
             (evt 
-                    => { EnableTrainingModeScreen(false); 
+                    => { DisableTrainingModeScreen(); 
                     SetMode(GAME_MODE.NORMAL); }
             );
             root?.Q<VisualElement>(rankedModeString).UnregisterCallback<ClickEvent>
             (evt 
-                    => { EnableTrainingModeScreen(false); 
+                    => { DisableTrainingModeScreen(); 
                     SetMode(GAME_MODE.RANKED); }
             );
             root?.Q<VisualElement>(trainingModeString).UnregisterCallback<ClickEvent>
             (evt 
-                    => { EnableTrainingModeScreen(false); 
+                    => { DisableTrainingModeScreen(); 
                     SetMode(GAME_MODE.TRAINING); }
             );
         }
@@ -77,8 +65,19 @@ namespace UI
             Debug.Log(GameMode);
         }
 
-        public void EnableTrainingModeScreen(bool enable)
-            => trainingBackground.visible = enable;
+        public void EnableTrainingModeSelection()
+        {
+            trainingBackground = root.Query<VisualElement>(modeBackgroundString);
+            trainingBackground.visible = true;
+            AddModeEvents();
+        }
+
+        public void DisableTrainingModeScreen()
+        {
+            trainingBackground = root.Query<VisualElement>(modeBackgroundString);
+            RemoveModeEvents();
+            trainingBackground.visible = false;
+        }
 
         public void ChangeToyoButton(int i)
         {
