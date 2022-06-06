@@ -1,4 +1,4 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/UI%20Toolkit/Styles/welcomeMenuStyle.uss?fileID=7433441132597879392&amp;guid=9bf11cd79e85c3845bec6c228384c2d8&amp;type=3#welcomeMenuStyle" />
-    <ui:VisualElement name="Background" class="backgroundStyle" style="background-color: rgb(43, 43, 43); visibility: visible;" />
+    <Style src="project://database/Assets/UI%20Toolkit/Styles/WelcomeStyle.uss?fileID=7433441132597879392&amp;guid=9bf11cd79e85c3845bec6c228384c2d8&amp;type=3#WelcomeStyle" />
+    <ui:VisualElement name="Background" class="backgroundStyle" style="background-color: rgb(255, 255, 255); -unity-background-scale-mode: scale-to-fit; -unity-slice-left: 0; background-image: url(&apos;project://database/Assets/Images/Toyo_Unboxing-HUD(background).png?fileID=2800000&amp;guid=0cabdf18c2b388b42a7eae745aeead6d&amp;type=3#Toyo_Unboxing-HUD(background)&apos;);" />
 </ui:UXML>

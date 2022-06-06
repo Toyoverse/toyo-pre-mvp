@@ -80,23 +80,23 @@ namespace UI
             switch (ScreenState)
             {
                 case SCREEN_STATE.WELCOME:
-                    //WelcomeScript.DisableButtonEvents();
+                    WelcomeScript.DisableButtonEvents();
                     WelcomeScreen.gameObject.SetActive(false);
                     break;
                 case SCREEN_STATE.MAIN_MENU:
-                    //MainMenuScript.DisableButtonEvents();
+                    MainMenuScript.DisableButtonEvents();
                     MainMenuScreen.gameObject.SetActive(false);
                     break;
                 case SCREEN_STATE.TOYO_INFO:
-                    //ToyoInfoScript.DisableButtonEvents();
+                    ToyoInfoScript.DisableButtonEvents();
                     ToyoInfoScreen.gameObject.SetActive(false);
                     break;
                 case SCREEN_STATE.BOX_INFO:
-                    //BoxInfoScript.DisableButtonEvents();
+                    BoxInfoScript.DisableButtonEvents();
                     BoxInfoScreen.gameObject.SetActive(false);
                     break;
                 case SCREEN_STATE.OPEN_BOX:
-                    //OpenBoxScript.DisableButtonEvents();
+                    OpenBoxScript.DisableButtonEvents();
                     OpenBoxScreen.gameObject.SetActive(false);
                     break;
                 default:
