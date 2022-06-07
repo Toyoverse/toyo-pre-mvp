@@ -24,50 +24,60 @@ namespace UI
             if(Instance != null)
                 Destroy(this.gameObject);
             Instance = this;
+            DontDestroyOnLoad(this.gameObject);
         }
 
-        public void ShowPopUp(string message, Action positiveAction, Action negativeAction = null)
+        public void ShowPopUp(string message, Action positiveAction = null, Action negativeAction = null)
         {
             InitVariables();
+            pInfo = new PopUpInfo
+            {
+                messageText = message,
+                positiveAction = positiveAction,
+                negativeAction = negativeAction,
+            };
             MessageLabel.text = message;
-            PositiveButton.text = "Yes";
+            PositiveButton.text = negativeAction != null ? "Yes" : "Ok"; 
             PositiveButton.RegisterCallback<ClickEvent>(evt =>
             {
-                positiveAction();
+                pInfo.positiveAction?.Invoke();
                 HidePopUp();
             });
-            if (negativeAction != null)
+            if (negativeAction == null)
             {
-                NegativeButton.text = "No";
-                NegativeButton.RegisterCallback<ClickEvent>(evt =>
+                DisableNegativeButton();
+                return;
+            }
+            NegativeButton.text = "No";
+            NegativeButton.RegisterCallback<ClickEvent>(evt =>
                 {
-                    negativeAction();
+                    pInfo.negativeAction();
                     HidePopUp();
                 });
-            }
         }
 
         public void ShowPopUp(PopUpInfo _pInfo)
         {
             pInfo = _pInfo;
             InitVariables();
-            
             MessageLabel.text = pInfo.messageText;
             PositiveButton.text = pInfo.positiveText;
             PositiveButton.RegisterCallback<ClickEvent>(evt =>
             {
-                pInfo.positiveAction();
+                pInfo.positiveAction?.Invoke();
                 HidePopUp();
             });
-            if (NegativeButton != null)
+            if (pInfo.negativeAction == null)
             {
-                NegativeButton.text = pInfo.negativeText;
-                NegativeButton.RegisterCallback<ClickEvent>(evt =>
+                DisableNegativeButton();
+                return;
+            }
+            NegativeButton.text = pInfo.negativeText;
+            NegativeButton.RegisterCallback<ClickEvent>(evt =>
                 {
                     pInfo.negativeAction();
                     HidePopUp();
                 });
-            }
         }
 
         private void InitVariables()
@@ -77,6 +87,7 @@ namespace UI
             PositiveButton = root.Q<Button>(PositiveName);
             NegativeButton = root.Q<Button>(NegativeName);
             MessageLabel = root.Q<Label>(LabelName);
+            EnableNegativeButton();
         }
 
         private void HidePopUp()
@@ -84,7 +95,26 @@ namespace UI
             PositiveButton.clicked -= pInfo.positiveAction;
             NegativeButton.clicked -= pInfo.negativeAction;
             PopUp.gameObject.SetActive(false);
+            ResetPopUpInfo();
         }
+
+        private void ResetPopUpInfo()
+        {
+            pInfo = new PopUpInfo
+            {
+                messageText = "",
+                positiveText = "",
+                negativeText = "",
+                positiveAction = null,
+                negativeAction = null
+            };
+        }
+
+        private void EnableNegativeButton() =>
+            NegativeButton.style.display = DisplayStyle.Flex;
+
+        private void DisableNegativeButton() =>
+            NegativeButton.style.display = DisplayStyle.None;
     }
 
     public struct PopUpInfo
@@ -96,7 +126,7 @@ namespace UI
         public Action positiveAction;
         public Action negativeAction;
 
-        public PopUpInfo(string message, string positiveText, string negativeText, Action positiveAction, Action negativeAction)
+        public PopUpInfo(string message, string positiveText, string negativeText, Action positiveAction = null, Action negativeAction = null)
         {
             messageText = message;
             this.positiveText = positiveText;
