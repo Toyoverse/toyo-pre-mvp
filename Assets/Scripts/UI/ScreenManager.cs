@@ -35,7 +35,7 @@ namespace UI
                 Instance = this;
             
             yield return new WaitForFixedUpdate();
-            //GetScreenScripts();
+            GetScreenScripts();
             GoToScreen(haveToyo ? SCREEN_STATE.MAIN_MENU : SCREEN_STATE.WELCOME);
         }
 
