@@ -40,7 +40,7 @@ namespace Database
             using UnityWebRequest request = UnityWebRequest.Get (uri);
             request.SetRequestHeader("Access-Control-Allow-Origin", "*");
             yield return request.SendWebRequest ();
-
+                
             if (request.error != null)
                 Debug.Log (request.error);
             else

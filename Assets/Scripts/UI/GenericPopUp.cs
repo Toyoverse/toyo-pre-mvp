@@ -109,6 +109,7 @@ namespace UI
                 negativeAction = null
             };
         }
+        
 
         private void EnableNegativeButton() =>
             NegativeButton.style.display = DisplayStyle.Flex;
