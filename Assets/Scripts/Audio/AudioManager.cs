@@ -12,9 +12,9 @@ namespace UnityTemplateProjects.Audio
         
         [Header("UI Sounds")]
         public EventReference buttonClickSfx;
-        
+
         public List<EventInstance> EventInstances = new();
-        
+
         public void StopAll()
         {
             foreach (var _eventInstance in EventInstances.Where(instance => instance.isValid()))
@@ -34,34 +34,36 @@ namespace UnityTemplateProjects.Audio
                     EventInstances.RemoveAt(_index);
             }
         }
-        
-        public EventInstance PlayOneShot(EventInstance eventInstance, Vector3 position)
+
+        public EventInstance PlayOneShot(EventReference eventReference, Vector3 position)
         {
+            var _eventInstance = FMODUnity.RuntimeManager.CreateInstance(eventReference);
             try
             {
                 ClearInactiveInstances();
-                eventInstance.set3DAttributes(position.To3DAttributes());
-                eventInstance.start();
-                eventInstance.release();
-                return eventInstance;
+                _eventInstance.set3DAttributes(position.To3DAttributes());
+                _eventInstance.start();
+                _eventInstance.release();
+                return _eventInstance;
             }
             catch(Exception _err)
             {
                 Debug.Log("AUDIO RUNTIME ERROR: " + _err.Message);
-                return eventInstance;
+                return _eventInstance;
             }
         }
 
-        public void PlayOneShotWithParameter(EventInstance eventInstance, Vector3 position, string parameterName, int parameterValue)
+        public void PlayOneShotWithParameter(EventReference eventReference, Vector3 position, string parameterName, int parameterValue)
         {
+            var _eventInstance = FMODUnity.RuntimeManager.CreateInstance(eventReference);
             try
             {
                 ClearInactiveInstances();
-                eventInstance.setParameterByName(parameterName, parameterValue);
-                eventInstance.set3DAttributes(position.To3DAttributes());
-                eventInstance.start();
-                eventInstance.release();
-                EventInstances.Add(eventInstance);
+                _eventInstance.setParameterByName(parameterName, parameterValue);
+                _eventInstance.set3DAttributes(position.To3DAttributes());
+                _eventInstance.start();
+                _eventInstance.release();
+                EventInstances.Add(_eventInstance);
             }
             catch (Exception _err)
             {

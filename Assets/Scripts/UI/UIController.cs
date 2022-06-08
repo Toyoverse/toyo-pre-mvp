@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UIElements;
+using UnityTemplateProjects.Audio;
 
 namespace UI
 {
@@ -26,6 +27,7 @@ namespace UI
                 if (root?.Q<Button>(cb.Name) != null)
                 {
                     cb.Button = root.Q<Button>(cb.Name);
+                    cb.Button.clickable.clicked += PlayClickSound;
                     cb.Button.clickable.clicked += cb.OnClickEvent.Invoke;
                 }
                 else
@@ -45,6 +47,7 @@ namespace UI
                 if (root?.Q<Button>(cb.Name) != null)
                 {
                     cb.Button = root.Q<Button>(cb.Name);
+                    cb.Button.clickable.clicked -= PlayClickSound;
                     cb.Button.clickable.clicked -= cb.OnClickEvent.Invoke;
                 }
                 else
@@ -52,6 +55,11 @@ namespace UI
                     Debug.Log(cb.Name + " not found in " + UIDoc.name);
                 }
             }
+        }
+
+        private void PlayClickSound()
+        {
+            AudioManager.Instance.PlayOneShot(AudioManager.Instance.buttonClickSfx, transform.position);
         }
 
         public virtual void BackButton() => ScreenManager.Instance.BackToOldScreen();
