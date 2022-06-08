@@ -8,12 +8,12 @@ namespace Database
 {
     public class DatabaseConnection : Singleton<DatabaseConnection>
     {
-        public bool IsDebug = true;
+        public bool isDebug = true;
         
         private void Awake()
         {
             
-            if(!IsDebug)
+            if(!isDebug)
                 GenerateRequest(OnConnectionSuccess);
             else
             {
@@ -25,8 +25,8 @@ namespace Database
 
         private void OnConnectionSuccess(string json)
         {
-            var myObject = JsonUtility.FromJson<DatabaseJson>(json);    
-            Debug.Log(myObject.player);
+            var _myObject = JsonUtility.FromJson<DatabaseJson>(json);    
+            Debug.Log(_myObject.player);
         }
         
         private const string URL = "https://nakatoshivault.com/toyoAssets/";
@@ -37,16 +37,16 @@ namespace Database
 
         private IEnumerator ProcessRequest (Action<string> callback, string uri)
         {
-            using UnityWebRequest request = UnityWebRequest.Get (uri);
-            request.SetRequestHeader("Access-Control-Allow-Origin", "*");
-            yield return request.SendWebRequest ();
+            using UnityWebRequest _request = UnityWebRequest.Get (uri);
+            _request.SetRequestHeader("Access-Control-Allow-Origin", "*");
+            yield return _request.SendWebRequest ();
                 
-            if (request.error != null)
-                Debug.Log (request.error);
+            if (_request.error != null)
+                Debug.Log (_request.error);
             else
             {
-                var json = request.downloadHandler.text;
-                callback.Invoke(json);
+                var _json = _request.downloadHandler.text;
+                callback.Invoke(_json);
             }
                 
         }

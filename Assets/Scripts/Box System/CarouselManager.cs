@@ -2,75 +2,96 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
+using Quaternion = UnityEngine.Quaternion;
+using Vector3 = UnityEngine.Vector3;
 
 
 public class CarouselManager : MonoBehaviour
 {
 
-    public List<Transform> AllObjects;
-
-    public Transform Anchor;
-
-    private Transform CurrentSelectedObject;
-
-    private int CurrentSelectedIndex = 0;
-
-    private bool IsFirstObjectSelected() => CurrentSelectedIndex == 0;
-
-    private bool IsLastObjectSelected() => CurrentSelectedIndex + 1 == AllObjects.Count;
-
-    private Transform GetNextObject() => IsLastObjectSelected() ? AllObjects.First() : AllObjects[CurrentSelectedIndex + 1];
+    public float carouselOffset = 5.0f;
     
-    private Transform GetPreviousObject() => IsFirstObjectSelected() ? AllObjects.Last() : AllObjects[CurrentSelectedIndex - 1];
+    public List<Transform> allObjects;
+
+    public Transform anchor;
+
+    private Transform _currentSelectedObject;
+
+    private int _currentSelectedIndex = 0;
+
+    private bool IsFirstObjectSelected() => _currentSelectedIndex == 0;
+
+    private bool IsLastObjectSelected() => _currentSelectedIndex + 1 == allObjects.Count;
+
+    private bool IsObjectToRotate(Transform objectToRotate) => objectToRotate == GetPreviousObject() || objectToRotate == GetNextObject() ||
+                                                        objectToRotate == _currentSelectedObject || objectToRotate == _objectToHide;
+
+    private Transform GetNextObject() => IsLastObjectSelected() ? allObjects.First() : allObjects[_currentSelectedIndex + 1];
+    
+    private Transform GetPreviousObject() => IsFirstObjectSelected() ? allObjects.Last() : allObjects[_currentSelectedIndex - 1];
+
+    private Transform _objectToHide;
 
     private void Awake()
     {
-        CurrentSelectedObject = AllObjects[CurrentSelectedIndex];
-        UpdateCarousel();
+        _currentSelectedObject = allObjects[_currentSelectedIndex];
+        MoveToStartingPosition();
     }
 
-    private void UpdateCarousel()
+    private void MoveToStartingPosition()
     {
-        MoveToFront(CurrentSelectedObject);
-        foreach (var _object in AllObjects.Where(_object => _object != CurrentSelectedObject))
+        
+        foreach (var _object in allObjects.Where(objectToRotate => objectToRotate != _currentSelectedObject))
         {
             if (GetPreviousObject() == _object)
-                MoveToLeftSide(_object);
+                RotateRight(_object);
             else if (GetNextObject() == _object)
-                MoveToRightSide(_object);
-            else
-                MoveToBack(_object);
+                RotateLeft(_object);
+            else 
+                RotateToBack(_object);
         }
     }
 
-    void MoveToLeftSide(Transform _object)
+    void RotateLeft(Transform objectToRotate)
     {
-        StartCoroutine(MoveToPosition(_object, Anchor.position + new Vector3(-5f, 0, 0), 1f));
+        StartCoroutine(SmoothRotateAround(objectToRotate, -90f, 1f));
     }
     
-    void MoveToRightSide(Transform _object)
+    void RotateRight(Transform objectToRotate)
     {
-        StartCoroutine(MoveToPosition(_object, Anchor.position + new Vector3(5f, 0, 0), 1f));
+        StartCoroutine(SmoothRotateAround(objectToRotate, 90f, 1f));
     }
     
-    void MoveToBack(Transform _object)
+    void RotateToBack(Transform objectToRotate)
     {
-        StartCoroutine(MoveToPosition(_object, Anchor.position + new Vector3(0f, 0, 10), 1f));
+        StartCoroutine(SmoothRotateAround(objectToRotate, 180f, 1f));
     }
     
-    void MoveToFront(Transform _object)
+    IEnumerator SmoothRotateAround(Transform objectToRotate, float angle, float duration)
     {
-        StartCoroutine(MoveToPosition(_object, Anchor.position + new Vector3(0f, 0, -10), 1f));
-    }
-
-    IEnumerator MoveToPosition(Transform _object, Vector3 newPosition, float time)
-    {
-        var elapsedTime = 0f;
-        var startingPos = _object.position;
-        while (elapsedTime < time)
+        var _currentTime = 0.0f;
+        var _angleDelta = angle/duration;
+        while (_currentTime< duration)
         {
-            _object.position = Vector3.Lerp(startingPos, newPosition, (elapsedTime / time));
-            elapsedTime += Time.deltaTime;
+            _currentTime+=Time.deltaTime;
+            var _ourTimeDelta= Time.deltaTime;
+            if (_currentTime > duration)
+                _ourTimeDelta-= (_currentTime-duration);
+            objectToRotate.RotateAround(anchor.position, Vector3.up, _angleDelta*_ourTimeDelta);
+            yield return null;
+        }
+    }
+    
+
+    IEnumerator MoveToPosition(Transform objectToRotate, Vector3 newPosition, float time)
+    {
+        var _elapsedTime = 0f;
+        var _startingPos = objectToRotate.position;
+        while (_elapsedTime < time)
+        {
+            objectToRotate.position = Vector3.Lerp(_startingPos, newPosition, (_elapsedTime / time));
+            _elapsedTime += Time.deltaTime;
             yield return null;
         }
     }
@@ -78,31 +99,35 @@ public class CarouselManager : MonoBehaviour
 
     public void SwipeRight()
     {
-        if (CurrentSelectedIndex + 1 < AllObjects.Count)
+        _objectToHide = GetPreviousObject();
+        if (_currentSelectedIndex + 1 < allObjects.Count)
         {
-            CurrentSelectedIndex++;
-            CurrentSelectedObject = AllObjects[CurrentSelectedIndex];
+            _currentSelectedIndex++;
+            _currentSelectedObject = allObjects[_currentSelectedIndex];
         }
         else
         {
-            CurrentSelectedIndex = 0;
-            CurrentSelectedObject = AllObjects[CurrentSelectedIndex];
+            _currentSelectedIndex = 0;
+            _currentSelectedObject = allObjects[_currentSelectedIndex];
         }
-        UpdateCarousel();
+        foreach (var _object in allObjects.Where(IsObjectToRotate))
+            RotateRight(_object);
     }
     
     public void SwipeLeft()
     {
-        if (CurrentSelectedIndex > 0)
+        _objectToHide = GetNextObject();
+        if (_currentSelectedIndex > 0)
         {
-            CurrentSelectedIndex--;
-            CurrentSelectedObject = AllObjects[CurrentSelectedIndex];
+            _currentSelectedIndex--;
+            _currentSelectedObject = allObjects[_currentSelectedIndex];
         }
         else
         {
-            CurrentSelectedIndex = AllObjects.Count-1;
-            CurrentSelectedObject = AllObjects[CurrentSelectedIndex];
+            _currentSelectedIndex = allObjects.Count-1;
+            _currentSelectedObject = allObjects[_currentSelectedIndex];
         }
-        UpdateCarousel();
+        foreach (var _object in allObjects.Where(IsObjectToRotate))
+            RotateLeft(_object);
     }
 }

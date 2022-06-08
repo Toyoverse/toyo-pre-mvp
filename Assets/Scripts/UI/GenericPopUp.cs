@@ -9,15 +9,15 @@ namespace UI
     {
         public static GenericPopUp Instance;
         
-        public UIDocument PopUp;
-        private Label MessageLabel; 
-        private Button PositiveButton;
-        private Button NegativeButton;
+        public UIDocument popUp;
+        private Label _messageLabel; 
+        private Button _positiveButton;
+        private Button _negativeButton;
         private const string PositiveName = "PositiveButton";
         private const string NegativeName = "NegativeButton";
         private const string LabelName = "message";
 
-        private PopUpInfo pInfo;
+        private PopUpInfo _pInfo;
 
         private void Start()
         {
@@ -30,17 +30,17 @@ namespace UI
         public void ShowPopUp(string message, Action positiveAction = null, Action negativeAction = null)
         {
             InitVariables();
-            pInfo = new PopUpInfo
+            _pInfo = new PopUpInfo
             {
-                messageText = message,
-                positiveAction = positiveAction,
-                negativeAction = negativeAction,
+                MessageText = message,
+                PositiveAction = positiveAction,
+                NegativeAction = negativeAction,
             };
-            MessageLabel.text = message;
-            PositiveButton.text = negativeAction != null ? "Yes" : "Ok"; 
-            PositiveButton.RegisterCallback<ClickEvent>(evt =>
+            _messageLabel.text = message;
+            _positiveButton.text = negativeAction != null ? "Yes" : "Ok"; 
+            _positiveButton.RegisterCallback<ClickEvent>(evt =>
             {
-                pInfo.positiveAction?.Invoke();
+                _pInfo.PositiveAction?.Invoke();
                 HidePopUp();
             });
             if (negativeAction == null)
@@ -48,92 +48,92 @@ namespace UI
                 DisableNegativeButton();
                 return;
             }
-            NegativeButton.text = "No";
-            NegativeButton.RegisterCallback<ClickEvent>(evt =>
-                {
-                    pInfo.negativeAction();
-                    HidePopUp();
-                });
-        }
-
-        public void ShowPopUp(PopUpInfo _pInfo)
-        {
-            pInfo = _pInfo;
-            InitVariables();
-            MessageLabel.text = pInfo.messageText;
-            PositiveButton.text = pInfo.positiveText;
-            PositiveButton.RegisterCallback<ClickEvent>(evt =>
+            _negativeButton.text = "No";
+            _negativeButton.RegisterCallback<ClickEvent>(evt =>
             {
-                pInfo.positiveAction?.Invoke();
+                _pInfo.NegativeAction();
                 HidePopUp();
             });
-            if (pInfo.negativeAction == null)
+        }
+
+        public void ShowPopUp(PopUpInfo pInfo)
+        {
+            this._pInfo = pInfo;
+            InitVariables();
+            _messageLabel.text = this._pInfo.MessageText;
+            _positiveButton.text = this._pInfo.PositiveText;
+            _positiveButton.RegisterCallback<ClickEvent>(_ =>
+            {
+                this._pInfo.PositiveAction?.Invoke();
+                HidePopUp();
+            });
+            if (this._pInfo.NegativeAction == null)
             {
                 DisableNegativeButton();
                 return;
             }
-            NegativeButton.text = pInfo.negativeText;
-            NegativeButton.RegisterCallback<ClickEvent>(evt =>
-                {
-                    pInfo.negativeAction();
-                    HidePopUp();
-                });
+            _negativeButton.text = this._pInfo.NegativeText;
+            _negativeButton.RegisterCallback<ClickEvent>(_ =>
+            {
+                this._pInfo.NegativeAction();
+                HidePopUp();
+            });
         }
 
         private void InitVariables()
         {
-            PopUp.gameObject.SetActive(true);
-            var root = PopUp.rootVisualElement;
-            PositiveButton = root.Q<Button>(PositiveName);
-            NegativeButton = root.Q<Button>(NegativeName);
-            MessageLabel = root.Q<Label>(LabelName);
+            popUp.gameObject.SetActive(true);
+            var _root = popUp.rootVisualElement;
+            _positiveButton = _root.Q<Button>(PositiveName);
+            _negativeButton = _root.Q<Button>(NegativeName);
+            _messageLabel = _root.Q<Label>(LabelName);
             EnableNegativeButton();
         }
 
         private void HidePopUp()
         {
-            PositiveButton.clicked -= pInfo.positiveAction;
-            NegativeButton.clicked -= pInfo.negativeAction;
-            PopUp.gameObject.SetActive(false);
+            _positiveButton.clicked -= _pInfo.PositiveAction;
+            _negativeButton.clicked -= _pInfo.NegativeAction;
+            popUp.gameObject.SetActive(false);
             ResetPopUpInfo();
         }
 
         private void ResetPopUpInfo()
         {
-            pInfo = new PopUpInfo
+            _pInfo = new PopUpInfo
             {
-                messageText = "",
-                positiveText = "",
-                negativeText = "",
-                positiveAction = null,
-                negativeAction = null
+                MessageText = "",
+                PositiveText = "",
+                NegativeText = "",
+                PositiveAction = null,
+                NegativeAction = null
             };
         }
         
 
         private void EnableNegativeButton() =>
-            NegativeButton.style.display = DisplayStyle.Flex;
+            _negativeButton.style.display = DisplayStyle.Flex;
 
         private void DisableNegativeButton() =>
-            NegativeButton.style.display = DisplayStyle.None;
+            _negativeButton.style.display = DisplayStyle.None;
     }
 
     public struct PopUpInfo
     {
-        public string messageText;
-        public string positiveText;
-        public string negativeText;
+        public string MessageText;
+        public string PositiveText;
+        public string NegativeText;
 
-        public Action positiveAction;
-        public Action negativeAction;
+        public Action PositiveAction;
+        public Action NegativeAction;
 
         public PopUpInfo(string message, string positiveText, string negativeText, Action positiveAction = null, Action negativeAction = null)
         {
-            messageText = message;
-            this.positiveText = positiveText;
-            this.negativeText = negativeText;
-            this.positiveAction = positiveAction;
-            this.negativeAction = negativeAction;
+            MessageText = message;
+            this.PositiveText = positiveText;
+            this.NegativeText = negativeText;
+            this.PositiveAction = positiveAction;
+            this.NegativeAction = negativeAction;
         }
     }
 }
