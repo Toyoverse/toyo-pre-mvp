@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityTemplateProjects.Audio;
 
 namespace UI
 {
@@ -40,6 +41,7 @@ namespace UI
             _positiveButton.RegisterCallback<ClickEvent>(_ =>
             {
                 _pInfo.PositiveAction?.Invoke();
+                AudioManager.Instance.buttonAcceptSfx.PlayOneShot(transform.position);
                 HidePopUp();
             });
             if (negativeAction == null)
@@ -51,6 +53,7 @@ namespace UI
             _negativeButton.RegisterCallback<ClickEvent>(_ =>
             {
                 _pInfo.NegativeAction();
+                AudioManager.Instance.buttonDenySfx.PlayOneShot(transform.position);
                 HidePopUp();
             });
         }
@@ -64,6 +67,7 @@ namespace UI
             _positiveButton.RegisterCallback<ClickEvent>(_ =>
             {
                 _pInfo.PositiveAction?.Invoke();
+                AudioManager.Instance.buttonAcceptSfx.PlayOneShot(transform.position);
                 HidePopUp();
             });
             if (_pInfo.NegativeAction == null)
@@ -75,6 +79,7 @@ namespace UI
             _negativeButton.RegisterCallback<ClickEvent>(_ =>
             {
                 _pInfo.NegativeAction();
+                AudioManager.Instance.buttonDenySfx.PlayOneShot(transform.position);
                 HidePopUp();
             });
         }

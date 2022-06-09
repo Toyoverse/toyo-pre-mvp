@@ -1,0 +1,130 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7102462045466808449
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7102462045466808451}
+  - component: {fileID: 7102462045466808448}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7102462045466808451
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7102462045466808449}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.626126, y: 0.1586616, z: 0.27978945}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7102462045466808448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7102462045466808449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 026f0b66e7a345aab1d9a94836a7a685, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonClickSfx:
+    Guid:
+      Data1: -1653255327
+      Data2: 1252372815
+      Data3: -1746031207
+      Data4: -1909130208
+    Path: event:/click
+  buttonAcceptSfx:
+    Guid:
+      Data1: -1259140783
+      Data2: 1131334120
+      Data3: 1371192226
+      Data4: -1596344065
+    Path: event:/accept
+  buttonDenySfx:
+    Guid:
+      Data1: 1307369623
+      Data2: 1217869335
+      Data3: 758799551
+      Data4: -463052907
+    Path: event:/deny
+  loadingSfx:
+    Guid:
+      Data1: 463764901
+      Data2: 1198015704
+      Data3: -774019177
+      Data4: 450943437
+    Path: event:/loading
+  rotateRightSfx:
+    Guid:
+      Data1: 1908214926
+      Data2: 1309005539
+      Data3: -441403716
+      Data4: 445538407
+    Path: event:/rotateRight
+  rotateLeftSfx:
+    Guid:
+      Data1: 1189383070
+      Data2: 1218640110
+      Data3: -371105618
+      Data4: 1096199311
+    Path: event:/rotateLeft
+  slideRightSfx:
+    Guid:
+      Data1: 156982682
+      Data2: 1306221650
+      Data3: -1589422463
+      Data4: -1873508565
+    Path: event:/sliderRight
+  slideLeftSfx:
+    Guid:
+      Data1: 1640104585
+      Data2: 1213088026
+      Data3: 1643294142
+      Data4: 1931655915
+    Path: event:/sliderLeft
+  startHomePageSfx:
+    Guid:
+      Data1: 581435465
+      Data2: 1277403847
+      Data3: -1805450832
+      Data4: -106943390
+    Path: event:/startHomePage
+  spawnToyoSfx:
+    Guid:
+      Data1: 701168849
+      Data2: 1161994939
+      Data3: -687359834
+      Data4: 359434713
+    Path: event:/spawnToyo
+  unboxingSfx:
+    Guid:
+      Data1: -524091649
+      Data2: 1151923535
+      Data3: 1077064579
+      Data4: -462205503
+    Path: event:/unboxing
+  backgroundMusic:
+    Guid:
+      Data1: 909011020
+      Data2: 1324950236
+      Data3: -945557630
+      Data4: -89226145
+    Path: event:/backgroundMusic

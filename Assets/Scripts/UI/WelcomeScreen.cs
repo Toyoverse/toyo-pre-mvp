@@ -1,9 +1,16 @@
+using System;
 using UnityEngine;
+using UnityTemplateProjects.Audio;
 
 namespace UI
 {
     public class WelcomeScreen : UIController
     {
+        private void Start()
+        {
+            AudioManager.Instance.startHomePageSfx.PlayOneShot(transform.position);
+        }
+
         public void OpenSeaButton()
         {
             ScreenManager.Instance.haveToyo = true;

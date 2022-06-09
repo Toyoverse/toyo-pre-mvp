@@ -1,27 +1,66 @@
-.yellowButtonStyle {
+.purpleButtonTallStyle {
     position: relative;
-    font-size: 50px;
-    border-top-left-radius: 60px;
-    border-bottom-left-radius: 60px;
-    border-top-right-radius: 60px;
-    border-bottom-right-radius: 60px;
-    width: 40%;
-    height: 10%;
-    border-left-color: rgb(0, 0, 0);
-    border-right-color: rgb(0, 0, 0);
-    border-top-color: rgb(0, 0, 0);
-    border-bottom-color: rgb(0, 0, 0);
-    border-left-width: 10px;
-    border-right-width: 10px;
-    border-top-width: 10px;
-    border-bottom-width: 10px;
-    background-color: rgb(255, 224, 0);
-    color: rgb(0, 0, 0);
+    font-size: 42px;
+    width: 624px;
+    height: 212px;
+    background-color: rgba(56, 56, 56, 0);
+    color: rgb(255, 255, 255);
     -unity-font-style: normal;
     margin-left: 20px;
     margin-right: 20px;
     margin-top: 20px;
     margin-bottom: 20px;
+    background-image: url('project://database/Assets/Images/Buttons/Button_0001-normal.png?fileID=21300000&guid=c3385d6597c736e489d18a7ca5f4c905&type=3#Button_0001-normal');
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    -unity-font: url('project://database/Assets/Fonts/wbv5.ttf?fileID=12800000&guid=8c127f47e96b8924c880f2cf373482b0&type=3#wbv5');
+    -unity-font-definition: none;
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+}
+
+.purpleButtonTallStyle:hover {
+    position: relative;
+    font-size: 42px;
+    width: 624px;
+    height: 212px;
+    background-color: rgba(56, 56, 56, 0);
+    color: rgb(255, 255, 255);
+    -unity-font-style: normal;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-image: url('project://database/Assets/Images/Buttons/Button_0001-hover.png?fileID=21300000&guid=a5b4dbb58aefcc647a4f70dd8c3fa39c&type=3#Button_0001-hover');
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    -unity-font-definition: none;
+    -unity-font: url('project://database/Assets/Fonts/wbv5.ttf?fileID=12800000&guid=8c127f47e96b8924c880f2cf373482b0&type=3#wbv5');
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+}
+
+.purpleButtonTallStyle:active {
+    position: relative;
+    font-size: 42px;
+    width: 624px;
+    height: 212px;
+    background-color: rgba(56, 56, 56, 0);
+    color: rgb(255, 255, 255);
+    -unity-font-style: normal;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-image: url('project://database/Assets/Images/Buttons/Button_0001-pressed.png?fileID=21300000&guid=ca850f72873cc3a4e9eee04378cc2164&type=3#Button_0001-pressed');
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    -unity-font-definition: none;
+    -unity-font: url('project://database/Assets/Fonts/wbv5.ttf?fileID=12800000&guid=8c127f47e96b8924c880f2cf373482b0&type=3#wbv5');
 }
 
 .groupBox {
@@ -45,99 +84,72 @@
 .lateralButtonStyle {
     position: relative;
     font-size: 50px;
-    width: 40%;
-    height: 10%;
-    background-color: rgb(103, 103, 103);
+    width: 644px;
+    height: 205px;
+    background-color: rgba(56, 56, 56, 0);
     color: rgb(255, 255, 255);
     -unity-font-style: normal;
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
     -unity-text-align: middle-center;
     white-space: normal;
-}
-
-.lateralButtonStyle:hover {
-    position: relative;
-    font-size: 50px;
-    width: 40%;
-    height: 10%;
-    background-color: rgb(183, 183, 183);
-    color: rgb(255, 255, 255);
-    -unity-font-style: normal;
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    -unity-text-align: middle-center;
-    white-space: normal;
-}
-
-.yellowButtonStyle:hover {
-    position: relative;
-    font-size: 50px;
-    border-top-left-radius: 60px;
-    border-bottom-left-radius: 60px;
-    border-top-right-radius: 60px;
-    border-bottom-right-radius: 60px;
-    width: 40%;
-    height: 10%;
-    border-left-color: rgb(0, 0, 0);
-    border-right-color: rgb(0, 0, 0);
-    border-top-color: rgb(0, 0, 0);
-    border-bottom-color: rgb(0, 0, 0);
-    border-left-width: 10px;
-    border-right-width: 10px;
-    border-top-width: 10px;
-    border-bottom-width: 10px;
-    background-color: rgb(255, 160, 0);
-    color: rgb(0, 0, 0);
-    -unity-font-style: normal;
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-.yellowButtonStyle:active {
-    position: relative;
-    font-size: 50px;
-    border-top-left-radius: 60px;
-    border-bottom-left-radius: 60px;
-    border-top-right-radius: 60px;
-    border-bottom-right-radius: 60px;
-    width: 40%;
-    height: 10%;
-    border-left-color: rgb(0, 0, 0);
-    border-right-color: rgb(0, 0, 0);
-    border-top-color: rgb(0, 0, 0);
-    border-bottom-color: rgb(0, 0, 0);
-    border-left-width: 10px;
-    border-right-width: 10px;
-    border-top-width: 10px;
-    border-bottom-width: 10px;
-    background-color: rgb(255, 95, 0);
-    color: rgb(255, 255, 255);
-    -unity-font-style: normal;
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    background-image: url('project://database/Assets/Images/Buttons/Button_0004-normal.png?fileID=21300000&guid=20885728a22502f40b30565a74dcb853&type=3#Button_0004-normal');
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    -unity-font: url('project://database/Assets/Fonts/wbv5.ttf?fileID=12800000&guid=8c127f47e96b8924c880f2cf373482b0&type=3#wbv5');
+    -unity-font-definition: none;
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
 }
 
 .lateralButtonStyle:active {
     position: relative;
     font-size: 50px;
-    width: 40%;
-    height: 10%;
-    background-color: rgb(224, 224, 224);
-    color: rgb(0, 0, 0);
+    width: 644px;
+    height: 205px;
+    background-color: rgba(56, 56, 56, 0);
+    color: rgb(255, 255, 255);
     -unity-font-style: normal;
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
     -unity-text-align: middle-center;
     white-space: normal;
+    background-image: url('project://database/Assets/Images/Buttons/Button_0004-pressed.png?fileID=21300000&guid=253048ba897228443b253009c9b57a08&type=3#Button_0004-pressed');
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    -unity-font-definition: none;
+    -unity-font: url('project://database/Assets/Fonts/wbv5.ttf?fileID=12800000&guid=8c127f47e96b8924c880f2cf373482b0&type=3#wbv5');
+}
+
+.lateralButtonStyle:hover {
+    position: relative;
+    font-size: 50px;
+    width: 644px;
+    height: 205px;
+    background-color: rgba(56, 56, 56, 0);
+    color: rgb(255, 255, 255);
+    -unity-font-style: normal;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    -unity-text-align: middle-center;
+    white-space: normal;
+    background-image: url('project://database/Assets/Images/Buttons/Button_0004-hover.png?fileID=21300000&guid=0316116d7dbfe904ea5d38f92b2cd0d2&type=3#Button_0004-hover');
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    -unity-font-definition: none;
+    -unity-font: url('project://database/Assets/Fonts/wbv5.ttf?fileID=12800000&guid=8c127f47e96b8924c880f2cf373482b0&type=3#wbv5');
 }

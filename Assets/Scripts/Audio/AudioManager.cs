@@ -12,6 +12,19 @@ namespace UnityTemplateProjects.Audio
         
         [Header("UI Sounds")]
         public EventReference buttonClickSfx;
+        public EventReference buttonAcceptSfx;
+        public EventReference buttonDenySfx;
+        public EventReference loadingSfx;
+        public EventReference rotateRightSfx;
+        public EventReference rotateLeftSfx;
+        public EventReference slideRightSfx;
+        public EventReference slideLeftSfx;
+        public EventReference startHomePageSfx;
+        public EventReference spawnToyoSfx;
+        public EventReference unboxingSfx;
+        
+        public EventReference backgroundMusic;
+        
 
         public List<EventInstance> EventInstances = new();
 
@@ -70,6 +83,16 @@ namespace UnityTemplateProjects.Audio
                 Debug.Log("AUDIO RUNTIME ERROR: " + _err.Message);
             }
         }
+        
 
+
+    }
+
+    static class ExtensionAudioManager
+    {
+        public static void PlayOneShot(this EventReference reference, Vector3 position)
+        {
+            AudioManager.Instance.PlayOneShot(reference, position);
+        }
     }
 }
