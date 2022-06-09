@@ -4,12 +4,13 @@ namespace UI
 {
     public class ToyoInfoScreen : UIController
     {
-        public void ChangeToyoButton(int i)
+        public void NextToyoButton()
         {
-            var test = 0;
-            test = i > 0 ? 1 : -1;
-            //Add or remove index to TOYO list
-            Debug.Log("ChangeToyo " + test);
+            Debug.Log("ChangeToyo Next");
+        }
+        public void PreviousToyoButton()
+        {
+            Debug.Log("ChangeToyo Previous");
         }
 
         public void OverviewButton()

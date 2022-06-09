@@ -16,7 +16,7 @@ public class CarouselManager : MonoBehaviour
 
     public Transform anchor;
 
-    private Transform _currentSelectedObject;
+    public Transform CurrentSelectedObject { get; private set; }
 
     private int _currentSelectedIndex = 0;
 
@@ -25,7 +25,7 @@ public class CarouselManager : MonoBehaviour
     private bool IsLastObjectSelected() => _currentSelectedIndex + 1 == allObjects.Count;
 
     private bool IsObjectToRotate(Transform objectToRotate) => objectToRotate == GetPreviousObject() || objectToRotate == GetNextObject() ||
-                                                        objectToRotate == _currentSelectedObject || objectToRotate == _objectToHide;
+                                                        objectToRotate == CurrentSelectedObject || objectToRotate == _objectToHide;
 
     private Transform GetNextObject() => IsLastObjectSelected() ? allObjects.First() : allObjects[_currentSelectedIndex + 1];
     
@@ -35,14 +35,14 @@ public class CarouselManager : MonoBehaviour
 
     private void Awake()
     {
-        _currentSelectedObject = allObjects[_currentSelectedIndex];
+        CurrentSelectedObject = allObjects[_currentSelectedIndex];
         MoveToStartingPosition();
     }
 
     private void MoveToStartingPosition()
     {
         
-        foreach (var _object in allObjects.Where(objectToRotate => objectToRotate != _currentSelectedObject))
+        foreach (var _object in allObjects.Where(objectToRotate => objectToRotate != CurrentSelectedObject))
         {
             if (GetPreviousObject() == _object)
                 RotateRight(_object);
@@ -103,12 +103,12 @@ public class CarouselManager : MonoBehaviour
         if (_currentSelectedIndex + 1 < allObjects.Count)
         {
             _currentSelectedIndex++;
-            _currentSelectedObject = allObjects[_currentSelectedIndex];
+            CurrentSelectedObject = allObjects[_currentSelectedIndex];
         }
         else
         {
             _currentSelectedIndex = 0;
-            _currentSelectedObject = allObjects[_currentSelectedIndex];
+            CurrentSelectedObject = allObjects[_currentSelectedIndex];
         }
         foreach (var _object in allObjects.Where(IsObjectToRotate))
             RotateRight(_object);
@@ -120,12 +120,12 @@ public class CarouselManager : MonoBehaviour
         if (_currentSelectedIndex > 0)
         {
             _currentSelectedIndex--;
-            _currentSelectedObject = allObjects[_currentSelectedIndex];
+            CurrentSelectedObject = allObjects[_currentSelectedIndex];
         }
         else
         {
             _currentSelectedIndex = allObjects.Count-1;
-            _currentSelectedObject = allObjects[_currentSelectedIndex];
+            CurrentSelectedObject = allObjects[_currentSelectedIndex];
         }
         foreach (var _object in allObjects.Where(IsObjectToRotate))
             RotateLeft(_object);

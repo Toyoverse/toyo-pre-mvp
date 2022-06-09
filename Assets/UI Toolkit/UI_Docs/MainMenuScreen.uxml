@@ -1,5 +1,5 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/UI%20Toolkit/Styles/mainMenuStyle.uss?fileID=7433441132597879392&amp;guid=1ecb6d2681172d2468a275d022486df0&amp;type=3#mainMenuStyle" />
+    <Style src="project://database/Assets/UI%20Toolkit/Styles/MainMenuStyle.uss?fileID=7433441132597879392&amp;guid=1ecb6d2681172d2468a275d022486df0&amp;type=3#MainMenuStyle" />
     <ui:VisualElement name="ScreenTotalArea" style="flex-grow: 1; visibility: visible;">
         <ui:VisualElement name="MenuArea" class="backgroundStyle" style="background-color: rgba(43, 43, 43, 0); flex-direction: column; justify-content: center; align-items: stretch;">
             <ui:GroupBox name="LateralButtonsArea" class="groupBox" style="left: auto; align-items: flex-start; justify-content: center; width: 20%; height: 80%;">
@@ -13,7 +13,7 @@
                 <ui:Button text="Start" display-tooltip-when-elided="true" name="startButton" class="yellowButtonStyle" style="align-items: flex-start; justify-content: flex-start; left: auto; position: relative; height: 20%; bottom: auto; font-size: 80px; width: 100%;" />
             </ui:GroupBox>
             <ui:GroupBox name="ToyoButtonArea" class="groupBox" style="flex-direction: column-reverse; align-items: center; justify-content: center; width: 50%; height: 80%; position: absolute; top: 5%; left: 25%;">
-                <ui:Button display-tooltip-when-elided="true" name="ToyoButton" class="yellowButtonStyle" style="align-items: center; justify-content: flex-start; margin-right: 20px; position: absolute; width: 100%; white-space: normal; left: auto; height: 100%; background-color: rgba(255, 224, 0, 0);" />
+                <ui:Button display-tooltip-when-elided="true" name="toyoButton" class="yellowButtonStyle" style="align-items: center; justify-content: flex-start; margin-right: 20px; position: absolute; width: 100%; white-space: normal; left: auto; height: 100%; background-color: rgba(255, 224, 0, 0);" />
             </ui:GroupBox>
         </ui:VisualElement>
         <ui:VisualElement name="TrainingBackground" class="backgroundStyle" style="background-color: rgba(43, 43, 43, 0.78); justify-content: center; position: absolute; width: 100%; height: 100%; align-items: center; visibility: hidden;">

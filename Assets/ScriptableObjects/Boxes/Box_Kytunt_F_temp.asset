@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e20a67061cbbbb4daca2926ea086278, type: 3}
+  m_Name: Box_Kytunt_F_temp
+  m_EditorClassIdentifier: 
+  boxName: Kytunt Fortified Template
+  boxRegion: 1
+  boxType: 2
+  possibleRewards:
+  - {fileID: 11400000, guid: e657890591ae5d846979e5b690bb8ed8, type: 2}
+  - {fileID: 11400000, guid: 4b11458879c539042a67363bcea4643b, type: 2}
+  - {fileID: 11400000, guid: f9a9c22a2279733419058a45c8205681, type: 2}
+  - {fileID: 11400000, guid: dca7c8e483bb4874d8e0855dcd9204ff, type: 2}
+  - {fileID: 11400000, guid: ed1de3764f665e24882f7cd651e48af1, type: 2}
+  dropRate:
+  - Rarity: 0
+    DropChance: 65
+  - Rarity: 1
+    DropChance: 25
+  - Rarity: 2
+    DropChance: 7
+  - Rarity: 3
+    DropChance: 2.5
+  - Rarity: 4
+    DropChance: 0.5
+  - Rarity: 5
+    DropChance: 0

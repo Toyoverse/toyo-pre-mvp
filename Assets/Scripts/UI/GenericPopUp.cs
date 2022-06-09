@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UIElements;
 
 namespace UI
@@ -22,9 +21,9 @@ namespace UI
         private void Start()
         {
             if(Instance != null)
-                Destroy(this.gameObject);
+                Destroy(gameObject);
             Instance = this;
-            DontDestroyOnLoad(this.gameObject);
+            DontDestroyOnLoad(gameObject);
         }
 
         public void ShowPopUp(string message, Action positiveAction = null, Action negativeAction = null)
@@ -38,7 +37,7 @@ namespace UI
             };
             _messageLabel.text = message;
             _positiveButton.text = negativeAction != null ? "Yes" : "Ok"; 
-            _positiveButton.RegisterCallback<ClickEvent>(evt =>
+            _positiveButton.RegisterCallback<ClickEvent>(_ =>
             {
                 _pInfo.PositiveAction?.Invoke();
                 HidePopUp();
@@ -49,7 +48,7 @@ namespace UI
                 return;
             }
             _negativeButton.text = "No";
-            _negativeButton.RegisterCallback<ClickEvent>(evt =>
+            _negativeButton.RegisterCallback<ClickEvent>(_ =>
             {
                 _pInfo.NegativeAction();
                 HidePopUp();
@@ -58,24 +57,24 @@ namespace UI
 
         public void ShowPopUp(PopUpInfo pInfo)
         {
-            this._pInfo = pInfo;
+            _pInfo = pInfo;
             InitVariables();
-            _messageLabel.text = this._pInfo.MessageText;
-            _positiveButton.text = this._pInfo.PositiveText;
+            _messageLabel.text = _pInfo.MessageText;
+            _positiveButton.text = _pInfo.PositiveText;
             _positiveButton.RegisterCallback<ClickEvent>(_ =>
             {
-                this._pInfo.PositiveAction?.Invoke();
+                _pInfo.PositiveAction?.Invoke();
                 HidePopUp();
             });
-            if (this._pInfo.NegativeAction == null)
+            if (_pInfo.NegativeAction == null)
             {
                 DisableNegativeButton();
                 return;
             }
-            _negativeButton.text = this._pInfo.NegativeText;
+            _negativeButton.text = _pInfo.NegativeText;
             _negativeButton.RegisterCallback<ClickEvent>(_ =>
             {
-                this._pInfo.NegativeAction();
+                _pInfo.NegativeAction();
                 HidePopUp();
             });
         }
@@ -110,7 +109,6 @@ namespace UI
             };
         }
         
-
         private void EnableNegativeButton() =>
             _negativeButton.style.display = DisplayStyle.Flex;
 
@@ -130,10 +128,10 @@ namespace UI
         public PopUpInfo(string message, string positiveText, string negativeText, Action positiveAction = null, Action negativeAction = null)
         {
             MessageText = message;
-            this.PositiveText = positiveText;
-            this.NegativeText = negativeText;
-            this.PositiveAction = positiveAction;
-            this.NegativeAction = negativeAction;
+            PositiveText = positiveText;
+            NegativeText = negativeText;
+            PositiveAction = positiveAction;
+            NegativeAction = negativeAction;
         }
     }
 }

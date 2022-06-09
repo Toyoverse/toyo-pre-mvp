@@ -10,49 +10,48 @@ namespace UI
     public class UIController : MonoBehaviour
     {
         [Header("UI Document")]
-        public UIDocument UIDoc;
-        protected VisualElement root;
-        public List<CustomButton> Buttons;
+        public UIDocument uiDoc;
+
+        protected VisualElement Root => uiDoc.rootVisualElement;
+        public List<CustomButton> buttons;
 
         public virtual void OnDestroy() => DisableButtonEvents();
 
         public void EnableButtonEvents()
         {
-            root = UIDoc.rootVisualElement;
-            
-            if(Buttons.Count <= 0 || root == null)
+            if(buttons.Count <= 0 || Root == null)
                 return;
-            foreach (var cb in Buttons)
+            foreach (var _cb in buttons)
             {
-                if (root?.Q<Button>(cb.Name) != null)
+                if (Root?.Q<Button>(_cb.name) != null)
                 {
-                    cb.Button = root.Q<Button>(cb.Name);
-                    cb.Button.clickable.clicked += PlayClickSound;
-                    cb.Button.clickable.clicked += cb.OnClickEvent.Invoke;
+                    _cb.Button = Root.Q<Button>(_cb.name);
+                    _cb.Button.clickable.clicked += PlayClickSound;
+                    _cb.Button.clickable.clicked += _cb.onClickEvent.Invoke;
                 }
                 else
                 {
-                    Debug.Log(cb.Name + " not found in " + UIDoc.name);
+                    Debug.Log(_cb.name + " not found in " + uiDoc.name);
                 }
             }
         }
 
         public void DisableButtonEvents()
         {
-            if (Buttons.Count <= 0 || root == null)
+            if (buttons.Count <= 0 || Root == null)
                 return;
 
-            foreach (var cb in Buttons)
+            foreach (var _cb in buttons)
             {
-                if (root?.Q<Button>(cb.Name) != null)
+                if (Root?.Q<Button>(_cb.name) != null)
                 {
-                    cb.Button = root.Q<Button>(cb.Name);
-                    cb.Button.clickable.clicked -= PlayClickSound;
-                    cb.Button.clickable.clicked -= cb.OnClickEvent.Invoke;
+                    _cb.Button = Root.Q<Button>(_cb.name);
+                    _cb.Button.clickable.clicked -= PlayClickSound;
+                    _cb.Button.clickable.clicked -= _cb.onClickEvent.Invoke;
                 }
                 else
                 {
-                    Debug.Log(cb.Name + " not found in " + UIDoc.name);
+                    Debug.Log(_cb.name + " not found in " + uiDoc.name);
                 }
             }
         }
@@ -63,18 +62,13 @@ namespace UI
         }
 
         public virtual void BackButton() => ScreenManager.Instance.BackToOldScreen();
-
-        public void Test()
-        {
-            Debug.Log("TESTE!");
-        }
     }
 
     [Serializable]
     public class CustomButton
     {
-        public string Name;
+        public string name;
         public Button Button;
-        public UnityEvent OnClickEvent;
+        public UnityEvent onClickEvent;
     }
 }

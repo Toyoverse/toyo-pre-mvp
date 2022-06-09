@@ -5,137 +5,116 @@ using UnityEngine.UIElements;
 
 namespace UI
 {
-    public class ScreenManager : MonoBehaviour
+    public class ScreenManager : Singleton<ScreenManager>
     {
-        public static ScreenManager Instance { get; private set; }
-
         [Header("Screen References")]
-        public UIDocument WelcomeScreen;
-        public UIDocument MainMenuScreen;
-        public UIDocument ToyoInfoScreen;
-        public UIDocument BoxInfoScreen;
-        public UIDocument OpenBoxScreen;
+        public UIDocument welcomeScreen;
+        public UIDocument mainMenuScreen;
+        public UIDocument toyoInfoScreen;
+        public UIDocument boxInfoScreen;
+        public UIDocument openBoxScreen;
 
-        private WelcomeScreen WelcomeScript;
-        private MainMenuScreen MainMenuScript;
-        private ToyoInfoScreen ToyoInfoScript;
-        private BoxInfoScreen BoxInfoScript;
-        private OpenBoxScreen OpenBoxScript;
+        private WelcomeScreen _welcomeScript;
+        private MainMenuScreen _mainMenuScript;
+        private ToyoInfoScreen _toyoInfoScript;
+        private BoxInfoScreen _boxInfoScript;
+        private OpenBoxScreen _openBoxScript;
 
-        public static SCREEN_STATE ScreenState { get; private set; }
-        private static SCREEN_STATE OldScreenState;
+        public static ScreenState ScreenState { get; private set; }
+        private static ScreenState _oldScreenState;
 
-        public bool haveToyo = false;
+        public bool haveToyo = false; //TODO: Get server variable
 
-        private IEnumerator Start()
+        private void Start()
         {
-            if (Instance != null)
-                Destroy(this.gameObject);
-            else
-                Instance = this;
-            
-            yield return new WaitForFixedUpdate();
             GetScreenScripts();
-            GoToScreen(haveToyo ? SCREEN_STATE.MAIN_MENU : SCREEN_STATE.WELCOME);
+            GoToScreen(haveToyo ? ScreenState.MainMenu : ScreenState.Welcome);
         }
 
-        public void GoToScreen(SCREEN_STATE newScreen)
+        public void GoToScreen(ScreenState newScreen)
         {
+            //TODO: Change to events
             CloseCurrentScreen();
             switch (newScreen)
             {
-                case SCREEN_STATE.WELCOME:
-                    WelcomeScreen.gameObject.SetActive(true);
-                    WelcomeScript.EnableButtonEvents();
+                case ScreenState.Welcome:
+                    welcomeScreen.gameObject.SetActive(true);
+                    _welcomeScript.EnableButtonEvents();
                     break;
-                case SCREEN_STATE.MAIN_MENU:
-                    MainMenuScreen.gameObject.SetActive(true);
-                    MainMenuScript.EnableButtonEvents();
+                case ScreenState.MainMenu:
+                    mainMenuScreen.gameObject.SetActive(true);
+                    _mainMenuScript.EnableButtonEvents();
                     break;
-                case SCREEN_STATE.TOYO_INFO:
-                    ToyoInfoScreen.gameObject.SetActive(true);
-                    ToyoInfoScript.EnableButtonEvents();
+                case ScreenState.ToyoInfo:
+                    toyoInfoScreen.gameObject.SetActive(true);
+                    _toyoInfoScript.EnableButtonEvents();
                     break;
-                case SCREEN_STATE.BOX_INFO:
-                    BoxInfoScreen.gameObject.SetActive(true);
-                    BoxInfoScript.EnableButtonEvents();
+                case ScreenState.BoxInfo:
+                    boxInfoScreen.gameObject.SetActive(true);
+                    _boxInfoScript.EnableButtonEvents();
+                    _boxInfoScript.UpdateDescriptionText();
                     break;
-                case SCREEN_STATE.OPEN_BOX:
-                    OpenBoxScreen.gameObject.SetActive(true);
-                    OpenBoxScript.EnableButtonEvents();
+                case ScreenState.OpenBox:
+                    openBoxScreen.gameObject.SetActive(true);
+                    _openBoxScript.EnableButtonEvents();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
 
-            OldScreenState = ScreenState;
+            _oldScreenState = ScreenState;
             ScreenState = newScreen;
-            Debug.Log(ScreenState);
         }
 
-        public void BackToOldScreen() => GoToScreen(OldScreenState);
+        public void BackToOldScreen() => GoToScreen(_oldScreenState);
 
         private void CloseCurrentScreen()
         {
+            //TODO: Change to events
             switch (ScreenState)
             {
-                case SCREEN_STATE.WELCOME:
-                    WelcomeScript.DisableButtonEvents();
-                    WelcomeScreen.gameObject.SetActive(false);
+                case ScreenState.Welcome:
+                    _welcomeScript.DisableButtonEvents();
+                    welcomeScreen.gameObject.SetActive(false);
                     break;
-                case SCREEN_STATE.MAIN_MENU:
-                    MainMenuScript.DisableButtonEvents();
-                    MainMenuScreen.gameObject.SetActive(false);
+                case ScreenState.MainMenu:
+                    _mainMenuScript.DisableButtonEvents();
+                    mainMenuScreen.gameObject.SetActive(false);
                     break;
-                case SCREEN_STATE.TOYO_INFO:
-                    ToyoInfoScript.DisableButtonEvents();
-                    ToyoInfoScreen.gameObject.SetActive(false);
+                case ScreenState.ToyoInfo:
+                    _toyoInfoScript.DisableButtonEvents();
+                    toyoInfoScreen.gameObject.SetActive(false);
                     break;
-                case SCREEN_STATE.BOX_INFO:
-                    BoxInfoScript.DisableButtonEvents();
-                    BoxInfoScreen.gameObject.SetActive(false);
+                case ScreenState.BoxInfo:
+                    _boxInfoScript.DisableButtonEvents();
+                    boxInfoScreen.gameObject.SetActive(false);
                     break;
-                case SCREEN_STATE.OPEN_BOX:
-                    OpenBoxScript.DisableButtonEvents();
-                    OpenBoxScreen.gameObject.SetActive(false);
+                case ScreenState.OpenBox:
+                    _openBoxScript.DisableButtonEvents();
+                    openBoxScreen.gameObject.SetActive(false);
                     break;
                 default:
                     break;
             }
         }
 
-        private void CloseAllScreens()
-        {
-            WelcomeScript.DisableButtonEvents();
-            MainMenuScript.DisableButtonEvents();
-            ToyoInfoScript.DisableButtonEvents();
-            BoxInfoScript.DisableButtonEvents();
-            OpenBoxScript.DisableButtonEvents();
-            
-            WelcomeScreen.gameObject.SetActive(false);
-            MainMenuScreen.gameObject.SetActive(false);
-            ToyoInfoScreen.gameObject.SetActive(false);
-            BoxInfoScreen.gameObject.SetActive(false);
-            OpenBoxScreen.gameObject.SetActive(false);
-        }
-
         private void GetScreenScripts()
         {
-            WelcomeScript = this.GetComponent<WelcomeScreen>();
-            MainMenuScript = this.GetComponent<MainMenuScreen>();
-            ToyoInfoScript = this.GetComponent<ToyoInfoScreen>();
-            BoxInfoScript = this.GetComponent<BoxInfoScreen>();
-            OpenBoxScript = this.GetComponent<OpenBoxScreen>();
+            _welcomeScript = GetComponent<WelcomeScreen>();
+            _mainMenuScript = GetComponent<MainMenuScreen>();
+            _toyoInfoScript = GetComponent<ToyoInfoScreen>();
+            _boxInfoScript = GetComponent<BoxInfoScreen>();
+            _openBoxScript = GetComponent<OpenBoxScreen>();
         }
     }
 
-    public enum SCREEN_STATE
+    public enum ScreenState
     {
-        NONE = 0,
-        WELCOME = 1,
-        MAIN_MENU = 2,
-        TOYO_INFO = 3,
-        BOX_INFO = 4,
-        OPEN_BOX = 5
+        None = 0,
+        Welcome = 1,
+        MainMenu = 2,
+        ToyoInfo = 3,
+        BoxInfo = 4,
+        OpenBox = 5
     }
 }

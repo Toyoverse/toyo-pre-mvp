@@ -11,7 +11,7 @@ namespace UI
         }
 
         public void BoxesButton()
-            => ScreenManager.Instance.GoToScreen(SCREEN_STATE.BOX_INFO);
+            => ScreenManager.Instance.GoToScreen(ScreenState.BoxInfo);
 
         public void OtherButton()
             => Debug.Log("Other button has clicked!");

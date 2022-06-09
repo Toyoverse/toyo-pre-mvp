@@ -10,18 +10,22 @@
                 <ui:Button text="Next" display-tooltip-when-elided="true" name="nextButton" style="width: 20%; height: 10%; font-size: 28px;" />
             </ui:GroupBox>
             <ui:GroupBox name="infoArea" class="groupBox" style="flex-direction: column; align-items: flex-end; justify-content: center; padding-right: 2%; padding-left: 2%; padding-top: 2%; padding-bottom: 2%; width: 40%; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0;">
-                <ui:GroupBox name="tabsArea" style="flex-direction: row; justify-content: flex-start; width: 100%; margin-bottom: 0; padding-bottom: 0; align-items: flex-end; visibility: hidden;">
-                    <ui:Button text="Overview" display-tooltip-when-elided="true" name="overviewButton" class="tabButton" />
-                    <ui:Button text="Toyoparts" display-tooltip-when-elided="true" name="toyopartsButton" class="tabButton" style="width: 30%; height: 30px;" />
-                </ui:GroupBox>
                 <ui:VisualElement name="infoDescription" style="height: 85%; width: 100%; top: auto; border-left-width: 10px; border-right-width: 10px; border-top-width: 10px; border-bottom-width: 10px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); align-items: center; justify-content: flex-start; flex-direction: column; padding-top: 20px; padding-bottom: 20px; background-color: rgb(50, 50, 50);">
-                    <ui:Label text="Box Description" display-tooltip-when-elided="true" name="boxDescription" style="width: 100%; height: 75%; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px; font-size: 30px; color: rgba(255, 255, 255, 255);" />
-                    <ui:VisualElement name="possibleDropsArea" style="width: 100%; height: 20%; flex-direction: row; margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;">
-                        <ui:VisualElement name="dropExample" style="width: 25%; height: 90%; background-color: rgb(140, 140, 140); margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;" />
-                        <ui:VisualElement name="dropExample" style="width: 25%; height: 90%; background-color: rgb(140, 140, 140); margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;" />
-                        <ui:VisualElement name="dropExample" style="width: 25%; height: 90%; background-color: rgb(140, 140, 140); margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;" />
+                    <ui:Label text="Box Description" display-tooltip-when-elided="true" name="boxDescription" style="width: 100%; height: 75%; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px; font-size: 30px; color: rgb(255, 255, 255);" />
+                    <ui:VisualElement name="possibleDropsArea" style="width: 100%; height: 30%; flex-direction: row; margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px; align-items: center; justify-content: space-between;">
+                        <ui:ScrollView mode="Horizontal" name="dropScroll" vertical-scroller-visibility="Hidden" style="visibility: visible; display: flex; width: 100%; height: 100%; justify-content: flex-start; align-items: stretch;">
+                            <ui:VisualElement name="dropExample" style="width: 100px; height: 100px; background-color: rgb(255, 174, 174); margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px; align-items: center; justify-content: center; display: none;" />
+                            <ui:VisualElement name="dropExample" style="width: 100px; height: 100px; background-color: rgb(255, 174, 174); margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px; align-items: center; justify-content: center; display: none;" />
+                            <ui:VisualElement name="dropExample" style="width: 100px; height: 100px; background-color: rgb(255, 174, 174); margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px; align-items: center; justify-content: center; display: none;" />
+                            <ui:VisualElement name="dropExample" style="width: 100px; height: 100px; background-color: rgb(255, 174, 174); margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px; align-items: center; justify-content: center; display: none;" />
+                            <ui:VisualElement name="dropExample" style="width: 100px; height: 100px; background-color: rgb(255, 174, 174); margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px; align-items: center; justify-content: center; display: none;" />
+                            <ui:VisualElement name="dropExample" style="width: 100px; height: 100px; background-color: rgb(255, 174, 174); margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px; align-items: center; justify-content: center; display: none;" />
+                            <ui:VisualElement name="dropExample" style="width: 100px; height: 100px; background-color: rgb(255, 174, 174); margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px; align-items: center; justify-content: center; display: none;" />
+                            <ui:VisualElement name="dropExample" style="width: 100px; height: 100px; background-color: rgb(255, 174, 174); margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px; align-items: center; justify-content: center; display: none;" />
+                            <ui:VisualElement name="dropExample" style="width: 100px; height: 100px; background-color: rgb(255, 174, 174); margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px; align-items: center; justify-content: center; display: none;" />
+                            <ui:VisualElement name="dropExample" style="width: 100px; height: 100px; background-color: rgb(255, 174, 174); margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px; align-items: center; justify-content: center; display: none;" />
+                        </ui:ScrollView>
                     </ui:VisualElement>
-                    <ui:Scroller high-value="100" direction="Horizontal" value="42" style="width: 100%; height: 2%;" />
                 </ui:VisualElement>
             </ui:GroupBox>
         </ui:VisualElement>
