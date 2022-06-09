@@ -10,7 +10,10 @@ namespace UI
     public class BoxInfoScreen : UIController
     {
         public CarouselManager carousel;
-        private const string InfoTextName = "boxDescription";
+        public string infoTextName = "boxDescription";
+        public string scrollName = "dropScroll";
+        public string rewardName = "reward";
+        private int _rewardsCount = 0;
 
         private const string ConfirmMessage = "Are you sure you want to open your box?\n \nThis action can't be " +
             "undone! \n You will receive a wallet request to transfer your closed box momentarily to us. We will " +
@@ -26,13 +29,13 @@ namespace UI
         public void NextBoxButton()
         {
             carousel.SwipeRight();
-            UpdateDescriptionText();
+            UpdateVisualInformation();
         }
 
         public void PreviousBoxButton()
         {
             carousel.SwipeLeft();
-            UpdateDescriptionText();
+            UpdateVisualInformation();
         }
 
         private BoxConfig GetBoxSelected() 
@@ -47,12 +50,11 @@ namespace UI
 
         private void SetDescriptionText(string text)
         {
-            var _root = uiDoc.rootVisualElement;
-            var _textLabel = _root.Q<Label>(InfoTextName);
+            var _textLabel = Root.Q<Label>(infoTextName);
             _textLabel.text = text;
         }
 
-        public void UpdateDescriptionText() //TODO: RENAME!
+        public void UpdateVisualInformation() 
         {
             if (GetBoxSelected() == null)
             {
@@ -60,7 +62,7 @@ namespace UI
                 return;
             }
             SetDescriptionText(GetBoxDescription(GetBoxSelected()));
-            SetPossibleRewards(); 
+            SetPossibleRewards(GetBoxSelected()); 
         }
 
         private string GetBoxDescription(BoxConfig boxConfig)
@@ -84,9 +86,30 @@ namespace UI
             return _name + "\n \n" + _region + "\n" + _type + "\n \n" + _rateString;
         }
 
-        private void SetPossibleRewards()
+        private void SetPossibleRewards(BoxConfig boxConfig)
         {
-            //TODO: Set possible rewards images in UI
+            var _scrollView = Root.Q<ScrollView>(scrollName);
+            _scrollView.Clear();
+            for (var _i = 0; _i < boxConfig.PossibleRewards.Count; _i++)
+            {
+                var _reward = boxConfig.PossibleRewards[_i];
+                var _visualE = new VisualElement
+                {
+                    name = rewardName + _i,
+                    style =
+                    {
+                        width = 120,
+                        height = 120,
+                        marginBottom = 10,
+                        marginTop = 10,
+                        marginLeft = 10,
+                        marginRight = 10,
+                        backgroundImage = new StyleBackground(_reward.sprite)
+                    }
+                };
+                _scrollView.Add(_visualE);
+                _rewardsCount++;
+            }
         }
     }
 }

@@ -13,6 +13,5 @@ MonoBehaviour:
   m_Name: Reward_Template
   m_EditorClassIdentifier: 
   rewardName: Template
-  itemSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  sprite: {fileID: -2413806693520163455, guid: 9a1cd8f131aa0b34cbfa00151d5ee055, type: 3}
   toyoRarity: 0
-  prefab: {fileID: 919132149155446097, guid: 7492f32ed91c2fd42b8d86677632043e, type: 3}

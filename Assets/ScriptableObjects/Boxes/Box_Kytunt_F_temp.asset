@@ -21,6 +21,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f9a9c22a2279733419058a45c8205681, type: 2}
   - {fileID: 11400000, guid: dca7c8e483bb4874d8e0855dcd9204ff, type: 2}
   - {fileID: 11400000, guid: ed1de3764f665e24882f7cd651e48af1, type: 2}
+  - {fileID: 11400000, guid: ed1de3764f665e24882f7cd651e48af1, type: 2}
+  - {fileID: 11400000, guid: ed1de3764f665e24882f7cd651e48af1, type: 2}
+  - {fileID: 11400000, guid: ed1de3764f665e24882f7cd651e48af1, type: 2}
   dropRate:
   - Rarity: 0
     DropChance: 65

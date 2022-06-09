@@ -4,9 +4,8 @@ using UnityEngine;
 public class BoxRewardSO : ScriptableObject
 {
     public string rewardName;
-    public Sprite itemSprite;
+    public Sprite sprite;
     public TOYO_RARITY toyoRarity;
-    public GameObject prefab;
 
     /*public ITEM_TYPE ItemType;
     [Header("If ToyoPart")]

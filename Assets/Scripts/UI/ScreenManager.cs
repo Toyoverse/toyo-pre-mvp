@@ -52,7 +52,7 @@ namespace UI
                 case ScreenState.BoxInfo:
                     boxInfoScreen.gameObject.SetActive(true);
                     _boxInfoScript.EnableButtonEvents();
-                    _boxInfoScript.UpdateDescriptionText();
+                    _boxInfoScript.UpdateVisualInformation();
                     break;
                 case ScreenState.OpenBox:
                     openBoxScreen.gameObject.SetActive(true);
