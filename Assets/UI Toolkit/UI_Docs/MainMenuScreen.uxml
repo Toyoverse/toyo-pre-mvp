@@ -8,25 +8,25 @@
             <ui:Button text="TRAINING MODULE" display-tooltip-when-elided="true" name="modeButton" class="purpleButtonStyle" style="scale: 0.65 0.65; margin-left: 0; margin-right: -85px; margin-top: 0; margin-bottom: -50px; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;" />
             <ui:Button text="START" display-tooltip-when-elided="true" name="startButton" class="purpleButtonTallStyle" style="scale: 0.9 0.9; font-size: 84px; -unity-text-align: middle-center; margin-top: 0; margin-right: 0; margin-left: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;" />
         </ui:GroupBox>
+        <ui:GroupBox name="middleBox" class="groupBox" style="justify-content: flex-end; align-items: center; position: absolute; height: 100%; width: 40%; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; top: 0; left: 25%;">
+            <ui:Button display-tooltip-when-elided="true" name="toyoButton" text="MY TOYO" class="purpleButtonStyle" style="position: absolute; left: auto; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; font-size: 64px; scale: 0.6 0.6;" />
+        </ui:GroupBox>
         <ui:VisualElement name="TrainingBackground" class="backgroundStyle" style="background-color: rgba(43, 43, 43, 0.78); justify-content: center; position: absolute; width: 100%; height: 100%; align-items: center; visibility: hidden;">
-            <ui:VisualElement name="NormalMode" class="modeStyle" style="background-color: rgb(156, 111, 111);">
+            <ui:VisualElement name="NormalMode" class="modeStyle" style="background-color: rgb(156, 111, 111); width: 20%; height: 40%; margin-left: 20px; margin-right: 20px;">
                 <ui:Label text="ABEZNY" display-tooltip-when-elided="true" name="normalTitle" style="font-size: 40px; -unity-font-style: bold;" />
                 <ui:VisualElement name="normalImage" style="height: 60%; background-color: rgb(158, 102, 168);" />
                 <ui:Label text="COMING SOON" display-tooltip-when-elided="true" name="normalDescription" style="font-size: 30px; height: 30%; white-space: normal;" />
             </ui:VisualElement>
-            <ui:VisualElement name="RankedMode" class="modeStyle" style="background-color: rgb(164, 121, 121);">
+            <ui:VisualElement name="RankedMode" class="modeStyle" style="background-color: rgb(164, 121, 121); width: 20%; height: 40%; margin-left: 20px; margin-right: 20px;">
                 <ui:Label text="ENAXRQ" display-tooltip-when-elided="true" name="rankedTitle" style="font-size: 40px; -unity-font-style: bold;" />
                 <ui:VisualElement name="rankedImage" style="height: 60%; background-color: rgb(158, 102, 168);" />
                 <ui:Label text="COMING SOON" display-tooltip-when-elided="true" name="rankedDescription" style="font-size: 30px; height: 30%; white-space: normal;" />
             </ui:VisualElement>
-            <ui:VisualElement name="TrainingMode" class="modeStyle" style="background-color: rgb(94, 154, 109);">
+            <ui:VisualElement name="TrainingMode" class="modeStyle" style="background-color: rgb(94, 154, 109); width: 20%; height: 40%; margin-left: 20px;">
                 <ui:Label text="TRAINING MODULES" display-tooltip-when-elided="true" name="trainingTitle" style="font-size: 40px; -unity-font-style: bold;" />
                 <ui:VisualElement name="trainingImage" style="height: 60%; background-color: rgb(158, 102, 168);" />
                 <ui:Label text="Send your Toyo&apos;s into quests and win resources passively" display-tooltip-when-elided="true" name="trainingDescription" style="font-size: 30px; height: 30%; white-space: normal;" />
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:GroupBox name="middleBox" class="groupBox" style="justify-content: flex-end; align-items: center; position: absolute; height: 100%; width: 100%; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; top: 0; left: -2px;">
-            <ui:Button display-tooltip-when-elided="true" name="toyoButton" text="MY TOYO" class="purpleButtonStyle" style="position: absolute; left: auto; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; font-size: 64px; scale: 0.6 0.6;" />
-        </ui:GroupBox>
     </ui:VisualElement>
 </ui:UXML>
