@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Database;
 using UnityEngine;
 
@@ -8,17 +9,8 @@ namespace UI
     {
         public CarouselManager carousel;
 
-        public List<Toyo> ToyoList
-        {
-            get
-            {
-                if (ToyoList == null)
-                    SetToyoList();
-                return ToyoList;
-            }
-            private set => ToyoList = value;
-        }
 
+        
         public void NextToyoButton()
         {
             carousel.SwipeRight();
@@ -38,14 +30,7 @@ namespace UI
             Debug.Log("ToyoParts button clicked!");
         }
 
-        private void SetToyoList()
-        {
-            ToyoList = new List<Toyo>();
-            foreach (var _toyo in DatabaseConnection.Instance.player.toyos)
-            {
-                ToyoList.Add(_toyo);
-            }
-        }
+
 
         private void UpdateUI()
         {
@@ -53,3 +38,5 @@ namespace UI
         }
     }
 }
+
+

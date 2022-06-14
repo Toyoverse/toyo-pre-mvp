@@ -10,6 +10,7 @@ namespace UI
     public class BoxInfoScreen : UIController
     {
         public CarouselManager carousel;
+        public string titleBoxName = "titleBoxDescription";
         public string infoTextName = "boxDescription";
         public string scrollName = "dropScroll";
         public string rewardName = "reward";
@@ -47,6 +48,12 @@ namespace UI
             ScreenManager.Instance.GoToScreen(ScreenState.OpenBox);
         }
 
+        private void SetTitleText(string text)
+        {
+            var _textLabel = Root.Q<Label>(titleBoxName);
+            _textLabel.text = text;
+        }
+
         private void SetDescriptionText(string text)
         {
             var _textLabel = Root.Q<Label>(infoTextName);
@@ -58,15 +65,22 @@ namespace UI
             if (GetBoxSelected() == null)
             {
                 SetDescriptionText(GetBoxDescription(carousel.allObjects[0].GetComponent<BoxConfig>()));
+                SetTitleText(GetBoxTitle(carousel.allObjects[0].GetComponent<BoxConfig>()));
                 return;
             }
             SetDescriptionText(GetBoxDescription(GetBoxSelected()));
             SetPossibleRewards(GetBoxSelected()); 
         }
 
-        private string GetBoxDescription(BoxConfig boxConfig)
+        private string GetBoxTitle(BoxConfig boxConfig)
         {
             var _name = boxConfig.BoxName.ToUpper() + " BOX";
+            return _name;
+        }
+        
+        private string GetBoxDescription(BoxConfig boxConfig)
+        {
+            //var _name = boxConfig.BoxName.ToUpper() + " BOX";
             var _region = "REGION: " + boxConfig.BoxRegion.ToString().ToUpper();
             var _type = "TYPE: " + boxConfig.BoxType.ToString().ToUpper();
 
@@ -82,7 +96,7 @@ namespace UI
             foreach (var _s in _ratesList) 
                 _rateString = _rateString + (_s + "\n");
 
-            return _name + "\n \n" + _region + "\n" + _type + "\n \n" + _rateString;
+            return  _region + "\n" + _type + "\n \n" + _rateString;
         }
 
         private void SetPossibleRewards(BoxConfig boxConfig)

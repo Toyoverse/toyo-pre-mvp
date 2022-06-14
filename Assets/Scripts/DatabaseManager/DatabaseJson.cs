@@ -47,14 +47,31 @@ namespace Database
         public string updatedAt;
         public Card[] cards;
 
-        //NewFields
-        public Dictionary<string, float> stats;
-        public Dictionary<string, float> bonusStats;
+        public ToyoStats stats;
+        public ToyoStats bonusStats;
         public ToyoPersona toyoPersona;
         public ToyoTheme toyoTheme;
         public int toyoLevel;
         public float toyoPartEXP;
         public bool isNFT;
+    }
+
+    [Serializable]
+    public class ToyoStats
+    {
+        public float vitality;
+        public float resistance;
+        public float resilence;
+        public float physicalStrength;
+        public float cyberForce;
+        public float technique;
+        public float analysis;
+        public float agility;
+        public float speed;
+        public float precision;
+        public float stamina;
+        public float luck;
+        
     }
 
     [Serializable]
