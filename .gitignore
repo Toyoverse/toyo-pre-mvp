@@ -5,7 +5,7 @@
 /[Bb]uild/
 /[Bb]uilds/
 /[Ll]ogs/
-/[Uu]ser[Ss]ettings/Layouts
+/[Uu]ser[Ss]ettings/
 
 # Exclude 3rd party libraries installed from the assets store
 [Aa]ssets/Asset Store Resources/

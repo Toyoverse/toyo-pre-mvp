@@ -9,10 +9,10 @@ namespace Database
     public class DatabaseConnection : Singleton<DatabaseConnection>
     {
         public bool isDebug = true;
+        public Player player;
         
         private void Awake()
         {
-            
             if(!isDebug)
                 GenerateRequest(OnConnectionSuccess);
             else
@@ -20,13 +20,13 @@ namespace Database
                 TextAsset _jsonTextAsset = Resources.Load<TextAsset>("DatabasePlaceholder");    
                 OnConnectionSuccess(_jsonTextAsset.text);
             }
-            
         }
 
         private void OnConnectionSuccess(string json)
         {
             var _myObject = JsonUtility.FromJson<DatabaseJson>(json);    
             Debug.Log(_myObject.player);
+            player = _myObject.player;
         }
         
         private const string URL = "https://nakatoshivault.com/toyoAssets/";
@@ -48,9 +48,7 @@ namespace Database
                 var _json = _request.downloadHandler.text;
                 callback.Invoke(_json);
             }
-                
         }
-        
     }
    
 }

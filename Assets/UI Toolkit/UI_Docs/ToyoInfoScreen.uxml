@@ -1,6 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Toolkit/Styles/WelcomeStyle.uss?fileID=7433441132597879392&amp;guid=9bf11cd79e85c3845bec6c228384c2d8&amp;type=3#WelcomeStyle" />
-    <ui:VisualElement name="ScreenTotalArea" class="backgroundStyle" style="background-color: rgba(43, 43, 43, 0); flex-direction: row; align-items: stretch; justify-content: space-between; visibility: visible;">
+    <ui:VisualElement name="ScreenTotalArea" class="backgroundStyle" style="flex-direction: row; align-items: stretch; justify-content: space-between; visibility: visible;">
         <ui:GroupBox name="leftBox" class="groupBox" style="justify-content: flex-start;">
             <ui:Button text="Back" display-tooltip-when-elided="true" name="backButton" style="font-size: 30px; width: 15%; height: 5%; left: 2%; top: 2%;" />
         </ui:GroupBox>

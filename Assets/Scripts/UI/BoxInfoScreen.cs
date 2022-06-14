@@ -13,7 +13,6 @@ namespace UI
         public string infoTextName = "boxDescription";
         public string scrollName = "dropScroll";
         public string rewardName = "reward";
-        private int _rewardsCount = 0;
 
         private const string ConfirmMessage = "Are you sure you want to open your box?\n \nThis action can't be " +
             "undone! \n You will receive a wallet request to transfer your closed box momentarily to us. We will " +
@@ -29,13 +28,13 @@ namespace UI
         public void NextBoxButton()
         {
             carousel.SwipeRight();
-            UpdateVisualInformation();
+            UpdateUI();
         }
 
         public void PreviousBoxButton()
         {
             carousel.SwipeLeft();
-            UpdateVisualInformation();
+            UpdateUI();
         }
 
         private BoxConfig GetBoxSelected() 
@@ -54,7 +53,7 @@ namespace UI
             _textLabel.text = text;
         }
 
-        public void UpdateVisualInformation() 
+        public void UpdateUI() 
         {
             if (GetBoxSelected() == null)
             {
@@ -108,7 +107,6 @@ namespace UI
                     }
                 };
                 _scrollView.Add(_visualE);
-                _rewardsCount++;
             }
         }
     }

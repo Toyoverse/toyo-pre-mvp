@@ -73,7 +73,6 @@
 
 .backgroundStyle {
     flex-grow: 1;
-    background-color: rgb(50, 50, 50);
     align-items: stretch;
     justify-content: center;
     flex-direction: row;
@@ -81,7 +80,7 @@
     padding-right: 0;
     padding-top: 0;
     padding-bottom: 0;
-    background-image: url('project://database/Assets/Images/Toyo_Unboxing-HUD(background).png?fileID=2800000&guid=0cabdf18c2b388b42a7eae745aeead6d&type=3#Toyo_Unboxing-HUD(background)');
+    background-color: rgba(0, 0, 0, 0);
 }
 
 .lateralButtonStyle {
