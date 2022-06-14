@@ -44,6 +44,22 @@ public class ToyoObject : MonoBehaviour
             _toyoStats[TOYO_STAT.STAMINA] += _part.stats.stamina;
             _toyoStats[TOYO_STAT.LUCK] += _part.stats.luck;
         }
+        
+        foreach (var _part in parts)
+        {
+            _toyoStats[TOYO_STAT.VITALITY] *= _part.bonusStats.vitality > 0 ? _part.bonusStats.vitality : 1;
+            _toyoStats[TOYO_STAT.RESISTANCE] *= _part.bonusStats.resistance > 0 ? _part.bonusStats.resistance : 1;
+            _toyoStats[TOYO_STAT.RESILIENCE] *= _part.bonusStats.resilence > 0 ? _part.bonusStats.resilence : 1;
+            _toyoStats[TOYO_STAT.PHYSICAL_STRENGTH] *= _part.bonusStats.physicalStrength > 0 ? _part.bonusStats.physicalStrength : 1;
+            _toyoStats[TOYO_STAT.CYBER_FORCE] *= _part.bonusStats.cyberForce > 0 ? _part.bonusStats.cyberForce : 1;
+            _toyoStats[TOYO_STAT.TECHNIQUE] *= _part.bonusStats.technique > 0 ? _part.bonusStats.technique : 1;
+            _toyoStats[TOYO_STAT.ANALYSIS] *= _part.bonusStats.analysis > 0 ? _part.bonusStats.analysis : 1;
+            _toyoStats[TOYO_STAT.AGILITY] *= _part.bonusStats.agility > 0 ? _part.bonusStats.agility : 1;
+            _toyoStats[TOYO_STAT.SPEED] *= _part.bonusStats.speed > 0 ? _part.bonusStats.speed : 1;
+            _toyoStats[TOYO_STAT.PRECISION] *= _part.bonusStats.precision > 0 ? _part.bonusStats.precision : 1;
+            _toyoStats[TOYO_STAT.STAMINA] *= _part.bonusStats.stamina > 0 ? _part.bonusStats.stamina : 1;
+            _toyoStats[TOYO_STAT.LUCK] *= _part.bonusStats.luck > 0 ? _part.bonusStats.luck : 1;
+        }
     }
 
     public ToyoObject() : this(Argument<Toyo>.First) { }
