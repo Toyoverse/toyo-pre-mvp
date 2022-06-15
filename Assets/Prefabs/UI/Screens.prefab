@@ -985,6 +985,7 @@ MonoBehaviour:
   - action2
   - action3
   - action4
+  - action5
   toyoImageName: toyoImage
   investName: invest
   receiveName: receive

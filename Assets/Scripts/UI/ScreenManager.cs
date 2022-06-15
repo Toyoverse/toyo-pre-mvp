@@ -8,13 +8,6 @@ namespace UI
 {
     public class ScreenManager : Singleton<ScreenManager>
     {
-        [Header("Screen References")]
-        public UIDocument welcomeScreen;
-        public UIDocument mainMenuScreen;
-        public UIDocument toyoInfoScreen;
-        public UIDocument boxInfoScreen;
-        public UIDocument openBoxScreen;
-
         private WelcomeScreen _welcomeScript;
         private MainMenuScreen _mainMenuScript;
         private ToyoInfoScreen _toyoInfoScript;
@@ -22,7 +15,6 @@ namespace UI
         private OpenBoxScreen _openBoxScript;
         private LoreThemeScreen _loreThemeScript;
         private TrainingModuleScreen _trainingModuleScript;
-        private ActionSelectionScreen _actionSelectionScript;
 
         public static ScreenState ScreenState { get; private set; }
         private static ScreenState _oldScreenState;
@@ -62,9 +54,6 @@ namespace UI
                 case ScreenState.TrainingModule:
                     _trainingModuleScript.ActiveScreen();
                     break;
-                case ScreenState.ActionSelection:
-                    _actionSelectionScript.ActiveScreen();
-                    break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -101,9 +90,6 @@ namespace UI
                 case ScreenState.TrainingModule:
                     _trainingModuleScript.DisableScreen();
                     break;
-                case ScreenState.ActionSelection:
-                    _actionSelectionScript.DisableScreen();
-                    break;
                 default:
                     break;
             }
@@ -118,7 +104,6 @@ namespace UI
             _openBoxScript = GetComponent<OpenBoxScreen>();
             _loreThemeScript = GetComponent<LoreThemeScreen>();
             _trainingModuleScript = GetComponent<TrainingModuleScreen>();
-            _actionSelectionScript = GetComponent<ActionSelectionScreen>();
         }
     }
 

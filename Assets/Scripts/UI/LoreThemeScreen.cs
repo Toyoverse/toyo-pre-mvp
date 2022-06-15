@@ -18,13 +18,18 @@ A rogue second generation Toyo is nothing more than a Toyo that don't depend on 
 The link between them may keep immutable if their Heart Bound was pure but may be completely dismantled if it was corrupted.";
     public string timer = "03D 18H 35M";
 
-    private float _count;
+    private float _count = 0;
 
     private void Update()
     {
+        if (ScreenManager.ScreenState != ScreenState.LoreTheme) 
+            return;
         _count += Time.deltaTime;
         if (_count > 60)
+        {
             UpdateTimerText();
+            _count = 0;
+        }
     }
 
     private string GetTimerString()

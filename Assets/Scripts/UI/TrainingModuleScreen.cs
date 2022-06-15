@@ -1,5 +1,6 @@
 using UI;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UIElements;
 
 public class TrainingModuleScreen : UIController
@@ -7,10 +8,14 @@ public class TrainingModuleScreen : UIController
     public string titleName = "title";
     public string trainingTimeName = "time";
     public string[] combinationPoolNames;
-    public string toyoImageName = "toyoImage";
+
+    public string rewardTitleName = "rewardTitle";
     public string investName = "invest";
     public string receiveName = "receive";
     public string durationName = "duration";
+
+    public string actionSelectionAreaName = "actionsSelectorBox";
+    private int _selectedActionID = 0;
 
     protected override void UpdateUI()
     {
@@ -23,19 +28,45 @@ public class TrainingModuleScreen : UIController
         Debug.Log("Send Toyo to Quest button clicked!");
     }
 
+    private void ConfirmAction(Sprite sprite)
+    {
+        //TODO: Pegar sprite do golpe
+        SetVisualElementSprite(combinationPoolNames[_selectedActionID], sprite);
+    }
+
     public void PunchesButton()
     {
+        SetPossibleActions(TrainingAction.Punch);
         Debug.Log("Punches button clicked!");
     }
     
     public void KicksButton()
     {
+        SetPossibleActions(TrainingAction.Kick);
         Debug.Log("Kicks button clicked!");
     }
     
     public void MovesButton()
     {
+        SetPossibleActions(TrainingAction.Move);
         Debug.Log("Moves button clicked!");
+    }
+
+    private void SetPossibleActions(TrainingAction actionType)
+    {
+        //TODO: Preencher content do scroll com possíveis ações
+    }
+
+    public void OpenActionSelection()
+    {
+        var _actionArea = Root.Q(actionSelectionAreaName);
+        _actionArea.style.display = DisplayStyle.Flex;
+    }
+    
+    public void CloseActionSelection()
+    {
+        var _actionArea = Root.Q(actionSelectionAreaName);
+        _actionArea.style.display = DisplayStyle.None;
     }
 
     public void TrainingInfoButton() => ScreenManager.Instance.GoToScreen(ScreenState.LoreTheme);
@@ -51,10 +82,16 @@ public class TrainingModuleScreen : UIController
     public void SetPoolImage(Sprite sprite, int position)
         => SetVisualElementSprite(combinationPoolNames[position], sprite);
 
-    private void SetToyoImage(Sprite sprite) => SetVisualElementSprite(toyoImageName, sprite);
-
     public void StartButton()
     {
         Debug.Log("Send Toyo to Quest button clicked!");
     }
+}
+
+public enum TrainingAction
+{
+    None = 0,
+    Punch = 1,
+    Kick = 2,
+    Move = 3
 }
