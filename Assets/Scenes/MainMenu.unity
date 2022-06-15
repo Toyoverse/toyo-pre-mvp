@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -301,7 +301,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   carouselToyo: {fileID: 1868994929}
   toyoListParent: {fileID: 1908465654}
-  toyoBasePrefab: {fileID: 1945413062895215098, guid: 6421951a61fadb64ab4c5e6248bbb4b0, type: 3}
+  toyoBasePrefab: {fileID: 1945413062895215098, guid: f0ec6e8fb5b37314e9e0779b1b4d0537, type: 3}
 --- !u!1 &1084469477
 GameObject:
   m_ObjectHideFlags: 0
@@ -839,10 +839,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6806768583358275348, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8643416932187837700, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -890,26 +886,6 @@ PrefabInstance:
     - target: {fileID: 8643416932187837703, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
       propertyPath: m_Name
       value: Screens
-      objectReference: {fileID: 0}
-    - target: {fileID: 8643416932592604651, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8643416932592604660, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8643416932935162245, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8643416933037881491, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8643416933037881495, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}

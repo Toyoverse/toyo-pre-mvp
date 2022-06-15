@@ -12,6 +12,11 @@ public class CarouselManager : MonoBehaviour
 {
 
     public float carouselOffset = 5.0f;
+
+    [SerializeField]
+    public bool IsToyoCarousel;
+
+    public Transform StartingPosition;
     
     public List<Transform> allObjects;
 
@@ -34,15 +39,30 @@ public class CarouselManager : MonoBehaviour
 
     private Transform _objectToHide;
 
+    private Camera _mainCamera;
+
     private void Awake()
     {
+        _mainCamera = FindObjectOfType<Camera>();
         CurrentSelectedObject = allObjects[_currentSelectedIndex];
+
+        if(IsToyoCarousel) 
+            SetToyoStartingPosition();
+        
         MoveToStartingPosition();
+    }
+
+    private void SetToyoStartingPosition()
+    {
+        foreach (var _object in allObjects)
+        {
+            _object.SetPositionAndRotation(StartingPosition.position, StartingPosition.rotation);
+            _object.LookAt(_mainCamera.transform);
+        }
     }
 
     private void MoveToStartingPosition()
     {
-        
         foreach (var _object in allObjects.Where(objectToRotate => objectToRotate != CurrentSelectedObject))
         {
             if (GetPreviousObject() == _object)
@@ -80,6 +100,10 @@ public class CarouselManager : MonoBehaviour
             if (_currentTime > duration)
                 _ourTimeDelta-= (_currentTime-duration);
             objectToRotate.RotateAround(anchor.position, Vector3.up, _angleDelta*_ourTimeDelta);
+            
+            if(IsToyoCarousel)
+                objectToRotate.LookAt(_mainCamera.transform);
+            
             yield return null;
         }
     }

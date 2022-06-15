@@ -22,6 +22,8 @@ namespace UI
         private string precisionProgressName = "Precision";
         private string staminaProgressName = "Stamina";
         private string luckProgressName = "Luck";
+        
+        private string toyoNameField = "toyoName";
 
         private ToyoObject _toyoObject;
 
@@ -48,10 +50,11 @@ namespace UI
             Debug.Log("ToyoParts button clicked!");
         }
 
-        private void UpdateUI()
+        protected override void UpdateUI()
         {
             _toyoObject = GetToyoSelected();
             SetToyoStats();
+            Root.Q<Label>(toyoNameField).text = _toyoObject.GetToyoName();
         }
         
         private ToyoObject GetToyoSelected() 
@@ -61,6 +64,7 @@ namespace UI
         {
             foreach (TOYO_STAT _stat in Enum.GetValues(typeof(TOYO_STAT)))
                 SetStatUI(_stat);
+            
         }
 
         private void SetStatUI(TOYO_STAT stat)

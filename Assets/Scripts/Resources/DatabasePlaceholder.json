@@ -828,6 +828,7 @@
           "luck": 12
         },
         "toyoPiece": "HEAD",
+        "toyoLevel": 20,
         "toyoTechnoalloy": "TITANIUM",
         "createdAt": "2022-06-02T19:03:10.443Z",
         "updatedAt": "2022-06-02T19:05:11.555Z",
@@ -901,6 +902,7 @@
           "luck": 12
         },
         "toyoPiece": "HEAD",
+        "toyoLevel": 20,
         "toyoTechnoalloy": "TITANIUM",
         "createdAt": "2022-06-02T19:03:10.443Z",
         "updatedAt": "2022-06-02T19:05:11.555Z",
@@ -974,6 +976,7 @@
           "luck": 12
         },
         "toyoPiece": "HEAD",
+        "toyoLevel": 20,
         "toyoTechnoalloy": "TITANIUM",
         "createdAt": "2022-06-02T19:03:10.443Z",
         "updatedAt": "2022-06-02T19:05:11.555Z",
@@ -1047,6 +1050,7 @@
           "luck": 12
         },
         "toyoPiece": "HEAD",
+        "toyoLevel": 20,
         "toyoTechnoalloy": "TITANIUM",
         "createdAt": "2022-06-02T19:03:10.443Z",
         "updatedAt": "2022-06-02T19:05:11.555Z",
@@ -1120,6 +1124,7 @@
           "luck": 12
         },
         "toyoPiece": "HEAD",
+        "toyoLevel": 20,
         "toyoTechnoalloy": "TITANIUM",
         "createdAt": "2022-06-02T19:03:10.443Z",
         "updatedAt": "2022-06-02T19:05:11.555Z",
@@ -1193,6 +1198,7 @@
           "luck": 12
         },
         "toyoPiece": "HEAD",
+        "toyoLevel": 20,
         "toyoTechnoalloy": "TITANIUM",
         "createdAt": "2022-06-02T19:03:10.443Z",
         "updatedAt": "2022-06-02T19:05:11.555Z",
@@ -1266,6 +1272,7 @@
           "luck": 12
         },
         "toyoPiece": "HEAD",
+        "toyoLevel": 20,
         "toyoTechnoalloy": "TITANIUM",
         "createdAt": "2022-06-02T19:03:10.443Z",
         "updatedAt": "2022-06-02T19:05:11.555Z",
@@ -1339,6 +1346,7 @@
           "luck": 12
         },
         "toyoPiece": "HEAD",
+        "toyoLevel": 20,
         "toyoTechnoalloy": "TITANIUM",
         "createdAt": "2022-06-02T19:03:10.443Z",
         "updatedAt": "2022-06-02T19:05:11.555Z",
@@ -1412,6 +1420,7 @@
           "luck": 12
         },
         "toyoPiece": "HEAD",
+        "toyoLevel": 20,
         "toyoTechnoalloy": "TITANIUM",
         "createdAt": "2022-06-02T19:03:10.443Z",
         "updatedAt": "2022-06-02T19:05:11.555Z",
@@ -1485,6 +1494,7 @@
           "luck": 12
         },
         "toyoPiece": "HEAD",
+        "toyoLevel": 20,
         "toyoTechnoalloy": "TITANIUM",
         "createdAt": "2022-06-02T19:03:10.443Z",
         "updatedAt": "2022-06-02T19:05:11.555Z",
@@ -1495,13 +1505,13 @@
         }
       }],
       "toyoPersona": {
-        "objectId": "VYo3WbxmBr",
+        "objectId": "4VYo3WbxmBr",
         "createdAt": "2022-06-02T19:13:00.547Z",
         "updatedAt": "2022-06-02T19:28:00.157Z",
         "region": "Jakana",
         "video": "https://toyoverse.com/nft_thumbs/toyos/slicky.mp4",
         "description": "\"Slicky was built with the most common  materials. Almost discardable, he was introduced as a substitute for The Collectors in the test of lethal traps in the Arena of Trials.\n\nNow, with the Collectors next to them, they help run part of The Dome black market; many low tier parts can be found in their street markets as well as many other goods you can only find in Jakana.\"",
-        "name": "Slicky",
+        "name": "Doge",
         "bodyType": 2,
         "thumbnail": "https://toyoverse.com/nft_thumbs/toyos/slicky.png"
       }
@@ -1575,6 +1585,7 @@
             "luck": 12
           },
           "toyoPiece": "HEAD",
+          "toyoLevel": 10,
           "toyoTechnoalloy": "TITANIUM",
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
@@ -1648,6 +1659,7 @@
             "luck": 12
           },
           "toyoPiece": "HEAD",
+          "toyoLevel": 10,
           "toyoTechnoalloy": "TITANIUM",
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
@@ -1721,6 +1733,7 @@
             "luck": 12
           },
           "toyoPiece": "HEAD",
+          "toyoLevel": 10,
           "toyoTechnoalloy": "TITANIUM",
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
@@ -1794,6 +1807,7 @@
             "luck": 12
           },
           "toyoPiece": "HEAD",
+          "toyoLevel": 10,
           "toyoTechnoalloy": "TITANIUM",
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
@@ -1867,6 +1881,7 @@
             "luck": 12
           },
           "toyoPiece": "HEAD",
+          "toyoLevel": 10,
           "toyoTechnoalloy": "TITANIUM",
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
@@ -1940,6 +1955,7 @@
             "luck": 12
           },
           "toyoPiece": "HEAD",
+          "toyoLevel": 10,
           "toyoTechnoalloy": "TITANIUM",
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
@@ -2013,6 +2029,7 @@
             "luck": 12
           },
           "toyoPiece": "HEAD",
+          "toyoLevel": 10,
           "toyoTechnoalloy": "TITANIUM",
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
@@ -2086,6 +2103,7 @@
             "luck": 12
           },
           "toyoPiece": "HEAD",
+          "toyoLevel": 10,
           "toyoTechnoalloy": "TITANIUM",
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
@@ -2159,6 +2177,7 @@
             "luck": 12
           },
           "toyoPiece": "HEAD",
+          "toyoLevel": 10,
           "toyoTechnoalloy": "TITANIUM",
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
@@ -2232,6 +2251,7 @@
             "luck": 12
           },
           "toyoPiece": "HEAD",
+          "toyoLevel": 10,
           "toyoTechnoalloy": "TITANIUM",
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
@@ -2242,13 +2262,13 @@
           }
         }],
         "toyoPersona": {
-          "objectId": "VYo3WbxmBr",
+          "objectId": "3VYo3WbxmBr",
           "createdAt": "2022-06-02T19:13:00.547Z",
           "updatedAt": "2022-06-02T19:28:00.157Z",
           "region": "Jakana",
           "video": "https://toyoverse.com/nft_thumbs/toyos/slicky.mp4",
           "description": "\"Slicky was built with the most common  materials. Almost discardable, he was introduced as a substitute for The Collectors in the test of lethal traps in the Arena of Trials.\n\nNow, with the Collectors next to them, they help run part of The Dome black market; many low tier parts can be found in their street markets as well as many other goods you can only find in Jakana.\"",
-          "name": "Slicky",
+          "name": "Rocker",
           "bodyType": 2,
           "thumbnail": "https://toyoverse.com/nft_thumbs/toyos/slicky.png"
         }
@@ -2322,6 +2342,7 @@
             "luck": 12
           },
           "toyoPiece": "HEAD",
+          "toyoLevel": 12,
           "toyoTechnoalloy": "TITANIUM",
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
@@ -2395,6 +2416,7 @@
             "luck": 12
           },
           "toyoPiece": "HEAD",
+          "toyoLevel": 12,
           "toyoTechnoalloy": "TITANIUM",
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
@@ -2468,6 +2490,7 @@
             "luck": 12
           },
           "toyoPiece": "HEAD",
+          "toyoLevel": 12,
           "toyoTechnoalloy": "TITANIUM",
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
@@ -2541,6 +2564,7 @@
             "luck": 12
           },
           "toyoPiece": "HEAD",
+          "toyoLevel": 12,
           "toyoTechnoalloy": "TITANIUM",
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
@@ -2614,6 +2638,7 @@
             "luck": 12
           },
           "toyoPiece": "HEAD",
+          "toyoLevel": 12,
           "toyoTechnoalloy": "TITANIUM",
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
@@ -2687,6 +2712,7 @@
             "luck": 12
           },
           "toyoPiece": "HEAD",
+          "toyoLevel": 12,
           "toyoTechnoalloy": "TITANIUM",
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
@@ -2760,6 +2786,7 @@
             "luck": 12
           },
           "toyoPiece": "HEAD",
+          "toyoLevel": 12,
           "toyoTechnoalloy": "TITANIUM",
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
@@ -2833,6 +2860,7 @@
             "luck": 12
           },
           "toyoPiece": "HEAD",
+          "toyoLevel": 12,
           "toyoTechnoalloy": "TITANIUM",
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
@@ -2906,6 +2934,7 @@
             "luck": 12
           },
           "toyoPiece": "HEAD",
+          "toyoLevel": 12,
           "toyoTechnoalloy": "TITANIUM",
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
@@ -2979,6 +3008,7 @@
             "luck": 12
           },
           "toyoPiece": "HEAD",
+          "toyoLevel": 12,
           "toyoTechnoalloy": "TITANIUM",
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
@@ -2989,13 +3019,13 @@
           }
         }],
         "toyoPersona": {
-          "objectId": "VYo3WbxmBr",
+          "objectId": "2VYo3WbxmBr",
           "createdAt": "2022-06-02T19:13:00.547Z",
           "updatedAt": "2022-06-02T19:28:00.157Z",
           "region": "Jakana",
           "video": "https://toyoverse.com/nft_thumbs/toyos/slicky.mp4",
           "description": "\"Slicky was built with the most common  materials. Almost discardable, he was introduced as a substitute for The Collectors in the test of lethal traps in the Arena of Trials.\n\nNow, with the Collectors next to them, they help run part of The Dome black market; many low tier parts can be found in their street markets as well as many other goods you can only find in Jakana.\"",
-          "name": "Slicky",
+          "name": "Gaja",
           "bodyType": 2,
           "thumbnail": "https://toyoverse.com/nft_thumbs/toyos/slicky.png"
         }
@@ -3069,6 +3099,7 @@
             "luck": 12
           },
           "toyoPiece": "HEAD",
+          "toyoLevel": 17,
           "toyoTechnoalloy": "TITANIUM",
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
@@ -3142,6 +3173,7 @@
             "luck": 12
           },
           "toyoPiece": "HEAD",
+          "toyoLevel": 17,
           "toyoTechnoalloy": "TITANIUM",
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
@@ -3215,6 +3247,7 @@
             "luck": 12
           },
           "toyoPiece": "HEAD",
+          "toyoLevel": 17,
           "toyoTechnoalloy": "TITANIUM",
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
@@ -3288,6 +3321,7 @@
             "luck": 12
           },
           "toyoPiece": "HEAD",
+          "toyoLevel": 7,
           "toyoTechnoalloy": "TITANIUM",
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
@@ -3361,6 +3395,7 @@
             "luck": 12
           },
           "toyoPiece": "HEAD",
+          "toyoLevel": 7,
           "toyoTechnoalloy": "TITANIUM",
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
@@ -3434,6 +3469,7 @@
             "luck": 12
           },
           "toyoPiece": "HEAD",
+          "toyoLevel": 7,
           "toyoTechnoalloy": "TITANIUM",
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
@@ -3507,6 +3543,7 @@
             "luck": 12
           },
           "toyoPiece": "HEAD",
+          "toyoLevel": 7,
           "toyoTechnoalloy": "TITANIUM",
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
@@ -3580,6 +3617,7 @@
             "luck": 12
           },
           "toyoPiece": "HEAD",
+          "toyoLevel": 7,
           "toyoTechnoalloy": "TITANIUM",
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
@@ -3653,6 +3691,7 @@
             "luck": 12
           },
           "toyoPiece": "HEAD",
+          "toyoLevel": 7,
           "toyoTechnoalloy": "TITANIUM",
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
@@ -3726,6 +3765,7 @@
             "luck": 12
           },
           "toyoPiece": "HEAD",
+          "toyoLevel": 7,
           "toyoTechnoalloy": "TITANIUM",
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
@@ -3736,13 +3776,13 @@
           }
         }],
         "toyoPersona": {
-          "objectId": "VYo3WbxmBr",
+          "objectId": "1VYo3WbxmBr",
           "createdAt": "2022-06-02T19:13:00.547Z",
           "updatedAt": "2022-06-02T19:28:00.157Z",
           "region": "Jakana",
           "video": "https://toyoverse.com/nft_thumbs/toyos/slicky.mp4",
           "description": "\"Slicky was built with the most common  materials. Almost discardable, he was introduced as a substitute for The Collectors in the test of lethal traps in the Arena of Trials.\n\nNow, with the Collectors next to them, they help run part of The Dome black market; many low tier parts can be found in their street markets as well as many other goods you can only find in Jakana.\"",
-          "name": "Slicky",
+          "name": "Lao Qing",
           "bodyType": 2,
           "thumbnail": "https://toyoverse.com/nft_thumbs/toyos/slicky.png"
         }

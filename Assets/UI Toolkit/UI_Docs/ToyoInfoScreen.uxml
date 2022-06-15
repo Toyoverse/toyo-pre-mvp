@@ -15,23 +15,23 @@
                     <ui:VisualElement name="avgHB" style="width: 40%; height: 100%; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; background-color: rgb(160, 160, 160);" />
                 </ui:GroupBox>
                 <ui:GroupBox name="progressBarBox" style="width: 95%; height: 70%; justify-content: space-around; margin-left: 0; margin-right: 0; margin-top: 2%; margin-bottom: 2%; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;">
-                    <ui:ProgressBar title="Vitality" name="VitalityProgress" low-value="10" class="progresStyle" style="overflow: hidden;" />
-                    <ui:ProgressBar title="Precision" name="Precision" class="progresStyle" />
-                    <ui:ProgressBar title="Luck" name="Luck" class="progresStyle" />
-                    <ui:ProgressBar title="Stamina" name="Stamina" class="progresStyle" />
-                    <ui:ProgressBar title="Analysis" name="Analysis" class="progresStyle" />
-                    <ui:ProgressBar title="Technique" name="Technique" class="progresStyle" />
-                    <ui:ProgressBar title="Agility" name="Agility" class="progresStyle" />
-                    <ui:ProgressBar title="Speed" name="Speed" class="progresStyle" />
-                    <ui:ProgressBar title="Resilience" name="Resilience" class="progresStyle" />
-                    <ui:ProgressBar title="Resistance" name="Resistance" class="progresStyle" />
-                    <ui:ProgressBar title="Cyber Force" name="CyberForce" class="progresStyle" />
-                    <ui:ProgressBar title="Strength" name="Strength" class="progresStyle" />
-                    <ui:ProgressBar title="Armor" name="Armor" class="progresStyle" />
+                    <ui:ProgressBar title="Vitality" name="VitalityProgress" low-value="10" high-value="200" class="progresStyle" style="overflow: hidden;" />
+                    <ui:ProgressBar title="Precision" name="Precision" high-value="200" class="progresStyle" />
+                    <ui:ProgressBar title="Luck" name="Luck" high-value="200" class="progresStyle" />
+                    <ui:ProgressBar title="Stamina" name="Stamina" high-value="200" class="progresStyle" />
+                    <ui:ProgressBar title="Analysis" name="Analysis" high-value="200" class="progresStyle" />
+                    <ui:ProgressBar title="Technique" name="Technique" high-value="200" class="progresStyle" />
+                    <ui:ProgressBar title="Agility" name="Agility" high-value="200" class="progresStyle" />
+                    <ui:ProgressBar title="Speed" name="Speed" high-value="200" class="progresStyle" />
+                    <ui:ProgressBar title="Resilience" name="Resilience" high-value="200" class="progresStyle" />
+                    <ui:ProgressBar title="Resistance" name="Resistance" high-value="200" class="progresStyle" />
+                    <ui:ProgressBar title="Cyber Force" name="CyberForce" high-value="200" class="progresStyle" />
+                    <ui:ProgressBar title="Strength" name="Strength" high-value="200" class="progresStyle" />
                 </ui:GroupBox>
             </ui:VisualElement>
         </ui:GroupBox>
         <ui:GroupBox name="middleBox" class="groupBox" style="position: absolute; align-items: center; width: 45%; height: 100%; flex-direction: row; justify-content: space-between; left: 10%;">
+            <ui:Label text="Datu" display-tooltip-when-elided="true" name="toyoName" class="purpleButtonTallStyle" style="-unity-text-align: middle-center; scale: 0.5 0.5; font-size: 84px; justify-content: flex-start; align-items: stretch; top: -40%;" />
             <ui:Button text="Previous" display-tooltip-when-elided="true" name="previousToyoButton" style="width: 15%; height: 8%; font-size: 28px;" />
             <ui:Button text="Next" display-tooltip-when-elided="true" name="nextToyoButton" style="width: 15%; height: 8%; font-size: 28px;" />
         </ui:GroupBox>

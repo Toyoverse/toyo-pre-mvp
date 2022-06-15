@@ -32,6 +32,7 @@ namespace UI
             carousel.SwipeRight();
             UpdateVisualInformation();
         }
+        
 
         public void PreviousBoxButton()
         {

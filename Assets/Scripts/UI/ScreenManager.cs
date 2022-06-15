@@ -8,6 +8,13 @@ namespace UI
 {
     public class ScreenManager : Singleton<ScreenManager>
     {
+        [Header("Screen References")]
+        public UIDocument welcomeScreen;
+        public UIDocument mainMenuScreen;
+        public UIDocument toyoInfoScreen;
+        public UIDocument boxInfoScreen;
+        public UIDocument openBoxScreen;
+
         private WelcomeScreen _welcomeScript;
         private MainMenuScreen _mainMenuScript;
         private ToyoInfoScreen _toyoInfoScript;

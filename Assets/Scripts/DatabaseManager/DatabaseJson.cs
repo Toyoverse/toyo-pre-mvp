@@ -34,6 +34,8 @@ namespace Database
         public string objectId;
         public string name;
         public bool hasTenParts;
+        
+        public ToyoPersona toyoPersona; // Todo : remove, this is temporary only for the wrong JSON
         public ToyoPart[] parts;
     }
 

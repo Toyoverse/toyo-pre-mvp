@@ -1,9 +1,11 @@
 ﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Database;
 using Extensions;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class ToyoObject : MonoBehaviour
 {
@@ -24,42 +26,68 @@ public class ToyoObject : MonoBehaviour
         {TOYO_STAT.STAMINA, 0.0f},
         {TOYO_STAT.LUCK, 0.0f},
     };
+    
+    private Dictionary<TOYO_STAT, float> _bonusStats = new(){
+        {TOYO_STAT.VITALITY, 0.0f},
+        {TOYO_STAT.RESISTANCE, 0.0f},
+        {TOYO_STAT.RESILIENCE, 0.0f},
+        {TOYO_STAT.PHYSICAL_STRENGTH, 0.0f},
+        {TOYO_STAT.CYBER_FORCE, 0.0f},
+        {TOYO_STAT.TECHNIQUE, 0.0f},
+        {TOYO_STAT.ANALYSIS, 0.0f},
+        {TOYO_STAT.AGILITY, 0.0f},
+        {TOYO_STAT.SPEED, 0.0f},
+        {TOYO_STAT.PRECISION, 0.0f},
+        {TOYO_STAT.STAMINA, 0.0f},
+        {TOYO_STAT.LUCK, 0.0f},
+    };
+
+    private string _toyoName;
+    private int _toyoTotalPartsLevel;
+    private int _numberOfParts;
 
     public float GetToyoStat(TOYO_STAT stat) => _toyoStats[stat];
+
+    public string GetToyoName() => _toyoName;
+
+    public int GetToyoLevel() => _toyoTotalPartsLevel / _numberOfParts;
     
     void SetTotalStats(List<ToyoPart> parts)
     {
         foreach (var _part in parts)
         {
-            _toyoStats[TOYO_STAT.VITALITY] += _part.stats.vitality;
-            _toyoStats[TOYO_STAT.RESISTANCE] += _part.stats.resistance;
-            _toyoStats[TOYO_STAT.RESILIENCE] += _part.stats.resilence;
-            _toyoStats[TOYO_STAT.PHYSICAL_STRENGTH] += _part.stats.physicalStrength;
-            _toyoStats[TOYO_STAT.CYBER_FORCE] += _part.stats.cyberForce;
-            _toyoStats[TOYO_STAT.TECHNIQUE] += _part.stats.technique;
-            _toyoStats[TOYO_STAT.ANALYSIS] += _part.stats.analysis;
-            _toyoStats[TOYO_STAT.AGILITY] += _part.stats.agility;
-            _toyoStats[TOYO_STAT.SPEED] += _part.stats.speed;
-            _toyoStats[TOYO_STAT.PRECISION] += _part.stats.precision;
-            _toyoStats[TOYO_STAT.STAMINA] += _part.stats.stamina;
-            _toyoStats[TOYO_STAT.LUCK] += _part.stats.luck;
+            foreach (TOYO_STAT _stat in Enum.GetValues(typeof(TOYO_STAT)))
+            {
+                _toyoStats[_stat] += GetStatValue(_stat, _part);
+                _bonusStats[_stat] += GetStatValue(_stat, _part, true);
+            }
+
+            _toyoTotalPartsLevel += _part.toyoLevel;
         }
-        
-        foreach (var _part in parts)
+            
+
+        foreach (TOYO_STAT _stat in Enum.GetValues(typeof(TOYO_STAT)))
+            _toyoStats[_stat] *= _bonusStats[_stat] > 0 ? _bonusStats[_stat] : 1;
+    }
+    
+    private float GetStatValue(TOYO_STAT stat, ToyoPart part, bool isBonusStat = false)
+    {
+        return stat switch
         {
-            _toyoStats[TOYO_STAT.VITALITY] *= _part.bonusStats.vitality > 0 ? _part.bonusStats.vitality : 1;
-            _toyoStats[TOYO_STAT.RESISTANCE] *= _part.bonusStats.resistance > 0 ? _part.bonusStats.resistance : 1;
-            _toyoStats[TOYO_STAT.RESILIENCE] *= _part.bonusStats.resilence > 0 ? _part.bonusStats.resilence : 1;
-            _toyoStats[TOYO_STAT.PHYSICAL_STRENGTH] *= _part.bonusStats.physicalStrength > 0 ? _part.bonusStats.physicalStrength : 1;
-            _toyoStats[TOYO_STAT.CYBER_FORCE] *= _part.bonusStats.cyberForce > 0 ? _part.bonusStats.cyberForce : 1;
-            _toyoStats[TOYO_STAT.TECHNIQUE] *= _part.bonusStats.technique > 0 ? _part.bonusStats.technique : 1;
-            _toyoStats[TOYO_STAT.ANALYSIS] *= _part.bonusStats.analysis > 0 ? _part.bonusStats.analysis : 1;
-            _toyoStats[TOYO_STAT.AGILITY] *= _part.bonusStats.agility > 0 ? _part.bonusStats.agility : 1;
-            _toyoStats[TOYO_STAT.SPEED] *= _part.bonusStats.speed > 0 ? _part.bonusStats.speed : 1;
-            _toyoStats[TOYO_STAT.PRECISION] *= _part.bonusStats.precision > 0 ? _part.bonusStats.precision : 1;
-            _toyoStats[TOYO_STAT.STAMINA] *= _part.bonusStats.stamina > 0 ? _part.bonusStats.stamina : 1;
-            _toyoStats[TOYO_STAT.LUCK] *= _part.bonusStats.luck > 0 ? _part.bonusStats.luck : 1;
-        }
+            TOYO_STAT.VITALITY => isBonusStat ? part.bonusStats.vitality : part.stats.vitality ,
+            TOYO_STAT.RESISTANCE => isBonusStat ? part.bonusStats.resistance : part.stats.resistance,
+            TOYO_STAT.RESILIENCE => isBonusStat ? part.bonusStats.resilence : part.stats.resilence,
+            TOYO_STAT.PHYSICAL_STRENGTH => isBonusStat ? part.bonusStats.physicalStrength : part.stats.physicalStrength,
+            TOYO_STAT.CYBER_FORCE => isBonusStat ? part.bonusStats.cyberForce : part.stats.cyberForce,
+            TOYO_STAT.TECHNIQUE => isBonusStat ? part.bonusStats.technique : part.stats.technique,
+            TOYO_STAT.ANALYSIS => isBonusStat ? part.bonusStats.analysis : part.stats.analysis,
+            TOYO_STAT.AGILITY => isBonusStat ? part.bonusStats.agility : part.stats.agility,
+            TOYO_STAT.SPEED => isBonusStat ? part.bonusStats.speed : part.stats.speed,
+            TOYO_STAT.PRECISION => isBonusStat ? part.bonusStats.precision : part.stats.precision,
+            TOYO_STAT.STAMINA => isBonusStat ? part.bonusStats.stamina : part.stats.stamina,
+            TOYO_STAT.LUCK => isBonusStat ? part.bonusStats.luck : part.stats.luck,
+            _ => throw new ArgumentOutOfRangeException(nameof(stat), stat, null)
+        };
     }
 
     public ToyoObject() : this(Argument<Toyo>.First) { }
@@ -67,5 +95,16 @@ public class ToyoObject : MonoBehaviour
     public ToyoObject(Toyo toyo)
     {
         SetTotalStats(toyo.parts.ToList());
+        
+        //Todo Uncoment this when we use toyo rename system
+        //_toyoName = !string.IsNullOrEmpty(toyo.name) ? toyo.name : toyo.parts[0].toyoPersona.name;
+        _toyoName = toyo.toyoPersona.name;
+        _numberOfParts = toyo.parts.Length;
     }
+
+    private void SetToyoModel()
+    {
+        
+    }
+
 }
