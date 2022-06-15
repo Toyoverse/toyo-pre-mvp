@@ -1,24 +1,21 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UIElements;
 
 namespace UI
 {
     public class ScreenManager : Singleton<ScreenManager>
     {
-        [Header("Screen References")]
-        public UIDocument welcomeScreen;
-        public UIDocument mainMenuScreen;
-        public UIDocument toyoInfoScreen;
-        public UIDocument boxInfoScreen;
-        public UIDocument openBoxScreen;
-
         private WelcomeScreen _welcomeScript;
         private MainMenuScreen _mainMenuScript;
         private ToyoInfoScreen _toyoInfoScript;
         private BoxInfoScreen _boxInfoScript;
         private OpenBoxScreen _openBoxScript;
+        private LoreThemeScreen _loreThemeScript;
+        private TrainingModuleScreen _trainingModuleScript;
+        private ActionSelectionScreen _actionSelectionScript;
 
         public static ScreenState ScreenState { get; private set; }
         private static ScreenState _oldScreenState;
@@ -38,25 +35,28 @@ namespace UI
             switch (newScreen)
             {
                 case ScreenState.Welcome:
-                    welcomeScreen.gameObject.SetActive(true);
-                    _welcomeScript.EnableButtonEvents();
+                    _welcomeScript.ActiveScreen();
                     break;
                 case ScreenState.MainMenu:
-                    mainMenuScreen.gameObject.SetActive(true);
-                    _mainMenuScript.EnableButtonEvents();
+                    _mainMenuScript.ActiveScreen();
                     break;
                 case ScreenState.ToyoInfo:
-                    toyoInfoScreen.gameObject.SetActive(true);
-                    _toyoInfoScript.EnableButtonEvents();
+                    _toyoInfoScript.ActiveScreen();
                     break;
                 case ScreenState.BoxInfo:
-                    boxInfoScreen.gameObject.SetActive(true);
-                    _boxInfoScript.EnableButtonEvents();
-                    _boxInfoScript.UpdateUI();
+                    _boxInfoScript.ActiveScreen();
                     break;
                 case ScreenState.OpenBox:
-                    openBoxScreen.gameObject.SetActive(true);
-                    _openBoxScript.EnableButtonEvents();
+                    _openBoxScript.ActiveScreen();
+                    break;
+                case ScreenState.LoreTheme:
+                    _loreThemeScript.ActiveScreen();
+                    break;
+                case ScreenState.TrainingModule:
+                    _trainingModuleScript.ActiveScreen();
+                    break;
+                case ScreenState.ActionSelection:
+                    _actionSelectionScript.ActiveScreen();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -74,24 +74,28 @@ namespace UI
             switch (ScreenState)
             {
                 case ScreenState.Welcome:
-                    _welcomeScript.DisableButtonEvents();
-                    welcomeScreen.gameObject.SetActive(false);
+                    _welcomeScript.DisableScreen();
                     break;
                 case ScreenState.MainMenu:
-                    _mainMenuScript.DisableButtonEvents();
-                    mainMenuScreen.gameObject.SetActive(false);
+                    _mainMenuScript.DisableScreen();
                     break;
                 case ScreenState.ToyoInfo:
-                    _toyoInfoScript.DisableButtonEvents();
-                    toyoInfoScreen.gameObject.SetActive(false);
+                    _toyoInfoScript.DisableScreen();
                     break;
                 case ScreenState.BoxInfo:
-                    _boxInfoScript.DisableButtonEvents();
-                    boxInfoScreen.gameObject.SetActive(false);
+                    _boxInfoScript.DisableScreen();
                     break;
                 case ScreenState.OpenBox:
-                    _openBoxScript.DisableButtonEvents();
-                    openBoxScreen.gameObject.SetActive(false);
+                    _openBoxScript.DisableScreen();
+                    break;
+                case ScreenState.LoreTheme:
+                    _loreThemeScript.DisableScreen();
+                    break;
+                case ScreenState.TrainingModule:
+                    _trainingModuleScript.DisableScreen();
+                    break;
+                case ScreenState.ActionSelection:
+                    _actionSelectionScript.DisableScreen();
                     break;
                 default:
                     break;
@@ -105,6 +109,9 @@ namespace UI
             _toyoInfoScript = GetComponent<ToyoInfoScreen>();
             _boxInfoScript = GetComponent<BoxInfoScreen>();
             _openBoxScript = GetComponent<OpenBoxScreen>();
+            _loreThemeScript = GetComponent<LoreThemeScreen>();
+            _trainingModuleScript = GetComponent<TrainingModuleScreen>();
+            _actionSelectionScript = GetComponent<ActionSelectionScreen>();
         }
     }
 
@@ -115,6 +122,9 @@ namespace UI
         MainMenu = 2,
         ToyoInfo = 3,
         BoxInfo = 4,
-        OpenBox = 5
+        OpenBox = 5,
+        LoreTheme = 6,
+        TrainingModule = 7,
+        ActionSelection = 8
     }
 }

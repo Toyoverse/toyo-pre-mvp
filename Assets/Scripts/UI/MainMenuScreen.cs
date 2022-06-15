@@ -54,8 +54,8 @@ namespace UI
         
         public void StartButton()
         {
-            //TODO: Go to "gameplay"!
-            Debug.Log("Start button clicked! Go to gameplay!");
+            //TODO: Send selected Toyo to Training Module Screen
+            ScreenManager.Instance.GoToScreen(ScreenState.LoreTheme);
         }
 
         public void SetMode(GAME_MODE newGameMode)

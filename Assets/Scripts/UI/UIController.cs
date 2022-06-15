@@ -15,9 +15,21 @@ namespace UI
         protected VisualElement Root => uiDoc.rootVisualElement;
         public List<CustomButton> buttons;
 
-        public virtual void OnDestroy() => DisableButtonEvents();
+        public virtual void OnDestroy() => DisableScreen();
 
-        public void EnableButtonEvents()
+        public void ActiveScreen()
+        {
+            uiDoc.gameObject.SetActive(true);
+            EnableButtonEvents();
+        }
+
+        public void DisableScreen()
+        {
+            DisableButtonEvents();
+            uiDoc.gameObject.SetActive(false);
+        }
+
+        private void EnableButtonEvents()
         {
             if(buttons.Count <= 0 || Root == null)
                 return;
@@ -34,9 +46,11 @@ namespace UI
                     Debug.Log(_cb.name + " not found in " + uiDoc.name);
                 }
             }
+
+            UpdateUI();
         }
 
-        public void DisableButtonEvents()
+        private void DisableButtonEvents()
         {
             if (buttons.Count <= 0 || Root == null)
                 return;
@@ -62,6 +76,22 @@ namespace UI
         }
 
         public virtual void BackButton() => ScreenManager.Instance.BackToOldScreen();
+        
+        protected virtual void UpdateUI() {}
+        
+        protected void SetVisualElementSprite(string visualElementName, Sprite newSprite)
+        {
+            var _visualE = Root.Q<VisualElement>(visualElementName);
+            if(_visualE != null) 
+                _visualE.style.backgroundImage = new StyleBackground(newSprite);
+        }
+
+        protected void SetTextInLabel(string labelName, string value)
+        {
+            var _label = Root?.Q<Label>(labelName);
+            if (_label != null) 
+                _label.text = value;
+        }
     }
 
     [Serializable]

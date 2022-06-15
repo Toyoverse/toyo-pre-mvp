@@ -60,7 +60,7 @@ namespace UI
             _textLabel.text = text;
         }
 
-        public void UpdateUI() 
+        protected override void UpdateUI() 
         {
             if (GetBoxSelected() == null)
             {
