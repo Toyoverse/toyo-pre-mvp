@@ -1,3 +1,116 @@
+.Right-Arrow-Button {
+    width: 20%;
+    height: 10%;
+    font-size: 28px;
+    transition-property: all;
+    transition-duration: 0s;
+    transition-timing-function: ease;
+    transition-delay: 0s;
+    background-image: url('project://database/Assets/Images/Buttons/Left_Arrow_normal.png?fileID=2800000&guid=2b026c420f628e949be3f54f68c364b7&type=3#Left_Arrow_normal');
+    background-color: rgba(88, 88, 88, 0);
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    scale: -1 1;
+    -unity-background-scale-mode: scale-and-crop;
+}
+
+.Right-Arrow-Button:hover {
+    width: 20%;
+    height: 10%;
+    font-size: 28px;
+    transition-property: translate, -unity-background-scale-mode;
+    transition-duration: 0.2s, 0.2s;
+    transition-timing-function: ease-in, ease-in;
+    transition-delay: 0s, 0s;
+    background-image: url('project://database/Assets/Images/Buttons/Left_Arrow_hover.png?fileID=2800000&guid=746285aa5b76fec4984680b4196b3b61&type=3#Left_Arrow_hover');
+    background-color: rgba(88, 88, 88, 0);
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    scale: -1 1;
+    -unity-background-scale-mode: stretch-to-fill;
+    translate: 20px 0;
+}
+
+.Right-Arrow-Button:active {
+    width: 20%;
+    height: 10%;
+    font-size: 28px;
+    background-image: url('project://database/Assets/Images/Buttons/Left_Arrow_pressed.png?fileID=2800000&guid=4c62def5740c1944cb7bcd70badcca7f&type=3#Left_Arrow_pressed');
+    background-color: rgba(88, 88, 88, 0);
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    scale: -1 1;
+    -unity-background-scale-mode: stretch-to-fill;
+    translate: 20px 0;
+}
+
+.Left-Arrow-Button {
+    width: 20%;
+    height: 10%;
+    font-size: 0;
+    background-image: url('project://database/Assets/Images/Buttons/Left_Arrow_normal.png?fileID=2800000&guid=2b026c420f628e949be3f54f68c364b7&type=3#Left_Arrow_normal');
+    -unity-background-scale-mode: scale-and-crop;
+    white-space: nowrap;
+    scale: 1 1;
+    background-color: rgba(88, 88, 88, 0);
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    -unity-text-align: middle-center;
+    transition-property: all;
+    transition-duration: 0s;
+    transition-timing-function: ease;
+    transition-delay: 0s;
+}
+
+.Left-Arrow-Button:hover {
+    width: 20%;
+    height: 10%;
+    font-size: 0;
+    background-image: url('project://database/Assets/Images/Buttons/Left_Arrow_hover.png?fileID=2800000&guid=746285aa5b76fec4984680b4196b3b61&type=3#Left_Arrow_hover');
+    -unity-background-scale-mode: stretch-to-fill;
+    white-space: nowrap;
+    scale: 1 1;
+    background-color: rgba(88, 88, 88, 0);
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    -unity-text-align: middle-center;
+    transition-property: translate, -unity-background-scale-mode;
+    transition-duration: 0.2s, 0.2s;
+    transition-timing-function: ease-in, ease-in;
+    transition-delay: 0s, 0s;
+    translate: -20px 0;
+}
+
+.Left-Arrow-Button:active {
+    width: 20%;
+    height: 10%;
+    font-size: 0;
+    background-image: url('project://database/Assets/Images/Buttons/Left_Arrow_pressed.png?fileID=2800000&guid=4c62def5740c1944cb7bcd70badcca7f&type=3#Left_Arrow_pressed');
+    -unity-background-scale-mode: stretch-to-fill;
+    white-space: nowrap;
+    scale: 1 1;
+    background-color: rgba(88, 88, 88, 0);
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    -unity-text-align: middle-center;
+    translate: -20px 0;
+}
+
 .purpleButtonTallStyle {
     position: relative;
     font-size: 42px;
@@ -317,4 +430,10 @@
     -unity-font-definition: none;
     -unity-font: url('project://database/Assets/Fonts/AlteHaasGroteskBold.ttf?fileID=12800000&guid=980abd6e80517af469bdc42e84136b1d&type=3#AlteHaasGroteskBold');
     color: rgb(255, 255, 255);
+}
+
+.unity-button {
+}
+
+.unity-text-element {
 }

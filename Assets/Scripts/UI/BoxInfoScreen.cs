@@ -14,6 +14,7 @@ namespace UI
         public string infoTextName = "boxDescription";
         public string scrollName = "dropScroll";
         public string rewardName = "reward";
+        private int _rewardsCount = 0;
 
         private const string ConfirmMessage = "Are you sure you want to open your box?\n \nThis action can't be " +
             "undone! \n You will receive a wallet request to transfer your closed box momentarily to us. We will " +
@@ -29,13 +30,13 @@ namespace UI
         public void NextBoxButton()
         {
             carousel.SwipeRight();
-            UpdateUI();
+            UpdateVisualInformation();
         }
 
         public void PreviousBoxButton()
         {
             carousel.SwipeLeft();
-            UpdateUI();
+            UpdateVisualInformation();
         }
 
         private BoxConfig GetBoxSelected() 
@@ -53,14 +54,14 @@ namespace UI
             var _textLabel = Root.Q<Label>(titleBoxName);
             _textLabel.text = text;
         }
-
+        
         private void SetDescriptionText(string text)
         {
             var _textLabel = Root.Q<Label>(infoTextName);
             _textLabel.text = text;
         }
 
-        protected override void UpdateUI() 
+        public void UpdateVisualInformation() 
         {
             if (GetBoxSelected() == null)
             {
@@ -69,18 +70,20 @@ namespace UI
                 return;
             }
             SetDescriptionText(GetBoxDescription(GetBoxSelected()));
+            SetTitleText(GetBoxTitle(GetBoxSelected()));
             SetPossibleRewards(GetBoxSelected()); 
         }
 
         private string GetBoxTitle(BoxConfig boxConfig)
         {
-            var _name = boxConfig.BoxName.ToUpper() + " BOX";
+            var _name = boxConfig.BoxName.ToUpper() + "BOX";
             return _name;
+
         }
-        
+
         private string GetBoxDescription(BoxConfig boxConfig)
         {
-            //var _name = boxConfig.BoxName.ToUpper() + " BOX";
+            var _name = boxConfig.BoxName.ToUpper() + " BOX";
             var _region = "REGION: " + boxConfig.BoxRegion.ToString().ToUpper();
             var _type = "TYPE: " + boxConfig.BoxType.ToString().ToUpper();
 
@@ -96,7 +99,7 @@ namespace UI
             foreach (var _s in _ratesList) 
                 _rateString = _rateString + (_s + "\n");
 
-            return  _region + "\n" + _type + "\n \n" + _rateString;
+            return _region + "\n" + _type + "\n \n" + _rateString;
         }
 
         private void SetPossibleRewards(BoxConfig boxConfig)
@@ -121,6 +124,7 @@ namespace UI
                     }
                 };
                 _scrollView.Add(_visualE);
+                _rewardsCount++;
             }
         }
     }
