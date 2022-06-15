@@ -302,6 +302,11 @@ MonoBehaviour:
   carouselToyo: {fileID: 1868994929}
   toyoListParent: {fileID: 1908465654}
   toyoBasePrefab: {fileID: 1945413062895215098, guid: f0ec6e8fb5b37314e9e0779b1b4d0537, type: 3}
+  toyoPersonaPrefabs:
+  - {fileID: 11400000, guid: 0d571009b2a70614abd8b0d15868abbf, type: 2}
+  - {fileID: 11400000, guid: 108edc6dd21513d4e961c22eff4f7ad4, type: 2}
+  - {fileID: 11400000, guid: 8ae07a4a9bca8ba4e819ba4a9e8008b3, type: 2}
+  - {fileID: 11400000, guid: 545a78c852ce80d4a9baad3dd85408bc, type: 2}
 --- !u!1 &1084469477
 GameObject:
   m_ObjectHideFlags: 0
@@ -839,6 +844,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1789746292, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4
+      objectReference: {fileID: 0}
+    - target: {fileID: 451214905369922131, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 451214905369922131, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8643416932187837700, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
       propertyPath: m_RootOrder
       value: 3

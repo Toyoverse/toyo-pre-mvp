@@ -5,6 +5,7 @@ using System.Linq;
 using Database;
 using UnityEngine;
 using Extensions;
+using System.Linq;
 
 
 public class ToyoManager : MonoBehaviour
@@ -12,6 +13,8 @@ public class ToyoManager : MonoBehaviour
     public CarouselManager carouselToyo;
     public Transform toyoListParent;
     public GameObject toyoBasePrefab;
+    public List<ToyoPersonaSO> toyoPersonaPrefabs;
+    
     
     private List<ToyoObject> _toyoList;
     public List<ToyoObject> ToyoList => _toyoList ??= CreateToyoObjectList();
@@ -24,7 +27,7 @@ public class ToyoManager : MonoBehaviour
         
         foreach (var _databaseToyo in _databaseToyoList)
         {
-            var _toyoPrefab = Instantiate(toyoBasePrefab, toyoListParent);
+            var _toyoPrefab = Instantiate(GetToyoPersonaPrefab(_databaseToyo.toyoPersona.objectId), toyoListParent);
             var _toyoObjectInstance =_toyoPrefab.AddComponent<ToyoObject, Toyo>(_databaseToyo);
             carouselToyo.allObjects.Add(_toyoPrefab.transform);
             _toyoObjectList.Add(_toyoObjectInstance);
@@ -35,6 +38,11 @@ public class ToyoManager : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log(ToyoList);
+        _ = ToyoList;
+    }
+
+    private GameObject GetToyoPersonaPrefab(string objectId)
+    {
+        return toyoPersonaPrefabs.FirstOrDefault(toyoPersona => objectId == toyoPersona.objectId)?.toyoPrefab;
     }
 }

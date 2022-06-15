@@ -31,9 +31,9 @@
             </ui:VisualElement>
         </ui:GroupBox>
         <ui:GroupBox name="middleBox" class="groupBox" style="position: absolute; align-items: center; width: 45%; height: 100%; flex-direction: row; justify-content: space-between; left: 10%;">
-            <ui:Label text="Datu" display-tooltip-when-elided="true" name="toyoName" class="purpleButtonTallStyle" style="-unity-text-align: middle-center; scale: 0.5 0.5; font-size: 84px; justify-content: flex-start; align-items: stretch; top: -40%;" />
-            <ui:Button text="Previous" display-tooltip-when-elided="true" name="previousToyoButton" style="width: 15%; height: 8%; font-size: 28px;" />
-            <ui:Button text="Next" display-tooltip-when-elided="true" name="nextToyoButton" style="width: 15%; height: 8%; font-size: 28px;" />
+            <ui:Button display-tooltip-when-elided="true" name="previousToyoButton" class="Left-Arrow-Button" style="width: 15%; height: 8%; font-size: 28px;" />
+            <ui:Label text="Datu" display-tooltip-when-elided="true" name="toyoName" class="purpleButtonTallStyle" style="-unity-text-align: middle-center; scale: 0.5 0.5; font-size: 84px; justify-content: flex-start; align-items: stretch; top: -30%;" />
+            <ui:Button display-tooltip-when-elided="true" name="nextToyoButton" class="Right-Arrow-Button" style="width: 15%; height: 8%; font-size: 28px;" />
         </ui:GroupBox>
     </ui:VisualElement>
 </ui:UXML>
