@@ -42,6 +42,7 @@ public class ToyoObject : MonoBehaviour
         {TOYO_STAT.LUCK, 0.0f},
     };
 
+    public bool IsToyoSelected;
     private string _toyoName;
     private int _toyoTotalPartsLevel;
     private int _numberOfParts;
@@ -100,6 +101,7 @@ public class ToyoObject : MonoBehaviour
         //_toyoName = !string.IsNullOrEmpty(toyo.name) ? toyo.name : toyo.parts[0].toyoPersona.name;
         _toyoName = toyo.toyoPersona.name;
         _numberOfParts = toyo.parts.Length;
+        IsToyoSelected = toyo.isToyoSelected;
     }
 
     private void SetToyoModel()

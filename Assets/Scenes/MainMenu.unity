@@ -123,6 +123,114 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &64713332
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 64713333}
+  m_Layer: 0
+  m_Name: ToyoPivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &64713333
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 64713332}
+  m_LocalRotation: {x: -0, y: -0.14521961, z: -0, w: 0.9893995}
+  m_LocalPosition: {x: -3, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8643416931491663163}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: -16.7, z: 0}
+--- !u!114 &572585293 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9199315776819746690, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
+  m_PrefabInstance: {fileID: 8643416931491663162}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02cfe6dc9412c0c4ca5eaf699d9c9254, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &572585294 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1499928037245794682, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
+  m_PrefabInstance: {fileID: 8643416931491663162}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36eb2d9ec85993b488aecd23bdaf6c09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &572585295 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8643416932187837817, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
+  m_PrefabInstance: {fileID: 8643416931491663162}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d15c398d09854c41bab501a9830dc8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &572585296 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8643416932187837822, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
+  m_PrefabInstance: {fileID: 8643416931491663162}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab171f8a852f7f34bb0efd5cb170116d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &572585297 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8643416932187837816, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
+  m_PrefabInstance: {fileID: 8643416931491663162}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc09cdd89737f224ba7d812414171088, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &572585298 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8643416932187837819, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
+  m_PrefabInstance: {fileID: 8643416931491663162}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d4ac3148f0f16743bee3f4aee7e7358, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &572585299 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8643416932187837818, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
+  m_PrefabInstance: {fileID: 8643416931491663162}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f28aa630c3936584ab0aa8915448f49a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &929510543
 GameObject:
   m_ObjectHideFlags: 0
@@ -307,6 +415,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 108edc6dd21513d4e961c22eff4f7ad4, type: 2}
   - {fileID: 11400000, guid: 8ae07a4a9bca8ba4e819ba4a9e8008b3, type: 2}
   - {fileID: 11400000, guid: 545a78c852ce80d4a9baad3dd85408bc, type: 2}
+  openBoxToyoPivot: {fileID: 64713333}
 --- !u!1 &1084469477
 GameObject:
   m_ObjectHideFlags: 0
@@ -900,9 +1009,46 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8643416932187837701, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
+      propertyPath: boxInfoScript
+      value: 
+      objectReference: {fileID: 572585296}
+    - target: {fileID: 8643416932187837701, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
+      propertyPath: openBoxScript
+      value: 
+      objectReference: {fileID: 572585295}
+    - target: {fileID: 8643416932187837701, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
+      propertyPath: welcomeScript
+      value: 
+      objectReference: {fileID: 572585299}
+    - target: {fileID: 8643416932187837701, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
+      propertyPath: _welcomeScript
+      value: 
+      objectReference: {fileID: 572585299}
+    - target: {fileID: 8643416932187837701, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
+      propertyPath: mainMenuScript
+      value: 
+      objectReference: {fileID: 572585298}
+    - target: {fileID: 8643416932187837701, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
+      propertyPath: toyoInfoScript
+      value: 
+      objectReference: {fileID: 572585297}
+    - target: {fileID: 8643416932187837701, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
+      propertyPath: loreThemeScript
+      value: 
+      objectReference: {fileID: 572585294}
+    - target: {fileID: 8643416932187837701, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
+      propertyPath: trainingModuleScript
+      value: 
+      objectReference: {fileID: 572585293}
     - target: {fileID: 8643416932187837703, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
       propertyPath: m_Name
       value: Screens
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
+--- !u!4 &8643416931491663163 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8643416933332351271, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
+  m_PrefabInstance: {fileID: 8643416931491663162}
+  m_PrefabAsset: {fileID: 0}

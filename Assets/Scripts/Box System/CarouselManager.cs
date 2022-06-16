@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
@@ -24,6 +25,12 @@ public class CarouselManager : MonoBehaviour
 
     public Transform CurrentSelectedObject { get; private set; }
 
+    public void SetFirstSelectedObject(Transform objectToSelect = null, int currentSelectedIndex = 0)
+    { 
+        CurrentSelectedObject = objectToSelect != null ? objectToSelect : allObjects[_currentSelectedIndex];
+        _currentSelectedIndex = currentSelectedIndex;
+    } 
+
     private int _currentSelectedIndex = 0;
 
     private bool IsFirstObjectSelected() => _currentSelectedIndex == 0;
@@ -43,13 +50,27 @@ public class CarouselManager : MonoBehaviour
 
     private void Awake()
     {
-        _mainCamera = FindObjectOfType<Camera>();
+        /*_mainCamera = FindObjectOfType<Camera>();
         CurrentSelectedObject = allObjects[_currentSelectedIndex];
 
         if(IsToyoCarousel) 
             SetToyoStartingPosition();
         
+        MoveToStartingPosition();*/
+    }
+
+    private void OnEnable()
+    {
+        
+        _mainCamera = FindObjectOfType<Camera>();
+
+        if (IsToyoCarousel)
+            SetToyoStartingPosition();
+        else
+            CurrentSelectedObject = allObjects[_currentSelectedIndex];
+        
         MoveToStartingPosition();
+        
     }
 
     private void SetToyoStartingPosition()
