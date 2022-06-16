@@ -14,11 +14,16 @@
                     <ui:Label text="Box Title" display-tooltip-when-elided="true" name="titleDescription" style="width: 556px; height: 64px; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px; font-size: 30px; color: rgb(255, 255, 255); left: -16px; -unity-text-align: middle-left; top: 0; -unity-font-style: bold; -unity-font: none; -unity-font-definition: url(&apos;project://database/Assets/Fonts/wbv5%20SDF.asset?fileID=11400000&amp;guid=3e43c66971debf64dbe3e8828b8951c6&amp;type=2#wbv5 SDF&apos;); flex-grow: 0; flex-direction: column; flex-wrap: nowrap;" />
                     <ui:Label text="Box Description" display-tooltip-when-elided="true" name="chanceDescription" style="width: 636px; height: 446px; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px; font-size: 30px; color: rgb(255, 255, 255); left: auto; -unity-text-align: upper-left; top: 34px; -unity-font-style: bold; -unity-font: none; -unity-font-definition: url(&apos;project://database/Assets/Fonts/AlteHaasGroteskRegular%20SDF.asset?fileID=11400000&amp;guid=df18b3370003fdd4cbb283ebecda13ad&amp;type=2#AlteHaasGroteskRegular SDF&apos;); right: 4px;" />
                     <ui:VisualElement name="possibleDropsArea" style="width: 100%; height: 30%; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px; top: auto; -unity-font: url(&apos;project://database/Assets/Fonts/wbv5.ttf?fileID=12800000&amp;guid=8c127f47e96b8924c880f2cf373482b0&amp;type=3#wbv5&apos;); opacity: 1;">
-                        <ui:ScrollView mode="Horizontal" name="dropScroll" vertical-scroller-visibility="Hidden" style="visibility: visible; display: flex; width: 74%; height: 100%; left: 13%; background-color: rgba(137, 111, 111, 255);">
+                        <ui:ScrollView mode="Horizontal" name="dropScroll" vertical-scroller-visibility="Hidden" style="visibility: visible; display: flex; width: 74%; height: 100%; left: 13%; background-color: rgb(137, 111, 111);">
+                            <ui:VisualElement name="rewardExample" focusable="false" class="box-content-img" />
+                            <ui:VisualElement name="rewardExample" focusable="false" class="box-content-img" />
+                            <ui:VisualElement name="rewardExample" focusable="false" class="box-content-img" />
                             <ui:VisualElement name="rewardExample" focusable="false" class="box-content-img" />
                             <ui:VisualElement name="rewardExample" focusable="false" class="box-content-img" />
                             <ui:VisualElement name="rewardExample" focusable="false" class="box-content-img" />
                         </ui:ScrollView>
+                        <ui:Button display-tooltip-when-elided="true" name="Mini-arrow-left" class="small-arrow-left" />
+                        <ui:Button display-tooltip-when-elided="true" name="Mini-arrow-right" class="small-arrow-right" />
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:GroupBox>
