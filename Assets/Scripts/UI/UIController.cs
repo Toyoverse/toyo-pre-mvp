@@ -17,13 +17,13 @@ namespace UI
 
         public virtual void OnDestroy() => DisableScreen();
 
-        public void ActiveScreen()
+        public virtual void ActiveScreen()
         {
             uiDoc.gameObject.SetActive(true);
             EnableButtonEvents();
         }
 
-        public void DisableScreen()
+        public virtual void DisableScreen()
         {
             DisableButtonEvents();
             uiDoc.gameObject.SetActive(false);

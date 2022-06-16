@@ -123,7 +123,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8643416932187837700}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8634730487659289645
 MonoBehaviour:
@@ -301,7 +301,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8643416932187837700}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3030310903794487199
 MonoBehaviour:
@@ -349,7 +349,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8643416932187837700}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4221916497546418582
 MonoBehaviour:
@@ -490,6 +490,7 @@ GameObject:
   - component: {fileID: 8643416932187837817}
   - component: {fileID: 1499928037245794682}
   - component: {fileID: 9199315776819746690}
+  - component: {fileID: 6072516106304441697}
   m_Layer: 0
   m_Name: Screens
   m_TagString: Untagged
@@ -512,6 +513,7 @@ Transform:
   - {fileID: 8643416932592604650}
   - {fileID: 8643416933037881488}
   - {fileID: 8643416932935162362}
+  - {fileID: 9158211094719410230}
   - {fileID: 8643416932212452403}
   - {fileID: 8643416933332351271}
   - {fileID: 1059816983858712850}
@@ -539,6 +541,7 @@ MonoBehaviour:
   openBoxScript: {fileID: 8643416932187837817}
   loreThemeScript: {fileID: 1499928037245794682}
   trainingModuleScript: {fileID: 9199315776819746690}
+  unboxingScreen: {fileID: 6072516106304441697}
   haveToyo: 0
 --- !u!114 &8643416932187837818
 MonoBehaviour:
@@ -946,7 +949,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiDoc: {fileID: 4221916497546418582}
   buttons:
-  - name: punchButton
+  - name: punchesButton
     onClickEvent:
       m_PersistentCalls:
         m_Calls:
@@ -962,7 +965,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - name: kickButton
+  - name: kicksButton
     onClickEvent:
       m_PersistentCalls:
         m_Calls:
@@ -978,7 +981,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - name: moveButton
+  - name: movesButton
     onClickEvent:
       m_PersistentCalls:
         m_Calls:
@@ -1050,11 +1053,56 @@ MonoBehaviour:
   - action3
   - action4
   - action5
+  startTrainingButtonName: startButton
   rewardTitleName: rewardTitle
   investName: invest
   receiveName: receive
   durationName: duration
   actionSelectionAreaName: actionsSelectorBox
+  actionScrollName: actionScroll
+  previewActionName: actionImage
+  minimumActionsToPlay: 3
+  fontAsset: {fileID: 0}
+  possibleActions:
+  - {fileID: 11400000, guid: 6972b2ae28210d742acc8a134bffc9bd, type: 2}
+  - {fileID: 11400000, guid: f272dbe45c053de4b8a7c033afc59054, type: 2}
+  - {fileID: 11400000, guid: a65c319791929f74f9429a91abdc0aff, type: 2}
+  - {fileID: 11400000, guid: b52184bde60566241a65593e40c2bf2f, type: 2}
+  - {fileID: 11400000, guid: 9bbd07f6cf5019245bcbea678cab3c35, type: 2}
+  - {fileID: 11400000, guid: 4c2e13054469c004d970dfcd33e4a613, type: 2}
+  - {fileID: 11400000, guid: 5514c49a076910b4080f65249ad698d3, type: 2}
+  - {fileID: 11400000, guid: ae7ac8b49618038408c4481540f1fc13, type: 2}
+  - {fileID: 11400000, guid: 612bb1d0f701d1249964c2958a92895b, type: 2}
+--- !u!114 &6072516106304441697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8643416932187837703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19f1f7e4472f1d3428b058aca2c99835, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiDoc: {fileID: 6788643833457570390}
+  buttons:
+  - name: confirmButton
+    onClickEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6072516106304441697}
+          m_TargetAssemblyTypeName: UnboxingScreen, Assembly-CSharp
+          m_MethodName: ConfirmButton
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &8643416932212452402
 GameObject:
   m_ObjectHideFlags: 0
@@ -1086,7 +1134,7 @@ Transform:
   m_Children:
   - {fileID: 8643416931571219046}
   m_Father: {fileID: 8643416932187837700}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8643416932212452400
 MonoBehaviour:
@@ -1414,7 +1462,7 @@ Transform:
   m_Children:
   - {fileID: 64713333}
   m_Father: {fileID: 8643416932187837700}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8643416933332351268
 MonoBehaviour:
@@ -1432,6 +1480,54 @@ MonoBehaviour:
   m_ParentUI: {fileID: 0}
   sourceAsset: {fileID: 9197481963319205126, guid: d0ad0907f6e2dec449d9be6a3b0a60c3, type: 3}
   m_SortingOrder: -1
+--- !u!1 &9122282412153282470
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9158211094719410230}
+  - component: {fileID: 6788643833457570390}
+  m_Layer: 5
+  m_Name: UnboxingScreen
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &9158211094719410230
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9122282412153282470}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8643416932187837700}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6788643833457570390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9122282412153282470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PanelSettings: {fileID: 11400000, guid: d267664279a0e304e99f6e5eb559eead, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: f24769ac61ba46e478c1f7c987ace64e, type: 3}
+  m_SortingOrder: 1
 --- !u!1001 &8643416932077771132
 PrefabInstance:
   m_ObjectHideFlags: 0

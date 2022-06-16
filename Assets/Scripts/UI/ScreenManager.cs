@@ -18,7 +18,7 @@ namespace UI
         [SerializeField] private OpenBoxScreen openBoxScript;
         [SerializeField] private LoreThemeScreen loreThemeScript;
         [SerializeField] private TrainingModuleScreen trainingModuleScript;
-        //[SerializeField] private ActionSelectionScreen actionSelectionScript;
+        [SerializeField] private UnboxingScreen unboxingScreen;
 
         public static ScreenState ScreenState { get; private set; }
         private static ScreenState _oldScreenState;
@@ -58,8 +58,8 @@ namespace UI
                 case ScreenState.TrainingModule:
                     trainingModuleScript.ActiveScreen();
                     break;
-                case ScreenState.ActionSelection:
-                    //actionSelectionScript.ActiveScreen();
+                case ScreenState.Unboxing:
+                    unboxingScreen.ActiveScreen();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -97,8 +97,8 @@ namespace UI
                 case ScreenState.TrainingModule:
                     trainingModuleScript.DisableScreen();
                     break;
-                case ScreenState.ActionSelection:
-                    //actionSelectionScript.DisableScreen();
+                case ScreenState.Unboxing:
+                    unboxingScreen.DisableScreen();
                     break;
                 default:
                     break;
@@ -128,6 +128,6 @@ namespace UI
         OpenBox = 5,
         LoreTheme = 6,
         TrainingModule = 7,
-        ActionSelection = 8
+        Unboxing = 8
     }
 }

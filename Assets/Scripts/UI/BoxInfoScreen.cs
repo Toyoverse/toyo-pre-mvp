@@ -47,7 +47,7 @@ namespace UI
         {
             //TODO: OpenBox
             Debug.Log("OPEN BOX " + GetBoxSelected().BoxName);
-            ScreenManager.Instance.GoToScreen(ScreenState.OpenBox);
+            ScreenManager.Instance.GoToScreen(ScreenState.Unboxing);
         }
 
         private void SetTitleText(string text)
