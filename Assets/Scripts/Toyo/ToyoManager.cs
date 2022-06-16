@@ -17,6 +17,7 @@ public class ToyoManager : MonoBehaviour
     public List<ToyoPersonaSO> toyoPersonaPrefabs;
     
     public Transform openBoxToyoPivot;
+    public Transform mainMenuToyoPivot;
     
     
     private List<ToyoObject> _toyoList;
@@ -26,8 +27,24 @@ public class ToyoManager : MonoBehaviour
 
     public static ToyoObject GetSelectedToyo() => _instance.ToyoList.Find(toyoObject => toyoObject.IsToyoSelected);
     
-    public static void MoveToyoToCenter() => GetSelectedToyo().transform.SetPositionAndRotation(_instance.openBoxToyoPivot.position, _instance.openBoxToyoPivot.rotation);
+    public static Camera MainCamera;
     
+    public static void MoveToyoToCenterOpenBox()
+    {
+        GetSelectedToyo().transform
+            .SetPositionAndRotation(_instance.openBoxToyoPivot.position, _instance.openBoxToyoPivot.rotation);
+        GetSelectedToyo().transform.SetParent(_instance.openBoxToyoPivot);
+        GetSelectedToyo().transform.LookAt(MainCamera.transform);
+    }
+    
+    public static void MoveToyoToCenterMainMenu()
+    {
+        GetSelectedToyo().transform
+            .SetPositionAndRotation(_instance.mainMenuToyoPivot.position, _instance.mainMenuToyoPivot.rotation);
+        GetSelectedToyo().transform.SetParent(_instance.mainMenuToyoPivot);
+        GetSelectedToyo().transform.LookAt(MainCamera.transform);
+    }
+
 
     List<ToyoObject> CreateToyoObjectList()
     {
@@ -54,6 +71,7 @@ public class ToyoManager : MonoBehaviour
     {
         _ = ToyoList;
         _instance = this;
+        MainCamera = FindObjectOfType<Camera>();
     }
 
     private GameObject GetToyoPersonaPrefab(string objectId)

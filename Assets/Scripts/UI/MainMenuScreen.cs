@@ -51,7 +51,12 @@ namespace UI
                     SetMode(GAME_MODE.Training); }
             );
         }
-        
+
+        protected override void UpdateUI()
+        {
+            ToyoManager.MoveToyoToCenterMainMenu();
+        }
+
         public void StartButton()
         {
             //TODO: Send selected Toyo to Training Module Screen

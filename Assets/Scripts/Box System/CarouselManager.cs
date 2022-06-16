@@ -46,7 +46,6 @@ public class CarouselManager : MonoBehaviour
 
     private Transform _objectToHide;
 
-    private Camera _mainCamera;
 
     private void Awake()
     {
@@ -62,7 +61,7 @@ public class CarouselManager : MonoBehaviour
     private void OnEnable()
     {
         
-        _mainCamera = FindObjectOfType<Camera>();
+        
 
         if (IsToyoCarousel)
             SetToyoStartingPosition();
@@ -78,7 +77,8 @@ public class CarouselManager : MonoBehaviour
         foreach (var _object in allObjects)
         {
             _object.SetPositionAndRotation(StartingPosition.position, StartingPosition.rotation);
-            _object.LookAt(_mainCamera.transform);
+            _object.SetParent(StartingPosition);
+            _object.LookAt(ToyoManager.MainCamera.transform);
         }
     }
 
@@ -123,7 +123,7 @@ public class CarouselManager : MonoBehaviour
             objectToRotate.RotateAround(anchor.position, Vector3.up, _angleDelta*_ourTimeDelta);
             
             if(IsToyoCarousel)
-                objectToRotate.LookAt(_mainCamera.transform);
+                objectToRotate.LookAt(ToyoManager.MainCamera.transform);
             
             yield return null;
         }

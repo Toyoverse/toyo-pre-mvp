@@ -40,7 +40,7 @@ namespace UI
             _toyoObject = GetSelectedToyo();
             SetToyoStats();
             Root.Q<Label>(toyoNameField).text = _toyoObject.GetToyoName();
-            ToyoManager.MoveToyoToCenter();
+            ToyoManager.MoveToyoToCenterOpenBox();
         }
 
         protected void SetToyoStats(ToyoObject selectedToyo = null)
