@@ -794,8 +794,8 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
   carousel: {fileID: 8643416931571219041}
-  titleBoxName: titleBoxDescription
-  infoTextName: boxDescription
+  titleBoxName: titleDescription
+  infoTextName: chanceDescription
   scrollName: dropScroll
   rewardName: reward
 --- !u!114 &8643416932187837817

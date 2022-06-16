@@ -10,8 +10,8 @@ namespace UI
     public class BoxInfoScreen : UIController
     {
         public CarouselManager carousel;
-        public string titleBoxName = "titleBoxDescription";
-        public string infoTextName = "boxDescription";
+        public string titleBoxName = "titleDescription";
+        public string infoTextName = "chanceDescription";
         public string scrollName = "dropScroll";
         public string rewardName = "reward";
         private int _rewardsCount = 0;

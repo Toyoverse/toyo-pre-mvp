@@ -1,52 +1,42 @@
 .Right-Arrow-Button {
+    background-image: url('project://database/Assets/Images/Buttons/Button_0007-Right_Arrow-normal.png?fileID=2800000&guid=4a24db6699bc2c94ebadfd6cb0915092&type=3#Button_0007-Right_Arrow-normal');
     width: 20%;
     height: 10%;
-    font-size: 28px;
-    transition-property: all;
-    transition-duration: 0s;
-    transition-timing-function: ease;
-    transition-delay: 0s;
-    background-image: url('project://database/Assets/Images/Buttons/Left_Arrow_normal.png?fileID=2800000&guid=2b026c420f628e949be3f54f68c364b7&type=3#Left_Arrow_normal');
-    background-color: rgba(88, 88, 88, 0);
-    border-left-width: 0;
-    border-right-width: 0;
-    border-top-width: 0;
-    border-bottom-width: 0;
-    scale: -1 1;
     -unity-background-scale-mode: scale-and-crop;
+    background-color: rgba(188, 188, 188, 0);
+    border-left-color: rgba(149, 149, 149, 0);
+    border-right-color: rgba(149, 149, 149, 0);
+    border-top-color: rgba(149, 149, 149, 0);
+    border-bottom-color: rgba(149, 149, 149, 0);
 }
 
 .Right-Arrow-Button:hover {
+    background-image: url('project://database/Assets/Images/Buttons/Button_0007-Right_Arrow-hover.png?fileID=2800000&guid=e39d4db18ca5df54dadda66bb1a85e21&type=3#Button_0007-Right_Arrow-hover');
     width: 20%;
     height: 10%;
-    font-size: 28px;
+    -unity-background-scale-mode: stretch-to-fill;
+    background-color: rgba(188, 188, 188, 0);
+    border-left-color: rgba(149, 149, 149, 0);
+    border-right-color: rgba(149, 149, 149, 0);
+    border-top-color: rgba(149, 149, 149, 0);
+    border-bottom-color: rgba(149, 149, 149, 0);
+    translate: 20px 0;
     transition-property: translate, -unity-background-scale-mode;
     transition-duration: 0.2s, 0.2s;
-    transition-timing-function: ease-in, ease-in;
+    transition-timing-function: ease-in, ease;
     transition-delay: 0s, 0s;
-    background-image: url('project://database/Assets/Images/Buttons/Left_Arrow_hover.png?fileID=2800000&guid=746285aa5b76fec4984680b4196b3b61&type=3#Left_Arrow_hover');
-    background-color: rgba(88, 88, 88, 0);
-    border-left-width: 0;
-    border-right-width: 0;
-    border-top-width: 0;
-    border-bottom-width: 0;
-    scale: -1 1;
-    -unity-background-scale-mode: stretch-to-fill;
-    translate: 20px 0;
 }
 
 .Right-Arrow-Button:active {
+    background-image: url('project://database/Assets/Images/Buttons/Button_0007-Right_Arrow-pressed.png?fileID=2800000&guid=40428556dba8b4e468d934d0db48daed&type=3#Button_0007-Right_Arrow-pressed');
     width: 20%;
     height: 10%;
-    font-size: 28px;
-    background-image: url('project://database/Assets/Images/Buttons/Left_Arrow_pressed.png?fileID=2800000&guid=4c62def5740c1944cb7bcd70badcca7f&type=3#Left_Arrow_pressed');
-    background-color: rgba(88, 88, 88, 0);
-    border-left-width: 0;
-    border-right-width: 0;
-    border-top-width: 0;
-    border-bottom-width: 0;
-    scale: -1 1;
     -unity-background-scale-mode: stretch-to-fill;
+    background-color: rgba(188, 188, 188, 0);
+    border-left-color: rgba(149, 149, 149, 0);
+    border-right-color: rgba(149, 149, 149, 0);
+    border-top-color: rgba(149, 149, 149, 0);
+    border-bottom-color: rgba(149, 149, 149, 0);
     translate: 20px 0;
 }
 
@@ -54,7 +44,7 @@
     width: 20%;
     height: 10%;
     font-size: 0;
-    background-image: url('project://database/Assets/Images/Buttons/Left_Arrow_normal.png?fileID=2800000&guid=2b026c420f628e949be3f54f68c364b7&type=3#Left_Arrow_normal');
+    background-image: url('project://database/Assets/Images/Buttons/Button_0006-Left_Arrow-normal.png?fileID=2800000&guid=2b026c420f628e949be3f54f68c364b7&type=3#Button_0006-Left_Arrow-normal');
     -unity-background-scale-mode: scale-and-crop;
     white-space: nowrap;
     scale: 1 1;
@@ -75,7 +65,7 @@
     width: 20%;
     height: 10%;
     font-size: 0;
-    background-image: url('project://database/Assets/Images/Buttons/Left_Arrow_hover.png?fileID=2800000&guid=746285aa5b76fec4984680b4196b3b61&type=3#Left_Arrow_hover');
+    background-image: url('project://database/Assets/Images/Buttons/Button_0006-Left_Arrow-hover.png?fileID=2800000&guid=746285aa5b76fec4984680b4196b3b61&type=3#Button_0006-Left_Arrow-hover');
     -unity-background-scale-mode: stretch-to-fill;
     white-space: nowrap;
     scale: 1 1;
@@ -97,7 +87,7 @@
     width: 20%;
     height: 10%;
     font-size: 0;
-    background-image: url('project://database/Assets/Images/Buttons/Left_Arrow_pressed.png?fileID=2800000&guid=4c62def5740c1944cb7bcd70badcca7f&type=3#Left_Arrow_pressed');
+    background-image: url('project://database/Assets/Images/Buttons/Button_0006-Left_Arrow-pressed.png?fileID=2800000&guid=4c62def5740c1944cb7bcd70badcca7f&type=3#Button_0006-Left_Arrow-pressed');
     -unity-background-scale-mode: stretch-to-fill;
     white-space: nowrap;
     scale: 1 1;
@@ -436,4 +426,20 @@
 }
 
 .unity-text-element {
+    -unity-font: url('project://database/Assets/Fonts/wbv5.ttf?fileID=12800000&guid=8c127f47e96b8924c880f2cf373482b0&type=3#wbv5');
+}
+
+.box-content-img {
+    display: flex;
+    width: 130px;
+    height: 130px;
+    margin-left: 17px;
+    margin-right: 17px;
+    margin-top: 50px;
+    margin-bottom: 17px;
+    background-color: rgb(255, 255, 255);
+    -unity-background-scale-mode: scale-and-crop;
+    justify-content: space-between;
+    align-items: stretch;
+    left: 0;
 }
