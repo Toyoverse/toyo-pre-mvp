@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &64713332
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 64713333}
+  m_Layer: 0
+  m_Name: ToyoPivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &64713333
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 64713332}
+  m_LocalRotation: {x: -0, y: -0.14521961, z: -0, w: 0.9893995}
+  m_LocalPosition: {x: -3, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8643416933332351271}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: -16.7, z: 0}
 --- !u!1 &1789746291
 GameObject:
   m_ObjectHideFlags: 0
@@ -24,7 +55,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1789746291}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -5}
+  m_LocalPosition: {x: 0, y: 0, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -139,7 +170,7 @@ Transform:
   m_GameObject: {fileID: 4933516116904331312}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 5, z: 1}
+  m_LocalScale: {x: 2.5, y: 5, z: 2.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3369464997507594350}
@@ -470,11 +501,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6c8e39e666b4a8458f48c8ca0140958, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  welcomeScreen: {fileID: 0}
-  mainMenuScreen: {fileID: 0}
-  toyoInfoScreen: {fileID: 0}
-  boxInfoScreen: {fileID: 0}
-  openBoxScreen: {fileID: 0}
+  welcomeScript: {fileID: 8643416932187837818}
+  mainMenuScript: {fileID: 8643416932187837819}
+  toyoInfoScript: {fileID: 8643416932187837816}
+  boxInfoScript: {fileID: 8643416932187837822}
+  openBoxScript: {fileID: 8643416932187837817}
+  loreThemeScript: {fileID: 1499928037245794682}
+  trainingModuleScript: {fileID: 9199315776819746690}
   haveToyo: 0
 --- !u!114 &8643416932187837818
 MonoBehaviour:
@@ -986,10 +1019,11 @@ MonoBehaviour:
   - action3
   - action4
   - action5
-  toyoImageName: toyoImage
+  rewardTitleName: rewardTitle
   investName: invest
   receiveName: receive
   durationName: duration
+  actionSelectionAreaName: actionsSelectorBox
 --- !u!1 &8643416932212452402
 GameObject:
   m_ObjectHideFlags: 0
@@ -1345,7 +1379,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 64713333}
   m_Father: {fileID: 8643416932187837700}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

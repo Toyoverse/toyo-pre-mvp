@@ -43,17 +43,18 @@ namespace UI
             ToyoManager.MoveToyoToCenter();
         }
 
-        protected void SetToyoStats()
+        protected void SetToyoStats(ToyoObject selectedToyo = null)
         {
             foreach (TOYO_STAT _stat in Enum.GetValues(typeof(TOYO_STAT)))
-                SetStatUI(_stat);
+                SetStatUI(_stat, selectedToyo);
         }
 
-        protected void SetStatUI(TOYO_STAT stat)
+        protected void SetStatUI(TOYO_STAT stat, ToyoObject selectedToyo)
         {
+            selectedToyo ??= _toyoObject;
             var _progressBar = GetProgressBar(stat);
             maxStatValue = _progressBar.highValue;
-            var _statValue = _toyoObject.GetToyoStat(stat);
+            var _statValue = selectedToyo.GetToyoStat(stat);
             _progressBar.lowValue = _statValue <= maxStatValue ? _statValue : maxStatValue;
         }
 

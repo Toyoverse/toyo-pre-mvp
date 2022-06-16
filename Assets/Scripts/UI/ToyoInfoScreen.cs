@@ -37,7 +37,7 @@ namespace UI
         protected override void UpdateUI()
         {
             _carouselToyoObject = GetSelectedToyoFromCarousel();
-            SetToyoStats();
+            SetToyoStats(_carouselToyoObject);
             Root.Q<Label>(toyoNameField).text = _carouselToyoObject.GetToyoName();
         }
 
