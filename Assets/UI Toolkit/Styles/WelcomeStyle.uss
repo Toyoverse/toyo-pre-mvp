@@ -490,3 +490,14 @@
     width: 75px;
     left: 585px;
 }
+
+.actionImageStyle {
+    width: 350px;
+    height: 100%;
+    background-color: rgb(80, 82, 142);
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+}

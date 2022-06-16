@@ -89,7 +89,7 @@ namespace UI
         protected void SetTextInLabel(string labelName, string value)
         {
             var _label = Root?.Q<Label>(labelName);
-            if (_label != null) 
+            if (_label != null)
                 _label.text = value;
         }
     }

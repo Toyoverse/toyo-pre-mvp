@@ -25,7 +25,7 @@ public class TrainingModuleScreen : UIController
     private int _selectedActionID = 0;
     private TrainingActionType _oldTypeSelected;
     public int minimumActionsToPlay = 3;
-    private List<TrainingActionSO> _selectedActions;
+    private List<TrainingActionSO> _selectedActions = new List<TrainingActionSO>();
     public FontAsset fontAsset;
 
     [Header("Possible Actions")] public TrainingActionSO[] possibleActions;
@@ -59,11 +59,12 @@ public class TrainingModuleScreen : UIController
     {
         for (var _i = 0; _i < combinationPoolNames.Length; _i++)
         {
+            var _i1 = _i;
             Root?.Q<VisualElement>(combinationPoolNames[_i]).RegisterCallback<ClickEvent>
             (_ => 
                 { 
                     OpenActionSelection();
-                    SetSelectedID(_i);
+                    SetSelectedID(_i1);
                 }
             );
         }
@@ -73,11 +74,12 @@ public class TrainingModuleScreen : UIController
     {
         for (var _i = 0; _i < combinationPoolNames.Length; _i++)
         {
+            var _i1 = _i;
             Root?.Q<VisualElement>(combinationPoolNames[_i]).UnregisterCallback<ClickEvent>
             (_ =>
                 { 
                     OpenActionSelection();
-                    SetSelectedID(_i);
+                    SetSelectedID(_i1);
                 }
             );
         }
@@ -105,7 +107,7 @@ public class TrainingModuleScreen : UIController
     private void RemoveAction(TrainingActionSO actionSo)
     {
         //TODO: Complete and use this method
-        Root.Q<VisualElement>(combinationPoolNames[_selectedActionID]).visible = true;
+        Root.Q<VisualElement>(combinationPoolNames[_selectedActionID]).style.display = DisplayStyle.None;
         _selectedActions.Remove(actionSo);
     }
 
@@ -113,7 +115,7 @@ public class TrainingModuleScreen : UIController
     {
         if (_selectedActionID >= combinationPoolNames.Length - 1)
             return;
-        Root.Q<VisualElement>(combinationPoolNames[_selectedActionID + 1]).visible = true;
+        Root.Q<VisualElement>(combinationPoolNames[_selectedActionID + 1]).style.display = DisplayStyle.Flex;
         var _startButton = Root.Q<Button>(startTrainingButtonName);
         _startButton.visible = _selectedActionID >= minimumActionsToPlay;
     }
@@ -174,12 +176,16 @@ public class TrainingModuleScreen : UIController
     private void OpenActionSelection()
     {
         var _actionArea = Root.Q<GroupBox>(actionSelectionAreaName);
-        //_actionArea.style.display = DisplayStyle.Flex;
         _actionArea.visible = true;
+        SetVisualElementSprite(previewActionName, null);
     }
     
     private void CloseActionSelection()
     {
+        ClearPossibleActionsEvents();
+        var _scrollView = Root.Q<ScrollView>(actionScrollName);
+        _scrollView.Clear();
+        _oldTypeSelected = TrainingActionType.None;
         var _actionArea = Root.Q<GroupBox>(actionSelectionAreaName);
         _actionArea.visible = false;
     }
