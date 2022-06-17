@@ -380,10 +380,12 @@
     border-right-color: rgba(0, 0, 0, 0);
     border-top-color: rgba(0, 0, 0, 0);
     border-bottom-color: rgba(0, 0, 0, 0);
-    scale: 0.3 0.3;
+    scale: 0.4 0.3;
     width: 1135px;
     height: 77px;
     color: rgba(210, 210, 210, 0);
+    left: -340px;
+    border-bottom-width: 1px;
 }
 
 .unity-progress-bar__background {
@@ -408,6 +410,12 @@
     border-top-color: rgba(0, 0, 0, 0);
     border-bottom-color: rgba(0, 0, 0, 0);
     background-color: rgba(0, 0, 0, 0);
+    -unity-slice-left: 45;
+    transform-origin: left;
+    flex-shrink: 0;
+    flex-grow: 0;
+    margin-left: 0;
+    -unity-font-style: normal;
 }
 
 .statDescription {
@@ -489,6 +497,94 @@
     right: 16px;
     width: 75px;
     left: 585px;
+}
+
+.collums-list {
+    width: 50%;
+    height: 95%;
+    justify-content: space-around;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 70px;
+    padding-bottom: 0;
+}
+
+.label-list {
+    -unity-font-style: bold;
+    -unity-text-align: upper-left;
+    left: 125px;
+    scale: 1.8 1.8;
+    color: rgb(255, 255, 255);
+    top: 0;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.number-list {
+    scale: 1.8 1.8;
+    -unity-font-style: bold;
+}
+
+.back-botton {
+    width: 100%;
+    height: 8%;
+    font-size: 30px;
+    background-image: url('project://database/Assets/Images/Buttons/Button_0005-Backsign.png?fileID=2800000&guid=7a660120cba3cdb44aa5274605ad1ce5&type=3#Button_0005-Backsign');
+    background-color: rgba(88, 88, 88, 0);
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+}
+
+.avg-list {
+    width: 160px;
+    height: 140px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    background-color: rgba(160, 160, 160, 0);
+    background-image: url('project://database/Assets/Images/Buttons/Bg_avg.png?fileID=2800000&guid=226d9f0845463294c9b564a06ec23daa&type=3#Bg_avg');
+}
+
+.avg-name-list {
+    width: 40%;
+    height: 40%;
+    -unity-text-align: middle-center;
+    font-size: 30px;
+    left: 25px;
+    -unity-font-style: bold;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    margin-top: 0;
+    margin-right: 50px;
+    margin-left: 0;
+    top: 14px;
+    justify-content: space-around;
+    align-items: stretch;
+}
+
+.header-Tab-buttons {
+    width: 48%;
+    height: 70%;
+    top: 9px;
+    left: 20px;
+    font-size: 50px;
+    background-color: rgba(188, 188, 188, 0);
+    margin-right: 0;
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    -unity-font-definition: url('project://database/Assets/Fonts/wbv5%20SDF.asset?fileID=11400000&guid=3e43c66971debf64dbe3e8828b8951c6&type=2#wbv5 SDF');
 }
 
 .actionImageStyle {
