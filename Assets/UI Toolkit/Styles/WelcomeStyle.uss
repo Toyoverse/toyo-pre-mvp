@@ -842,6 +842,25 @@
     -unity-font-definition: none;
     -unity-background-image-tint-color: rgb(255, 255, 255);
 }
+
+.toyo-name {
+    -unity-text-align: middle-center;
+    scale: 0.5 0.5;
+    font-size: 84px;
+    justify-content: flex-start;
+    align-items: stretch;
+    top: 171px;
+    background-image: url('project://database/Assets/Images/Buttons/Toyo_name_bar.png?fileID=2800000&guid=c4ebe629ba87ac643a7a17bc20384c13&type=3#Toyo_name_bar');
+    position: absolute;
+    left: -136px;
+    right: -224px;
+    width: 1218px;
+    bottom: 793px;
+    color: rgb(255, 255, 255);
+    -unity-font-style: bold;
+    height: 160px;
+    -unity-font-definition: url('project://database/Assets/Fonts/wbv5%20SDF.asset?fileID=11400000&guid=3e43c66971debf64dbe3e8828b8951c6&type=2#wbv5 SDF');
+}
 .actionStyle {
     width: 350px;
     height: 100%;

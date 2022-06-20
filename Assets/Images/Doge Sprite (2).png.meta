@@ -69,9 +69,9 @@ TextureImporter:
     maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
+    textureCompression: 2
+    compressionQuality: 100
+    crunchedCompression: 1
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
@@ -1409,12 +1409,12 @@ TextureImporter:
       Doge Sprite (2)_42: 1376549744
       Doge Sprite (2)_25: -727971478
       Doge Sprite (2)_9: 233414378
-      Doge Sprite (2)_8: 1100326245
       Doge Sprite (2)_50: -459718315
       Doge Sprite (2)_6: 691030301
       Doge Sprite (2)_38: -1065405595
-      Doge Sprite (2)_44: 1158661294
       Doge Sprite (2)_55: -1876032316
+      Doge Sprite (2)_44: 1158661294
+      Doge Sprite (2)_8: 1100326245
       Doge Sprite (2)_45: -913849286
       Doge Sprite (2)_12: -1364162975
       Doge Sprite (2)_57: -828356503

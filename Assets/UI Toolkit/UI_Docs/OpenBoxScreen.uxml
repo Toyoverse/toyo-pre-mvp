@@ -6,7 +6,7 @@
         </ui:GroupBox>
         <ui:GroupBox name="ToyoArea" class="groupBox" style="width: 50%; height: 100%; align-items: center; justify-content: space-between; flex-direction: column-reverse; padding-left: 2%; padding-right: 2%; padding-top: 2%; padding-bottom: 2%; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0;">
             <ui:Button text="AWESOME!" display-tooltip-when-elided="true" name="awesomeButton" class="yellowButtonStyle purpleButtonTallStyle" style="font-size: 40px; -unity-font-style: bold; scale: 0.7 0.7;" />
-            <ui:Label text="Label" display-tooltip-when-elided="true" name="toyoName" class="purpleButtonStyle" style="scale: 0.5 0.5; -unity-text-align: middle-center;" />
+            <ui:Label text="Label" display-tooltip-when-elided="true" name="toyoName" class="purpleButtonStyle toyo-name" style="scale: 0.5 0.5; -unity-text-align: middle-center;" />
         </ui:GroupBox>
         <ui:GroupBox name="infoArea" class="groupBox" style="flex-direction: column; align-items: stretch; justify-content: space-between; padding-right: 2%; padding-left: 2%; padding-top: 2%; padding-bottom: 2%; width: 40%; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0;">
             <ui:VisualElement name="infoDescription" style="height: 1070px; width: 998px; align-items: center; justify-content: space-around; flex-direction: column; scale: 0.7 0.8; background-image: url(&apos;project://database/Assets/Images/Buttons/Text_Box_Overview_0002.png?fileID=2800000&amp;guid=c808c153850e54a46a3f1eee3427cdc3&amp;type=3#Text_Box_Overview_0002&apos;); padding-bottom: 60px; padding-top: 0; left: -141px; display: flex;">
