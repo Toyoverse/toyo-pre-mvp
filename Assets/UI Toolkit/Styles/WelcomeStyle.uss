@@ -216,29 +216,6 @@
     transform-origin: left top;
 }
 
-.lateralButtonStyle:active {
-    position: relative;
-    font-size: 50px;
-    width: 644px;
-    height: 205px;
-    background-color: rgba(56, 56, 56, 0);
-    color: rgb(255, 255, 255);
-    -unity-font-style: normal;
-    margin-left: 0;
-    margin-right: 0;
-    margin-top: 0;
-    margin-bottom: 0;
-    -unity-text-align: middle-center;
-    white-space: normal;
-    background-image: url('project://database/Assets/Images/Buttons/Button_0004-pressed.png?fileID=21300000&guid=253048ba897228443b253009c9b57a08&type=3#Button_0004-pressed');
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    -unity-font-definition: none;
-    -unity-font: url('project://database/Assets/Fonts/wbv5.ttf?fileID=12800000&guid=8c127f47e96b8924c880f2cf373482b0&type=3#wbv5');
-}
-
 .lateralButtonStyle:hover {
     position: relative;
     font-size: 50px;
@@ -254,6 +231,29 @@
     -unity-text-align: middle-center;
     white-space: normal;
     background-image: url('project://database/Assets/Images/Buttons/Button_0004-hover.png?fileID=21300000&guid=0316116d7dbfe904ea5d38f92b2cd0d2&type=3#Button_0004-hover');
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    -unity-font-definition: none;
+    -unity-font: url('project://database/Assets/Fonts/wbv5.ttf?fileID=12800000&guid=8c127f47e96b8924c880f2cf373482b0&type=3#wbv5');
+}
+
+.lateralButtonStyle:active {
+    position: relative;
+    font-size: 50px;
+    width: 644px;
+    height: 205px;
+    background-color: rgba(56, 56, 56, 0);
+    color: rgb(255, 255, 255);
+    -unity-font-style: normal;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    -unity-text-align: middle-center;
+    white-space: normal;
+    background-image: url('project://database/Assets/Images/Buttons/Button_0004-pressed.png?fileID=21300000&guid=253048ba897228443b253009c9b57a08&type=3#Button_0004-pressed');
     padding-left: 10px;
     padding-right: 10px;
     padding-top: 10px;
@@ -297,6 +297,28 @@
     margin-top: 20px;
     margin-bottom: 20px;
     background-image: url('project://database/Assets/Images/Buttons/Button_0002-hover.png?fileID=21300000&guid=ae9699442e438a34d891c9817dae43d6&type=3#Button_0002-hover');
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    -unity-font: url('project://database/Assets/Fonts/wbv5.ttf?fileID=12800000&guid=8c127f47e96b8924c880f2cf373482b0&type=3#wbv5');
+    -unity-font-definition: none;
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+}
+
+.purpleButtonStyle:active {
+    position: relative;
+    font-size: 42px;
+    width: 691px;
+    height: 179px;
+    background-color: rgba(56, 56, 56, 0);
+    color: rgb(255, 255, 255);
+    -unity-font-style: normal;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-image: url('project://database/Assets/Images/Buttons/Button_0002-pressed.png?fileID=21300000&guid=78b21350cb9711543b0ef6c92c87994c&type=3#Button_0002-pressed');
     border-left-color: rgba(0, 0, 0, 0);
     border-right-color: rgba(0, 0, 0, 0);
     border-top-color: rgba(0, 0, 0, 0);
@@ -527,11 +549,12 @@
 .number-list {
     scale: 1.8 1.8;
     -unity-font-style: bold;
+    color: rgb(255, 255, 255);
 }
 
 .back-botton {
-    width: 100%;
-    height: 8%;
+    width: 160px;
+    height: 75px;
     font-size: 30px;
     background-image: url('project://database/Assets/Images/Buttons/Button_0005-Backsign.png?fileID=2800000&guid=7a660120cba3cdb44aa5274605ad1ce5&type=3#Button_0005-Backsign');
     background-color: rgba(88, 88, 88, 0);
@@ -539,6 +562,8 @@
     border-right-width: 0;
     border-top-width: 0;
     border-bottom-width: 0;
+    left: -7px;
+    top: 15px;
 }
 
 .avg-list {
@@ -570,6 +595,7 @@
     top: 14px;
     justify-content: space-around;
     align-items: stretch;
+    color: rgb(255, 255, 255);
 }
 
 .header-Tab-buttons {
@@ -585,6 +611,7 @@
     border-top-color: rgba(0, 0, 0, 0);
     border-bottom-color: rgba(0, 0, 0, 0);
     -unity-font-definition: url('project://database/Assets/Fonts/wbv5%20SDF.asset?fileID=11400000&guid=3e43c66971debf64dbe3e8828b8951c6&type=2#wbv5 SDF');
+    color: rgb(255, 255, 255);
 }
 
 .actionImageStyle {
@@ -614,4 +641,155 @@
     border-right-color: rgba(0, 0, 0, 0);
     border-top-color: rgba(0, 0, 0, 0);
     border-bottom-color: rgba(0, 0, 0, 0);
+}
+
+.rarity-info {
+    color: rgb(239, 243, 3);
+    -unity-font-style: bold;
+    -unity-font: url('project://database/Assets/Fonts/AlteHaasGroteskBold.ttf?fileID=12800000&guid=980abd6e80517af469bdc42e84136b1d&type=3#AlteHaasGroteskBold');
+    left: 15px;
+    top: 0;
+    font-size: 38px;
+}
+
+.avg-number {
+    width: 100%;
+    height: 100%;
+    -unity-text-align: middle-center;
+    font-size: 88px;
+    left: -6px;
+    -unity-font-style: bold;
+    color: rgb(255, 255, 255);
+}
+
+.YellowButtonTallStyle {
+    position: relative;
+    font-size: 42px;
+    width: 350px;
+    height: 150px;
+    background-color: rgba(56, 56, 56, 0);
+    color: rgb(255, 255, 255);
+    -unity-font-style: normal;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-image: url('project://database/Assets/Images/Buttons/Yes_button-normal.png?fileID=21300000&guid=798645310eab9904d85a244e07f232ad&type=3#Yes_button-normal');
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    -unity-font: url('project://database/Assets/Fonts/wbv5.ttf?fileID=12800000&guid=8c127f47e96b8924c880f2cf373482b0&type=3#wbv5');
+    -unity-font-definition: none;
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+}
+
+.YellowButtonTallStyle:hover {
+    position: relative;
+    font-size: 42px;
+    width: 350px;
+    height: 150px;
+    background-color: rgba(56, 56, 56, 0);
+    color: rgb(255, 255, 255);
+    -unity-font-style: normal;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-image: url('project://database/Assets/Images/Buttons/Yes_button-hover.png?fileID=21300000&guid=ef6992730deaa474f851a8f97b2700c4&type=3#Yes_button-hover');
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    -unity-font: url('project://database/Assets/Fonts/wbv5.ttf?fileID=12800000&guid=8c127f47e96b8924c880f2cf373482b0&type=3#wbv5');
+    -unity-font-definition: none;
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+}
+
+.YellowButtonTallStyle:active {
+    position: relative;
+    font-size: 42px;
+    width: 350px;
+    height: 150px;
+    background-color: rgba(56, 56, 56, 0);
+    color: rgb(255, 255, 255);
+    -unity-font-style: normal;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-image: none;
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    -unity-font: url('project://database/Assets/Fonts/wbv5.ttf?fileID=12800000&guid=8c127f47e96b8924c880f2cf373482b0&type=3#wbv5');
+    -unity-font-definition: none;
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+}
+
+.RedButtonTallStyle {
+    position: relative;
+    font-size: 42px;
+    width: 350px;
+    height: 150px;
+    background-color: rgba(56, 56, 56, 0);
+    color: rgb(255, 255, 255);
+    -unity-font-style: normal;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-image: url('project://database/Assets/Images/Buttons/No_button-normal.png?fileID=21300000&guid=8b32298b87948a6449289890212bc147&type=3#No_button-normal');
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    -unity-font: url('project://database/Assets/Fonts/wbv5.ttf?fileID=12800000&guid=8c127f47e96b8924c880f2cf373482b0&type=3#wbv5');
+    -unity-font-definition: none;
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+}
+
+.RedButtonTallStyle:hover {
+    position: relative;
+    font-size: 42px;
+    width: 350px;
+    height: 150px;
+    background-color: rgba(56, 56, 56, 0);
+    color: rgb(255, 255, 255);
+    -unity-font-style: normal;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-image: url('project://database/Assets/Images/Buttons/No_button-hover.png?fileID=21300000&guid=52bd78e208e425244a59da9648f2184c&type=3#No_button-hover');
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    -unity-font: url('project://database/Assets/Fonts/wbv5.ttf?fileID=12800000&guid=8c127f47e96b8924c880f2cf373482b0&type=3#wbv5');
+    -unity-font-definition: none;
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+}
+
+.RedButtonTallStyle:active {
+    position: relative;
+    font-size: 42px;
+    width: 350px;
+    height: 150px;
+    background-color: rgba(56, 56, 56, 0);
+    color: rgb(255, 255, 255);
+    -unity-font-style: normal;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-image: url('project://database/Assets/Images/Buttons/No_button-pressed.png?fileID=21300000&guid=2ea84924cd4ef444d831ca01e60ddf8c&type=3#No_button-pressed');
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    -unity-font: url('project://database/Assets/Fonts/wbv5.ttf?fileID=12800000&guid=8c127f47e96b8924c880f2cf373482b0&type=3#wbv5');
+    -unity-font-definition: none;
+    -unity-background-image-tint-color: rgb(255, 255, 255);
 }

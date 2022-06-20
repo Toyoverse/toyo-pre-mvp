@@ -2,7 +2,7 @@
     <Style src="project://database/Assets/UI%20Toolkit/Styles/WelcomeStyle.uss?fileID=7433441132597879392&amp;guid=9bf11cd79e85c3845bec6c228384c2d8&amp;type=3#WelcomeStyle" />
     <ui:VisualElement name="ScreenTotalArea" class="backgroundStyle">
         <ui:GroupBox name="leftBox" class="groupBox" style="justify-content: center; align-items: stretch;">
-            <ui:Button text="Back" display-tooltip-when-elided="true" name="backButton" class="purpleButtonStyle" style="font-size: 80px; scale: 0.4 0.4; left: -22%; top: -25%;" />
+            <ui:Button display-tooltip-when-elided="true" name="backButton" class="back-botton" style="left: 14px; top: -380px;" />
             <ui:Button text="TRAINING INFO" display-tooltip-when-elided="true" name="trainingInfoButton" class="lateralButtonStyle" style="font-size: 60px; scale: 0.6 0.6; top: 35%;" />
         </ui:GroupBox>
         <ui:GroupBox name="rightBox" class="groupBox" style="flex-direction: column; align-items: auto; justify-content: space-between; left: 2%;">
@@ -23,7 +23,7 @@
                 </ui:GroupBox>
             </ui:VisualElement>
             <ui:Label text="Combination Pool" display-tooltip-when-elided="true" name="actionTitle" style="font-size: 40px; -unity-font: url(&apos;project://database/Assets/Fonts/wbv5.ttf?fileID=12800000&amp;guid=8c127f47e96b8924c880f2cf373482b0&amp;type=3#wbv5&apos;); -unity-font-definition: none; color: rgb(255, 255, 255); text-shadow: 2px 2px 0 rgb(99, 7, 211);" />
-            <ui:GroupBox name="actionImages" style="width: 100%; height: 90%; position: absolute; flex-direction: row; bottom: 60%; align-items: stretch; justify-content: center; top: 10%;">
+            <ui:GroupBox name="actionImages" style="width: 100%; height: 90%; position: absolute; flex-direction: row; bottom: -9px; align-items: stretch; justify-content: center; top: 56px; left: -4px;">
                 <ui:VisualElement name="action1" class="actionImageStyle" />
                 <ui:VisualElement name="action2" class="actionImageStyle" style="display: none;" />
                 <ui:VisualElement name="action3" class="actionImageStyle" style="display: none;" />

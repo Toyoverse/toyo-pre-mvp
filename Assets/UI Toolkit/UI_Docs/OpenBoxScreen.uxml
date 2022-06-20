@@ -8,22 +8,22 @@
             <ui:Button text="AWESOME!" display-tooltip-when-elided="true" name="awesomeButton" class="yellowButtonStyle purpleButtonTallStyle" style="font-size: 40px; -unity-font-style: bold; scale: 0.7 0.7;" />
             <ui:Label text="Label" display-tooltip-when-elided="true" name="toyoName" class="purpleButtonStyle" style="scale: 0.5 0.5; -unity-text-align: middle-center;" />
         </ui:GroupBox>
-        <ui:GroupBox name="infoArea" class="groupBox" style="flex-direction: column; align-items: flex-end; justify-content: center; padding-right: 2%; padding-left: 2%; padding-top: 2%; padding-bottom: 2%; width: 40%; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0;">
-            <ui:GroupBox name="tabsBox" style="flex-direction: row; justify-content: flex-start; width: 100%; margin-bottom: 0; padding-bottom: 0; align-items: flex-end; visibility: hidden;">
-                <ui:Button text="Overview" display-tooltip-when-elided="true" name="overviewButton" class="tabButton" />
-                <ui:Button text="Toyoparts" display-tooltip-when-elided="true" name="toyopartsButton" class="tabButton" style="width: 30%; height: 30px;" />
-            </ui:GroupBox>
-            <ui:VisualElement name="infoDescription" style="height: 1116px; width: 998px; align-items: center; justify-content: space-around; flex-direction: column; scale: 0.7 0.75; background-image: url(&apos;project://database/Assets/Images/Buttons/Text_Box_Overview_0002.png?fileID=2800000&amp;guid=c808c153850e54a46a3f1eee3427cdc3&amp;type=3#Text_Box_Overview_0002&apos;); padding-bottom: 60px; padding-top: 0; left: -141px; display: flex;">
-                <ui:GroupBox name="avgBoxNames" style="width: 66%; height: 5%; flex-direction: row; justify-content: space-between; margin-top: 0; margin-left: 0; margin-right: 0; margin-bottom: -87px; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; align-items: stretch; top: -1px; left: 20px;">
+        <ui:GroupBox name="infoArea" class="groupBox" style="flex-direction: column; align-items: stretch; justify-content: space-between; padding-right: 2%; padding-left: 2%; padding-top: 2%; padding-bottom: 2%; width: 40%; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0;">
+            <ui:VisualElement name="infoDescription" style="height: 1070px; width: 998px; align-items: center; justify-content: space-around; flex-direction: column; scale: 0.7 0.8; background-image: url(&apos;project://database/Assets/Images/Buttons/Text_Box_Overview_0002.png?fileID=2800000&amp;guid=c808c153850e54a46a3f1eee3427cdc3&amp;type=3#Text_Box_Overview_0002&apos;); padding-bottom: 60px; padding-top: 0; left: -141px; display: flex;">
+                <ui:VisualElement name="tabsHeader" style="width: 926px; height: 102px; flex-direction: row; justify-content: space-between; margin-top: 12px;">
+                    <ui:Button text="OVERVIEW" display-tooltip-when-elided="true" name="overviewTabButton" class="header-Tab-buttons" style="width: 48%;" />
+                    <ui:Button text="TOYO PARTS" display-tooltip-when-elided="true" name="toyoPartsTabButton" class="header-Tab-buttons" style="left: -20px; width: 45%;" />
+                </ui:VisualElement>
+                <ui:GroupBox name="avgBoxNames" style="width: 66%; height: 5%; flex-direction: row; justify-content: space-between; margin-top: 0; margin-left: 0; margin-right: 0; margin-bottom: -50px; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; align-items: stretch; top: 20px; left: 20px;">
                     <ui:Label text="Avg. Level" display-tooltip-when-elided="true" name="lvlName" class="avg-name-list" />
                     <ui:Label text="Avg. HB" display-tooltip-when-elided="true" name="hbName" class="avg-name-list" />
                 </ui:GroupBox>
                 <ui:GroupBox name="avgBoxNumbers" style="width: 66%; height: 14%; flex-direction: row; justify-content: space-between; margin-top: 0; margin-left: 30px; margin-right: 30px; margin-bottom: 0; padding-left: 80px; padding-right: 80px; padding-top: 0; padding-bottom: 0; align-items: stretch; top: 70px; left: 20px;">
                     <ui:VisualElement name="lvlNumber" class="avg-list">
-                        <ui:Label text="13" display-tooltip-when-elided="true" name="numberLvl" style="width: 100%; height: 100%; -unity-text-align: middle-center; font-size: 88px; left: -6px; -unity-font-style: bold;" />
+                        <ui:Label text="13" display-tooltip-when-elided="true" name="numberLvl" class="avg-number" style="width: 100%; height: 100%; left: -6px; -unity-font-style: bold;" />
                     </ui:VisualElement>
                     <ui:VisualElement name="HbNumber" class="avg-list">
-                        <ui:Label text="13" display-tooltip-when-elided="true" name="numberHb" style="width: 100%; height: 100%; -unity-text-align: middle-center; font-size: 88px; left: -6px; -unity-font-style: bold;" />
+                        <ui:Label text="13" display-tooltip-when-elided="true" name="numberHb" class="avg-number" style="width: 100%; height: 100%; -unity-text-align: middle-center; font-size: 88px; left: -6px; -unity-font-style: bold;" />
                     </ui:VisualElement>
                 </ui:GroupBox>
                 <ui:VisualElement name="ListContainer" style="width: 95%; height: 70%; flex-direction: row; justify-content: space-between;">
@@ -69,6 +69,21 @@
                         <ui:Label text="100" display-tooltip-when-elided="true" name="CyberForceValue" class="number-list" />
                         <ui:Label text="100" display-tooltip-when-elided="true" name="StrengthValue" class="number-list" />
                     </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:GroupBox name="RarityID" style="width: 90%; height: 8%; flex-direction: row; justify-content: space-between; margin-top: 0; margin-left: 0; margin-right: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; align-items: stretch; top: -1px; left: 20px;">
+                    <ui:Label text="RARITY TYPE" display-tooltip-when-elided="true" name="rarity_name" class="rarity_info rarity-info" />
+                    <ui:Label text="ID" display-tooltip-when-elided="true" name="rarity_ID" class="rarity_info rarity-info" style="color: rgb(255, 255, 255); left: 120px;" />
+                    <ui:Label text="#0000" display-tooltip-when-elided="true" name="rarity_number" class="rarity_info rarity-info" style="color: rgb(255, 255, 255); left: -68px;" />
+                </ui:GroupBox>
+            </ui:VisualElement>
+            <ui:VisualElement name="toyoPartsDescription" style="height: 1116px; width: 998px; align-items: center; justify-content: space-around; flex-direction: column; scale: 0.7 0.75; background-image: url(&apos;project://database/Assets/Images/Buttons/Text_Box_Toyoparts_0002.png?fileID=2800000&amp;guid=af12736f6952ff64891b96fc83ce77ef&amp;type=3#Text_Box_Toyoparts_0002&apos;); padding-bottom: 60px; padding-top: 0; left: -141px; display: none;">
+                <ui:VisualElement name="tabsHeader" style="width: 926px; height: 102px; flex-direction: row; justify-content: space-between; border-top-width: 4px;">
+                    <ui:Button text="OVERVIEW" display-tooltip-when-elided="true" name="overviewTabButton" class="header-Tab-buttons" style="width: 48%;" />
+                    <ui:Button text="TOYO PARTS" display-tooltip-when-elided="true" name="toyoPartsTabButton" class="header-Tab-buttons" style="left: -20px; width: 45%;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="comingSoonDescription" style="width: 100%; height: 88%; align-items: center; justify-content: space-between;">
+                    <ui:Label text="COMING SOON" display-tooltip-when-elided="true" name="comingSoonText" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; -unity-font: url(&apos;project://database/Assets/Fonts/AlteHaasGroteskRegular.ttf?fileID=12800000&amp;guid=4abf9d5b3674fc24384d6f37bccc9aa7&amp;type=3#AlteHaasGroteskRegular&apos;); -unity-font-definition: url(&apos;project://database/Assets/Fonts/AlteHaasGroteskRegular%20SDF.asset?fileID=11400000&amp;guid=df18b3370003fdd4cbb283ebecda13ad&amp;type=2#AlteHaasGroteskRegular SDF&apos;); top: 286px; font-size: 59px; -unity-font-style: bold;" />
+                    <ui:Label text="Our researchers are still investigating how &#10;Toyo parts are attached to each other. There &#10;seems to be something more than just the &#10;material that they are made of..." display-tooltip-when-elided="true" name="comingSoonnNote" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; -unity-font: url(&apos;project://database/Assets/Fonts/AlteHaasGroteskRegular.ttf?fileID=12800000&amp;guid=4abf9d5b3674fc24384d6f37bccc9aa7&amp;type=3#AlteHaasGroteskRegular&apos;); -unity-font-definition: url(&apos;project://database/Assets/Fonts/AlteHaasGroteskBold.ttf?fileID=12800000&amp;guid=980abd6e80517af469bdc42e84136b1d&amp;type=3#AlteHaasGroteskBold&apos;); top: -48px; font-size: 31px; -unity-font-style: bold; left: -100px;" />
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:GroupBox>
