@@ -1,15 +1,20 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UI;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
 using UnityEngine.UIElements;
 
 public class TrainingModuleScreen : UIController
 {
-    public string titleName = "title";
-    public string trainingTimeName = "time";
-    public string[] combinationPoolNames;
+    public string eventTitleName = "eventTitle";
+    public string eventTimeName = "eventTime";
+    public string combPoolContainer = "actions";
+    public string[] combPoolNames;
+    public string[] combPoolImagesNames;
+    public string[] removePoolNames;
     public string startTrainingButtonName = "startButton";
     
     [Header("Reward names")]
@@ -24,18 +29,28 @@ public class TrainingModuleScreen : UIController
     public string previewActionName = "actionImage";
     private int _selectedActionID = 0;
     private TrainingActionType _oldTypeSelected;
-    public int minimumActionsToPlay = 3;
-    private List<TrainingActionSO> _selectedActions = new List<TrainingActionSO>();
+    private int _minimumActionsToPlay = 3;
+    private Dictionary<int, TrainingActionSO> _selectedActions = new Dictionary<int, TrainingActionSO>();
     public FontAsset fontAsset;
 
     [Header("Possible Actions")] public TrainingActionSO[] possibleActions;
+    
+    //TODO: Get real variables in server
+    private int _eventTime = 5436;
+    private string _eventTitle = "TRAINING MODULE SEASON ONE!";
+    private int _investValue = 0;
+    private int _receiveValue = 0;
+    private int _durationValue = 0;
 
     protected override void UpdateUI()
     {
-        //TODO: Set title and training time
-        //TODO: Set Toyo and combination pool images
+        SetTextInLabel(eventTitleName, _eventTitle);
+        SetTextInLabel(eventTimeName, GetDurationConvert(_eventTime));
+        SetTextInLabel(investName, "Invest: $" + _investValue);
+        SetTextInLabel(receiveName, "Receive: $" + _receiveValue);
+        SetTextInLabel(durationName, "Duration: " + GetDurationConvert(_durationValue));
     }
-
+    
     public override void ActiveScreen()
     {
         base.ActiveScreen();
@@ -57,14 +72,20 @@ public class TrainingModuleScreen : UIController
     
     private void AddActionSelectEvents()
     {
-        for (var _i = 0; _i < combinationPoolNames.Length; _i++)
+        for (var _i = 0; _i < combPoolImagesNames.Length; _i++)
         {
             var _i1 = _i;
-            Root?.Q<VisualElement>(combinationPoolNames[_i]).RegisterCallback<ClickEvent>
-            (_ => 
-                { 
-                    OpenActionSelection();
+            Root?.Q<VisualElement>(combPoolImagesNames[_i]).RegisterCallback<ClickEvent>
+            (_ =>
+                {
                     SetSelectedID(_i1);
+                    OpenActionSelection();
+                }
+            );
+            Root?.Q<VisualElement>(removePoolNames[_i]).RegisterCallback<ClickEvent>
+            (_ => 
+                {
+                    RemoveAction(_i1);
                 }
             );
         }
@@ -72,14 +93,20 @@ public class TrainingModuleScreen : UIController
 
     private void RemoveActionSelectEvents()
     {
-        for (var _i = 0; _i < combinationPoolNames.Length; _i++)
+        for (var _i = 0; _i < combPoolImagesNames.Length; _i++)
         {
             var _i1 = _i;
-            Root?.Q<VisualElement>(combinationPoolNames[_i]).UnregisterCallback<ClickEvent>
+            Root?.Q<VisualElement>(combPoolImagesNames[_i]).UnregisterCallback<ClickEvent>
             (_ =>
-                { 
-                    OpenActionSelection();
+                {
                     SetSelectedID(_i1);
+                    OpenActionSelection();
+                }
+            );
+            Root?.Q<VisualElement>(removePoolNames[_i]).UnregisterCallback<ClickEvent>
+            (_ => 
+                {
+                    RemoveAction(_i1);
                 }
             );
         }
@@ -91,33 +118,69 @@ public class TrainingModuleScreen : UIController
         Debug.Log("_selectedActionID = " + _selectedActionID);
     }
 
-    public void SendToyoToQuestButton()
-    {
-        Debug.Log("Send Toyo to Quest button clicked!");
-    }
-
     private void ConfirmAction(TrainingActionSO actionSo)
     {
-        SetVisualElementSprite(combinationPoolNames[_selectedActionID], actionSo.sprite);
+        Root.Q<VisualElement>(combPoolNames[_selectedActionID]).style.display = DisplayStyle.Flex;
+        Root.Q<VisualElement>(removePoolNames[_selectedActionID]).style.display = DisplayStyle.Flex;
+        SetVisualElementSprite(combPoolImagesNames[_selectedActionID], actionSo.sprite);
         CloseActionSelection();
+        _selectedActions.Add(_selectedActionID, actionSo);
         CheckActionsCount();
-        _selectedActions.Add(actionSo);
+        ApplyRewardsCalculation();
+        UpdateUI();
     }
 
-    private void RemoveAction(TrainingActionSO actionSo)
+    private void RemoveAction(int i)
     {
         //TODO: Complete and use this method
-        Root.Q<VisualElement>(combinationPoolNames[_selectedActionID]).style.display = DisplayStyle.None;
-        _selectedActions.Remove(actionSo);
+        _selectedActions.Remove(i);
+        SetVisualElementSprite(combPoolImagesNames[i], null);
+        Root.Q<VisualElement>(combPoolNames[i]).style.display = DisplayStyle.None;
+        Root.Q<VisualElement>(removePoolNames[i]).style.display = DisplayStyle.None;
+        CheckActionsCount();
+        ApplyRewardsCalculation();
+        UpdateUI();
+    }
+
+    private void SetActionToLastPosition(string actionName)
+    {
+        var _action = Root.Q<VisualElement>(actionName);
+        var _actionContainer = Root.Q<VisualElement>(combPoolContainer);
+        _actionContainer.Insert(_actionContainer.childCount, _action);
     }
 
     private void CheckActionsCount()
     {
-        if (_selectedActionID >= combinationPoolNames.Length - 1)
+        if (_selectedActions.Count >= combPoolNames.Length)
             return;
-        Root.Q<VisualElement>(combinationPoolNames[_selectedActionID + 1]).style.display = DisplayStyle.Flex;
+        RevealNextAction();
         var _startButton = Root.Q<Button>(startTrainingButtonName);
-        _startButton.visible = _selectedActionID >= minimumActionsToPlay;
+        _startButton.visible = _selectedActions.Count >= _minimumActionsToPlay;
+    }
+
+    private void RevealNextAction()
+    {
+        var _activeActionCount = 0;
+        foreach (var _name in combPoolNames)
+        {
+            var _action = Root.Q<VisualElement>(_name);
+            if (_action.style.display == DisplayStyle.Flex)
+                _activeActionCount++;
+        }
+        Debug.Log("activeActionCount: " + _activeActionCount);
+        if (_activeActionCount > _selectedActions.Count)
+            return;
+        
+        for (var _i = 0; _i < combPoolNames.Length; _i++)
+        {
+            var _action = Root.Q<VisualElement>(combPoolNames[_i]);
+            if (_action.style.display == DisplayStyle.Flex) 
+                continue;
+            SetActionToLastPosition(combPoolNames[_i]);
+            _action.style.display = DisplayStyle.Flex;
+            Debug.Log("Next Action Reveal!");
+            break;
+        }
     }
 
     public void PunchesButton()
@@ -178,8 +241,10 @@ public class TrainingModuleScreen : UIController
         var _actionArea = Root.Q<GroupBox>(actionSelectionAreaName);
         _actionArea.visible = true;
         SetVisualElementSprite(previewActionName, null);
+        if (_selectedActions.ContainsKey(_selectedActionID))
+            _selectedActions.Remove(_selectedActionID);
     }
-    
+
     private void CloseActionSelection()
     {
         ClearPossibleActionsEvents();
@@ -203,6 +268,46 @@ public class TrainingModuleScreen : UIController
     public void StartButton()
     {
         Debug.Log("Send Toyo to Quest button clicked!");
+        foreach (var _action in _selectedActions)
+        {
+            Debug.Log(_action.Value.name + ", id: " + _action.Value.id);
+        }
+    }
+
+    private void ApplyRewardsCalculation()
+    {
+        //TODO: Apply real calculation
+        _investValue = 0;
+        _receiveValue = 0;
+        _durationValue = 0;
+        foreach (var _action in _selectedActions)
+        {
+            _investValue += 80;
+            _receiveValue += 95;
+            _durationValue += 75;
+        }
+    }
+
+    private string GetDurationConvert(int durationInMinutes)
+    {
+        var _minutes = durationInMinutes;
+        var _hours = 0;
+        var _days = 0;
+        while (_minutes >= 60)
+        {
+            _hours += 1;
+            _minutes -= 60;
+        }
+        while (_hours >= 24)
+        {
+            _days += 1;
+            _hours -= 24;
+        }
+
+        var _result = _days > 0 ? _days + "d " : "";
+        _result += _hours > 0 ? _hours + "h " : "";
+        _result += _minutes + "m";
+        return _result;
     }
 }
 

@@ -1371,14 +1371,26 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  titleName: title
-  trainingTimeName: time
-  combinationPoolNames:
+  eventTitleName: eventTitle
+  eventTimeName: eventTime
+  combPoolNames:
+  - Action_1
+  - Action_2
+  - Action_3
+  - Action_4
+  - Action_5
+  combPoolImagesNames:
   - action1
   - action2
   - action3
   - action4
   - action5
+  removePoolNames:
+  - removeA1
+  - removeA2
+  - removeA3
+  - removeA4
+  - removeA5
   startTrainingButtonName: startButton
   rewardTitleName: rewardTitle
   investName: invest
