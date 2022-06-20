@@ -45,13 +45,17 @@ public class ToyoObject : MonoBehaviour
     public bool IsToyoSelected;
     private string _toyoName;
     private int _toyoTotalPartsLevel;
+    private int _toyoTotalPartsHearthbound;
     private int _numberOfParts;
+    private float _minimunToyoStat = 9.0f; //Minimun value so it doesn't break the progress bar.
 
-    public float GetToyoStat(TOYO_STAT stat) => _toyoStats[stat];
+    public float GetToyoStat(TOYO_STAT stat) => _toyoStats[stat] > _minimunToyoStat ? _toyoStats[stat] : _minimunToyoStat;
 
     public string GetToyoName() => _toyoName;
 
     public int GetToyoLevel() => _toyoTotalPartsLevel / _numberOfParts;
+
+    public int GetToyoHearthBound() => _toyoTotalPartsHearthbound / _numberOfParts;
     
     void SetTotalStats(List<ToyoPart> parts)
     {
@@ -64,6 +68,7 @@ public class ToyoObject : MonoBehaviour
             }
 
             _toyoTotalPartsLevel += _part.toyoLevel;
+            _toyoTotalPartsHearthbound += _part.hearthbound;
         }
             
 
@@ -102,6 +107,7 @@ public class ToyoObject : MonoBehaviour
         _toyoName = toyo.toyoPersona.name;
         _numberOfParts = toyo.parts.Length;
         IsToyoSelected = toyo.isToyoSelected;
+        
     }
 
     private void SetToyoModel()

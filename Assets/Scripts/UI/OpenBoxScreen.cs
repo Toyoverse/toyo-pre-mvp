@@ -14,7 +14,7 @@ namespace UI
             => ScreenManager.Instance.GoToScreen(ScreenState.MainMenu);
         
         
-        private string vitalityProgressName = "VitalityProgress";
+        private string vitalityProgressName = "Vitality";
         private string resistanceProgressName = "Resistance";
         private string resilienceProgressName = "Resilience";
         private string strengthProgressName = "Strength";
@@ -28,6 +28,9 @@ namespace UI
         private string luckProgressName = "Luck";
         
         protected string toyoNameField = "toyoName";
+        
+        protected string toyoLevelField = "numberLvl";
+        protected string toyoHearthBoundField = "numberHb";
 
         private ToyoObject _toyoObject;
 
@@ -53,30 +56,44 @@ namespace UI
         {
             selectedToyo ??= _toyoObject;
             var _progressBar = GetProgressBar(stat);
-            maxStatValue = _progressBar.highValue;
             var _statValue = selectedToyo.GetToyoStat(stat);
+            var _progressLabel = GetProgressLabel(stat);
+            var _toyoLevelLabel = Root.Q<Label>(toyoLevelField);
+            var _toyoHbLabel = Root.Q<Label>(toyoHearthBoundField);
+            
+            maxStatValue = _progressBar.highValue;
             _progressBar.lowValue = _statValue <= maxStatValue ? _statValue : maxStatValue;
+            if (_progressLabel != null)
+                _progressLabel.text = _progressBar.lowValue.ToString();
+            if (_toyoHbLabel != null)
+                _toyoHbLabel.text = selectedToyo.GetToyoHearthBound().ToString();
+            if (_toyoLevelLabel != null)
+                _toyoLevelLabel.text = selectedToyo.GetToyoLevel().ToString();
+
         }
 
-        protected ProgressBar GetProgressBar(TOYO_STAT stat)
+        protected ProgressBar GetProgressBar(TOYO_STAT stat) => Root.Q<ProgressBar>(GetFieldName(stat,"Progress"));
+        
+        protected Label GetProgressLabel(TOYO_STAT stat) => Root.Q<Label>(GetFieldName(stat,"Value")); 
+
+        private string GetFieldName(TOYO_STAT stat, string field)
         {
-            var _labelName = stat switch
+            return stat switch
             {
-                TOYO_STAT.VITALITY => vitalityProgressName,
-                TOYO_STAT.RESISTANCE => resistanceProgressName,
-                TOYO_STAT.RESILIENCE => resilienceProgressName,
-                TOYO_STAT.PHYSICAL_STRENGTH => strengthProgressName,
-                TOYO_STAT.CYBER_FORCE => cyberforceProgressName,
-                TOYO_STAT.TECHNIQUE => techniqueProgressName,
-                TOYO_STAT.ANALYSIS => analysisProgressName,
-                TOYO_STAT.AGILITY => agilityProgressName,
-                TOYO_STAT.SPEED => speedProgressName,
-                TOYO_STAT.PRECISION => precisionProgressName,
-                TOYO_STAT.STAMINA => staminaProgressName,
-                TOYO_STAT.LUCK => luckProgressName,
+                TOYO_STAT.VITALITY => vitalityProgressName + field,
+                TOYO_STAT.RESISTANCE => resistanceProgressName + field,
+                TOYO_STAT.RESILIENCE => resilienceProgressName + field,
+                TOYO_STAT.PHYSICAL_STRENGTH => strengthProgressName + field,
+                TOYO_STAT.CYBER_FORCE => cyberforceProgressName + field,
+                TOYO_STAT.TECHNIQUE => techniqueProgressName + field,
+                TOYO_STAT.ANALYSIS => analysisProgressName + field,
+                TOYO_STAT.AGILITY => agilityProgressName + field,
+                TOYO_STAT.SPEED => speedProgressName + field,
+                TOYO_STAT.PRECISION => precisionProgressName + field,
+                TOYO_STAT.STAMINA => staminaProgressName + field,
+                TOYO_STAT.LUCK => luckProgressName + field,
                 _ => throw new ArgumentOutOfRangeException(nameof(stat), stat, null)
             };
-            return Root.Q<ProgressBar>(_labelName);
         }
 
     }

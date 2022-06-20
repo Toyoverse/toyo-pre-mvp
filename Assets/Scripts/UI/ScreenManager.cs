@@ -19,6 +19,7 @@ namespace UI
         [SerializeField] private LoreThemeScreen loreThemeScript;
         [SerializeField] private TrainingModuleScreen trainingModuleScript;
         [SerializeField] private UnboxingScreen unboxingScreen;
+        [SerializeField] private MetamaskScreen metamaskScreen;
 
         public static ScreenState ScreenState { get; private set; }
         private static ScreenState _oldScreenState;
@@ -28,7 +29,8 @@ namespace UI
         private void Start()
         {
             GetScreenScripts();
-            GoToScreen(haveToyo ? ScreenState.MainMenu : ScreenState.Welcome);
+            //GoToScreen(haveToyo ? ScreenState.MainMenu : ScreenState.Welcome);
+            GoToScreen(ScreenState.Metamask);
         }
 
         public void GoToScreen(ScreenState newScreen)
@@ -60,6 +62,9 @@ namespace UI
                     break;
                 case ScreenState.Unboxing:
                     unboxingScreen.ActiveScreen();
+                    break;
+                case ScreenState.Metamask:
+                    metamaskScreen.ActiveScreen();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -100,6 +105,9 @@ namespace UI
                 case ScreenState.Unboxing:
                     unboxingScreen.DisableScreen();
                     break;
+                case ScreenState.Metamask:
+                    metamaskScreen.DisableScreen();
+                    break;
                 default:
                     break;
             }
@@ -128,6 +136,7 @@ namespace UI
         OpenBox = 5,
         LoreTheme = 6,
         TrainingModule = 7,
-        Unboxing = 8
+        Unboxing = 8,
+        Metamask = 9
     }
 }

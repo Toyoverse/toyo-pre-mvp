@@ -614,15 +614,65 @@
     color: rgb(255, 255, 255);
 }
 
-.actionImageStyle {
-    width: 350px;
-    height: 100%;
-    background-color: rgb(80, 82, 142);
+.metamaskButtonStyle {
+    width: 847px;
+    height: 186px;
+    background-color: rgba(80, 82, 142, 0);
     margin-left: 10px;
     margin-right: 10px;
     margin-top: 10px;
     margin-bottom: 10px;
     display: flex;
+    background-image: url('project://database/Assets/Images/Buttons/Metamask_buton-normal.png?fileID=2800000&guid=643fa4f1eee33b94481fb16cea9f0c38&type=3#Metamask_buton-normal');
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    font-size: 86px;
+    -unity-font-definition: url('project://database/Assets/Fonts/wbv5%20SDF.asset?fileID=11400000&guid=3e43c66971debf64dbe3e8828b8951c6&type=2#wbv5 SDF');
+}
+
+.metamaskButtonStyle:hover {
+    position: relative;
+    font-size: 42px;
+    width: 847px;
+    height: 186px;
+    background-color: rgba(56, 56, 56, 0);
+    color: rgb(255, 255, 255);
+    -unity-font-style: normal;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-image: url('project://database/Assets/Images/Buttons/Metamask_buton-hover.png?fileID=21300000&guid=9395e5460f520f1428482025d377a61c&type=3#Metamask_buton-hover');
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    -unity-font: url('project://database/Assets/Fonts/wbv5.ttf?fileID=12800000&guid=8c127f47e96b8924c880f2cf373482b0&type=3#wbv5');
+    -unity-font-definition: none;
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+}
+
+.metamaskButtonStyle:active {
+    position: relative;
+    font-size: 42px;
+    width: 847px;
+    height: 186px;
+    background-color: rgba(56, 56, 56, 0);
+    color: rgb(255, 255, 255);
+    -unity-font-style: normal;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-image: url('project://database/Assets/Images/Buttons/Metamask_buton-pressed.png?fileID=21300000&guid=7f2ffb8d8c23bbe47966211506118334&type=3#Metamask_buton-pressed');
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    -unity-font-definition: none;
+    -unity-font: url('project://database/Assets/Fonts/wbv5.ttf?fileID=12800000&guid=8c127f47e96b8924c880f2cf373482b0&type=3#wbv5');
 }
 
 .simple-tab {

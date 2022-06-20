@@ -55,6 +55,7 @@ namespace Database
         public ToyoPersona toyoPersona;
         public ToyoTheme toyoTheme;
         public int toyoLevel;
+        public int hearthbound;
         public float toyoPartEXP;
         public bool isNFT;
     }

@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/Styles/WelcomeStyle.uss?fileID=7433441132597879392&amp;guid=9bf11cd79e85c3845bec6c228384c2d8&amp;type=3#WelcomeStyle" />
+    <ui:VisualElement name="ScreenTotalArea" class="backgroundStyle" style="background-image: url(&apos;project://database/Assets/Images/Metamask/Background.png?fileID=21300000&amp;guid=b20a6096c6138a54bb581945f15e23a1&amp;type=3#Background&apos;);">
+        <ui:GroupBox name="leftBox" class="groupBox" style="justify-content: flex-end; align-items: stretch;">
+            <ui:GroupBox name="MetamaskButtonBox" style="bottom: 20%; white-space: normal; -unity-text-align: middle-center; flex-direction: row-reverse; flex-wrap: nowrap; align-items: center; scale: 0.8 0.8;">
+                <ui:Button text="LOGIN WITH METAMASK" display-tooltip-when-elided="true" name="loginButton" class="metamaskButtonStyle" style="font-size: 48px; justify-content: flex-start; top: auto; bottom: auto; padding-left: 60px; padding-bottom: 10px;" />
+                <ui:Label text="&#x9;" display-tooltip-when-elided="true" name="metamaskIcon" style="background-image: url(&apos;project://database/Assets/Images/Buttons/Metamask_logo.png?fileID=21300000&amp;guid=01d06ee83e58a2a43b510acda7375ff2&amp;type=3#Metamask_logo&apos;); width: 105px; height: 105px; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; justify-content: flex-start; flex-direction: row; align-items: stretch; margin-right: -160px; scale: 0.8 0.8; margin-bottom: 10px;" />
+            </ui:GroupBox>
+        </ui:GroupBox>
+    </ui:VisualElement>
+</ui:UXML>

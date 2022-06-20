@@ -73,6 +73,7 @@
           },
           "toyoPiece": "HEAD",
           "toyoTechnoalloy": "TITANIUM",
+        "hearthbound": 20,
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
           "bonusStats": {
@@ -146,6 +147,7 @@
           },
           "toyoPiece": "HEAD",
           "toyoTechnoalloy": "TITANIUM",
+        "hearthbound": 20,
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
           "bonusStats": {
@@ -219,6 +221,7 @@
           },
           "toyoPiece": "HEAD",
           "toyoTechnoalloy": "TITANIUM",
+        "hearthbound": 20,
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
           "bonusStats": {
@@ -292,6 +295,7 @@
           },
           "toyoPiece": "HEAD",
           "toyoTechnoalloy": "TITANIUM",
+        "hearthbound": 20,
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
           "bonusStats": {
@@ -365,6 +369,7 @@
           },
           "toyoPiece": "HEAD",
           "toyoTechnoalloy": "TITANIUM",
+        "hearthbound": 20,
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
           "bonusStats": {
@@ -438,6 +443,7 @@
           },
           "toyoPiece": "HEAD",
           "toyoTechnoalloy": "TITANIUM",
+        "hearthbound": 10,
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
           "bonusStats": {
@@ -511,6 +517,7 @@
           },
           "toyoPiece": "HEAD",
           "toyoTechnoalloy": "TITANIUM",
+        "hearthbound": 10,
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
           "bonusStats": {
@@ -584,6 +591,7 @@
           },
           "toyoPiece": "HEAD",
           "toyoTechnoalloy": "TITANIUM",
+        "hearthbound": 10,
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
           "bonusStats": {
@@ -657,6 +665,7 @@
           },
           "toyoPiece": "HEAD",
           "toyoTechnoalloy": "TITANIUM",
+        "hearthbound": 10,
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
           "bonusStats": {
@@ -730,6 +739,7 @@
           },
           "toyoPiece": "HEAD",
           "toyoTechnoalloy": "TITANIUM",
+        "hearthbound": 10,
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
           "bonusStats": {
@@ -831,6 +841,8 @@
         "toyoPiece": "HEAD",
         "toyoLevel": 20,
         "toyoTechnoalloy": "TITANIUM",
+        "hearthbound": 10,
+        "hearthbound": 10,
         "createdAt": "2022-06-02T19:03:10.443Z",
         "updatedAt": "2022-06-02T19:05:11.555Z",
         "bonusStats": {
@@ -905,6 +917,7 @@
         "toyoPiece": "HEAD",
         "toyoLevel": 20,
         "toyoTechnoalloy": "TITANIUM",
+        "hearthbound": 10,
         "createdAt": "2022-06-02T19:03:10.443Z",
         "updatedAt": "2022-06-02T19:05:11.555Z",
         "bonusStats": {
@@ -979,6 +992,7 @@
         "toyoPiece": "HEAD",
         "toyoLevel": 20,
         "toyoTechnoalloy": "TITANIUM",
+        "hearthbound": 10,
         "createdAt": "2022-06-02T19:03:10.443Z",
         "updatedAt": "2022-06-02T19:05:11.555Z",
         "bonusStats": {
@@ -1053,6 +1067,7 @@
         "toyoPiece": "HEAD",
         "toyoLevel": 20,
         "toyoTechnoalloy": "TITANIUM",
+        "hearthbound": 10,
         "createdAt": "2022-06-02T19:03:10.443Z",
         "updatedAt": "2022-06-02T19:05:11.555Z",
         "bonusStats": {
@@ -1127,6 +1142,7 @@
         "toyoPiece": "HEAD",
         "toyoLevel": 20,
         "toyoTechnoalloy": "TITANIUM",
+        "hearthbound": 10,
         "createdAt": "2022-06-02T19:03:10.443Z",
         "updatedAt": "2022-06-02T19:05:11.555Z",
         "bonusStats": {
@@ -1201,6 +1217,7 @@
         "toyoPiece": "HEAD",
         "toyoLevel": 20,
         "toyoTechnoalloy": "TITANIUM",
+        "hearthbound": 10,
         "createdAt": "2022-06-02T19:03:10.443Z",
         "updatedAt": "2022-06-02T19:05:11.555Z",
         "bonusStats": {
@@ -1275,6 +1292,7 @@
         "toyoPiece": "HEAD",
         "toyoLevel": 20,
         "toyoTechnoalloy": "TITANIUM",
+        "hearthbound": 10,
         "createdAt": "2022-06-02T19:03:10.443Z",
         "updatedAt": "2022-06-02T19:05:11.555Z",
         "bonusStats": {
@@ -1349,6 +1367,7 @@
         "toyoPiece": "HEAD",
         "toyoLevel": 20,
         "toyoTechnoalloy": "TITANIUM",
+        "hearthbound": 20,
         "createdAt": "2022-06-02T19:03:10.443Z",
         "updatedAt": "2022-06-02T19:05:11.555Z",
         "bonusStats": {
@@ -1423,6 +1442,7 @@
         "toyoPiece": "HEAD",
         "toyoLevel": 20,
         "toyoTechnoalloy": "TITANIUM",
+        "hearthbound": 20,
         "createdAt": "2022-06-02T19:03:10.443Z",
         "updatedAt": "2022-06-02T19:05:11.555Z",
         "bonusStats": {
@@ -1497,6 +1517,7 @@
         "toyoPiece": "HEAD",
         "toyoLevel": 20,
         "toyoTechnoalloy": "TITANIUM",
+        "hearthbound": 20,
         "createdAt": "2022-06-02T19:03:10.443Z",
         "updatedAt": "2022-06-02T19:05:11.555Z",
         "bonusStats": {
@@ -1589,6 +1610,7 @@
           "toyoPiece": "HEAD",
           "toyoLevel": 10,
           "toyoTechnoalloy": "TITANIUM",
+        "hearthbound": 20,
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
           "bonusStats": {
@@ -1663,6 +1685,7 @@
           "toyoPiece": "HEAD",
           "toyoLevel": 10,
           "toyoTechnoalloy": "TITANIUM",
+        "hearthbound": 20,
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
           "bonusStats": {
@@ -1737,6 +1760,7 @@
           "toyoPiece": "HEAD",
           "toyoLevel": 10,
           "toyoTechnoalloy": "TITANIUM",
+        "hearthbound": 10,
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
           "bonusStats": {
@@ -1811,6 +1835,7 @@
           "toyoPiece": "HEAD",
           "toyoLevel": 10,
           "toyoTechnoalloy": "TITANIUM",
+        "hearthbound": 10,
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
           "bonusStats": {
@@ -1885,6 +1910,7 @@
           "toyoPiece": "HEAD",
           "toyoLevel": 10,
           "toyoTechnoalloy": "TITANIUM",
+        "hearthbound": 10,
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
           "bonusStats": {
@@ -1959,6 +1985,7 @@
           "toyoPiece": "HEAD",
           "toyoLevel": 10,
           "toyoTechnoalloy": "TITANIUM",
+        "hearthbound": 10,
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
           "bonusStats": {
@@ -2033,6 +2060,7 @@
           "toyoPiece": "HEAD",
           "toyoLevel": 10,
           "toyoTechnoalloy": "TITANIUM",
+        "hearthbound": 10,
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
           "bonusStats": {
@@ -2107,6 +2135,7 @@
           "toyoPiece": "HEAD",
           "toyoLevel": 10,
           "toyoTechnoalloy": "TITANIUM",
+        "hearthbound": 10,
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
           "bonusStats": {
@@ -2181,6 +2210,7 @@
           "toyoPiece": "HEAD",
           "toyoLevel": 10,
           "toyoTechnoalloy": "TITANIUM",
+        "hearthbound": 10,
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
           "bonusStats": {
@@ -2255,6 +2285,7 @@
           "toyoPiece": "HEAD",
           "toyoLevel": 10,
           "toyoTechnoalloy": "TITANIUM",
+        "hearthbound": 10,
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
           "bonusStats": {
@@ -2347,6 +2378,7 @@
           "toyoPiece": "HEAD",
           "toyoLevel": 12,
           "toyoTechnoalloy": "TITANIUM",
+        "hearthbound": 10,
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
           "bonusStats": {
@@ -2421,6 +2453,7 @@
           "toyoPiece": "HEAD",
           "toyoLevel": 12,
           "toyoTechnoalloy": "TITANIUM",
+        "hearthbound": 10,
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
           "bonusStats": {
@@ -2495,6 +2528,7 @@
           "toyoPiece": "HEAD",
           "toyoLevel": 12,
           "toyoTechnoalloy": "TITANIUM",
+        "hearthbound": 20,
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
           "bonusStats": {
@@ -2569,6 +2603,7 @@
           "toyoPiece": "HEAD",
           "toyoLevel": 12,
           "toyoTechnoalloy": "TITANIUM",
+        "hearthbound": 20,
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
           "bonusStats": {
@@ -2643,6 +2678,7 @@
           "toyoPiece": "HEAD",
           "toyoLevel": 12,
           "toyoTechnoalloy": "TITANIUM",
+        "hearthbound": 20,
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
           "bonusStats": {
@@ -2717,6 +2753,7 @@
           "toyoPiece": "HEAD",
           "toyoLevel": 12,
           "toyoTechnoalloy": "TITANIUM",
+        "hearthbound": 20,
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
           "bonusStats": {
@@ -2791,6 +2828,7 @@
           "toyoPiece": "HEAD",
           "toyoLevel": 12,
           "toyoTechnoalloy": "TITANIUM",
+        "hearthbound": 20,
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
           "bonusStats": {
@@ -2865,6 +2903,7 @@
           "toyoPiece": "HEAD",
           "toyoLevel": 12,
           "toyoTechnoalloy": "TITANIUM",
+        "hearthbound": 10,
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
           "bonusStats": {
@@ -2939,6 +2978,7 @@
           "toyoPiece": "HEAD",
           "toyoLevel": 12,
           "toyoTechnoalloy": "TITANIUM",
+        "hearthbound": 10,
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
           "bonusStats": {
@@ -3013,6 +3053,7 @@
           "toyoPiece": "HEAD",
           "toyoLevel": 12,
           "toyoTechnoalloy": "TITANIUM",
+        "hearthbound": 10,
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
           "bonusStats": {
@@ -3105,6 +3146,7 @@
           "toyoPiece": "HEAD",
           "toyoLevel": 17,
           "toyoTechnoalloy": "TITANIUM",
+        "hearthbound": 10,
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
           "bonusStats": {
@@ -3179,6 +3221,7 @@
           "toyoPiece": "HEAD",
           "toyoLevel": 17,
           "toyoTechnoalloy": "TITANIUM",
+        "hearthbound": 10,
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
           "bonusStats": {
@@ -3253,6 +3296,7 @@
           "toyoPiece": "HEAD",
           "toyoLevel": 17,
           "toyoTechnoalloy": "TITANIUM",
+        "hearthbound": 10,
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
           "bonusStats": {
@@ -3327,6 +3371,7 @@
           "toyoPiece": "HEAD",
           "toyoLevel": 7,
           "toyoTechnoalloy": "TITANIUM",
+        "hearthbound": 10,
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
           "bonusStats": {
@@ -3401,6 +3446,7 @@
           "toyoPiece": "HEAD",
           "toyoLevel": 7,
           "toyoTechnoalloy": "TITANIUM",
+        "hearthbound": 10,
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
           "bonusStats": {
@@ -3475,6 +3521,7 @@
           "toyoPiece": "HEAD",
           "toyoLevel": 7,
           "toyoTechnoalloy": "TITANIUM",
+        "hearthbound": 20,
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
           "bonusStats": {
@@ -3549,6 +3596,7 @@
           "toyoPiece": "HEAD",
           "toyoLevel": 7,
           "toyoTechnoalloy": "TITANIUM",
+        "hearthbound": 20,
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
           "bonusStats": {
@@ -3623,6 +3671,7 @@
           "toyoPiece": "HEAD",
           "toyoLevel": 7,
           "toyoTechnoalloy": "TITANIUM",
+        "hearthbound": 10,
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
           "bonusStats": {
@@ -3697,6 +3746,7 @@
           "toyoPiece": "HEAD",
           "toyoLevel": 7,
           "toyoTechnoalloy": "TITANIUM",
+        "hearthbound": 10,
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
           "bonusStats": {
@@ -3771,6 +3821,7 @@
           "toyoPiece": "HEAD",
           "toyoLevel": 7,
           "toyoTechnoalloy": "TITANIUM",
+          "hearthbound": 20,
           "createdAt": "2022-06-02T19:03:10.443Z",
           "updatedAt": "2022-06-02T19:05:11.555Z",
           "bonusStats": {
