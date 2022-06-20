@@ -402,7 +402,7 @@
 }
 
 .unity-progress-bar__progress {
-    background-image: url('project://database/Assets/Images/Buttons/Stats_Bar_Full.png?fileID=21300000&guid=31d219dc9bcae8b4ba8018f135878d61&type=3#Stats_Bar_Full');
+    background-image: url('project://database/Assets/Images/Buttons/Stats_Bar_Full.png?fileID=2800000&guid=31d219dc9bcae8b4ba8018f135878d61&type=3#Stats_Bar_Full');
     -unity-background-image-tint-color: rgb(255, 255, 255);
     -unity-background-scale-mode: stretch-to-fill;
     border-left-color: rgba(0, 0, 0, 0);
@@ -596,4 +596,22 @@
     margin-top: 10px;
     margin-bottom: 10px;
     display: flex;
+}
+
+.simple-tab {
+    height: 85%;
+    width: 100%;
+    top: auto;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    padding-top: 12px;
+    padding-bottom: 0;
+    background-color: rgba(233, 233, 233, 0);
+    background-image: url('project://database/Assets/Images/Buttons/Text_Box_0001.png?fileID=2800000&guid=32963259d04ba1c4daa08d4bc91a4cd3&type=3#Text_Box_0001');
+    -unity-text-outline-color: rgb(0, 0, 0);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
 }
