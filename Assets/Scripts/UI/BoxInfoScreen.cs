@@ -30,14 +30,14 @@ namespace UI
         public void NextBoxButton()
         {
             carousel.SwipeRight();
-            UpdateVisualInformation();
+            UpdateUI();
         }
         
 
         public void PreviousBoxButton()
         {
             carousel.SwipeLeft();
-            UpdateVisualInformation();
+            UpdateUI();
         }
 
         private BoxConfig GetBoxSelected() 
@@ -62,7 +62,7 @@ namespace UI
             _textLabel.text = text;
         }
 
-        public void UpdateVisualInformation() 
+        protected override void UpdateUI() 
         {
             if (GetBoxSelected() == null)
             {
@@ -115,8 +115,8 @@ namespace UI
                     name = rewardName + _i,
                     style =
                     {
-                        width = 120,
-                        height = 120,
+                        width = 160,
+                        height = 160,
                         marginBottom = 10,
                         marginTop = 10,
                         marginLeft = 10,

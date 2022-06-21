@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7b6b454d731d1314f9083a9c4c64ec92, type: 3}
-  m_Name: Reward_Template
+  m_Name: Reward_Template 7
   m_EditorClassIdentifier: 
-  rewardName: Template
-  sprite: {fileID: -2413806693520163455, guid: 9a1cd8f131aa0b34cbfa00151d5ee055, type: 3}
+  rewardName: Blk3yez_Template
+  sprite: {fileID: 21300000, guid: 686cd794401097544b7582c17dabbb66, type: 3}
   toyoRarity: 0

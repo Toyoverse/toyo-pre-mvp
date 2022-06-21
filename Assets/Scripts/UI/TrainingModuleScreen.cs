@@ -272,6 +272,14 @@ public class TrainingModuleScreen : UIController
         {
             Debug.Log(_action.Value.name + ", id: " + _action.Value.id);
         }
+        
+        GenericPopUp.Instance.ShowPopUp("Are you sure?", SendToyoToTraining, () => {});
+    }
+
+    private void SendToyoToTraining()
+    {
+        //ScreenManager.Instance.GoToScreen(ScreenState.Welcome);
+        Debug.Log("Sending Toyo to Training!");
     }
 
     private void ApplyRewardsCalculation()

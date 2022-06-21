@@ -16,14 +16,13 @@ MonoBehaviour:
   boxRegion: 1
   boxType: 2
   possibleRewards:
-  - {fileID: 11400000, guid: e657890591ae5d846979e5b690bb8ed8, type: 2}
-  - {fileID: 11400000, guid: 4b11458879c539042a67363bcea4643b, type: 2}
-  - {fileID: 11400000, guid: f9a9c22a2279733419058a45c8205681, type: 2}
-  - {fileID: 11400000, guid: dca7c8e483bb4874d8e0855dcd9204ff, type: 2}
-  - {fileID: 11400000, guid: ed1de3764f665e24882f7cd651e48af1, type: 2}
-  - {fileID: 11400000, guid: ed1de3764f665e24882f7cd651e48af1, type: 2}
-  - {fileID: 11400000, guid: ed1de3764f665e24882f7cd651e48af1, type: 2}
-  - {fileID: 11400000, guid: ed1de3764f665e24882f7cd651e48af1, type: 2}
+  - {fileID: 11400000, guid: 3b62d3ec26b3e2b49a7818da8b596307, type: 2}
+  - {fileID: 11400000, guid: ea68d33cbf643bc488ed5e093a8bcdaa, type: 2}
+  - {fileID: 11400000, guid: f718709eaabfa7941a4e7a84f579f8f9, type: 2}
+  - {fileID: 11400000, guid: 85c3c7ca740fcb24bb3546c66bf53a3e, type: 2}
+  - {fileID: 11400000, guid: 6391a371e6c547a4eab7be9871af8c75, type: 2}
+  - {fileID: 11400000, guid: 0fe4aa355b7a41e4d9be18f3f80d6274, type: 2}
+  - {fileID: 11400000, guid: cd61f82d42dd48244b16c9cbae686c95, type: 2}
   dropRate:
   - Rarity: 0
     DropChance: 65
