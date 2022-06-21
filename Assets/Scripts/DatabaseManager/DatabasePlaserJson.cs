@@ -5,7 +5,7 @@ namespace Database
 {
 
     [Serializable]
-    public class DatabaseJson
+    public class DatabasePlaserJson
     {
         public Player player;
     }
@@ -127,5 +127,13 @@ namespace Database
     {
         public string objectId;
     }
+    
+    [Serializable]
+    public class LoginCallback
+    {
+        public string token;
+        public string expiresAt;
+    }
+
 
 }

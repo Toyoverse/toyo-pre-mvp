@@ -1,4 +1,5 @@
 using System;
+using Database;
 using UnityEngine;
 using UnityTemplateProjects.Audio;
 
@@ -13,10 +14,9 @@ namespace UI
 
         public void LoginButton()
         {
-            ScreenManager.Instance.GoToScreen(ScreenManager.Instance.haveToyo
-                ? ScreenState.MainMenu
-                : ScreenState.Welcome);
+            DatabaseConnection.Instance.BlockchainIntegration.StartLoginMetamask();
         }
+        
         
     }
     

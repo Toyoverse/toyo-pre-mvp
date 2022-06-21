@@ -254,6 +254,7 @@ GameObject:
   - component: {fileID: 1082540500}
   - component: {fileID: 1082540499}
   - component: {fileID: 1082540501}
+  - component: {fileID: 1082540502}
   m_Layer: 0
   m_Name: DatabaseConnection
   m_TagString: Untagged
@@ -273,10 +274,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23e2b4819c044505bcff49abbd8913c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDebug: 0
+  isDebug: 1
   player:
     boxes: []
     toyos: []
+  BlockchainIntegration: {fileID: 1082540502}
 --- !u!4 &1082540500
 Transform:
   m_ObjectHideFlags: 0
@@ -314,6 +316,20 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 545a78c852ce80d4a9baad3dd85408bc, type: 2}
   openBoxToyoPivot: {fileID: 64713333}
   mainMenuToyoPivot: {fileID: 1479302849}
+--- !u!114 &1082540502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1082540498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1fe579e10b54639a87451d7de029966, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skipLogin: 1
+  rememberMe: {fileID: 0}
 --- !u!1 &1084469477
 GameObject:
   m_ObjectHideFlags: 0
@@ -856,6 +872,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6072516106304441697, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
+      propertyPath: timeoutButton
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8643416932187837700, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -903,6 +923,10 @@ PrefabInstance:
     - target: {fileID: 8643416932187837703, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
       propertyPath: m_Name
       value: Screens
+      objectReference: {fileID: 0}
+    - target: {fileID: 9122282412153282470, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
