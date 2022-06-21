@@ -36,8 +36,6 @@ public class UnboxingScreen : UIController
             playableDirector = GetComponentInChildren<PlayableDirector>();
     }
     
-    
-
     void OnEnable()
     {
         playableDirector.stopped += OnPlayableDirectorStopped;
