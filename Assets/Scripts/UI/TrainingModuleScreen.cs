@@ -16,6 +16,11 @@ public class TrainingModuleScreen : UIController
     public string[] combPoolImagesNames;
     public string[] removePoolNames;
     public string startTrainingButtonName = "startButton";
+
+    [Header("In Training names")] 
+    public string inTrainingBoxName = "inTrainingBox";
+    public string inTrainingTitleName = "inTrainingTitle";
+    public string inTrainingTimeName = "inTrainingTime";
     
     [Header("Reward names")]
     public string rewardTitleName = "rewardTitle";
@@ -30,7 +35,7 @@ public class TrainingModuleScreen : UIController
     private int _selectedActionID = 0;
     private TrainingActionType _oldTypeSelected;
     private int _minimumActionsToPlay = 3;
-    private Dictionary<int, TrainingActionSO> _selectedActions = new Dictionary<int, TrainingActionSO>();
+    public Dictionary<int, TrainingActionSO> selectedActions = new Dictionary<int, TrainingActionSO>();
     public FontAsset fontAsset;
 
     [Header("Possible Actions")] public TrainingActionSO[] possibleActions;
@@ -41,14 +46,19 @@ public class TrainingModuleScreen : UIController
     private int _investValue = 0;
     private int _receiveValue = 0;
     private int _durationValue = 0;
+    
+    private bool _inTraining = false;
+    private int _inTrainingTimeLeft = 866;
+    private string _inTrainingTitle = "Toyo in training...";
 
     protected override void UpdateUI()
     {
         SetTextInLabel(eventTitleName, _eventTitle);
-        SetTextInLabel(eventTimeName, GetDurationConvert(_eventTime));
+        SetTextInLabel(eventTimeName, GetDurationConvertedToString(_eventTime));
         SetTextInLabel(investName, "Invest: $" + _investValue);
         SetTextInLabel(receiveName, "Receive: $" + _receiveValue);
-        SetTextInLabel(durationName, "Duration: " + GetDurationConvert(_durationValue));
+        SetTextInLabel(durationName, "Duration: " + GetDurationConvertedToString(_durationValue));
+        CheckToyoIsTraining();
     }
     
     public override void ActiveScreen()
@@ -124,7 +134,7 @@ public class TrainingModuleScreen : UIController
         Root.Q<VisualElement>(removePoolNames[_selectedActionID]).style.display = DisplayStyle.Flex;
         SetVisualElementSprite(combPoolImagesNames[_selectedActionID], actionSo.sprite);
         CloseActionSelection();
-        _selectedActions.Add(_selectedActionID, actionSo);
+        selectedActions.Add(_selectedActionID, actionSo);
         CheckActionsCount();
         ApplyRewardsCalculation();
         UpdateUI();
@@ -133,7 +143,7 @@ public class TrainingModuleScreen : UIController
     private void RemoveAction(int i)
     {
         //TODO: Complete and use this method
-        _selectedActions.Remove(i);
+        selectedActions.Remove(i);
         SetVisualElementSprite(combPoolImagesNames[i], null);
         Root.Q<VisualElement>(combPoolNames[i]).style.display = DisplayStyle.None;
         Root.Q<VisualElement>(removePoolNames[i]).style.display = DisplayStyle.None;
@@ -151,11 +161,11 @@ public class TrainingModuleScreen : UIController
 
     private void CheckActionsCount()
     {
-        if (_selectedActions.Count >= combPoolNames.Length)
+        if (selectedActions.Count >= combPoolNames.Length)
             return;
         RevealNextAction();
         var _startButton = Root.Q<Button>(startTrainingButtonName);
-        _startButton.visible = _selectedActions.Count >= _minimumActionsToPlay;
+        _startButton.visible = selectedActions.Count >= _minimumActionsToPlay;
     }
 
     private void RevealNextAction()
@@ -168,7 +178,7 @@ public class TrainingModuleScreen : UIController
                 _activeActionCount++;
         }
         Debug.Log("activeActionCount: " + _activeActionCount);
-        if (_activeActionCount > _selectedActions.Count)
+        if (_activeActionCount > selectedActions.Count)
             return;
         
         for (var _i = 0; _i < combPoolNames.Length; _i++)
@@ -241,8 +251,8 @@ public class TrainingModuleScreen : UIController
         var _actionArea = Root.Q<GroupBox>(actionSelectionAreaName);
         _actionArea.visible = true;
         SetVisualElementSprite(previewActionName, null);
-        if (_selectedActions.ContainsKey(_selectedActionID))
-            _selectedActions.Remove(_selectedActionID);
+        if (selectedActions.ContainsKey(_selectedActionID))
+            selectedActions.Remove(_selectedActionID);
     }
 
     private void CloseActionSelection()
@@ -268,7 +278,7 @@ public class TrainingModuleScreen : UIController
     public void StartButton()
     {
         Debug.Log("Send Toyo to Quest button clicked!");
-        foreach (var _action in _selectedActions)
+        foreach (var _action in selectedActions)
         {
             Debug.Log(_action.Value.name + ", id: " + _action.Value.id);
         }
@@ -278,8 +288,8 @@ public class TrainingModuleScreen : UIController
 
     private void SendToyoToTraining()
     {
-        //ScreenManager.Instance.GoToScreen(ScreenState.Welcome);
-        Debug.Log("Sending Toyo to Training!");
+        _inTraining = true;
+        UpdateUI();
     }
 
     private void ApplyRewardsCalculation()
@@ -288,7 +298,7 @@ public class TrainingModuleScreen : UIController
         _investValue = 0;
         _receiveValue = 0;
         _durationValue = 0;
-        foreach (var _action in _selectedActions)
+        foreach (var _action in selectedActions)
         {
             _investValue += 80;
             _receiveValue += 95;
@@ -296,27 +306,20 @@ public class TrainingModuleScreen : UIController
         }
     }
 
-    private string GetDurationConvert(int durationInMinutes)
+    private void CheckToyoIsTraining()
     {
-        var _minutes = durationInMinutes;
-        var _hours = 0;
-        var _days = 0;
-        while (_minutes >= 60)
+        var _trainingBox = Root.Q<GroupBox>(inTrainingBoxName);
+        if (_inTraining)
         {
-            _hours += 1;
-            _minutes -= 60;
+            _trainingBox.visible = true;
+            SetTextInLabel(inTrainingTitleName, _inTrainingTitle);
+            SetTextInLabel(inTrainingTimeName, GetDurationConvertedToString(_inTrainingTimeLeft));
         }
-        while (_hours >= 24)
-        {
-            _days += 1;
-            _hours -= 24;
-        }
-
-        var _result = _days > 0 ? _days + "d " : "";
-        _result += _hours > 0 ? _hours + "h " : "";
-        _result += _minutes + "m";
-        return _result;
+        else
+            _trainingBox.visible = false;
     }
+
+    public void GoToRewardScreen() => ScreenManager.Instance.GoToScreen(ScreenState.TrainingModuleRewards);
 }
 
 public enum TrainingActionType

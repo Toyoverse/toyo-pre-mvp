@@ -897,54 +897,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!1 &5462621790006137948
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 364012512560855683}
-  - component: {fileID: 3030310903794487199}
-  m_Layer: 5
-  m_Name: ActionSelection
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &364012512560855683
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5462621790006137948}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8643416932187837700}
-  m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3030310903794487199
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5462621790006137948}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_PanelSettings: {fileID: 11400000, guid: d267664279a0e304e99f6e5eb559eead, type: 2}
-  m_ParentUI: {fileID: 0}
-  sourceAsset: {fileID: 9197481963319205126, guid: e37b338d6b0632043ae291d25f964158, type: 3}
-  m_SortingOrder: 1
 --- !u!1 &6806768583358275348
 GameObject:
   m_ObjectHideFlags: 0
@@ -1044,6 +996,54 @@ MonoBehaviour:
   StartingPosition: {fileID: 1789746292}
   allObjects: []
   anchor: {fileID: 451214905369922131}
+--- !u!1 &8202573549011325311
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6850177555032459416}
+  - component: {fileID: 1312412985725994424}
+  m_Layer: 5
+  m_Name: TrainingModuleRewardsScreen
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &6850177555032459416
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8202573549011325311}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8643416932187837700}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1312412985725994424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8202573549011325311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PanelSettings: {fileID: 11400000, guid: d267664279a0e304e99f6e5eb559eead, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: 96f07588789bf8f41b9830f627057caf, type: 3}
+  m_SortingOrder: 1
 --- !u!1 &8643416931571219040
 GameObject:
   m_ObjectHideFlags: 0
@@ -1116,6 +1116,7 @@ GameObject:
   - component: {fileID: 8643416932187837817}
   - component: {fileID: 1499928037245794682}
   - component: {fileID: 9199315776819746690}
+  - component: {fileID: 6214543187492908520}
   - component: {fileID: 6072516106304441697}
   - component: {fileID: 1354601111}
   m_Layer: 0
@@ -1146,7 +1147,7 @@ Transform:
   - {fileID: 8643416933332351271}
   - {fileID: 1059816983858712850}
   - {fileID: 2607433889784995432}
-  - {fileID: 364012512560855683}
+  - {fileID: 6850177555032459416}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1169,6 +1170,7 @@ MonoBehaviour:
   openBoxScript: {fileID: 8643416932187837817}
   loreThemeScript: {fileID: 1499928037245794682}
   trainingModuleScript: {fileID: 9199315776819746690}
+  trainingModuleRewardScript: {fileID: 6214543187492908520}
   unboxingScreen: {fileID: 6072516106304441697}
   metamaskScreen: {fileID: 1354601111}
   haveToyo: 0
@@ -1674,6 +1676,22 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - name: backToMenu
+    onClickEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 9199315776819746690}
+          m_TargetAssemblyTypeName: TrainingModuleScreen, Assembly-CSharp
+          m_MethodName: GoToRewardScreen
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   eventTitleName: eventTitle
   eventTimeName: eventTime
   combPoolContainer: actions
@@ -1696,6 +1714,9 @@ MonoBehaviour:
   - removeA4
   - removeA5
   startTrainingButtonName: startButton
+  inTrainingBoxName: inTrainingBox
+  inTrainingTitleName: inTrainingTitle
+  inTrainingTimeName: inTrainingTime
   rewardTitleName: rewardTitle
   investName: invest
   receiveName: receive
@@ -1725,6 +1746,50 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9c90bc1624e3c214cb33a7c0e89bdaab, type: 2}
   - {fileID: 11400000, guid: 6459864a0e8f89447af43688d55679bc, type: 2}
   - {fileID: 11400000, guid: 39b9509746c11084f8e66f2926f4f4f6, type: 2}
+--- !u!114 &6214543187492908520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8643416932187837703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c913340c7b620f4da5fbeb04a278b64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiDoc: {fileID: 1312412985725994424}
+  buttons:
+  - name: claimButton
+    onClickEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6214543187492908520}
+          m_TargetAssemblyTypeName: TrainingModuleRewardScreen, Assembly-CSharp
+          m_MethodName: ClaimButton
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  eventTitleName: eventTitle
+  eventTimeName: eventTime
+  rewardTitleName: rewardTitle
+  rewardValueName: rewardValue
+  rewardImageName: cardImage
+  rewardDescriptionName: rewardDescription
+  combinationPoolNames:
+  - action1
+  - action2
+  - action3
+  - action4
+  - action5
+  eventTitle: NEW EVENT NAME!
+  eventTime: 4736
 --- !u!114 &6072516106304441697
 MonoBehaviour:
   m_ObjectHideFlags: 0

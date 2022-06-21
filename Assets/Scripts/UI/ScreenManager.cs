@@ -17,7 +17,8 @@ namespace UI
         [SerializeField] private BoxInfoScreen boxInfoScript;
         [SerializeField] private OpenBoxScreen openBoxScript;
         [SerializeField] private LoreThemeScreen loreThemeScript;
-        [SerializeField] private TrainingModuleScreen trainingModuleScript;
+        [SerializeField] public TrainingModuleScreen trainingModuleScript;
+        [SerializeField] private TrainingModuleRewardScreen trainingModuleRewardScript;
         [SerializeField] private UnboxingScreen unboxingScreen;
         [SerializeField] private MetamaskScreen metamaskScreen;
 
@@ -66,6 +67,9 @@ namespace UI
                 case ScreenState.Metamask:
                     metamaskScreen.ActiveScreen();
                     break;
+                case ScreenState.TrainingModuleRewards:
+                    trainingModuleRewardScript.ActiveScreen();
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -108,6 +112,9 @@ namespace UI
                 case ScreenState.Metamask:
                     metamaskScreen.DisableScreen();
                     break;
+                case ScreenState.TrainingModuleRewards:
+                    trainingModuleRewardScript.DisableScreen();
+                    break;
                 default:
                     break;
             }
@@ -122,7 +129,6 @@ namespace UI
             openBoxScript ??= GetComponent<OpenBoxScreen>();
             loreThemeScript ??= GetComponent<LoreThemeScreen>();
             trainingModuleScript ??= GetComponent<TrainingModuleScreen>();
-            
         }
     }
 
@@ -137,6 +143,7 @@ namespace UI
         LoreTheme = 6,
         TrainingModule = 7,
         Unboxing = 8,
-        Metamask = 9
+        Metamask = 9,
+        TrainingModuleRewards = 10
     }
 }

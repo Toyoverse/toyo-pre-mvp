@@ -92,6 +92,28 @@ namespace UI
             if (_label != null)
                 _label.text = value;
         }
+        
+        protected string GetDurationConvertedToString(int durationInMinutes)
+        {
+            var _minutes = durationInMinutes;
+            var _hours = 0;
+            var _days = 0;
+            while (_minutes >= 60)
+            {
+                _hours += 1;
+                _minutes -= 60;
+            }
+            while (_hours >= 24)
+            {
+                _days += 1;
+                _hours -= 24;
+            }
+
+            var _result = _days > 0 ? _days + "d " : "";
+            _result += _hours > 0 ? _hours + "h " : "";
+            _result += _minutes + "m";
+            return _result;
+        }
     }
 
     [Serializable]
