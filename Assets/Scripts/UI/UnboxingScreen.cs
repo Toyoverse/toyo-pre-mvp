@@ -27,7 +27,7 @@ public class UnboxingScreen : UIController
 
     private void TriggerUnboxingAnimation()
     {
-        //playableDirector.Play();
+        playableDirector.Play();
     }
 
     private void Awake()
@@ -35,11 +35,12 @@ public class UnboxingScreen : UIController
         if (playableDirector == null)
             playableDirector = GetComponentInChildren<PlayableDirector>();
     }
+    
+    
 
     void OnEnable()
     {
-
-        //playableDirector.stopped += OnPlayableDirectorStopped;
+        playableDirector.stopped += OnPlayableDirectorStopped;
     }
 
     void OnPlayableDirectorStopped(PlayableDirector aDirector)
@@ -50,7 +51,7 @@ public class UnboxingScreen : UIController
 
     void OnDisable()
     {
-        //playableDirector.stopped -= OnPlayableDirectorStopped;
+        playableDirector.stopped -= OnPlayableDirectorStopped;
     }
     
     //private void OnAnimationComplete() => continueButton.SetActive(true);
