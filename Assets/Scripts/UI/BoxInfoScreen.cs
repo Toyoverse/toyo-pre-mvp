@@ -115,12 +115,12 @@ namespace UI
                     name = rewardName + _i,
                     style =
                     {
-                        width = 160,
-                        height = 160,
-                        marginBottom = 10,
-                        marginTop = 10,
-                        marginLeft = 10,
-                        marginRight = 10,
+                        width = 130,
+                        height = 130,
+                        marginBottom = 17,
+                        marginTop = 50,
+                        marginLeft = 17,
+                        marginRight = 17,
                         backgroundImage = new StyleBackground(_reward.sprite)
                     }
                 };

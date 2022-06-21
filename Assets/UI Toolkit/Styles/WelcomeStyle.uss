@@ -613,6 +613,7 @@
     -unity-font-definition: url('project://database/Assets/Fonts/wbv5%20SDF.asset?fileID=11400000&guid=3e43c66971debf64dbe3e8828b8951c6&type=2#wbv5 SDF');
     color: rgb(255, 255, 255);
 }
+
 .metamaskButtonStyle {
     width: 847px;
     height: 186px;
@@ -861,6 +862,7 @@
     height: 160px;
     -unity-font-definition: url('project://database/Assets/Fonts/wbv5%20SDF.asset?fileID=11400000&guid=3e43c66971debf64dbe3e8828b8951c6&type=2#wbv5 SDF');
 }
+
 .actionStyle {
     width: 350px;
     height: 100%;
@@ -892,6 +894,112 @@
 .actionImageStyle {
     width: 100%;
     height: 80%;
-    background-color: rgba(255, 255, 255, 255);
+    background-color: rgb(255, 255, 255);
     background-image: none;
+}
+
+.unity-scroller__high-button {
+    left: 441px;
+    top: -206px;
+    background-image: url('project://database/Assets/Images/Buttons/mini_rightarrow_normal.png?fileID=2800000&guid=70732642e89da434e923af6c3df80fb2&type=3#mini_rightarrow_normal');
+    -unity-background-scale-mode: stretch-to-fill;
+    background-color: rgba(255, 255, 255, 0);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    width: 171px;
+    height: 228px;
+    scale: 0.4 0.4;
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+    translate: 0 0;
+}
+
+.unity-scroller__high-button:hover {
+    left: 441px;
+    top: -206px;
+    background-image: url('project://database/Assets/Images/Buttons/mini_rightarrow_hover.png?fileID=2800000&guid=445cf528487b3bd4596b9f61637ee848&type=3#mini_rightarrow_hover');
+    -unity-background-scale-mode: stretch-to-fill;
+    background-color: rgba(255, 255, 255, 0);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    width: 171px;
+    height: 228px;
+    scale: 0.4 0.4;
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+    translate: 12px 0;
+}
+
+.unity-scroller__high-button:active {
+    left: 441px;
+    top: -206px;
+    background-image: url('project://database/Assets/Images/Buttons/mini_rightarrow_pressed.png?fileID=2800000&guid=1a3944abd7646ec498d4c72f3941a71f&type=3#mini_rightarrow_pressed');
+    -unity-background-scale-mode: stretch-to-fill;
+    background-color: rgba(255, 255, 255, 0);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    width: 171px;
+    height: 228px;
+    scale: 0.4 0.4;
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+    translate: 12px 0;
+}
+
+.unity-scroller__low-button {
+    width: 171px;
+    height: 228px;
+    left: -122px;
+    background-image: url('project://database/Assets/Images/Buttons/mini_leftarrow_normal.png?fileID=2800000&guid=4518f4fe95d84c34ea7308d7ba449feb&type=3#mini_leftarrow_normal');
+    background-color: rgba(255, 255, 255, 0);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    -unity-background-image-tint-color: rgba(255, 255, 255, 255);
+    top: -206px;
+    scale: 0.4 0.4;
+}
+
+.unity-scroller__low-button:hover {
+    width: 171px;
+    height: 228px;
+    left: -122px;
+    background-image: url('project://database/Assets/Images/Buttons/mini_leftarrow_hover.png?fileID=2800000&guid=8a09ceaee94ddb74f8e583881ec2f769&type=3#mini_leftarrow_hover');
+    background-color: rgba(255, 255, 255, 0);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+    top: -206px;
+    scale: 0.4 0.4;
+    translate: -12px 0;
+}
+
+.unity-scroller__low-button:active {
+    width: 171px;
+    height: 228px;
+    left: -122px;
+    background-image: url('project://database/Assets/Images/Buttons/mini_leftarrow_pressed.png?fileID=2800000&guid=8df616d5ddc007147b81714fe6f1a77e&type=3#mini_leftarrow_pressed');
+    background-color: rgba(255, 255, 255, 0);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+    top: -206px;
+    scale: 0.4 0.4;
+    translate: -12px 0;
+}
+
+.unity-base-slider__drag-container {
+    left: 86px;
+    width: 74%;
+    height: 100%;
+    display: flex;
+    visibility: hidden;
 }
