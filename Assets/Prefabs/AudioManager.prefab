@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7102462045466808451}
   - component: {fileID: 7102462045466808448}
+  - component: {fileID: 1820157587}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -128,3 +129,31 @@ MonoBehaviour:
       Data3: -945557630
       Data4: -89226145
     Path: event:/backgroundMusic
+--- !u!114 &1820157587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7102462045466808449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a332622371f40d3ba23493b4f57c5ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPlayingSound: 0
+  continuousSound:
+    Guid:
+      Data1: 909011020
+      Data2: 1324950236
+      Data3: -945557630
+      Data4: -89226145
+    Path: event:/backgroundMusic
+  onDestroySound:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  musicChangeParameters: 0

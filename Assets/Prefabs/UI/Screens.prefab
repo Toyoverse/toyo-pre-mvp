@@ -364,9 +364,9 @@ MonoBehaviour:
   - m_Script
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
-  m_Priority: 10
+  m_Priority: 11
   m_StandbyUpdate: 2
-  m_LookAt: {fileID: 290158548619663619}
+  m_LookAt: {fileID: 3005916623410598919}
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 60
@@ -1821,7 +1821,7 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
   playableDirector: {fileID: 1170154382}
-  timeoutButton: 1
+  timeoutButton: 10
 --- !u!114 &1354601111
 MonoBehaviour:
   m_ObjectHideFlags: 0
