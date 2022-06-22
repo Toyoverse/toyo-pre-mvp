@@ -95,14 +95,14 @@ namespace UI
 
         protected void EnableVisualElement(string elementName)
         {
-            var _visualE = Root?.Q<Label>(elementName);
+            var _visualE = Root?.Q<VisualElement>(elementName);
             if (_visualE != null)
                 _visualE.style.display = DisplayStyle.Flex;
         }
         
         protected void DisableVisualElement(string elementName)
         {
-            var _visualE = Root?.Q<Label>(elementName);
+            var _visualE = Root?.Q<VisualElement>(elementName);
             if (_visualE != null)
                 _visualE.style.display = DisplayStyle.None;
         }
