@@ -28,6 +28,8 @@ namespace UI
         private string luckProgressName = "Luck";
         
         protected string toyoNameField = "toyoName";
+        protected string rarityNameField = "rarity_name";
+        protected string rarityIdField = "rarity_number";
         
         protected string toyoLevelField = "numberLvl";
         protected string toyoHearthBoundField = "numberHb";
@@ -42,8 +44,15 @@ namespace UI
         {
             _toyoObject = GetSelectedToyo();
             SetToyoStats();
+            SetToyoRarity(_toyoObject.GetToyoRarity());
             Root.Q<Label>(toyoNameField).text = _toyoObject.GetToyoName();
             ToyoManager.MoveToyoToCenterOpenBox();
+        }
+
+        protected void SetToyoRarity(string rarity)
+        {
+            Root.Q<Label>(rarityNameField).text = rarity;
+            //Todo Rarity Color System
         }
 
         protected void SetToyoStats(ToyoObject selectedToyo = null)

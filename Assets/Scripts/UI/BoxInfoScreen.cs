@@ -47,6 +47,7 @@ namespace UI
         {
             //TODO: OpenBox
             Debug.Log("OPEN BOX " + GetBoxSelected().BoxName);
+            ToyoManager.SetSelectedBox(carousel.CurrentSelectedObject.gameObject);
             ScreenManager.Instance.GoToScreen(ScreenState.Unboxing);
         }
 

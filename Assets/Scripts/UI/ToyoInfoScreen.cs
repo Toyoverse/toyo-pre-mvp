@@ -38,9 +38,10 @@ namespace UI
         {
             _carouselToyoObject = GetSelectedToyoFromCarousel();
             SetToyoStats(_carouselToyoObject);
+            SetToyoRarity(_carouselToyoObject.GetToyoRarity());
             Root.Q<Label>(toyoNameField).text = _carouselToyoObject.GetToyoName();
         }
-
+        
         private ToyoObject GetSelectedToyoFromCarousel() 
             => carousel.CurrentSelectedObject.GetComponent<ToyoObject>();
         

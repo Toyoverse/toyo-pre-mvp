@@ -18,7 +18,8 @@ public class ToyoManager : MonoBehaviour
     
     public Transform openBoxToyoPivot;
     public Transform mainMenuToyoPivot;
-    
+
+    private GameObject _selectedBox;
     
     private List<ToyoObject> _toyoList;
     public List<ToyoObject> ToyoList => _toyoList ??= CreateToyoObjectList();
@@ -26,6 +27,10 @@ public class ToyoManager : MonoBehaviour
     private static ToyoManager _instance;
 
     public static ToyoObject GetSelectedToyo() => _instance.ToyoList.Find(toyoObject => toyoObject.IsToyoSelected);
+
+    public static void SetSelectedBox(GameObject selectedBox) => _instance._selectedBox = selectedBox;
+    
+    public static GameObject GetSelectedBox() => _instance._selectedBox;
     
     public static Camera MainCamera;
     

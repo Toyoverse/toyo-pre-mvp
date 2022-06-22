@@ -5,7 +5,8 @@ using UnityEngine;
 public class BoxConfig : MonoBehaviour
 {
     public BoxConfigSO boxConfig;
-    public GameObject model;
+    public GameObject model3D;
+    public GameObject model2D;
     
     public string BoxName { get; private set; }
     public BOX_REGION BoxRegion { get; private set; }
@@ -20,7 +21,6 @@ public class BoxConfig : MonoBehaviour
         BoxType = boxConfig.boxType;
         PossibleRewards = boxConfig.possibleRewards;
         DropRate = boxConfig.DropRate;
-        if(model == null)
-            model = GetComponentInChildren<GameObject>();
+
     }
 }

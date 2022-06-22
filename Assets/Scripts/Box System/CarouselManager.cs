@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
+using UnityEngine.Serialization;
 using UnityTemplateProjects.Audio;
 using Quaternion = UnityEngine.Quaternion;
 using Vector3 = UnityEngine.Vector3;
@@ -15,7 +16,9 @@ public class CarouselManager : MonoBehaviour
     public float carouselOffset = 5.0f;
 
     [SerializeField]
-    public bool IsToyoCarousel;
+    public bool is2DCarousel;
+    
+    public bool isToyoCarousel;
 
     public Transform StartingPosition;
     
@@ -61,12 +64,11 @@ public class CarouselManager : MonoBehaviour
     private void OnEnable()
     {
         
-        
-
-        if (IsToyoCarousel)
-            SetToyoStartingPosition();
-        else
+        if (!isToyoCarousel)
             CurrentSelectedObject = allObjects[_currentSelectedIndex];
+        
+        if (is2DCarousel)
+            SetToyoStartingPosition();
         
         MoveToStartingPosition();
         
@@ -122,7 +124,7 @@ public class CarouselManager : MonoBehaviour
                 _ourTimeDelta-= (_currentTime-duration);
             objectToRotate.RotateAround(anchor.position, Vector3.up, _angleDelta*_ourTimeDelta);
             
-            if(IsToyoCarousel)
+            if(is2DCarousel)
                 objectToRotate.LookAt(ToyoManager.MainCamera.transform);
             
             yield return null;

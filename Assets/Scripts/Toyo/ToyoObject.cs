@@ -47,11 +47,14 @@ public class ToyoObject : MonoBehaviour
     private int _toyoTotalPartsLevel;
     private int _toyoTotalPartsHearthbound;
     private int _numberOfParts;
+    private string _rarity;
     private float _minimunToyoStat = 9.0f; //Minimun value so it doesn't break the progress bar.
 
     public float GetToyoStat(TOYO_STAT stat) => _toyoStats[stat] > _minimunToyoStat ? _toyoStats[stat] : _minimunToyoStat;
 
     public string GetToyoName() => _toyoName;
+    
+    public string GetToyoRarity() => _rarity;
 
     public int GetToyoLevel() => _toyoTotalPartsLevel / _numberOfParts;
 
@@ -101,6 +104,8 @@ public class ToyoObject : MonoBehaviour
     public ToyoObject(Toyo toyo)
     {
         SetTotalStats(toyo.parts.ToList());
+
+        _rarity = toyo.toyoPersona.rarity;
         
         //Todo Uncoment this when we use toyo rename system
         //_toyoName = !string.IsNullOrEmpty(toyo.name) ? toyo.name : toyo.parts[0].toyoPersona.name;
