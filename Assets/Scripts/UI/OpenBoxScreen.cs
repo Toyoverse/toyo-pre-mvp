@@ -38,6 +38,10 @@ namespace UI
 
         private float maxStatValue = 200.0f;
 
+        public string overviewTabName = "overviewDescription";
+        public string toyoTabName = "toyoPartsDescription";
+        
+
         protected ToyoObject GetSelectedToyo() => ToyoManager.GetSelectedToyo();
         
         protected override void UpdateUI()
@@ -105,5 +109,15 @@ namespace UI
             };
         }
 
+        public void OverviewTab()
+        {
+            DisableVisualElement(toyoTabName);
+            EnableVisualElement(overviewTabName);
+        }
+        public void ToyoTab()
+        {
+            DisableVisualElement(overviewTabName);
+            EnableVisualElement(toyoTabName);
+        }
     }
 }

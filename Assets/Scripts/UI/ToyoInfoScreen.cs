@@ -24,16 +24,6 @@ namespace UI
             UpdateUI();
         }
 
-        public void OverviewButton()
-        {
-            Debug.Log("Overview button clicked!");
-        }
-
-        public void ToyoPartsButton()
-        {
-            Debug.Log("ToyoParts button clicked!");
-        }
-
         protected override void UpdateUI()
         {
             _carouselToyoObject = GetSelectedToyoFromCarousel();
