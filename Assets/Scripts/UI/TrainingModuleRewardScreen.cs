@@ -21,20 +21,23 @@ public class TrainingModuleRewardScreen : UIController
     {
         ApplySelectedActions();
         SetTextInLabel(eventTitleName, eventTitle);
-        SetTextInLabel(eventTimeName, GetDurationConvertedToString(eventTime));
+        SetTextInLabel(eventTimeName, ConvertMinutesToString(eventTime));
         ShowRewards();
     }
     
     public void ClaimButton()
     {
+        //TODO: Claim Rewards
         Debug.Log("Claim Rewards");
         ScreenManager.Instance.GoToScreen(ScreenState.MainMenu);
     }
 
     private void ApplySelectedActions()
     {
+        //TODO: Get selected actions to database
         for (var _i = 0; _i < ScreenManager.Instance.trainingModuleScript.selectedActions.Count; _i++)
         {
+            //TODO: Melhorar
             if (_i > 2)
                 Root.Q<VisualElement>(combinationPoolNames[_i]).style.display = DisplayStyle.Flex;
             SetVisualElementSprite(combinationPoolNames[_i], 

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.TextCore.Text;
 using UnityEngine.UIElements;
 using UnityTemplateProjects.Audio;
 
@@ -38,8 +39,12 @@ namespace UI
                 if (Root?.Q<Button>(_cb.name) != null)
                 {
                     _cb.Button = Root.Q<Button>(_cb.name);
-                    _cb.Button.clickable.clicked += PlayClickSound;
-                    _cb.Button.clickable.clicked += _cb.onClickEvent.Invoke;
+                    _cb.Button.RegisterCallback<MouseUpEvent>
+                        (_ =>
+                        {
+                            PlayClickSound();
+                            _cb.onClickEvent.Invoke();
+                        });
                 }
                 else
                 {
@@ -60,8 +65,12 @@ namespace UI
                 if (Root?.Q<Button>(_cb.name) != null)
                 {
                     _cb.Button = Root.Q<Button>(_cb.name);
-                    _cb.Button.clickable.clicked -= PlayClickSound;
-                    _cb.Button.clickable.clicked -= _cb.onClickEvent.Invoke;
+                    _cb.Button.UnregisterCallback<MouseUpEvent>
+                        (_ =>
+                        {
+                            PlayClickSound();
+                            _cb.onClickEvent.Invoke();
+                        });
                 }
                 else
                 {
@@ -106,8 +115,24 @@ namespace UI
             if (_visualE != null)
                 _visualE.style.display = DisplayStyle.None;
         }
-        
-        protected string GetDurationConvertedToString(int durationInMinutes)
+
+        protected Label CreateNewLabel(string labelName, string labelText, FontAsset fontAsset, int fontSize, Color fontColor, Color backgroundColor)
+        {
+            return new Label()
+            {
+                name = labelName,
+                text = labelText,
+                style =
+                {
+                    fontSize = fontSize,
+                    unityFontDefinition = new StyleFontDefinition(fontAsset),
+                    backgroundColor = backgroundColor,
+                    color = fontColor
+                }
+            };
+        }
+
+        protected string ConvertMinutesToString(int durationInMinutes)
         {
             var _minutes = durationInMinutes;
             var _hours = 0;

@@ -9,29 +9,29 @@ using UnityEngine.UIElements;
 
 public class TrainingModuleScreen : UIController
 {
-    public string eventTitleName = "eventTitle";
-    public string eventTimeName = "eventTime";
-    public string combPoolContainer = "actions";
+    public string eventTitleName;
+    public string eventTimeName;
+    public string combPoolContainer;
     public string[] combPoolNames;
     public string[] combPoolImagesNames;
     public string[] removePoolNames;
-    public string startTrainingButtonName = "startButton";
+    public string startTrainingButtonName;
 
     [Header("In Training names")] 
-    public string inTrainingBoxName = "inTrainingBox";
-    public string inTrainingTitleName = "inTrainingTitle";
-    public string inTrainingTimeName = "inTrainingTime";
+    public string inTrainingBoxName;
+    public string inTrainingTitleName;
+    public string inTrainingTimeName;
     
     [Header("Reward names")]
-    public string rewardTitleName = "rewardTitle";
-    public string investName = "invest";
-    public string receiveName = "receive";
-    public string durationName = "duration";
+    public string rewardTitleName;
+    public string investName;
+    public string receiveName;
+    public string durationName;
 
     [Header("Actions Selection names")]
-    public string actionSelectionAreaName = "actionsSelectorBox";
-    public string actionScrollName = "actionScroll";
-    public string previewActionName = "actionImage";
+    public string actionSelectionAreaName;
+    public string actionScrollName;
+    public string previewActionName;
     private int _selectedActionID = 0;
     private TrainingActionType _oldTypeSelected;
     private int _minimumActionsToPlay = 3;
@@ -53,11 +53,13 @@ public class TrainingModuleScreen : UIController
 
     protected override void UpdateUI()
     {
+        CheckActionsCount();
+        ApplyRewardsCalculation();
         SetTextInLabel(eventTitleName, _eventTitle);
-        SetTextInLabel(eventTimeName, GetDurationConvertedToString(_eventTime));
+        SetTextInLabel(eventTimeName, ConvertMinutesToString(_eventTime));
         SetTextInLabel(investName, "Invest: $" + _investValue);
         SetTextInLabel(receiveName, "Receive: $" + _receiveValue);
-        SetTextInLabel(durationName, "Duration: " + GetDurationConvertedToString(_durationValue));
+        SetTextInLabel(durationName, "Duration: " + ConvertMinutesToString(_durationValue));
         CheckToyoIsTraining();
     }
     
@@ -65,6 +67,8 @@ public class TrainingModuleScreen : UIController
     {
         base.ActiveScreen();
         AddActionSelectEvents();
+        DisableAllCombinationPoolVisualElements();
+        UpdateUI();
     }
 
     public override void DisableScreen()
@@ -84,18 +88,20 @@ public class TrainingModuleScreen : UIController
     {
         for (var _i = 0; _i < combPoolImagesNames.Length; _i++)
         {
-            var _i1 = _i;
-            Root?.Q<VisualElement>(combPoolImagesNames[_i]).RegisterCallback<ClickEvent>
+            var _selectedActionIndex = _i;
+            var _addActionButton = Root?.Q<VisualElement>(combPoolImagesNames[_i]);
+            _addActionButton?.RegisterCallback<ClickEvent>
             (_ =>
                 {
-                    SetSelectedID(_i1);
-                    OpenActionSelection();
+                    SetSelectedID(_selectedActionIndex);
+                    OpenActionSelectionScreen();
                 }
             );
-            Root?.Q<VisualElement>(removePoolNames[_i]).RegisterCallback<ClickEvent>
+            var _deleteActionButton = Root?.Q<VisualElement>(removePoolNames[_i]);
+            _deleteActionButton?.RegisterCallback<ClickEvent>
             (_ => 
                 {
-                    RemoveAction(_i1);
+                    RemoveAction(_selectedActionIndex);
                 }
             );
         }
@@ -105,18 +111,20 @@ public class TrainingModuleScreen : UIController
     {
         for (var _i = 0; _i < combPoolImagesNames.Length; _i++)
         {
-            var _i1 = _i;
-            Root?.Q<VisualElement>(combPoolImagesNames[_i]).UnregisterCallback<ClickEvent>
+            var _selectedActionIndex = _i;
+            var _addActionButton = Root?.Q<VisualElement>(combPoolImagesNames[_i]);
+            _addActionButton?.UnregisterCallback<ClickEvent>
             (_ =>
                 {
-                    SetSelectedID(_i1);
-                    OpenActionSelection();
+                    SetSelectedID(_selectedActionIndex);
+                    OpenActionSelectionScreen();
                 }
             );
-            Root?.Q<VisualElement>(removePoolNames[_i]).UnregisterCallback<ClickEvent>
+            var _deleteActionButton = Root?.Q<VisualElement>(removePoolNames[_i]);
+            _deleteActionButton?.UnregisterCallback<ClickEvent>
             (_ => 
                 {
-                    RemoveAction(_i1);
+                    RemoveAction(_selectedActionIndex);
                 }
             );
         }
@@ -130,25 +138,23 @@ public class TrainingModuleScreen : UIController
 
     private void ConfirmAction(TrainingActionSO actionSo)
     {
-        Root.Q<VisualElement>(combPoolNames[_selectedActionID]).style.display = DisplayStyle.Flex;
-        Root.Q<VisualElement>(removePoolNames[_selectedActionID]).style.display = DisplayStyle.Flex;
+        EnableVisualElement(combPoolNames[_selectedActionID]);
+        EnableVisualElement(removePoolNames[_selectedActionID]);
         SetVisualElementSprite(combPoolImagesNames[_selectedActionID], actionSo.sprite);
-        CloseActionSelection();
-        selectedActions.Add(_selectedActionID, actionSo);
-        CheckActionsCount();
-        ApplyRewardsCalculation();
+        CloseActionSelectionScreen();
+        if (!selectedActions.ContainsKey(_selectedActionID))
+            selectedActions.Add(_selectedActionID, actionSo);
+        else
+            selectedActions[_selectedActionID] = actionSo;
         UpdateUI();
     }
 
     private void RemoveAction(int i)
     {
-        //TODO: Complete and use this method
         selectedActions.Remove(i);
         SetVisualElementSprite(combPoolImagesNames[i], null);
-        Root.Q<VisualElement>(combPoolNames[i]).style.display = DisplayStyle.None;
-        Root.Q<VisualElement>(removePoolNames[i]).style.display = DisplayStyle.None;
-        CheckActionsCount();
-        ApplyRewardsCalculation();
+        DisableVisualElement(combPoolNames[i]);
+        DisableVisualElement(removePoolNames[i]);
         UpdateUI();
     }
 
@@ -156,40 +162,69 @@ public class TrainingModuleScreen : UIController
     {
         var _action = Root.Q<VisualElement>(actionName);
         var _actionContainer = Root.Q<VisualElement>(combPoolContainer);
-        _actionContainer.Insert(_actionContainer.childCount, _action);
+        _actionContainer?.Insert(_actionContainer.childCount, _action);
     }
 
     private void CheckActionsCount()
     {
         if (selectedActions.Count >= combPoolNames.Length)
             return;
-        RevealNextAction();
-        var _startButton = Root.Q<Button>(startTrainingButtonName);
-        _startButton.visible = selectedActions.Count >= _minimumActionsToPlay;
+        CheckAndRevealNextAction();
+        CheckAndRevealStartButton();
     }
 
-    private void RevealNextAction()
+    private void CheckAndRevealStartButton()
+    {
+        var _startButton = Root.Q<Button>(startTrainingButtonName);
+        if(_startButton != null) 
+            _startButton.visible = selectedActions.Count >= _minimumActionsToPlay;
+    }
+
+    private void CheckAndRevealNextAction()
+    {
+        if (!IsNecessaryRevealNewAction())
+            return;
+        RevealNextAction();
+    }
+
+    private bool IsNecessaryRevealNewAction()
     {
         var _activeActionCount = 0;
         foreach (var _name in combPoolNames)
         {
-            var _action = Root.Q<VisualElement>(_name);
-            if (_action.style.display == DisplayStyle.Flex)
+            if (ActionIsEnabled(_name))
                 _activeActionCount++;
         }
-        Debug.Log("activeActionCount: " + _activeActionCount);
-        if (_activeActionCount > selectedActions.Count)
-            return;
-        
+        return selectedActions.Count >= _activeActionCount;
+    }
+
+    private void RevealNextAction()
+    {
         for (var _i = 0; _i < combPoolNames.Length; _i++)
         {
-            var _action = Root.Q<VisualElement>(combPoolNames[_i]);
-            if (_action.style.display == DisplayStyle.Flex) 
+            if (ActionIsEnabled(combPoolNames[_i])) 
                 continue;
             SetActionToLastPosition(combPoolNames[_i]);
-            _action.style.display = DisplayStyle.Flex;
-            Debug.Log("Next Action Reveal!");
+            EnableVisualElement(combPoolNames[_i]);
             break;
+        }
+    }
+
+    private void DisableAllCombinationPoolVisualElements()
+    {
+        foreach (var _name in combPoolNames)
+            DisableVisualElement(_name);
+    }
+
+    private bool ActionIsEnabled(string actionName)
+    {
+        var _visualE = Root?.Q<VisualElement>(actionName);
+        if (_visualE != null)
+            return _visualE.style.display != DisplayStyle.None;
+        else
+        {
+            Debug.Log(actionName + "is null!");
+            return false;
         }
     }
 
@@ -210,20 +245,11 @@ public class TrainingModuleScreen : UIController
         _oldTypeSelected = type;
         foreach (var _action in GetFilteredActions(type))
         {
-            var _label = new Label()
-            {
-                name = _action.id.ToString(),
-                text = _action.name,
-                style =
-                {
-                    fontSize = 32,
-                    unityFontDefinition = new StyleFontDefinition(fontAsset),
-                    backgroundColor = Color.white
-                }
-            };
+            var _label = CreateNewLabel(_action.id.ToString(), _action.name, fontAsset, 
+                                        32, Color.black, Color.white);
             _label.RegisterCallback<MouseEnterEvent>(_ 
                 => SetVisualElementSprite(previewActionName, _action.sprite));
-            _label.RegisterCallback<ClickEvent>(_
+            _label.RegisterCallback<MouseUpEvent>(_
                 => ConfirmAction(_action));
             _scrollView.Add(_label);
         }
@@ -238,7 +264,7 @@ public class TrainingModuleScreen : UIController
             var _label = Root.Q<Label>(_action.id.ToString());
             _label.UnregisterCallback<MouseEnterEvent>(_ 
                 => SetVisualElementSprite(previewActionName, _action.sprite));
-            _label.UnregisterCallback<ClickEvent>(_
+            _label.UnregisterCallback<MouseUpEvent>(_
                 => ConfirmAction(_action));
         }
     }
@@ -246,16 +272,14 @@ public class TrainingModuleScreen : UIController
     private List<TrainingActionSO> GetFilteredActions(TrainingActionType filter) 
         => possibleActions.Where(action => action.type == filter).ToList();
 
-    private void OpenActionSelection()
+    private void OpenActionSelectionScreen()
     {
         var _actionArea = Root.Q<GroupBox>(actionSelectionAreaName);
         _actionArea.visible = true;
         SetVisualElementSprite(previewActionName, null);
-        if (selectedActions.ContainsKey(_selectedActionID))
-            selectedActions.Remove(_selectedActionID);
     }
 
-    private void CloseActionSelection()
+    private void CloseActionSelectionScreen()
     {
         ClearPossibleActionsEvents();
         var _scrollView = Root.Q<ScrollView>(actionScrollName);
@@ -269,22 +293,8 @@ public class TrainingModuleScreen : UIController
 
     public override void BackButton() => ScreenManager.Instance.GoToScreen(ScreenState.MainMenu);
 
-    public void SetInvestUI(float value) => SetTextInLabel(investName, "INVEST: $" + value);
-    
-    public void SetDurationUI(float value) => SetTextInLabel(durationName, "DURATION: " + value + "H");
-    
-    public void SetReceiveUI(float value) => SetTextInLabel(receiveName, "RECEIVE: $" + value);
-
     public void StartButton()
-    {
-        Debug.Log("Send Toyo to Quest button clicked!");
-        foreach (var _action in selectedActions)
-        {
-            Debug.Log(_action.Value.name + ", id: " + _action.Value.id);
-        }
-        
-        GenericPopUp.Instance.ShowPopUp("Are you sure?", SendToyoToTraining, () => {});
-    }
+        => GenericPopUp.Instance.ShowPopUp("Are you sure?", SendToyoToTraining, () => {});
 
     private void SendToyoToTraining()
     {
@@ -306,14 +316,14 @@ public class TrainingModuleScreen : UIController
         }
     }
 
-    private void CheckToyoIsTraining()
+    private void CheckToyoIsTraining() //TODO: Change name
     {
         var _trainingBox = Root.Q<GroupBox>(inTrainingBoxName);
         if (_inTraining)
         {
             _trainingBox.visible = true;
             SetTextInLabel(inTrainingTitleName, _inTrainingTitle);
-            SetTextInLabel(inTrainingTimeName, GetDurationConvertedToString(_inTrainingTimeLeft));
+            SetTextInLabel(inTrainingTimeName, ConvertMinutesToString(_inTrainingTimeLeft));
         }
         else
             _trainingBox.visible = false;
