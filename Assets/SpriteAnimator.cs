@@ -132,6 +132,7 @@ public class SpriteAnimator : MonoBehaviour
 				NextFrame(animation);
 			}
 
+			if (currentFrame == -1) currentFrame = 0; //FixLater
 			spriteRenderer.sprite = animation.frames[currentFrame];
 		}
 
@@ -207,9 +208,12 @@ public class SpriteAnimator : MonoBehaviour
 	{
 		if (playing) return;
 		playing = true;
+		currentFrame = 0;
 		if(currentAnimation != null)
 			StartCoroutine(PlayAnimation(currentAnimation));
 		else
 			Play("idle");
+
+		disableAnimationOnStart = false;
 	}
 }

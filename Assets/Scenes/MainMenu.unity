@@ -1000,6 +1000,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 64713333, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 64713333, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.55
+      objectReference: {fileID: 0}
     - target: {fileID: 1293919149, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
       propertyPath: m_LocalPosition.y
       value: 1
@@ -1007,6 +1015,14 @@ PrefabInstance:
     - target: {fileID: 1293919151, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
       propertyPath: m_LookAt
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1479302849, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1479302849, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 6072516106304441697, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
       propertyPath: unboxingVirtualCamera
