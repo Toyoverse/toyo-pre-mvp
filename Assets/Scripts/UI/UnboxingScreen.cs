@@ -30,16 +30,13 @@ public class UnboxingScreen : UIController
     private void MoveSelectedBoxToUnboxingScreen()
     {
         ToyoManager.GetSelectedBox().transform.SetParent(unboxingPivot);
-        var _newPosition = ToyoManager.GetSelectedBox().transform.position - new Vector3(0, 1, 0);
-        ToyoManager.GetSelectedBox().transform.position = _newPosition;
     }
 
 
     private void MoveSelectedBoxToBoxInfoScreen()
     {
         ToyoManager.GetSelectedBox().transform.SetParent(boxInfoPivot);
-        var _newPosition = ToyoManager.GetSelectedBox().transform.position + new Vector3(0, 1, 0);
-        ToyoManager.GetSelectedBox().transform.position = _newPosition;
+
     }
         
 

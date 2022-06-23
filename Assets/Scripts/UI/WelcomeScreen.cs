@@ -6,9 +6,11 @@ namespace UI
 {
     public class WelcomeScreen : UIController
     {
+        
         private void Start()
         {
             AudioManager.Instance.startHomePageSfx.PlayOneShot(transform.position);
+            
         }
 
         public void OpenSeaButton()

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Database;
@@ -51,6 +52,15 @@ namespace UI
             SetToyoRarity(_toyoObject.GetToyoRarity());
             Root.Q<Label>(toyoNameField).text = _toyoObject.GetToyoName();
             ToyoManager.MoveToyoToCenterOpenBox();
+            if(FadeController.InFade)
+                StartCoroutine(EndFade());
+        }
+
+        IEnumerator EndFade()
+        {
+            yield return new WaitForSeconds(1.5f);
+            FadeController.Out();
+            Debug.Log("out");
         }
 
         protected void SetToyoRarity(string rarity)
