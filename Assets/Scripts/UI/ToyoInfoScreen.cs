@@ -12,24 +12,34 @@ namespace UI
         public CarouselManager carousel;
 
         private ToyoObject _carouselToyoObject;
+        private SpriteAnimator _carouselToyoAnimator;
 
         public void NextToyoButton()
         {
+            _carouselToyoAnimator.StopAnimation();
             carousel.SwipeRight();
             UpdateUI();
         }
         public void PreviousToyoButton()
         {
+            _carouselToyoAnimator.StopAnimation();
             carousel.SwipeLeft();
             UpdateUI();
         }
 
         protected override void UpdateUI()
         {
-            _carouselToyoObject = GetSelectedToyoFromCarousel();
+            UpdateSelectedToyo();
+            _carouselToyoAnimator.PlayAnimation();
             SetToyoStats(_carouselToyoObject);
             SetToyoRarity(_carouselToyoObject.GetToyoRarity());
             Root.Q<Label>(toyoNameField).text = _carouselToyoObject.GetToyoName();
+        }
+
+        private void UpdateSelectedToyo()
+        {
+            _carouselToyoObject = GetSelectedToyoFromCarousel();
+            _carouselToyoAnimator = _carouselToyoObject.GetComponentInChildren<SpriteAnimator>();
         }
         
         private ToyoObject GetSelectedToyoFromCarousel() 

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: ToyoPersona_Gaja
   m_EditorClassIdentifier: 
   objectId: 2VYo3WbxmBr
-  toyoImage: {fileID: 1945413062895215098, guid: 0a40ec5a0b543bd4484538af645ab2fe, type: 3}
+  toyoPrefab: {fileID: 1945413062895215098, guid: 0bb68b71efd6fe845a90afc34aa978d7, type: 3}

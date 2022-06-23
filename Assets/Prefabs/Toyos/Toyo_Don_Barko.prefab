@@ -1,0 +1,198 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1430251461058234609
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 204551113645376663}
+  - component: {fileID: 3066921206469360310}
+  - component: {fileID: 1790205337102454461}
+  m_Layer: 0
+  m_Name: ToyoSpriteSheet
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &204551113645376663
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1430251461058234609}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7232329437599963948}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &3066921206469360310
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1430251461058234609}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 374345146, guid: 16e046651a3758e41989350a07c5467f, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 5.12, y: 5.12}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!114 &1790205337102454461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1430251461058234609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88abfa4b8faea7641a8198e311dc640d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 3066921206469360310}
+  animations:
+  - name: idle
+    fps: 60
+    frames:
+    - {fileID: 374345146, guid: 16e046651a3758e41989350a07c5467f, type: 3}
+    - {fileID: -442863211, guid: 16e046651a3758e41989350a07c5467f, type: 3}
+    - {fileID: 1664510175, guid: 16e046651a3758e41989350a07c5467f, type: 3}
+    - {fileID: 1920137204, guid: 16e046651a3758e41989350a07c5467f, type: 3}
+    - {fileID: 1367430683, guid: 16e046651a3758e41989350a07c5467f, type: 3}
+    - {fileID: -769304484, guid: 16e046651a3758e41989350a07c5467f, type: 3}
+    - {fileID: 493636536, guid: 16e046651a3758e41989350a07c5467f, type: 3}
+    - {fileID: -2055302463, guid: 16e046651a3758e41989350a07c5467f, type: 3}
+    - {fileID: 1155809508, guid: 16e046651a3758e41989350a07c5467f, type: 3}
+    - {fileID: -779191546, guid: 16e046651a3758e41989350a07c5467f, type: 3}
+    - {fileID: -534868288, guid: 16e046651a3758e41989350a07c5467f, type: 3}
+    - {fileID: -796097062, guid: 16e046651a3758e41989350a07c5467f, type: 3}
+    - {fileID: 1348045818, guid: 16e046651a3758e41989350a07c5467f, type: 3}
+    - {fileID: 2089509627, guid: 16e046651a3758e41989350a07c5467f, type: 3}
+    - {fileID: -1505729029, guid: 16e046651a3758e41989350a07c5467f, type: 3}
+    - {fileID: 1324776686, guid: 16e046651a3758e41989350a07c5467f, type: 3}
+    - {fileID: -115856537, guid: 16e046651a3758e41989350a07c5467f, type: 3}
+    - {fileID: 1368301587, guid: 16e046651a3758e41989350a07c5467f, type: 3}
+    - {fileID: -724381064, guid: 16e046651a3758e41989350a07c5467f, type: 3}
+    - {fileID: 1020991754, guid: 16e046651a3758e41989350a07c5467f, type: 3}
+    - {fileID: 256320429, guid: 16e046651a3758e41989350a07c5467f, type: 3}
+    - {fileID: -270864659, guid: 16e046651a3758e41989350a07c5467f, type: 3}
+    - {fileID: 2086229255, guid: 16e046651a3758e41989350a07c5467f, type: 3}
+    - {fileID: 819039441, guid: 16e046651a3758e41989350a07c5467f, type: 3}
+    - {fileID: -169085940, guid: 16e046651a3758e41989350a07c5467f, type: 3}
+    - {fileID: 1277472943, guid: 16e046651a3758e41989350a07c5467f, type: 3}
+    - {fileID: -227552945, guid: 16e046651a3758e41989350a07c5467f, type: 3}
+    - {fileID: 963924671, guid: 16e046651a3758e41989350a07c5467f, type: 3}
+    - {fileID: 1889761765, guid: 16e046651a3758e41989350a07c5467f, type: 3}
+    - {fileID: -1656316312, guid: 16e046651a3758e41989350a07c5467f, type: 3}
+    - {fileID: -1489161956, guid: 16e046651a3758e41989350a07c5467f, type: 3}
+    - {fileID: 2045009366, guid: 16e046651a3758e41989350a07c5467f, type: 3}
+    - {fileID: 353256100, guid: 16e046651a3758e41989350a07c5467f, type: 3}
+    - {fileID: -241521107, guid: 16e046651a3758e41989350a07c5467f, type: 3}
+    - {fileID: 1689850337, guid: 16e046651a3758e41989350a07c5467f, type: 3}
+    - {fileID: 465940737, guid: 16e046651a3758e41989350a07c5467f, type: 3}
+    - {fileID: 33008311, guid: 16e046651a3758e41989350a07c5467f, type: 3}
+    - {fileID: 2002292139, guid: 16e046651a3758e41989350a07c5467f, type: 3}
+    - {fileID: -1405734279, guid: 16e046651a3758e41989350a07c5467f, type: 3}
+    - {fileID: 1887330403, guid: 16e046651a3758e41989350a07c5467f, type: 3}
+    - {fileID: -466000551, guid: 16e046651a3758e41989350a07c5467f, type: 3}
+    - {fileID: 863360414, guid: 16e046651a3758e41989350a07c5467f, type: 3}
+    - {fileID: 900342372, guid: 16e046651a3758e41989350a07c5467f, type: 3}
+    - {fileID: 1464323315, guid: 16e046651a3758e41989350a07c5467f, type: 3}
+    - {fileID: 1590225022, guid: 16e046651a3758e41989350a07c5467f, type: 3}
+    - {fileID: 2140576198, guid: 16e046651a3758e41989350a07c5467f, type: 3}
+    - {fileID: 347551868, guid: 16e046651a3758e41989350a07c5467f, type: 3}
+    - {fileID: -1647725168, guid: 16e046651a3758e41989350a07c5467f, type: 3}
+    - {fileID: 1670878049, guid: 16e046651a3758e41989350a07c5467f, type: 3}
+    - {fileID: 1611064699, guid: 16e046651a3758e41989350a07c5467f, type: 3}
+    - {fileID: 620100984, guid: 16e046651a3758e41989350a07c5467f, type: 3}
+    - {fileID: -1582836464, guid: 16e046651a3758e41989350a07c5467f, type: 3}
+    - {fileID: -1576495893, guid: 16e046651a3758e41989350a07c5467f, type: 3}
+    - {fileID: -1741064008, guid: 16e046651a3758e41989350a07c5467f, type: 3}
+    - {fileID: 977975377, guid: 16e046651a3758e41989350a07c5467f, type: 3}
+    - {fileID: 431753873, guid: 16e046651a3758e41989350a07c5467f, type: 3}
+    - {fileID: 1071573853, guid: 16e046651a3758e41989350a07c5467f, type: 3}
+    - {fileID: -1148325402, guid: 16e046651a3758e41989350a07c5467f, type: 3}
+    - {fileID: 1822366141, guid: 16e046651a3758e41989350a07c5467f, type: 3}
+    triggers: []
+  pingPong: 1
+  playAnimationOnStart: idle
+--- !u!1 &1945413062895215098
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7232329437599963948}
+  m_Layer: 0
+  m_Name: Toyo_Don_Barko
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7232329437599963948
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1945413062895215098}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 204551113645376663}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

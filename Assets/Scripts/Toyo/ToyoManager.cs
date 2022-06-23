@@ -61,6 +61,7 @@ public class ToyoManager : MonoBehaviour
         {
             var _toyoPrefab = Instantiate(GetToyoPersonaPrefab(_databaseToyo.toyoPersona.objectId), toyoListParent);
             var _toyoObjectInstance =_toyoPrefab.AddComponent<ToyoObject, Toyo>(_databaseToyo);
+            _toyoObjectInstance.spriteAnimator = _toyoPrefab.GetComponentInChildren<SpriteAnimator>();
             carouselToyo.allObjects.Add(_toyoPrefab.transform);
             _toyoObjectList.Add(_toyoObjectInstance);
             if (_databaseToyo.isToyoSelected)

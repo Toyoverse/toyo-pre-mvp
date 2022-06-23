@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: ToyoPersona_Rocker
   m_EditorClassIdentifier: 
   objectId: 3VYo3WbxmBr
-  toyoImage: {fileID: 1945413062895215098, guid: 0ae60e4599f91f74495b4a9ee55c9824, type: 3}
+  toyoPrefab: {fileID: 1945413062895215098, guid: 602e2d38b0e75504c9c0e9e27cd8c25f, type: 3}

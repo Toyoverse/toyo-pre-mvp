@@ -68,16 +68,18 @@ public class CarouselManager : MonoBehaviour
             CurrentSelectedObject = allObjects[_currentSelectedIndex];
         
         if (is2DCarousel)
-            SetToyoStartingPosition();
+            Set2DStartingPosition();
         
         MoveToStartingPosition();
         
     }
 
-    private void SetToyoStartingPosition()
+    private void Set2DStartingPosition()
     {
         foreach (var _object in allObjects)
         {
+            if (isToyoCarousel)
+                _object.gameObject.GetComponent<ToyoObject>().spriteAnimator.disableAnimationOnStart = true;
             _object.SetPositionAndRotation(StartingPosition.position, StartingPosition.rotation);
             _object.SetParent(StartingPosition);
             _object.LookAt(ToyoManager.MainCamera.transform);

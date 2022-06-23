@@ -29,6 +29,7 @@ public class SpriteAnimator : MonoBehaviour
 	public Animation currentAnimation { get; private set; }
 	public int currentFrame { get; private set; }
 	public bool loop { get; private set; }
+	public bool disableAnimationOnStart = false;
 
 	public string playAnimationOnStart;
 
@@ -40,7 +41,7 @@ public class SpriteAnimator : MonoBehaviour
 
 	void OnEnable()
 	{
-		if (playAnimationOnStart != "")
+		if (playAnimationOnStart != "" && !disableAnimationOnStart)
 			Play(playAnimationOnStart);
 	}
 
@@ -101,7 +102,9 @@ public class SpriteAnimator : MonoBehaviour
 
 	public Animation GetAnimation(string name)
 	{
-		foreach (Animation animation in animations)
+		foreach (Animation animation in 
+		         
+		         animations)
 		{
 			if (animation.name == name)
 			{
@@ -115,7 +118,7 @@ public class SpriteAnimator : MonoBehaviour
 	{
 		float timer = 0f;
 		float delay = 1f / (float)animation.fps;
-		while (loop || currentFrame < animation.frames.Length-1)
+		while (loop || (currentFrame < animation.frames.Length-1 && currentFrame >= 0))
 		{
 
 			while (timer < delay)
@@ -166,7 +169,7 @@ public class SpriteAnimator : MonoBehaviour
 			}
 		}
 
-		if (pingPong && IsPong && currentFrame == 0)
+		if (pingPong && IsPong && currentFrame <= 0)
 			IsPong = false;
 	}
 
@@ -190,5 +193,23 @@ public class SpriteAnimator : MonoBehaviour
 			spriteRenderer.transform.localScale = new Vector3(-1f, 1f, 1f);
 		else
 			spriteRenderer.transform.localScale = new Vector3(1f, 1f, 1f);
+	}
+
+	public void StopAnimation()
+	{
+		playing = false;
+		IsPong = false;
+		currentFrame = 0;
+		StopAllCoroutines();
+	}
+
+	public void PlayAnimation()
+	{
+		if (playing) return;
+		playing = true;
+		if(currentAnimation != null)
+			StartCoroutine(PlayAnimation(currentAnimation));
+		else
+			Play("idle");
 	}
 }
