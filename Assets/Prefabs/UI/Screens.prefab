@@ -1847,8 +1847,7 @@ MonoBehaviour:
   - removeA5
   startTrainingButtonName: startButton
   inTrainingBoxName: inTrainingBox
-  inTrainingTitleName: inTrainingTitle
-  inTrainingTimeName: inTrainingTime
+  inTrainingTimeButtonName: timeButton
   rewardTitleName: rewardTitle
   investName: invest
   receiveName: receive

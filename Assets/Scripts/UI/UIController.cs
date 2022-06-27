@@ -101,6 +101,12 @@ namespace UI
             if (_label != null)
                 _label.text = value;
         }
+        protected void SetTextInButton(string labelName, string value)
+        {
+            var _label = Root?.Q<Button>(labelName);
+            if (_label != null)
+                _label.text = value;
+        }
 
         protected void EnableVisualElement(string elementName)
         {
@@ -153,6 +159,23 @@ namespace UI
             _result += _minutes + "m";
             return _result;
         }
+
+        
+        private readonly DateTime _epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+        protected long GetTimeStampFromDate(DateTime date)
+        {
+            TimeSpan _elapsedTime = date - _epoch;
+            return (long) _elapsedTime.TotalSeconds;
+        }
+
+        /*protected DateTime GetDateFromTimeStamp(long timeStamp)
+        {
+            
+        }*/
+
+        protected long GetActualTimeStamp()
+            => (long)System.DateTime.UtcNow.Subtract(new System.DateTime(
+                1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalSeconds;
     }
 
     [Serializable]

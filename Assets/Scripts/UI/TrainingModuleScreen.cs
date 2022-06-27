@@ -19,9 +19,8 @@ public class TrainingModuleScreen : UIController
 
     [Header("In Training names")] 
     public string inTrainingBoxName;
-    public string inTrainingTitleName;
-    public string inTrainingTimeName;
-    
+    public string inTrainingTimeButtonName;
+
     [Header("Reward names")]
     public string rewardTitleName;
     public string investName;
@@ -53,14 +52,14 @@ public class TrainingModuleScreen : UIController
 
     protected override void UpdateUI()
     {
-        CheckActionsCount();
+        CheckActionsCountAndRevealOrNo();
         ApplyRewardsCalculation();
         SetTextInLabel(eventTitleName, _eventTitle);
         SetTextInLabel(eventTimeName, ConvertMinutesToString(_eventTime));
         SetTextInLabel(investName, "Invest: $" + _investValue);
         SetTextInLabel(receiveName, "Receive: $" + _receiveValue);
         SetTextInLabel(durationName, "Duration: " + ConvertMinutesToString(_durationValue));
-        CheckToyoIsTraining();
+        CheckTrainingAndEnableTrainingUI();
     }
     
     public override void ActiveScreen()
@@ -73,8 +72,9 @@ public class TrainingModuleScreen : UIController
 
     public override void DisableScreen()
     {
-        base.DisableScreen();
         RemoveActionSelectEvents();
+        ResetAllTrainingModule();
+        base.DisableScreen();
     }
 
     public override void OnDestroy()
@@ -165,7 +165,7 @@ public class TrainingModuleScreen : UIController
         _actionContainer?.Insert(_actionContainer.childCount, _action);
     }
 
-    private void CheckActionsCount()
+    private void CheckActionsCountAndRevealOrNo()
     {
         if (selectedActions.Count >= combPoolNames.Length)
             return;
@@ -176,8 +176,11 @@ public class TrainingModuleScreen : UIController
     private void CheckAndRevealStartButton()
     {
         var _startButton = Root.Q<Button>(startTrainingButtonName);
-        if(_startButton != null) 
+        if (_startButton == null) return;
+        if (!_inTraining)
             _startButton.visible = selectedActions.Count >= _minimumActionsToPlay;
+        else
+            _startButton.visible = false;
     }
 
     private void CheckAndRevealNextAction()
@@ -242,7 +245,7 @@ public class TrainingModuleScreen : UIController
         ClearPossibleActionsEvents();
         var _scrollView = Root.Q<ScrollView>(actionScrollName);
         _scrollView.Clear();
-        _oldTypeSelected = type;
+        SetOldTypeActionSelected(type);
         foreach (var _action in GetFilteredActions(type))
         {
             var _label = CreateNewLabel(_action.id.ToString(), _action.name, fontAsset, 
@@ -257,9 +260,9 @@ public class TrainingModuleScreen : UIController
 
     private void ClearPossibleActionsEvents()
     {
-        if(_oldTypeSelected == TrainingActionType.None)
+        if(OldTypeSelectedIsNone())
             return;
-        foreach (var _action in GetFilteredActions(_oldTypeSelected))
+        foreach (var _action in GetFilteredActions(GetOldTypeActionSelected()))
         {
             var _label = Root.Q<Label>(_action.id.ToString());
             _label.UnregisterCallback<MouseEnterEvent>(_ 
@@ -284,7 +287,7 @@ public class TrainingModuleScreen : UIController
         ClearPossibleActionsEvents();
         var _scrollView = Root.Q<ScrollView>(actionScrollName);
         _scrollView.Clear();
-        _oldTypeSelected = TrainingActionType.None;
+        SetOldTypeActionSelected(TrainingActionType.None);
         var _actionArea = Root.Q<GroupBox>(actionSelectionAreaName);
         _actionArea.visible = false;
     }
@@ -316,20 +319,33 @@ public class TrainingModuleScreen : UIController
         }
     }
 
-    private void CheckToyoIsTraining() //TODO: Change name
+    private void CheckTrainingAndEnableTrainingUI() 
     {
-        var _trainingBox = Root.Q<GroupBox>(inTrainingBoxName);
         if (_inTraining)
         {
-            _trainingBox.visible = true;
-            SetTextInLabel(inTrainingTitleName, _inTrainingTitle);
-            SetTextInLabel(inTrainingTimeName, ConvertMinutesToString(_inTrainingTimeLeft));
+            EnableVisualElement(inTrainingBoxName);
+            SetTextInButton(inTrainingTimeButtonName, ConvertMinutesToString(_inTrainingTimeLeft));
         }
         else
-            _trainingBox.visible = false;
+            DisableVisualElement(inTrainingBoxName);
     }
 
     public void GoToRewardScreen() => ScreenManager.Instance.GoToScreen(ScreenState.TrainingModuleRewards);
+
+    private void SetOldTypeActionSelected(TrainingActionType type) => _oldTypeSelected = type;
+    private TrainingActionType GetOldTypeActionSelected() => _oldTypeSelected;
+    private bool OldTypeSelectedIsNone() => _oldTypeSelected == TrainingActionType.None;
+
+    private void ResetAllTrainingModule()
+    {
+        ResetSelectedActions();
+        ClearPossibleActionsEvents();
+    }
+
+    private void ResetSelectedActions()
+    {
+        selectedActions = new Dictionary<int, TrainingActionSO>();
+    }
 }
 
 public enum TrainingActionType
