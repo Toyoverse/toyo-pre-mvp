@@ -1,14 +1,9 @@
 fileFormatVersion: 2
-guid: 99668195021e9e2489caa40110242741
+guid: 66ac26797af84aa41b0c0e4dc5ae555f
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Box_Kyntut
-    second: {fileID: 2100000, guid: 05ad6c48f7f8db84582e15dd2a51d369, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -75,7 +70,7 @@ ModelImporter:
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
-    tangentImportMode: 2
+    tangentImportMode: 3
     normalCalculationMode: 4
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
