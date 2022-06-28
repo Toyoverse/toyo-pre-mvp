@@ -14,11 +14,26 @@ namespace UI
         public string infoTextName = "chanceDescription";
         public string scrollName = "dropScroll";
         public string rewardName = "reward";
+        public string boxCountLabelName = "countLabel";
+        public string boxCountName = "count";
+        public string openBoxButtonName = "openBoxButton";
         private int _rewardsCount = 0;
 
         private const string ConfirmMessage = "Are you sure you want to open your box?\n \nThis action can't be " +
             "undone! \n You will receive a wallet request to transfer your closed box momentarily to us. We will " +
             "then swap it by your Toyo and opened box NFTs and make another wallet request to transfer it back to you.";
+
+        public override void ActiveScreen()
+        {
+            base.ActiveScreen();
+            carousel.OnEndRotation += EnableBoxCount;
+        }
+
+        public override void DisableScreen()
+        {
+            base.DisableScreen();
+            carousel.OnEndRotation -= EnableBoxCount;
+        }
 
         public void OpenBoxButton() 
             => GenericPopUp.Instance.ShowPopUp(ConfirmMessage, OpenSelectedBox, () => {});
@@ -29,13 +44,14 @@ namespace UI
 
         public void NextBoxButton()
         {
+            DisableBoxCount();
             carousel.SwipeRight();
             UpdateUI();
         }
-        
 
         public void PreviousBoxButton()
         {
+            DisableBoxCount();
             carousel.SwipeLeft();
             UpdateUI();
         }
@@ -52,15 +68,21 @@ namespace UI
         }
 
         private void SetTitleText(string text)
-        {
-            var _textLabel = Root.Q<Label>(titleBoxName);
-            _textLabel.text = text;
-        }
-        
+            => SetTextInLabel(titleBoxName, text);
+
         private void SetDescriptionText(string text)
+            => SetTextInLabel(infoTextName, text);
+
+        private void SetBoxCount(int count) => SetTextInLabel(boxCountLabelName, count.ToString());
+        private void EnableBoxCount() => EnableVisualElement(boxCountName);
+        private void DisableBoxCount() => DisableVisualElement(boxCountName);
+
+        private void CheckCountAndEnableOrDisableOpenBoxButton(int count)
         {
-            var _textLabel = Root.Q<Label>(infoTextName);
-            _textLabel.text = text;
+            if(count > 0)
+                EnableVisualElement(openBoxButtonName);
+            else
+                DisableVisualElement(openBoxButtonName);
         }
 
         protected override void UpdateUI() 
@@ -69,18 +91,21 @@ namespace UI
             {
                 SetDescriptionText(GetBoxDescription(carousel.allObjects[0].GetComponent<BoxConfig>()));
                 SetTitleText(GetBoxTitle(carousel.allObjects[0].GetComponent<BoxConfig>()));
+                SetBoxCount(carousel.allObjects[0].GetComponent<BoxConfig>().quantity);
                 return;
             }
             SetDescriptionText(GetBoxDescription(GetBoxSelected()));
             SetTitleText(GetBoxTitle(GetBoxSelected()));
-            SetPossibleRewards(GetBoxSelected()); 
+            SetPossibleRewards(GetBoxSelected());
+            var _boxAmount = GetBoxSelected().quantity;
+            SetBoxCount(_boxAmount);
+            CheckCountAndEnableOrDisableOpenBoxButton(_boxAmount);
         }
 
         private string GetBoxTitle(BoxConfig boxConfig)
         {
             var _name = boxConfig.BoxName.ToUpper() + "BOX";
             return _name;
-
         }
 
         private string GetBoxDescription(BoxConfig boxConfig)

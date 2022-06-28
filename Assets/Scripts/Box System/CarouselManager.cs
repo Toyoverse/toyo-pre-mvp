@@ -31,6 +31,8 @@ public class CarouselManager : MonoBehaviour
     private Vector3 _selectedPlatformRotation = new Vector3(0, 0, 5.5f);
     private Vector3 _leftPlatformRotation = new Vector3(0, 0, -2f);
 
+    public event Action OnEndRotation;
+    
     public void SetFirstSelectedObject(Transform objectToSelect = null, int currentSelectedIndex = 0)
     { 
         CurrentSelectedObject = objectToSelect != null ? objectToSelect : allObjects[_currentSelectedIndex];
@@ -134,6 +136,7 @@ public class CarouselManager : MonoBehaviour
         }
         
         ForcePlatformCenterRotation();
+        OnEndRotation?.Invoke();
     }
     
 

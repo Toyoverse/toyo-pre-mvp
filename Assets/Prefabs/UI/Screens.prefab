@@ -1595,6 +1595,8 @@ MonoBehaviour:
   infoTextName: chanceDescription
   scrollName: dropScroll
   rewardName: reward
+  boxCountLabelName: countLabel
+  boxCountName: count
 --- !u!114 &8643416932187837817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2428,15 +2430,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f31a4f8b70bdf3d499c9a8fb6dfc2460, type: 3}
       propertyPath: m_LocalScale.x
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f31a4f8b70bdf3d499c9a8fb6dfc2460, type: 3}
       propertyPath: m_LocalScale.y
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f31a4f8b70bdf3d499c9a8fb6dfc2460, type: 3}
       propertyPath: m_LocalScale.z
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f31a4f8b70bdf3d499c9a8fb6dfc2460, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2444,7 +2446,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f31a4f8b70bdf3d499c9a8fb6dfc2460, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1
+      value: -3.7
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f31a4f8b70bdf3d499c9a8fb6dfc2460, type: 3}
       propertyPath: m_LocalPosition.z
