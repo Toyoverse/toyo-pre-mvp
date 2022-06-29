@@ -1745,6 +1745,7 @@ MonoBehaviour:
   rewardName: reward
   boxCountLabelName: countLabel
   boxCountName: count
+  openBoxButtonName: openBoxButton
 --- !u!114 &8643416932187837817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2785,67 +2786,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1386169278183052195, guid: dfda830122331074a8460c7c4c059ae7, type: 3}
   m_PrefabInstance: {fileID: 8643416932077771132}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &8643416932923167157
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 6968004011343157930}
-    m_Modifications:
-    - target: {fileID: 5437050190728625484, guid: 91fbec97d0181214caaa221fd2dd6021, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5437050190728625484, guid: 91fbec97d0181214caaa221fd2dd6021, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5437050190728625484, guid: 91fbec97d0181214caaa221fd2dd6021, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5437050190728625484, guid: 91fbec97d0181214caaa221fd2dd6021, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5437050190728625484, guid: 91fbec97d0181214caaa221fd2dd6021, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 5437050190728625484, guid: 91fbec97d0181214caaa221fd2dd6021, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 5437050190728625484, guid: 91fbec97d0181214caaa221fd2dd6021, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5437050190728625484, guid: 91fbec97d0181214caaa221fd2dd6021, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5437050190728625484, guid: 91fbec97d0181214caaa221fd2dd6021, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 5437050190728625484, guid: 91fbec97d0181214caaa221fd2dd6021, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5437050190728625484, guid: 91fbec97d0181214caaa221fd2dd6021, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5437050190728625485, guid: 91fbec97d0181214caaa221fd2dd6021, type: 3}
-      propertyPath: m_Name
-      value: vfx-Electric
-      objectReference: {fileID: 0}
-    - target: {fileID: 5437050190728625485, guid: 91fbec97d0181214caaa221fd2dd6021, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 91fbec97d0181214caaa221fd2dd6021, type: 3}
 --- !u!1001 &8643416933087202199
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3029,17 +2969,16 @@ PrefabInstance:
       propertyPath: rotateSpeed
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7231074629729311344, guid: 37c309da232f76c4ea61fe9a3ba26b6e, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8499880556114670832, guid: 37c309da232f76c4ea61fe9a3ba26b6e, type: 3}
       propertyPath: m_Name
       value: Box_Kytunt_Normal_temp
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 37c309da232f76c4ea61fe9a3ba26b6e, type: 3}
---- !u!4 &6968004011343157930 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1675558263774318908, guid: 37c309da232f76c4ea61fe9a3ba26b6e, type: 3}
-  m_PrefabInstance: {fileID: 8643416933404117910}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7565273073317562958 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2237913123204743640, guid: 37c309da232f76c4ea61fe9a3ba26b6e, type: 3}

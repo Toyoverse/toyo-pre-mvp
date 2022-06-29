@@ -52,8 +52,8 @@ MonoBehaviour:
   growingParticle: {fileID: 7653704155361589817}
   chargedParticle: {fileID: 7653704154859849649}
   explosionParticle: {fileID: 7653704155841023012}
-  chargingDuration: 1
-  lightningDuration: 2
+  chargingDuration: 0
+  lightningDuration: 3
   rarityColorConfigSo: {fileID: 11400000, guid: ba890244f8bb35a4c8052cdf3823c2d3, type: 2}
 --- !u!1 &7653704154859849550
 GameObject:
