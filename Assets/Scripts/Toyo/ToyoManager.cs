@@ -32,14 +32,16 @@ public class ToyoManager : MonoBehaviour
     
     public static GameObject GetSelectedBox() => _instance._selectedBox;
 
-    public static Dictionary<Tuple<BOX_TYPE, BOX_REGION>, int> BoxDictionary =
+    /*public static Dictionary<Tuple<BOX_TYPE, BOX_REGION>, int> BoxDictionary =
         new ()
         {
             { new Tuple<BOX_TYPE, BOX_REGION>(BOX_TYPE.Fortified, BOX_REGION.Jakana), 0 },
             { new Tuple<BOX_TYPE, BOX_REGION>(BOX_TYPE.Regular, BOX_REGION.Jakana), 0 },
             { new Tuple<BOX_TYPE, BOX_REGION>(BOX_TYPE.Fortified, BOX_REGION.Kytunt), 0 },
             { new Tuple<BOX_TYPE, BOX_REGION>(BOX_TYPE.Regular, BOX_REGION.Kytunt), 0 }
-        };
+        };*/
+
+    public static List<BoxInformation> BoxInformationList;
     
     public static Camera MainCamera;
     
@@ -96,9 +98,67 @@ public class ToyoManager : MonoBehaviour
 
     public static void SetPlayerBoxes(Player playerData)
     {
+        InitBoxInformationList();
         foreach (var _box in playerData.boxes)
         {
-             //var _region = _box.specification
+            for (var _i = 0; _i < BoxInformationList.Count; _i++)
+            {
+                if (GetBoxTypeInPlayerBox(_box) == BoxInformationList[_i].type
+                    && GetBoxRegionInPlayerBox(_box) == BoxInformationList[_i].region)
+                    BoxInformationList[_i].quantity++;
+            }
         }
+    }
+
+    /*private static Tuple<BOX_TYPE, BOX_REGION> GetBoxTupleInPlayerBox(Box box)
+    {
+        return new Tuple<BOX_TYPE, BOX_REGION>(GetBoxTypeInPlayerBox(box), GetBoxRegionInPlayerBox(box));
+    }*/
+
+    private static BOX_TYPE GetBoxTypeInPlayerBox(Box box)
+    {
+        return box.type switch
+        {
+            0 => BOX_TYPE.Regular,
+            1 => BOX_TYPE.Fortified,
+            _ => BOX_TYPE.None
+        };
+    }
+
+    private static BOX_REGION GetBoxRegionInPlayerBox(Box box)
+    {
+        return box.region switch
+        {
+            0 => BOX_REGION.Kytunt,
+            1 => BOX_REGION.Jakana,
+            _ => BOX_REGION.None
+        };
+    }
+
+    private static void InitBoxInformationList()
+    {
+        BoxInformationList = new List<BoxInformation>();
+        var _kytuntRegularBox = new BoxInformation(BOX_TYPE.Regular, BOX_REGION.Kytunt);
+        var _kytuntFortifiedBox = new BoxInformation(BOX_TYPE.Fortified, BOX_REGION.Kytunt);
+        var _jakanaRegularBox = new BoxInformation(BOX_TYPE.Regular, BOX_REGION.Jakana);
+        var _jakanaFortifiedBox = new BoxInformation(BOX_TYPE.Fortified, BOX_REGION.Jakana);
+        BoxInformationList.Add(_kytuntRegularBox);
+        BoxInformationList.Add(_kytuntFortifiedBox);
+        BoxInformationList.Add(_jakanaRegularBox);
+        BoxInformationList.Add(_jakanaFortifiedBox);
+    }
+}
+
+public class BoxInformation
+{
+    public BOX_TYPE type;
+    public BOX_REGION region;
+    public int quantity;
+
+    public BoxInformation(BOX_TYPE _type, BOX_REGION _region)
+    {
+        type = _type;
+        region = _region;
+        quantity = 0;
     }
 }

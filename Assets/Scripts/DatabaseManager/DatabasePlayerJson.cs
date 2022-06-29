@@ -46,7 +46,7 @@ namespace Database
         public string lastUnboxingStartedAt;
         public string typeId;
         public string[] specification;
-        
+        public int region;
     }
 
     [Serializable]

@@ -38,26 +38,6 @@ public class UnboxingVfx : MonoBehaviour
         explosionParticle.gameObject.SetActive(false);
     }
 
-    /*private IEnumerator StartParticlesEffects()
-    {
-        SetParticleColor(chargedParticle, _rarityColor);
-        SetParticleColor(explosionParticle, _rarityColor);
-        chargingParticle.Play();
-        growingParticle.Play();
-        Debug.Log("CHARGING...");
-        yield return new WaitForSeconds(chargingDuration);
-        chargingParticle.Stop();
-        growingParticle.Stop();
-        var _chargedMain = chargedParticle.main;
-        _chargedMain.loop = true;
-        chargedParticle.Play();
-        Debug.Log("LIGHTING...");
-        yield return new WaitForSeconds(chargedDuration);
-        chargedParticle.Stop();
-        explosionParticle.Play();
-        Debug.Log("EXPLOSION!");
-    }*/
-
     private void SetParticleColor(ParticleSystem particle, Color color)
     {
         var _particleMain = particle.main;
