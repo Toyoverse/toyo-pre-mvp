@@ -91,13 +91,13 @@ namespace UI
             {
                 SetDescriptionText(GetBoxDescription(carousel.allObjects[0].GetComponent<BoxConfig>()));
                 SetTitleText(GetBoxTitle(carousel.allObjects[0].GetComponent<BoxConfig>()));
-                SetBoxCount(carousel.allObjects[0].GetComponent<BoxConfig>().quantity);
+                SetBoxCount(carousel.allObjects[0].GetComponent<BoxConfig>().Quantity);
                 return;
             }
             SetDescriptionText(GetBoxDescription(GetBoxSelected()));
             SetTitleText(GetBoxTitle(GetBoxSelected()));
             SetPossibleRewards(GetBoxSelected());
-            var _boxAmount = GetBoxSelected().quantity;
+            var _boxAmount = GetBoxSelected().Quantity;
             SetBoxCount(_boxAmount);
             CheckCountAndEnableOrDisableOpenBoxButton(_boxAmount);
         }

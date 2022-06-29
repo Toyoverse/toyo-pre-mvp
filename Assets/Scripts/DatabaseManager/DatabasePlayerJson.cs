@@ -33,20 +33,31 @@ namespace Database
     [Serializable]
     public class Box
     {
-        public string objectId;
-        public string isOpen;
+        public string id;
+        public bool isOpen;
         public string hash;
         public Toyo toyo;
-        public string idOpenBox;
-        public string idClosedBox;
-        public int type;
         public string createdAt;
         public string updatedAt;
         public string tokenId;
+        public string idOpenBox;
+        public string idClosedBox;
+        public string type;
+        public string region;
+        public string currentOwner;
         public string lastUnboxingStartedAt;
         public string typeId;
-        public string[] specification;
-        public int region;
+        public Modifier[] modifiers;
+    }
+    
+    [Serializable]
+    public class Modifier
+    {
+        public string name;
+        public int type;
+        public string description;
+        public string modification;
+        public string restrictions;
     }
 
     [Serializable]
@@ -61,7 +72,7 @@ namespace Database
         public string tokenId;
         public string transactionHash;
         
-        public ToyoPersona toyoPersona; // Todo : remove, this is temporary only for the wrong JSON
+        public ToyoPersona toyoPersonaOrigin; // Todo : remove, this is temporary only for the wrong JSON
         public ToyoPart[] parts;
     }
 
@@ -135,7 +146,8 @@ namespace Database
         public string thumbnail;
 
         //New
-        public ToyoRegion region;
+        //public ToyoRegion region;
+        public string region;
         public string rarity;
     }
 

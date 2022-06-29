@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Database;
 using UnityEngine;
 
 public class BoxConfig : MonoBehaviour
@@ -7,6 +8,7 @@ public class BoxConfig : MonoBehaviour
     public BoxConfigSO boxConfig;
     public GameObject model3D;
     public GameObject model2D;
+    public List<Box> boxList;
     
     public string BoxName { get; private set; }
     public BOX_REGION BoxRegion { get; private set; }
@@ -14,7 +16,7 @@ public class BoxConfig : MonoBehaviour
     public List<BoxRewardSO> PossibleRewards { get; private set; }
     public Dictionary<TOYO_RARITY, float> DropRate { get; private set; }
 
-    public int quantity;
+    public int Quantity => boxList.Count;
     public UnboxingVfx unboxingVfx;
 
     public void OnEnable()
@@ -24,7 +26,6 @@ public class BoxConfig : MonoBehaviour
         BoxType = boxConfig.boxType;
         PossibleRewards = boxConfig.possibleRewards;
         DropRate = boxConfig.DropRate;
-        quantity = 1;
         if(unboxingVfx == null) 
             unboxingVfx = GetComponentInChildren<UnboxingVfx>();
     }

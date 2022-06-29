@@ -57,13 +57,9 @@ public class CarouselManager : MonoBehaviour
 
     private void Awake()
     {
-        /*_mainCamera = FindObjectOfType<Camera>();
-        CurrentSelectedObject = allObjects[_currentSelectedIndex];
-
-        if(IsToyoCarousel) 
-            SetToyoStartingPosition();
-        
-        MoveToStartingPosition();*/
+        if (isToyoCarousel) return;
+        foreach (var _box in allObjects)
+            ToyoManager.AddBoxToGlobalList(_box.GetComponent<BoxConfig>());
     }
 
     private void OnEnable()

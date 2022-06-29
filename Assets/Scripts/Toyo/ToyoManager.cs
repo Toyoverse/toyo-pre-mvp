@@ -12,6 +12,7 @@ using UnityEngine.Serialization;
 public class ToyoManager : MonoBehaviour
 {
     public CarouselManager carouselToyo;
+    private List<BoxConfig> _allBoxesConfig;
     public Transform toyoListParent;
     public GameObject toyoBasePrefab;
     public List<ToyoPersonaSO> toyoPersonaPrefabs;
@@ -31,17 +32,8 @@ public class ToyoManager : MonoBehaviour
     public static void SetSelectedBox(GameObject selectedBox) => _instance._selectedBox = selectedBox;
     
     public static GameObject GetSelectedBox() => _instance._selectedBox;
-
-    /*public static Dictionary<Tuple<BOX_TYPE, BOX_REGION>, int> BoxDictionary =
-        new ()
-        {
-            { new Tuple<BOX_TYPE, BOX_REGION>(BOX_TYPE.Fortified, BOX_REGION.Jakana), 0 },
-            { new Tuple<BOX_TYPE, BOX_REGION>(BOX_TYPE.Regular, BOX_REGION.Jakana), 0 },
-            { new Tuple<BOX_TYPE, BOX_REGION>(BOX_TYPE.Fortified, BOX_REGION.Kytunt), 0 },
-            { new Tuple<BOX_TYPE, BOX_REGION>(BOX_TYPE.Regular, BOX_REGION.Kytunt), 0 }
-        };*/
-
-    public static List<BoxInformation> BoxInformationList;
+    
+   // public static List<BoxInformation> BoxInformationList;
     
     public static Camera MainCamera;
     
@@ -61,6 +53,8 @@ public class ToyoManager : MonoBehaviour
         GetSelectedToyo().transform.LookAt(MainCamera.transform);
     }
 
+    public static void AddBoxToGlobalList(BoxConfig box) => _instance._allBoxesConfig.Add(box);
+
 
     List<ToyoObject> CreateToyoObjectList()
     {
@@ -70,7 +64,7 @@ public class ToyoManager : MonoBehaviour
         var _index = 0;
         foreach (var _databaseToyo in _databaseToyoList)
         {
-            var _toyoPrefab = Instantiate(GetToyoPersonaPrefab(_databaseToyo.toyoPersona.objectId), toyoListParent);
+            var _toyoPrefab = Instantiate(GetToyoPersonaPrefab(_databaseToyo.toyoPersonaOrigin.objectId), toyoListParent);
             var _toyoObjectInstance =_toyoPrefab.AddComponent<ToyoObject, Toyo>(_databaseToyo);
             _toyoObjectInstance.spriteAnimator = _toyoPrefab.GetComponentInChildren<SpriteAnimator>();
             carouselToyo.allObjects.Add(_toyoPrefab.transform);
@@ -98,29 +92,25 @@ public class ToyoManager : MonoBehaviour
 
     public static void SetPlayerBoxes(Player playerData)
     {
-        InitBoxInformationList();
+        //InitBoxInformationList();
         foreach (var _box in playerData.boxes)
         {
-            for (var _i = 0; _i < BoxInformationList.Count; _i++)
+            foreach (var _t in _instance._allBoxesConfig
+                         .Where(t => 
+                            GetBoxTypeInPlayerBox(_box) == t.BoxType
+                            && GetBoxRegionInPlayerBox(_box) == t.BoxRegion))
             {
-                if (GetBoxTypeInPlayerBox(_box) == BoxInformationList[_i].type
-                    && GetBoxRegionInPlayerBox(_box) == BoxInformationList[_i].region)
-                    BoxInformationList[_i].quantity++;
+                _t.boxList.Add(_box);
             }
         }
     }
-
-    /*private static Tuple<BOX_TYPE, BOX_REGION> GetBoxTupleInPlayerBox(Box box)
-    {
-        return new Tuple<BOX_TYPE, BOX_REGION>(GetBoxTypeInPlayerBox(box), GetBoxRegionInPlayerBox(box));
-    }*/
-
+    
     private static BOX_TYPE GetBoxTypeInPlayerBox(Box box)
     {
         return box.type switch
         {
-            0 => BOX_TYPE.Regular,
-            1 => BOX_TYPE.Fortified,
+            "REGULAR" => BOX_TYPE.Regular,
+            "FORTIFIED" => BOX_TYPE.Fortified,
             _ => BOX_TYPE.None
         };
     }
@@ -129,12 +119,12 @@ public class ToyoManager : MonoBehaviour
     {
         return box.region switch
         {
-            0 => BOX_REGION.Kytunt,
-            1 => BOX_REGION.Jakana,
+            "JAKANA" => BOX_REGION.Kytunt,
+            "KYTUNT" => BOX_REGION.Jakana,
             _ => BOX_REGION.None
         };
     }
-
+    /*
     private static void InitBoxInformationList()
     {
         BoxInformationList = new List<BoxInformation>();
@@ -147,18 +137,20 @@ public class ToyoManager : MonoBehaviour
         BoxInformationList.Add(_jakanaRegularBox);
         BoxInformationList.Add(_jakanaFortifiedBox);
     }
+    */
 }
-
+/*
 public class BoxInformation
 {
     public BOX_TYPE type;
-    public BOX_REGION region;
-    public int quantity;
+    public BOX_REGION Region;
+    public int Quantity;
 
     public BoxInformation(BOX_TYPE _type, BOX_REGION _region)
     {
         type = _type;
-        region = _region;
-        quantity = 0;
+        Region = _region;
+        Quantity = 0;
     }
 }
+*/
