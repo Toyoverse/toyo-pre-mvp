@@ -431,7 +431,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Texture2DMaterialSlot",
     "m_ObjectId": "06d2451da7e54eefa01996ed6b2aac37",
     "m_Id": 0,
-    "m_DisplayName": "StaticNoiseImage",
+    "m_DisplayName": "_MainTex",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -972,10 +972,10 @@
     "m_Guid": {
         "m_GuidSerialized": "c9a01e9b-5785-4ce3-85a1-74f864b5dfc3"
     },
-    "m_Name": "StaticNoiseImage",
+    "m_Name": "_MainTex",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "StaticNoiseImage",
-    "m_DefaultReferenceName": "_StaticNoiseImage",
+    "m_RefNameGeneratedByDisplayName": "_MainTex",
+    "m_DefaultReferenceName": "_MainTex",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -985,7 +985,7 @@
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
     "m_Value": {
-        "m_SerializedTexture": "{\"texture\":{\"fileID\":2800000,\"guid\":\"d0493f2841410ce4f9a2cb8df1098939\",\"type\":3}}",
+        "m_SerializedTexture": "{\"texture\":{\"instanceID\":0}}",
         "m_Guid": ""
     },
     "isMainTexture": false,
