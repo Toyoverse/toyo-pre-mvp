@@ -9,7 +9,7 @@ using System.Linq;
 using UnityEngine.Serialization;
 
 
-public class ToyoManager : MonoBehaviour
+public class ToyoManager : Singleton<ToyoManager>
 {
     public CarouselManager carouselToyo;
     private List<BoxConfig> _allBoxesConfigInCarousel = new();
@@ -25,8 +25,6 @@ public class ToyoManager : MonoBehaviour
     private List<ToyoObject> _toyoList;
     public List<ToyoObject> ToyoList => _toyoList ??= CreateToyoObjectList();
 
-    public static ToyoManager Instance;
-
     public static ToyoObject GetSelectedToyo() => Instance.ToyoList.Find(toyoObject => toyoObject.IsToyoSelected);
 
     public static void SetSelectedBox(GameObject selectedBox) => Instance._selectedBox = selectedBox;
@@ -34,7 +32,13 @@ public class ToyoManager : MonoBehaviour
     public static GameObject GetSelectedBox() => Instance._selectedBox;
 
     public static Camera MainCamera;
-    public Player Player { get; private set; }
+
+    private Player _player;
+    public Player Player
+    {
+        get => _player;
+        private set => _player = value;
+    }
 
     public static void MoveToyoToCenterOpenBox()
     {
@@ -84,14 +88,20 @@ public class ToyoManager : MonoBehaviour
     private void Start()
     {
         _ = ToyoList;
-        Instance = this;
         MainCamera = FindObjectOfType<Camera>();
     }
 
     private GameObject GetToyoPersonaPrefab(string objectId)
         => toyoPersonaPrefabs.FirstOrDefault(toyoPersona => objectId == toyoPersona.objectId)?.toyoPrefab;
 
-    public static void SetPlayerData(Player playerData) => Instance.Player = playerData;
+    public static void SetPlayerData(Player playerData)
+    {
+        Instance.Player ??= new Player
+        {
+            boxes = playerData.boxes,
+            toyos = playerData.toyos
+        };
+    }
 
     public static void SetPlayerBoxes()
     {
