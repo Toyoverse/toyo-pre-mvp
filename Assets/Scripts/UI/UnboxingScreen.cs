@@ -32,13 +32,10 @@ public class UnboxingScreen : UIController
         ToyoManager.GetSelectedBox().transform.SetParent(unboxingPivot);
     }
 
-
     private void MoveSelectedBoxToBoxInfoScreen()
     {
         ToyoManager.GetSelectedBox().transform.SetParent(boxInfoPivot);
-
     }
-        
 
     private IEnumerator ActivateButtonSafeCheck()
     {
@@ -74,7 +71,6 @@ public class UnboxingScreen : UIController
             MoveSelectedBoxToBoxInfoScreen();
             SwitchTo2D();
         }
-            
     }
     
     void SwitchTo2D()

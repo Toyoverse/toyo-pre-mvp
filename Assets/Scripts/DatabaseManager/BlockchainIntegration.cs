@@ -24,7 +24,7 @@ public class BlockchainIntegration : MonoBehaviour
         if (skipLogin)
         {
             GoToNextScreen();
-            return;;
+            return;
         }
         
         var _message = ((int)(System.DateTime.UtcNow.Subtract(new System.DateTime(1970, 1, 1))).TotalSeconds)

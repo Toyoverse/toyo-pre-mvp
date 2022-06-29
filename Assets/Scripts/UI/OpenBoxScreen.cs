@@ -63,9 +63,9 @@ namespace UI
             Debug.Log("out");
         }
 
-        protected void SetToyoRarity(string rarity)
+        protected void SetToyoRarity(TOYO_RARITY rarity)
         {
-            Root.Q<Label>(rarityNameField).text = rarity;
+            SetTextInLabel(rarityNameField, rarity.ToString());
             //Todo Rarity Color System
         }
 
@@ -80,19 +80,14 @@ namespace UI
             selectedToyo ??= _toyoObject;
             var _progressBar = GetProgressBar(stat);
             var _statValue = selectedToyo.GetToyoStat(stat);
-            var _progressLabel = GetProgressLabel(stat);
-            var _toyoLevelLabel = Root.Q<Label>(toyoLevelField);
-            var _toyoHbLabel = Root.Q<Label>(toyoHearthBoundField);
-            
+
             maxStatValue = _progressBar.highValue;
             _progressBar.lowValue = _statValue <= maxStatValue ? _statValue : maxStatValue;
-            if (_progressLabel != null)
-                _progressLabel.text = _progressBar.lowValue.ToString();
-            if (_toyoHbLabel != null)
-                _toyoHbLabel.text = selectedToyo.GetToyoHearthBound().ToString();
-            if (_toyoLevelLabel != null)
-                _toyoLevelLabel.text = selectedToyo.GetToyoLevel().ToString();
 
+            var _progressFieldName = GetFieldName(stat, "value");
+            SetTextInLabel(_progressFieldName, _progressBar.lowValue.ToString());
+            SetTextInLabel(toyoHearthBoundField, selectedToyo.GetToyoHearthBound().ToString());
+            SetTextInLabel(toyoLevelField, selectedToyo.GetToyoLevel().ToString());
         }
 
         protected ProgressBar GetProgressBar(TOYO_STAT stat) => Root.Q<ProgressBar>(GetFieldName(stat,"Progress"));

@@ -64,6 +64,7 @@ namespace UI
             //TODO: OpenBox
             Debug.Log("OPEN BOX " + GetBoxSelected().BoxName);
             ToyoManager.SetSelectedBox(carousel.CurrentSelectedObject.gameObject);
+            GetBoxSelected().unboxingVfx.SetRarityColor(TOYO_RARITY.LIMITED); //TODO: Move to correct location and pass correct color
             ScreenManager.Instance.GoToScreen(ScreenState.Unboxing);
         }
 

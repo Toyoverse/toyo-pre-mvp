@@ -16,8 +16,5 @@ namespace UI
         {
             DatabaseConnection.Instance.BlockchainIntegration.StartLoginMetamask();
         }
-        
-        
     }
-    
 }

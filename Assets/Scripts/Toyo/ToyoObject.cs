@@ -55,7 +55,7 @@ public class ToyoObject : MonoBehaviour
 
     public string GetToyoName() => _toyoName;
     
-    public string GetToyoRarity() => _rarity;
+    public TOYO_RARITY GetToyoRarity() => ConvertStringToRarity(_rarity);
 
     public int GetToyoLevel() => _toyoTotalPartsLevel / _numberOfParts;
 
@@ -121,4 +121,17 @@ public class ToyoObject : MonoBehaviour
         
     }
 
+    private TOYO_RARITY ConvertStringToRarity(string rarityString)
+    {
+        return rarityString switch
+        {
+            "COMMON" => TOYO_RARITY.COMMON,
+            "UNCOMMON" => TOYO_RARITY.UNCOMMON,
+            "RARE" => TOYO_RARITY.RARE,
+            "LIMITED" => TOYO_RARITY.LIMITED,
+            "COLLECTOR" => TOYO_RARITY.COLLECTOR,
+            "PROTOTYPE" => TOYO_RARITY.PROTOTYPE,
+            _ => TOYO_RARITY.COMMON
+        };
+    }
 }

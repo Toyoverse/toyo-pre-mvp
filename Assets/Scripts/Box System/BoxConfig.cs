@@ -15,6 +15,7 @@ public class BoxConfig : MonoBehaviour
     public Dictionary<TOYO_RARITY, float> DropRate { get; private set; }
 
     public int quantity;
+    public UnboxingVfx unboxingVfx;
 
     public void OnEnable()
     {
@@ -23,6 +24,8 @@ public class BoxConfig : MonoBehaviour
         BoxType = boxConfig.boxType;
         PossibleRewards = boxConfig.possibleRewards;
         DropRate = boxConfig.DropRate;
-        quantity = 0;
+        quantity = 1;
+        if(unboxingVfx == null) 
+            unboxingVfx = GetComponentInChildren<UnboxingVfx>();
     }
 }
