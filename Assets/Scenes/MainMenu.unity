@@ -496,7 +496,7 @@ MonoBehaviour:
   isDebug: 0
   BlockchainIntegration: {fileID: 1082540502}
   loginURL: https://players-web-bff-dev.herokuapp.com/player/login
-  baseURL: https://ts-toyo-web-bff.herokuapp.com/api
+  baseURL: https://ts-toyo-web-bff.herokuapp.com
   boxesSufixURL: /player/boxes
   toyosSufixURL: /player/toyos
 --- !u!4 &1082540500

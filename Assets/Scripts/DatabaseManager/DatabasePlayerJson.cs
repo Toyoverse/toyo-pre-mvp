@@ -49,7 +49,7 @@ namespace Database
         public string idOpenBox;
         public string idClosedBox;
         public string type;
-        public string region;
+        public ToyoRegion region;
         public string currentOwner;
         public string lastUnboxingStartedAt;
         public string typeId;
@@ -170,6 +170,7 @@ namespace Database
     public class ToyoRegion
     {
         public string objectId;
+        public string name;
     }
     
     [Serializable]

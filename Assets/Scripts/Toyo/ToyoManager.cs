@@ -137,7 +137,7 @@ public class ToyoManager : Singleton<ToyoManager>
     private static BOX_REGION GetBoxRegionInPlayerBox(Box box)
     {
         var _boxRegion = "";
-        _boxRegion = string.IsNullOrEmpty(box.type) ? box.toyo?.toyoPersona?.region : box.type;
+        _boxRegion = string.IsNullOrEmpty(box.region.name) ? box.toyo?.toyoPersona?.region : box.type;
         
         return _boxRegion?.ToUpper() switch
         {
