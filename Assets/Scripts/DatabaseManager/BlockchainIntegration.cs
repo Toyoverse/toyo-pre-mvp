@@ -18,11 +18,13 @@ public class BlockchainIntegration : MonoBehaviour
     
     private DatabaseConnection _databaseConnection => DatabaseConnection.Instance;
     private string _account;
+    private List<Toyo> _toyoList;
 
     public async void StartLoginMetamask()
     {
         if (skipLogin)
         {
+            PlayerPrefs.SetString("TokenJWT", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ3YWxsZXRJZCI6IjB4MGM0ZWJmMzBlZTRhNjA3ZTJlMTBhYWI2Y2ZhMzVkMDQzNDJlYWVlYiIsInRyYW5zYWN0aW9uIjoiZGZnNTR3ZWZkIiwiaWF0IjoxNjU2MzY0MjQ3LCJleHAiOjE2NTY5NjkwNDd9.Hl_B8b5xdcCn5p9slJPs1-b26sZSpdYBZSCRsH6akgk");
             GoToNextScreen();
             return;
         }
@@ -59,6 +61,35 @@ public class BlockchainIntegration : MonoBehaviour
         ScreenManager.Instance.GoToScreen(ScreenManager.Instance.haveToyo
             ? ScreenState.MainMenu
             : ScreenState.Welcome);
+        
+        _databaseConnection.CallGetPlayerBoxes(OnBoxesSuccess);
+    }
+    
+    public void OnBoxesSuccess(string json)
+    {
+        var _myObject = JsonUtility.FromJson<DatabasePlayerJson>(json);
+
+        _databaseConnection.player = _myObject.player;
+        ToyoManager.SetPlayerBoxes(_myObject.player);
+        _databaseConnection.CallGetPlayerToyo(OnToyoListSuccess);
+    }
+
+    public void OnToyoListSuccess(string json)
+    {
+        var _myObject = JsonUtility.FromJson<CallbackToyoList>(json);
+
+        if (_myObject.toyos == null || _myObject.toyos.Length == 0) return;
+        _databaseConnection.player.toyos = _myObject.toyos;
+        
+        //This isn't finished in the backend yet
+        //_databaseConnection.CallGetToyoData(OnBoxesSuccess, _myObject.toyos); //Might be tokenid, check later
+        
+    }
+
+    public void OnToyoDetailSuccess(string json)
+    {
+        var _myObject = JsonUtility.FromJson<CallbackToyoDetails>(json);
+        _toyoList.Add(_myObject.toyo);
     }
 
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -12,7 +13,19 @@ namespace Database
         public Player player;
         public BlockchainIntegration BlockchainIntegration;
         
-        private const string URL = "https://players-web-bff-dev.herokuapp.com/player/login";
+        private string URL = "";
+        
+        [SerializeField]
+        private string loginURL = "https://players-web-bff-dev.herokuapp.com/player/login";
+
+        [SerializeField]
+        private string baseURL = "https://ts-toyo-web-bff.herokuapp.com/api";
+
+        [SerializeField]
+        private string boxesSufixURL = "/player/boxes";
+
+        [SerializeField]
+        private string toyosSufixURL = "/player/toyos";
         
         private void Awake()
         {
@@ -27,6 +40,40 @@ namespace Database
             ProcessRequest(callback, _request);
         }
         
+        public void CallGetPlayerBoxes(Action<string> callback)
+        {
+            URL = baseURL + boxesSufixURL;
+            var _request = GenerateRequest(HTTP_REQUEST.GET);
+            ProcessRequest(callback, _request);
+        }
+        
+        public void CallGetPlayerToyo(Action<string> callback)
+        {
+            URL = baseURL + toyosSufixURL;
+            var _request = GenerateRequest(HTTP_REQUEST.GET);
+            ProcessRequest(callback, _request);
+        }
+        
+        public async void CallGetToyoData(Action<string> callback, Toyo[] toyoList)
+        {
+            foreach (var _toyo in toyoList)
+            {
+                URL = baseURL + toyosSufixURL + "/" + _toyo.objectId;
+                var _request = GenerateRequest(HTTP_REQUEST.GET);
+                await ProcessAsyncRequests(callback, _request);
+            }
+        }
+        
+        private async Task ProcessAsyncRequests(Action<string> callback, UnityWebRequest request)
+        {
+            var _task = new Task(() =>
+            {
+                ProcessRequest(callback, request);
+            });
+            _task.Start();
+            await _task;
+        }
+        
         public void GetPlayerInfo()
         {
             var _request = GenerateRequest(HTTP_REQUEST.GET);
@@ -38,16 +85,17 @@ namespace Database
             return requestType switch
             {
                 HTTP_REQUEST.GET => GenerateGet(URL),
-                HTTP_REQUEST.PUT => GeneratePost( URL),
-                HTTP_REQUEST.POST => GeneratePost( URL, parameters),
+                HTTP_REQUEST.PUT => GeneratePost(URL),
+                HTTP_REQUEST.POST => GeneratePost(URL, parameters),
                 _ => throw new ArgumentOutOfRangeException(nameof(requestType), requestType, null)
             };
         }
         
         private UnityWebRequest GenerateGet(string uri)
         {
-            UnityWebRequest _requestPost = UnityWebRequest.Get(uri);
-            return _requestPost;
+            UnityWebRequest _requestGet = UnityWebRequest.Get(uri);
+            _requestGet.SetRequestHeader("Authorization", PlayerPrefs.GetString("TokenJWT"));
+            return _requestGet;
         }
         
         private UnityWebRequest GeneratePost(string uri, List<(string,string)> parameters = null)
@@ -80,11 +128,10 @@ namespace Database
         
         private void OnConnectionSuccess(string json)
         {
-            var _myObject = JsonUtility.FromJson<DatabasePlaserJson>(json);    
+            var _myObject = JsonUtility.FromJson<DatabasePlayerJson>(json);    
             Debug.Log(_myObject.player);
             player = _myObject.player;
         }
-        
     }
     
 }

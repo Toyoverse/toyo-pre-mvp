@@ -5,10 +5,23 @@ namespace Database
 {
 
     [Serializable]
-    public class DatabasePlaserJson
+    public class DatabasePlayerJson
     {
         public Player player;
     }
+    
+    [Serializable]
+    public class CallbackToyoList
+    {
+        public Toyo[] toyos;
+    }
+    
+    [Serializable]
+    public class CallbackToyoDetails
+    {
+        public Toyo toyo;
+    }
+    
 
     [Serializable]
     public class Player
@@ -26,6 +39,14 @@ namespace Database
         public Toyo toyo;
         public string idOpenBox;
         public string idClosedBox;
+        public int type;
+        public string createdAt;
+        public string updatedAt;
+        public string tokenId;
+        public string lastUnboxingStartedAt;
+        public string typeId;
+        public string[] specification;
+        
     }
 
     [Serializable]
@@ -35,6 +56,10 @@ namespace Database
         public string name;
         public bool hasTenParts;
         public bool isToyoSelected;
+        public string createdAt;
+        public string updatedAt;
+        public string tokenId;
+        public string transactionHash;
         
         public ToyoPersona toyoPersona; // Todo : remove, this is temporary only for the wrong JSON
         public ToyoPart[] parts;

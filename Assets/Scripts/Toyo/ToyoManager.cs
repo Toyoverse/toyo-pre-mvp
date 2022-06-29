@@ -31,6 +31,15 @@ public class ToyoManager : MonoBehaviour
     public static void SetSelectedBox(GameObject selectedBox) => _instance._selectedBox = selectedBox;
     
     public static GameObject GetSelectedBox() => _instance._selectedBox;
+
+    public static Dictionary<Tuple<BOX_TYPE, BOX_REGION>, int> BoxDictionary =
+        new ()
+        {
+            { new Tuple<BOX_TYPE, BOX_REGION>(BOX_TYPE.Fortified, BOX_REGION.Jakana), 0 },
+            { new Tuple<BOX_TYPE, BOX_REGION>(BOX_TYPE.Regular, BOX_REGION.Jakana), 0 },
+            { new Tuple<BOX_TYPE, BOX_REGION>(BOX_TYPE.Fortified, BOX_REGION.Kytunt), 0 },
+            { new Tuple<BOX_TYPE, BOX_REGION>(BOX_TYPE.Regular, BOX_REGION.Kytunt), 0 }
+        };
     
     public static Camera MainCamera;
     
@@ -83,5 +92,13 @@ public class ToyoManager : MonoBehaviour
     private GameObject GetToyoPersonaPrefab(string objectId)
     {
         return toyoPersonaPrefabs.FirstOrDefault(toyoPersona => objectId == toyoPersona.objectId)?.toyoPrefab;
+    }
+
+    public static void SetPlayerBoxes(Player playerData)
+    {
+        foreach (var _box in playerData.boxes)
+        {
+             //var _region = _box.specification
+        }
     }
 }
