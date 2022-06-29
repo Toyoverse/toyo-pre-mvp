@@ -10,7 +10,6 @@ namespace Database
     public class DatabaseConnection : Singleton<DatabaseConnection>
     {
         public bool isDebug = false;
-        public Player player;
         public BlockchainIntegration BlockchainIntegration;
         
         private string URL = "";
@@ -130,10 +129,9 @@ namespace Database
         {
             var _myObject = JsonUtility.FromJson<DatabasePlayerJson>(json);    
             Debug.Log(_myObject.player);
-            player = _myObject.player;
+            ToyoManager.SetPlayerData(_myObject.player);
         }
     }
-    
 }
 
 public enum HTTP_REQUEST

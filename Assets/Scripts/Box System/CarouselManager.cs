@@ -12,7 +12,6 @@ using Vector3 = UnityEngine.Vector3;
 
 public class CarouselManager : MonoBehaviour
 {
-
     public float carouselOffset = 5.0f;
 
     [SerializeField]
@@ -54,16 +53,19 @@ public class CarouselManager : MonoBehaviour
 
     private Transform _objectToHide;
 
-
     private void Awake()
     {
         if (isToyoCarousel) return;
+        AddBoxesToGlobalList();
+    }
+
+    private void AddBoxesToGlobalList()
+    {
         foreach (var _box in allObjects)
         {
             var _component = _box.GetComponent<BoxConfig>();
             ToyoManager.AddBoxToGlobalList(_component);
         }
-            
     }
 
     private void OnEnable()
@@ -139,7 +141,6 @@ public class CarouselManager : MonoBehaviour
         OnEndRotation?.Invoke();
     }
     
-
     IEnumerator MoveToPosition(Transform objectToRotate, Vector3 newPosition, float time)
     {
         var _elapsedTime = 0f;
@@ -151,8 +152,7 @@ public class CarouselManager : MonoBehaviour
             yield return null;
         }
     }
-        
-
+    
     public void SwipeRight()
     {
         AudioManager.Instance.rotateRightSfx.PlayOneShot(transform.position);

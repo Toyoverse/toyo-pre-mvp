@@ -69,8 +69,8 @@ public class BlockchainIntegration : MonoBehaviour
     {
         var _myObject = JsonUtility.FromJson<DatabasePlayerJson>(json);
 
-        _databaseConnection.player = _myObject.player;
-        ToyoManager.SetPlayerBoxes(_databaseConnection.player);
+        ToyoManager.SetPlayerData(_myObject.player);
+        ToyoManager.SetPlayerBoxes();
         _databaseConnection.CallGetPlayerToyo(OnToyoListSuccess);
     }
 
@@ -79,11 +79,10 @@ public class BlockchainIntegration : MonoBehaviour
         var _myObject = JsonUtility.FromJson<CallbackToyoList>(json);
 
         if (_myObject.toyos == null || _myObject.toyos.Length == 0) return;
-        _databaseConnection.player.toyos = _myObject.toyos;
+        ToyoManager.Instance.Player.toyos = _myObject.toyos;
         
         //This isn't finished in the backend yet
         //_databaseConnection.CallGetToyoData(OnBoxesSuccess, _myObject.toyos); //Might be tokenid, check later
-        
     }
 
     public void OnToyoDetailSuccess(string json)
