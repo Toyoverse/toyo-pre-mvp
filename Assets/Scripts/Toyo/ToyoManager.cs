@@ -54,8 +54,7 @@ public class ToyoManager : MonoBehaviour
     }
 
     public static void AddBoxToGlobalList(BoxConfig box) => _instance._allBoxesConfigInCarousel.Add(box);
-
-
+    
     List<ToyoObject> CreateToyoObjectList()
     {
         var _databaseToyoList = DatabaseConnection.Instance.player.toyos.ToList();
