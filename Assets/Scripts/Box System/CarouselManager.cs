@@ -53,20 +53,7 @@ public class CarouselManager : MonoBehaviour
 
     private Transform _objectToHide;
 
-    private void Awake()
-    {
-        if (isToyoCarousel) return;
-        AddBoxesToGlobalList();
-    }
 
-    private void AddBoxesToGlobalList()
-    {
-        foreach (var _box in allObjects)
-        {
-            var _component = _box.GetComponent<BoxConfig>();
-            ToyoManager.AddBoxToGlobalList(_component);
-        }
-    }
 
     private void OnEnable()
     {

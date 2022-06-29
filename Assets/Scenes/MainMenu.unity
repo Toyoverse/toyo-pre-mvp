@@ -493,11 +493,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23e2b4819c044505bcff49abbd8913c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDebug: 1
-  player:
-    boxes: []
-    toyos: []
+  isDebug: 0
   BlockchainIntegration: {fileID: 1082540502}
+  loginURL: https://players-web-bff-dev.herokuapp.com/player/login
+  baseURL: https://ts-toyo-web-bff.herokuapp.com/api
+  boxesSufixURL: /player/boxes
+  toyosSufixURL: /player/toyos
 --- !u!4 &1082540500
 Transform:
   m_ObjectHideFlags: 0

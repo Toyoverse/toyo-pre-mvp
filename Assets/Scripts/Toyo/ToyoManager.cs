@@ -85,10 +85,21 @@ public class ToyoManager : Singleton<ToyoManager>
         return _toyoPrefab;
     }
 
-    private void Start()
+    public static void InitializeInstance() => Instance.Initialize();
+    
+    private void Initialize()
     {
         _ = ToyoList;
         MainCamera = FindObjectOfType<Camera>();
+        var _boxManager = FindObjectsOfType<CarouselManager>(true).First(manager => !manager.isToyoCarousel);
+        AddBoxesToGlobalList(_boxManager.allObjects);
+    }
+    
+    
+    private void AddBoxesToGlobalList(List<Transform> allBoxes)
+    {
+        foreach (var _component in allBoxes.Select(box => box.GetComponent<BoxConfig>()))
+            AddBoxToGlobalList(_component);
     }
 
     private GameObject GetToyoPersonaPrefab(string objectId)
@@ -96,13 +107,11 @@ public class ToyoManager : Singleton<ToyoManager>
 
     public static void SetPlayerData(Player playerData)
     {
-        Instance.Player ??= new Player
-        {
-            boxes = playerData.boxes,
-            toyos = playerData.toyos
-        };
+        Instance.Player = playerData;
     }
 
+
+    
     public static void SetPlayerBoxes()
     {
         foreach (var _boxFromPlayer in Instance.Player.boxes)
@@ -117,7 +126,7 @@ public class ToyoManager : Singleton<ToyoManager>
 
     private static BOX_TYPE GetBoxTypeInPlayerBox(Box box)
     {
-        return box.type switch
+        return box.type?.ToUpper() switch
         {
             "REGULAR" => BOX_TYPE.Regular,
             "FORTIFIED" => BOX_TYPE.Fortified,
@@ -127,7 +136,10 @@ public class ToyoManager : Singleton<ToyoManager>
 
     private static BOX_REGION GetBoxRegionInPlayerBox(Box box)
     {
-        return box.region switch
+        var _boxRegion = "";
+        _boxRegion = string.IsNullOrEmpty(box.type) ? box.toyo?.toyoPersona?.region : box.type;
+        
+        return _boxRegion?.ToUpper() switch
         {
             "KYTUNT" => BOX_REGION.Kytunt,
             "JAKANA" => BOX_REGION.Jakana,
