@@ -22,12 +22,18 @@ namespace Database
         public Toyo toyo;
     }
     
-
     [Serializable]
     public class Player
     {
         public Box[] boxes;
         public Toyo[] toyos;
+    }
+
+    [Serializable]
+    public class BoxJSON
+    {
+        public string wallet;
+        public Box[] boxes;
     }
 
     [Serializable]
@@ -72,7 +78,8 @@ namespace Database
         public string tokenId;
         public string transactionHash;
         
-        public ToyoPersona toyoPersonaOrigin; // Todo : remove, this is temporary only for the wrong JSON
+        public ToyoPersona toyoPersona; // Todo : remove, this is temporary only for the wrong JSON
+        //public ToyoPersona toyoPersonaOrigin; 
         public ToyoPart[] parts;
     }
 

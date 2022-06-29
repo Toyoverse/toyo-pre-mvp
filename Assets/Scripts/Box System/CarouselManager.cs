@@ -59,7 +59,11 @@ public class CarouselManager : MonoBehaviour
     {
         if (isToyoCarousel) return;
         foreach (var _box in allObjects)
-            ToyoManager.AddBoxToGlobalList(_box.GetComponent<BoxConfig>());
+        {
+            var _component = _box.GetComponent<BoxConfig>();
+            ToyoManager.AddBoxToGlobalList(_component);
+        }
+            
     }
 
     private void OnEnable()

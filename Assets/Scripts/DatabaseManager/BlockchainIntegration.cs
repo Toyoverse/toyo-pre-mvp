@@ -70,7 +70,7 @@ public class BlockchainIntegration : MonoBehaviour
         var _myObject = JsonUtility.FromJson<DatabasePlayerJson>(json);
 
         _databaseConnection.player = _myObject.player;
-        ToyoManager.SetPlayerBoxes(_myObject.player);
+        ToyoManager.SetPlayerBoxes(_databaseConnection.player);
         _databaseConnection.CallGetPlayerToyo(OnToyoListSuccess);
     }
 

@@ -106,11 +106,11 @@ public class ToyoObject : MonoBehaviour
     {
         SetTotalStats(toyo.parts.ToList());
 
-        _rarity = toyo.toyoPersonaOrigin.rarity;
+        _rarity = toyo.toyoPersona.rarity;
         
         //Todo Uncoment this when we use toyo rename system
         //_toyoName = !string.IsNullOrEmpty(toyo.name) ? toyo.name : toyo.parts[0].toyoPersona.name;
-        _toyoName = toyo.toyoPersonaOrigin.name;
+        _toyoName = toyo.toyoPersona.name;
         _numberOfParts = toyo.parts.Length;
         IsToyoSelected = toyo.isToyoSelected;
         

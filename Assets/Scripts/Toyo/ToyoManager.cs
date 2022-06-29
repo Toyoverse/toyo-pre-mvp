@@ -12,7 +12,7 @@ using UnityEngine.Serialization;
 public class ToyoManager : MonoBehaviour
 {
     public CarouselManager carouselToyo;
-    private List<BoxConfig> _allBoxesConfig;
+    private List<BoxConfig> _allBoxesConfigInCarousel = new();
     public Transform toyoListParent;
     public GameObject toyoBasePrefab;
     public List<ToyoPersonaSO> toyoPersonaPrefabs;
@@ -53,7 +53,7 @@ public class ToyoManager : MonoBehaviour
         GetSelectedToyo().transform.LookAt(MainCamera.transform);
     }
 
-    public static void AddBoxToGlobalList(BoxConfig box) => _instance._allBoxesConfig.Add(box);
+    public static void AddBoxToGlobalList(BoxConfig box) => _instance._allBoxesConfigInCarousel.Add(box);
 
 
     List<ToyoObject> CreateToyoObjectList()
@@ -64,7 +64,7 @@ public class ToyoManager : MonoBehaviour
         var _index = 0;
         foreach (var _databaseToyo in _databaseToyoList)
         {
-            var _toyoPrefab = Instantiate(GetToyoPersonaPrefab(_databaseToyo.toyoPersonaOrigin.objectId), toyoListParent);
+            var _toyoPrefab = Instantiate(GetToyoPersonaPrefab(_databaseToyo.toyoPersona.objectId), toyoListParent);
             var _toyoObjectInstance =_toyoPrefab.AddComponent<ToyoObject, Toyo>(_databaseToyo);
             _toyoObjectInstance.spriteAnimator = _toyoPrefab.GetComponentInChildren<SpriteAnimator>();
             carouselToyo.allObjects.Add(_toyoPrefab.transform);
@@ -93,15 +93,13 @@ public class ToyoManager : MonoBehaviour
     public static void SetPlayerBoxes(Player playerData)
     {
         //InitBoxInformationList();
-        foreach (var _box in playerData.boxes)
+        foreach (var _boxFromPlayer in playerData.boxes)
         {
-            foreach (var _t in _instance._allBoxesConfig
+            foreach (var _boxConfigInCarousel in _instance._allBoxesConfigInCarousel
                          .Where(t => 
-                            GetBoxTypeInPlayerBox(_box) == t.BoxType
-                            && GetBoxRegionInPlayerBox(_box) == t.BoxRegion))
-            {
-                _t.boxList.Add(_box);
-            }
+                            GetBoxTypeInPlayerBox(_boxFromPlayer) == t.BoxType && 
+                            GetBoxRegionInPlayerBox(_boxFromPlayer) == t.BoxRegion))
+                _boxConfigInCarousel.boxList.Add(_boxFromPlayer);
         }
     }
     
