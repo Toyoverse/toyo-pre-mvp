@@ -28,5 +28,7 @@ public class BoxConfig : MonoBehaviour
         DropRate = boxConfig.DropRate;
         if(unboxingVfx == null) 
             unboxingVfx = GetComponentInChildren<UnboxingVfx>();
+        if (DatabaseConnection.Instance.isDebug)
+            boxList.Add(new ());
     }
 }

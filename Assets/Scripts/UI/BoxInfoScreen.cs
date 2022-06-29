@@ -63,7 +63,7 @@ namespace UI
         {
             
             ToyoManager.SetSelectedBox(carousel.CurrentSelectedObject.gameObject);
-            GetBoxSelected().unboxingVfx.SetRarityColor(TOYO_RARITY.LIMITED); //TODO: Move to correct location and pass correct color
+            GetBoxSelected().unboxingVfx.SetRarityColor(TOYO_RARITY.PROTOTYPE); //TODO: Move to correct location and pass correct color
             ScreenManager.Instance.GoToScreen(ScreenState.Unboxing);
         }
 
