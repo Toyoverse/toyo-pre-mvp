@@ -59,12 +59,12 @@ public enum TOYO_PIECE
 
 public enum TOYO_RARITY
 {
-    COMMON = 0,
-    UNCOMMON = 1,
-    RARE = 2,
-    LIMITED = 3,
-    COLLECTOR = 4,
-    PROTOTYPE = 5
+    COMMON = 1,
+    UNCOMMON = 2,
+    RARE = 3,
+    LIMITED = 4,
+    COLLECTOR = 5,
+    PROTOTYPE = 6
 }
 
 public enum TOYO_TECHNOALLOY
