@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rewardName: Wang_Template
   sprite: {fileID: 21300000, guid: 037dc7481307d6c4a932699117c4353e, type: 3}
-  toyoRarity: 0
+  toyoRarity: 4

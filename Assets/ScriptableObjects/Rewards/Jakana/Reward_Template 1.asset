@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rewardName: Doge_Template
   sprite: {fileID: 21300000, guid: e90ad3641a243f24e8c2747b9c2044bb, type: 3}
-  toyoRarity: 5
+  toyoRarity: 6

@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rewardName: Uzi_Template
   sprite: {fileID: 21300000, guid: bea76b8125c017e41a5b7a9551336a8d, type: 3}
-  toyoRarity: 0
+  toyoRarity: 4

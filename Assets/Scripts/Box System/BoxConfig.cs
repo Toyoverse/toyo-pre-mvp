@@ -47,11 +47,6 @@ public class BoxConfig : MonoBehaviour
 
     public void OnEnable()
     {
-        /*BoxName = boxConfigSo.boxName;
-        BoxRegion = boxConfig.boxRegion;
-        BoxType = boxConfigSo.boxType;
-        PossibleRewards = boxConfigSo.possibleRewards;
-        DropRate = boxConfigSo.DropRate;*/
         if(unboxingVfx == null) 
             unboxingVfx = GetComponentInChildren<UnboxingVfx>();
         if (DatabaseConnection.Instance.isDebug)

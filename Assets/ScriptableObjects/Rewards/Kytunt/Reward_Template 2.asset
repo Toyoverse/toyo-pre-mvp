@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rewardName: Nyima_Template
   sprite: {fileID: 21300000, guid: 9f39fe6ad04ddbf40af4ee2c40fefbe6, type: 3}
-  toyoRarity: 3
+  toyoRarity: 2

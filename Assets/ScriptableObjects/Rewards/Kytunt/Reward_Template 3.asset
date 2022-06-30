@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rewardName: Haruko_Template
   sprite: {fileID: 21300000, guid: c0ceb423cf05fd34292f72f0a2be1db9, type: 3}
-  toyoRarity: 2
+  toyoRarity: 5

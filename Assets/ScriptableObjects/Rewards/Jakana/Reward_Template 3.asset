@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rewardName: Gaja_Template
   sprite: {fileID: 21300000, guid: 19547b23eca34f24595bd5db00f1743b, type: 3}
-  toyoRarity: 2
+  toyoRarity: 3

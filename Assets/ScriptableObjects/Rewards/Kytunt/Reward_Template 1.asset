@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rewardName: Datu_Template
   sprite: {fileID: 21300000, guid: 7c4f884ab6a112643afeaf26db5710d1, type: 3}
-  toyoRarity: 5
+  toyoRarity: 3

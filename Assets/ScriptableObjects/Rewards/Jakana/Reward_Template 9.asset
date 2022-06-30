@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rewardName: Yawara_Template
   sprite: {fileID: 21300000, guid: e01f4e46b763ead47878ced9df438d0f, type: 3}
-  toyoRarity: 0
+  toyoRarity: 4
