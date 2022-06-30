@@ -89,6 +89,8 @@ namespace UI
             openBoxScript ??= GetComponent<OpenBoxScreen>();
             loreThemeScript ??= GetComponent<LoreThemeScreen>();
             trainingModuleScript ??= GetComponent<TrainingModuleScreen>();
+            metamaskScreen ??= GetComponent<MetamaskScreen>();
+            unboxingScreen ??= GetComponent<UnboxingScreen>();
         }
     }
 

@@ -8,7 +8,7 @@ public class TransitionControl : Singleton<TransitionControl>
     public event Action OnCompletelyHiddenScreen;
     public Image image;
 
-    public void Start()
+    public void Awake()
     {
         if (animator == null)
             animator = GetComponent<Animator>();
@@ -20,7 +20,7 @@ public class TransitionControl : Singleton<TransitionControl>
     public void PlayTransition()
     {
         EnableTransition();
-        animator.Play("Base Layer.Transition", 0, 0);
+        animator.Play("BaseLayer.Transition", 0, 0);
     }
     
     public void OnCompletelyHiddenScreenFunction() => OnCompletelyHiddenScreen?.Invoke();
