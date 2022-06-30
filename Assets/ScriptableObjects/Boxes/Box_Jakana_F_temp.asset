@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Box_Jakana_F_temp
   m_EditorClassIdentifier: 
   boxName: Jakana Fortified Template
-  boxRegion: 1
+  boxRegion: 2
   boxType: 2
   possibleRewards:
   - {fileID: 11400000, guid: e657890591ae5d846979e5b690bb8ed8, type: 2}
