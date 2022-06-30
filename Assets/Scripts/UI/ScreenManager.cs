@@ -9,7 +9,6 @@ namespace UI
 {
     public class ScreenManager : Singleton<ScreenManager>
     {
-       
         [Header("Scripts References")]
         [SerializeField] private WelcomeScreen welcomeScript;
         [SerializeField] private MainMenuScreen mainMenuScript;
@@ -30,94 +29,55 @@ namespace UI
         private void Start()
         {
             GetScreenScripts();
-            //GoToScreen(haveToyo ? ScreenState.MainMenu : ScreenState.Welcome);
             GoToScreen(ScreenState.Metamask);
         }
 
         public void GoToScreen(ScreenState newScreen)
         {
-            //TODO: Change to events
-            CloseCurrentScreen();
-            switch (newScreen)
-            {
-                case ScreenState.Welcome:
-                    welcomeScript.ActiveScreen();
-                    break;
-                case ScreenState.MainMenu:
-                    mainMenuScript.ActiveScreen();
-                    break;
-                case ScreenState.ToyoInfo:
-                    toyoInfoScript.ActiveScreen();
-                    break;
-                case ScreenState.BoxInfo:
-                    boxInfoScript.ActiveScreen();
-                    break;
-                case ScreenState.OpenBox:
-                    openBoxScript.ActiveScreen();
-                    break;
-                case ScreenState.LoreTheme:
-                    loreThemeScript.ActiveScreen();
-                    break;
-                case ScreenState.TrainingModule:
-                    trainingModuleScript.ActiveScreen();
-                    break;
-                case ScreenState.Unboxing:
-                    unboxingScreen.ActiveScreen();
-                    break;
-                case ScreenState.Metamask:
-                    metamaskScreen.ActiveScreen();
-                    break;
-                case ScreenState.TrainingModuleRewards:
-                    trainingModuleRewardScript.ActiveScreen();
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-
+            AddCloseCurrentScreenEvent();
+            AddOpenNewScreenEvent(newScreen);
             _oldScreenState = ScreenState;
             ScreenState = newScreen;
+            TransitionControl.Instance.PlayTransition();
         }
 
         public void BackToOldScreen() => GoToScreen(_oldScreenState);
 
-        private void CloseCurrentScreen()
+        private void AddCloseCurrentScreenEvent()
         {
-            //TODO: Change to events
-            switch (ScreenState)
+            if (ScreenState == ScreenState.None)
+                return;
+            TransitionControl.Instance.OnCompletelyHiddenScreen += ScreenState switch
             {
-                case ScreenState.Welcome:
-                    welcomeScript.DisableScreen();
-                    break;
-                case ScreenState.MainMenu:
-                    mainMenuScript.DisableScreen();
-                    break;
-                case ScreenState.ToyoInfo:
-                    toyoInfoScript.DisableScreen();
-                    break;
-                case ScreenState.BoxInfo:
-                    boxInfoScript.DisableScreen();
-                    break;
-                case ScreenState.OpenBox:
-                    openBoxScript.DisableScreen();
-                    break;
-                case ScreenState.LoreTheme:
-                    loreThemeScript.DisableScreen();
-                    break;
-                case ScreenState.TrainingModule:
-                    trainingModuleScript.DisableScreen();
-                    break;
-                case ScreenState.Unboxing:
-                    unboxingScreen.DisableScreen();
-                    break;
-                case ScreenState.Metamask:
-                    metamaskScreen.DisableScreen();
-                    break;
-                case ScreenState.TrainingModuleRewards:
-                    trainingModuleRewardScript.DisableScreen();
-                    break;
-                default:
-                    break;
-            }
+                ScreenState.Welcome => welcomeScript.DisableScreen,
+                ScreenState.MainMenu => mainMenuScript.DisableScreen,
+                ScreenState.ToyoInfo => toyoInfoScript.DisableScreen,
+                ScreenState.BoxInfo => boxInfoScript.DisableScreen,
+                ScreenState.OpenBox => openBoxScript.DisableScreen,
+                ScreenState.LoreTheme => loreThemeScript.DisableScreen,
+                ScreenState.TrainingModule => trainingModuleScript.DisableScreen,
+                ScreenState.Unboxing => unboxingScreen.DisableScreen,
+                ScreenState.Metamask => metamaskScreen.DisableScreen,
+                ScreenState.TrainingModuleRewards => trainingModuleScript.DisableScreen
+            };
+        }
+
+        private void AddOpenNewScreenEvent(ScreenState newScreen)
+        {
+            TransitionControl.Instance.OnCompletelyHiddenScreen += newScreen switch
+            {
+                ScreenState.Welcome => welcomeScript.ActiveScreen,
+                ScreenState.MainMenu => mainMenuScript.ActiveScreen,
+                ScreenState.ToyoInfo => toyoInfoScript.ActiveScreen,
+                ScreenState.BoxInfo => boxInfoScript.ActiveScreen,
+                ScreenState.OpenBox => openBoxScript.ActiveScreen,
+                ScreenState.LoreTheme => loreThemeScript.ActiveScreen,
+                ScreenState.TrainingModule => trainingModuleScript.ActiveScreen,
+                ScreenState.Unboxing => unboxingScreen.ActiveScreen,
+                ScreenState.Metamask => metamaskScreen.ActiveScreen,
+                ScreenState.TrainingModuleRewards => trainingModuleScript.ActiveScreen,
+                _ => throw new ArgumentOutOfRangeException()
+            };
         }
 
         private void GetScreenScripts()

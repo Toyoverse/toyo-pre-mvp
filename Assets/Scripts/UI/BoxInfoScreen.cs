@@ -31,8 +31,8 @@ namespace UI
 
         public override void DisableScreen()
         {
-            base.DisableScreen();
             carousel.OnEndRotation -= EnableBoxCount;
+            base.DisableScreen();
         }
 
         public void OpenBoxButton() 
