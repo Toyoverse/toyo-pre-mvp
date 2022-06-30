@@ -33,14 +33,12 @@ public class Loading : MonoBehaviour
     {
         SetLoading(true);
         loadingCanvas.SetActive(true);
-        Debug.Log("Enable Loading");
     }
 
     private void DisableLoading()
     {
         SetLoading(false);
         loadingCanvas.SetActive(false);
-        Debug.Log("Disable Loading");
     }
 
     private void SetLoading(bool on) => InLoading = on;

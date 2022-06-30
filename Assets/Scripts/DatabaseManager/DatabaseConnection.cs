@@ -11,6 +11,7 @@ namespace Database
     {
         public bool isDebug = false;
         public BlockchainIntegration BlockchainIntegration;
+        private IEnumerator _requestCoroutine;
         
         private string URL = "";
         
@@ -38,53 +39,35 @@ namespace Database
         
         public void CallLogin(Action<string> callback, List<(string,string)> parameters = null)
         {
+            URL = loginURL;
             var _request = GenerateRequest(HTTP_REQUEST.POST, parameters);
-            ProcessRequest(callback, _request);
+            StartCoroutine(ProcessRequestCoroutine(callback, _request));
         }
         
         public void CallGetPlayerBoxes(Action<string> callback)
         {
             URL = baseURL + boxesSufixURL;
             var _request = GenerateRequest(HTTP_REQUEST.GET);
-            ProcessRequest(callback, _request);
+            StartCoroutine(ProcessRequestCoroutine(callback, _request));
         }
         
         public void CallGetPlayerToyo(Action<string> callback)
         {
             URL = baseURL + toyosSufixURL;
             var _request = GenerateRequest(HTTP_REQUEST.GET);
-            ProcessRequest(callback, _request);
+            StartCoroutine(ProcessRequestCoroutine(callback, _request));
         }
-        
-        public async void CallGetToyoData(Action<string> callback, Toyo[] toyoList)
+
+        public IEnumerator CallGetToyoData(Action<string> callback, Toyo[] toyoList)
         {
-            URL = baseURL + toyosDetailSufixURL + toyoList[0].objectId;
-            var _request = GenerateRequest(HTTP_REQUEST.GET);
-            ProcessRequest(callback, _request);
-            /*
             foreach (var _toyo in toyoList)
             {
-                URL = baseURL + toyosSufixURL + "/" + _toyo.objectId;
+                URL = baseURL + toyosDetailSufixURL + _toyo.objectId;
                 var _request = GenerateRequest(HTTP_REQUEST.GET);
-                await ProcessAsyncRequests(callback, _request);
+                yield return ProcessRequestCoroutine(callback, _request);
             }
-            */
-        }
-        
-        private async Task ProcessAsyncRequests(Action<string> callback, UnityWebRequest request)
-        {
-            var _task = new Task(() =>
-            {
-                ProcessRequest(callback, request);
-            });
-            _task.Start();
-            await _task;
-        }
-        
-        public void GetPlayerInfo()
-        {
-            var _request = GenerateRequest(HTTP_REQUEST.GET);
-            ProcessRequest(OnConnectionSuccess, _request);
+            
+            ToyoManager.StartGame();
         }
         
         private UnityWebRequest GenerateRequest (HTTP_REQUEST requestType, List<(string,string)> parameters = null) {
@@ -117,10 +100,10 @@ namespace Database
             return _requestPost;
         }
         
-        private async void ProcessRequest (Action<string> callback, UnityWebRequest request)
+        private IEnumerator ProcessRequestCoroutine (Action<string> callback, UnityWebRequest request)
         {
             request.SetRequestHeader("Access-Control-Allow-Origin", "*");
-            await request.SendWebRequest ();
+            yield return request.SendWebRequest();
                 
             if (request.error != null)
                 Debug.Log (request.error);
@@ -129,8 +112,7 @@ namespace Database
                 var _json = request.downloadHandler.text;
                 callback.Invoke(_json);
             }
-            
-            request.Dispose();
+
         }
         
         private void OnConnectionSuccess(string json)

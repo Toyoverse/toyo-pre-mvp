@@ -37,7 +37,7 @@ public class ToyoManager : Singleton<ToyoManager>
     public Player Player
     {
         get => _player;
-        private set => _player = value;
+        set => _player = value;
     }
 
     public static void MoveToyoToCenterOpenBox()
@@ -95,6 +95,12 @@ public class ToyoManager : Singleton<ToyoManager>
     }
 
     public static void InitializeToyos() => Instance.InitializeToyosFromDatabase();
+
+    public static void StartGame()
+    {
+        InitializeToyos();
+        Loading.EndLoading?.Invoke();
+    }
     
     private void InitializeToyosFromDatabase() => _ = ToyoList;
     
