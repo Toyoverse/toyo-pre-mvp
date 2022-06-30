@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -600,6 +600,7 @@ MonoBehaviour:
   baseURL: https://ts-toyo-web-bff.herokuapp.com
   boxesSufixURL: /player/boxes
   toyosSufixURL: /player/toyos
+  toyosDetailSufixURL: /player/toyo/
 --- !u!4 &1082540500
 Transform:
   m_ObjectHideFlags: 0
@@ -631,10 +632,23 @@ MonoBehaviour:
   toyoListParent: {fileID: 1908465654}
   toyoBasePrefab: {fileID: 1945413062895215098, guid: f0ec6e8fb5b37314e9e0779b1b4d0537, type: 3}
   toyoPersonaPrefabs:
-  - {fileID: 11400000, guid: 0d571009b2a70614abd8b0d15868abbf, type: 2}
-  - {fileID: 11400000, guid: 108edc6dd21513d4e961c22eff4f7ad4, type: 2}
-  - {fileID: 11400000, guid: 8ae07a4a9bca8ba4e819ba4a9e8008b3, type: 2}
+  - {fileID: 11400000, guid: 5d8cb6abf0ea5b0409f0bf311eafc006, type: 2}
+  - {fileID: 11400000, guid: a68e45f6f0b2b70459123f950f977c22, type: 2}
   - {fileID: 11400000, guid: 545a78c852ce80d4a9baad3dd85408bc, type: 2}
+  - {fileID: 11400000, guid: 76862368c38e1eb40bf46e17a77f25df, type: 2}
+  - {fileID: 11400000, guid: 8ae07a4a9bca8ba4e819ba4a9e8008b3, type: 2}
+  - {fileID: 11400000, guid: d3f6f63f02ee18246a597077bcf2ad01, type: 2}
+  - {fileID: 11400000, guid: 108edc6dd21513d4e961c22eff4f7ad4, type: 2}
+  - {fileID: 11400000, guid: 1d7755e1b7a73f04799b8c189bd9fa63, type: 2}
+  - {fileID: 11400000, guid: f682deaa431577145a57c166ef005660, type: 2}
+  - {fileID: 11400000, guid: 8aa8173adb48573488c6a3914b096271, type: 2}
+  - {fileID: 11400000, guid: 5801cf382ca0256469cf687e816e52df, type: 2}
+  - {fileID: 11400000, guid: 0d571009b2a70614abd8b0d15868abbf, type: 2}
+  - {fileID: 11400000, guid: 15f667b5ee695b94a826097d3763568c, type: 2}
+  - {fileID: 11400000, guid: dad42110bac49994aa84d18ba921ff00, type: 2}
+  - {fileID: 11400000, guid: a24b304f0592779449a93653cef018ae, type: 2}
+  - {fileID: 11400000, guid: 650c1b6890a00584d8beef301fb3f8aa, type: 2}
+  - {fileID: 11400000, guid: 10a76e9d02744ae4da9b8323ae9f0b5a, type: 2}
   openBoxToyoPivot: {fileID: 64713333}
   mainMenuToyoPivot: {fileID: 1479302849}
 --- !u!114 &1082540502

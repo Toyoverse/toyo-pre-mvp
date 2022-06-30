@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: ToyoPersona_Lao_Qing
   m_EditorClassIdentifier: 
   objectId: 1VYo3WbxmBr
+  toyoName: Lao Qing
   toyoPrefab: {fileID: 1945413062895215098, guid: 65906402d10a47b4c91704a7e1bc4c5e, type: 3}

@@ -77,7 +77,7 @@ public class ToyoManager : Singleton<ToyoManager>
 
     private GameObject InstantiateAndConfigureToyo(Toyo databaseToyo, ref List<ToyoObject> toyoObjectList)
     {
-        var _toyoPrefab = Instantiate(GetToyoPersonaPrefab(databaseToyo.toyoPersona.objectId), toyoListParent);
+        var _toyoPrefab = Instantiate(GetToyoPersonaPrefab(databaseToyo.toyoPersonaOrigin), toyoListParent);
         var _toyoObjectInstance =_toyoPrefab.AddComponent<ToyoObject, Toyo>(databaseToyo);
         _toyoObjectInstance.spriteAnimator = _toyoPrefab.GetComponentInChildren<SpriteAnimator>();
         carouselToyo.allObjects.Add(_toyoPrefab.transform);
@@ -104,8 +104,10 @@ public class ToyoManager : Singleton<ToyoManager>
             AddBoxToGlobalList(_component);
     }
 
-    private GameObject GetToyoPersonaPrefab(string objectId)
-        => toyoPersonaPrefabs.FirstOrDefault(toyoPersona => objectId == toyoPersona.objectId)?.toyoPrefab;
+    private GameObject GetToyoPersonaPrefab(ToyoPersona toyoPersona)
+    { 
+        return toyoPersonaPrefabs.FirstOrDefault(toyoPersonaPrefab => string.Equals(toyoPersonaPrefab.toyoName, toyoPersona.name, StringComparison.CurrentCultureIgnoreCase))?.toyoPrefab;
+    }
 
     public static void SetPlayerData(Player playerData)
     {
@@ -141,7 +143,7 @@ public class ToyoManager : Singleton<ToyoManager>
     private static BOX_REGION GetBoxRegionInPlayerBox(Box box)
     {
         var _boxRegion = "";
-        _boxRegion = string.IsNullOrEmpty(box.region.name) ? box.toyo?.toyoPersona?.region : box.region.name;
+        _boxRegion = string.IsNullOrEmpty(box.region.name) ? box.toyo?.toyoPersonaOrigin?.region : box.region.name;
         return _boxRegion?.ToUpper() switch
         {
             "KYTUNT" => BOX_REGION.Kytunt,

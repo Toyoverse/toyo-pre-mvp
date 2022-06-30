@@ -26,6 +26,9 @@ namespace Database
         [SerializeField]
         private string toyosSufixURL = "/player/toyos";
         
+        [SerializeField]
+        private string toyosDetailSufixURL = "/player/toyo/";
+        
         private void Awake()
         {
             if (!isDebug) return;
@@ -55,12 +58,17 @@ namespace Database
         
         public async void CallGetToyoData(Action<string> callback, Toyo[] toyoList)
         {
+            URL = baseURL + toyosDetailSufixURL + toyoList[0].objectId;
+            var _request = GenerateRequest(HTTP_REQUEST.GET);
+            ProcessRequest(callback, _request);
+            /*
             foreach (var _toyo in toyoList)
             {
                 URL = baseURL + toyosSufixURL + "/" + _toyo.objectId;
                 var _request = GenerateRequest(HTTP_REQUEST.GET);
                 await ProcessAsyncRequests(callback, _request);
             }
+            */
         }
         
         private async Task ProcessAsyncRequests(Action<string> callback, UnityWebRequest request)

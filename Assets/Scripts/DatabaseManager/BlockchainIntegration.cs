@@ -16,7 +16,7 @@ public class BlockchainIntegration : MonoBehaviour
     
     private DatabaseConnection _databaseConnection => DatabaseConnection.Instance;
     private string _account;
-    private List<Toyo> _toyoList;
+    private List<Toyo> _toyoList = new();
 
     public async void StartLoginMetamask()
     {
@@ -86,8 +86,7 @@ public class BlockchainIntegration : MonoBehaviour
 
         ToyoManager.Instance.Player.toyos = _myObject.toyos;
         
-        //This isn't finished in the backend yet
-        _databaseConnection.CallGetToyoData(OnToyoDetailSuccess, _myObject.toyos); //Might be tokenid, check later
+        _databaseConnection.CallGetToyoData(OnToyoDetailSuccess, _myObject.toyos);
     }
 
     public void OnToyoDetailSuccess(string json)

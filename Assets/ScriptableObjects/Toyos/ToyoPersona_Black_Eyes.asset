@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 134d4ca8295d41f8bfd4fa631cfc2bbf, type: 3}
-  m_Name: ToyoPersona_Rocker
+  m_Name: ToyoPersona_Black_Eyes
   m_EditorClassIdentifier: 
   objectId: 3VYo3WbxmBr
-  toyoName: Rocker
-  toyoPrefab: {fileID: 1945413062895215098, guid: 602e2d38b0e75504c9c0e9e27cd8c25f, type: 3}
+  toyoName: BlkEy3z
+  toyoPrefab: {fileID: 1945413062895215098, guid: 5897b7da9593b4c44b131ccf9ef200be, type: 3}
