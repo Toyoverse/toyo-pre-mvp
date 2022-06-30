@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rewardName: Lao_Template
   sprite: {fileID: 21300000, guid: 63bc88e94af32bb4fb9f5e1b58d9db98, type: 3}
-  toyoRarity: 1
+  toyoRarity: 5

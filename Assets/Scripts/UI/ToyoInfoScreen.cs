@@ -20,6 +20,7 @@ namespace UI
             carousel.SwipeRight();
             UpdateUI();
         }
+        
         public void PreviousToyoButton()
         {
             _carouselToyoAnimator.StopAnimation();
@@ -44,8 +45,6 @@ namespace UI
         
         private ToyoObject GetSelectedToyoFromCarousel() 
             => carousel.CurrentSelectedObject.GetComponent<ToyoObject>();
-        
-
     }
 }
 

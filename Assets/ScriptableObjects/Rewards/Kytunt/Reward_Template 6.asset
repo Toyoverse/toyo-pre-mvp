@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rewardName: Ming_Template
   sprite: {fileID: 21300000, guid: 129aad58b5b153047a68bab60502d84d, type: 3}
-  toyoRarity: 0
+  toyoRarity: 3

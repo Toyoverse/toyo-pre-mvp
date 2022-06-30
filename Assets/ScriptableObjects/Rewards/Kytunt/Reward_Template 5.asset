@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rewardName: Mizuchi_Template
   sprite: {fileID: 21300000, guid: c6cadf1893a71c84e96e64d9f22176d6, type: 3}
-  toyoRarity: 0
+  toyoRarity: 5

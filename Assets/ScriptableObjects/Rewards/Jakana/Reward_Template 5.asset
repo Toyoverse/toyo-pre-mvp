@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rewardName: Slicky_Template
   sprite: {fileID: 21300000, guid: ec73b9c68e584be4cb1c8be635da2d7e, type: 3}
-  toyoRarity: 0
+  toyoRarity: 1

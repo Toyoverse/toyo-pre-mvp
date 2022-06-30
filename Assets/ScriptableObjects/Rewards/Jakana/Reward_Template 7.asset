@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rewardName: Blk3yez_Template
   sprite: {fileID: 21300000, guid: 686cd794401097544b7582c17dabbb66, type: 3}
-  toyoRarity: 0
+  toyoRarity: 3
