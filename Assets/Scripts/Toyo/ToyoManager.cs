@@ -85,16 +85,18 @@ public class ToyoManager : Singleton<ToyoManager>
         return _toyoPrefab;
     }
 
-    public static void InitializeInstance() => Instance.Initialize();
+    public static void InitializeBoxes() => Instance.InitializeBoxesFromDatabase();
     
-    private void Initialize()
+    private void InitializeBoxesFromDatabase()
     {
-        _ = ToyoList;
         MainCamera = FindObjectOfType<Camera>();
         var _boxManager = FindObjectsOfType<CarouselManager>(true).First(manager => !manager.isToyoCarousel);
         AddBoxesToGlobalList(_boxManager.allObjects);
     }
+
+    public static void InitializeToyos() => Instance.InitializeToyosFromDatabase();
     
+    private void InitializeToyosFromDatabase() => _ = ToyoList;
     
     private void AddBoxesToGlobalList(List<Transform> allBoxes)
     {
