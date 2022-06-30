@@ -5,27 +5,53 @@ using UnityEngine;
 
 public class BoxConfig : MonoBehaviour
 {
-    public BoxConfigSO boxConfig;
+    [SerializeField] private BoxConfigSO boxConfigSo;
     public GameObject model3D;
     public GameObject model2D;
     public List<Box> boxList;
-    
-    public string BoxName { get; private set; }
-    public BOX_REGION BoxRegion { get; private set; }
-    public BOX_TYPE BoxType { get; private set; }
-    public List<BoxRewardSO> PossibleRewards { get; private set; }
-    public Dictionary<TOYO_RARITY, float> DropRate { get; private set; }
+
+    private string _boxName;
+    public string BoxName
+        => _boxName ??= boxConfigSo.boxName; 
+
+    private BOX_REGION _boxRegion;
+    public BOX_REGION BoxRegion
+    {
+        get
+        {
+            if (_boxRegion == BOX_REGION.None)
+                _boxRegion = boxConfigSo.boxRegion;
+            return _boxRegion;
+        }
+    }
+
+    private BOX_TYPE _boxType;
+    public BOX_TYPE BoxType
+    {
+        get
+        {
+            if (_boxType == BOX_TYPE.None)
+                _boxType = boxConfigSo.boxType;
+            return _boxType;
+        }
+    }
+
+    private List<BoxRewardSO> _possibleRewards;
+    public List<BoxRewardSO> PossibleRewards => _possibleRewards ??= boxConfigSo.possibleRewards;
+
+    private Dictionary<TOYO_RARITY, float> _dropRate;
+    public Dictionary<TOYO_RARITY, float> DropRate => _dropRate ??= boxConfigSo.DropRate; 
 
     public int Quantity => boxList.Count;
     public UnboxingVfx unboxingVfx;
 
     public void OnEnable()
     {
-        BoxName = boxConfig.boxName;
+        /*BoxName = boxConfigSo.boxName;
         BoxRegion = boxConfig.boxRegion;
-        BoxType = boxConfig.boxType;
-        PossibleRewards = boxConfig.possibleRewards;
-        DropRate = boxConfig.DropRate;
+        BoxType = boxConfigSo.boxType;
+        PossibleRewards = boxConfigSo.possibleRewards;
+        DropRate = boxConfigSo.DropRate;*/
         if(unboxingVfx == null) 
             unboxingVfx = GetComponentInChildren<UnboxingVfx>();
         if (DatabaseConnection.Instance.isDebug)

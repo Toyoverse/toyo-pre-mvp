@@ -89,7 +89,7 @@ public class ToyoManager : Singleton<ToyoManager>
     
     private void InitializeBoxesFromDatabase()
     {
-        MainCamera = FindObjectOfType<Camera>();
+        MainCamera = Camera.main;
         var _boxManager = FindObjectsOfType<CarouselManager>(true).First(manager => !manager.isToyoCarousel);
         AddBoxesToGlobalList(_boxManager.allObjects);
     }
@@ -112,17 +112,19 @@ public class ToyoManager : Singleton<ToyoManager>
         Instance.Player = playerData;
     }
 
-
-    
     public static void SetPlayerBoxes()
     {
         foreach (var _boxFromPlayer in Instance.Player.boxes)
         {
-            foreach (var _boxConfigInCarousel in Instance._allBoxesConfigInCarousel
-                         .Where(t => 
-                            GetBoxTypeInPlayerBox(_boxFromPlayer) == t.BoxType && 
-                            GetBoxRegionInPlayerBox(_boxFromPlayer) == t.BoxRegion)) 
-                _boxConfigInCarousel.boxList.Add(_boxFromPlayer);
+            foreach (var _boxConfigInCarousel in Instance._allBoxesConfigInCarousel)
+            {
+                if (GetBoxTypeInPlayerBox(_boxFromPlayer) == _boxConfigInCarousel.BoxType
+                    && GetBoxRegionInPlayerBox(_boxFromPlayer) == _boxConfigInCarousel.BoxRegion)
+                {
+                    _boxConfigInCarousel.boxList.Add(_boxFromPlayer);
+                    Debug.Log("BOX MATCH! - " + _boxConfigInCarousel.BoxType + " | " + _boxConfigInCarousel.BoxRegion);
+                }
+            }
         }
     }
 
@@ -139,8 +141,7 @@ public class ToyoManager : Singleton<ToyoManager>
     private static BOX_REGION GetBoxRegionInPlayerBox(Box box)
     {
         var _boxRegion = "";
-        _boxRegion = string.IsNullOrEmpty(box.region.name) ? box.toyo?.toyoPersona?.region : box.type;
-        
+        _boxRegion = string.IsNullOrEmpty(box.region.name) ? box.toyo?.toyoPersona?.region : box.region.name;
         return _boxRegion?.ToUpper() switch
         {
             "KYTUNT" => BOX_REGION.Kytunt,

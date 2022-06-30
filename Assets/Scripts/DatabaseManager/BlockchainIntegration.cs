@@ -9,10 +9,8 @@ using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-
 public class BlockchainIntegration : MonoBehaviour
 {
-
     public bool skipLogin;
     public Toggle rememberMe;
     
@@ -70,9 +68,9 @@ public class BlockchainIntegration : MonoBehaviour
         var _myObject = JsonUtility.FromJson<DatabasePlayerJson>(json);
 
         ToyoManager.SetPlayerData(_myObject.player);
-        ToyoManager.SetPlayerBoxes();
         ToyoManager.InitializeBoxes();
-        
+        ToyoManager.SetPlayerBoxes();
+
         _databaseConnection.CallGetPlayerToyo(OnToyoListSuccess);
     }
 
@@ -88,7 +86,7 @@ public class BlockchainIntegration : MonoBehaviour
         ToyoManager.Instance.Player.toyos = _myObject.toyos;
         
         //This isn't finished in the backend yet
-        //_databaseConnection.CallGetToyoData(OnToyoDetailSuccess, _myObject.toyos); //Might be tokenid, check later
+        _databaseConnection.CallGetToyoData(OnToyoDetailSuccess, _myObject.toyos); //Might be tokenid, check later
     }
 
     public void OnToyoDetailSuccess(string json)
@@ -97,5 +95,4 @@ public class BlockchainIntegration : MonoBehaviour
         _toyoList.Add(_myObject.toyo);
         ToyoManager.InitializeToyos();
     }
-
 }
