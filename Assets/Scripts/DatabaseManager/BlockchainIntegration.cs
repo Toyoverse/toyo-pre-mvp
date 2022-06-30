@@ -20,6 +20,7 @@ public class BlockchainIntegration : MonoBehaviour
 
     public async void StartLoginMetamask()
     {
+        Loading.StartLoading?.Invoke();
         if (skipLogin)
         {
             PlayerPrefs.SetString("TokenJWT", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ3YWxsZXRJZCI6IjB4MGM0ZWJmMzBlZTRhNjA3ZTJlMTBhYWI2Y2ZhMzVkMDQzNDJlYWVlYiIsInRyYW5zYWN0aW9uIjoiZGZnNTR3ZWZkIiwiaWF0IjoxNjU2MzY0MjQ3LCJleHAiOjE2NTY5NjkwNDd9.Hl_B8b5xdcCn5p9slJPs1-b26sZSpdYBZSCRsH6akgk");
@@ -94,5 +95,6 @@ public class BlockchainIntegration : MonoBehaviour
         var _myObject = JsonUtility.FromJson<CallbackToyoDetails>(json);
         _toyoList.Add(_myObject.toyo);
         ToyoManager.InitializeToyos();
+        Loading.EndLoading?.Invoke();
     }
 }
