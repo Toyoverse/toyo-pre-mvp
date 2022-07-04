@@ -218,7 +218,7 @@
 
 .lateralButtonStyle:hover {
     position: relative;
-    font-size: 50px;
+    font-size: 72px;
     width: 644px;
     height: 205px;
     background-color: rgba(56, 56, 56, 0);
@@ -241,7 +241,7 @@
 
 .lateralButtonStyle:active {
     position: relative;
-    font-size: 50px;
+    font-size: 72px;
     width: 644px;
     height: 205px;
     background-color: rgba(56, 56, 56, 0);
@@ -438,6 +438,7 @@
     flex-grow: 0;
     margin-left: 0;
     -unity-font-style: normal;
+    left: 4px;
 }
 
 .statDescription {
@@ -716,7 +717,7 @@
     position: relative;
     font-size: 42px;
     width: 350px;
-    height: 150px;
+    height: 100px;
     background-color: rgba(56, 56, 56, 0);
     color: rgb(255, 255, 255);
     -unity-font-style: normal;
@@ -732,13 +733,14 @@
     -unity-font: url('project://database/Assets/Fonts/wbv5.ttf?fileID=12800000&guid=8c127f47e96b8924c880f2cf373482b0&type=3#wbv5');
     -unity-font-definition: none;
     -unity-background-image-tint-color: rgb(255, 255, 255);
+    border-bottom-width: 8px;
 }
 
 .YellowButtonTallStyle:hover {
     position: relative;
     font-size: 42px;
     width: 350px;
-    height: 150px;
+    height: 100px;
     background-color: rgba(56, 56, 56, 0);
     color: rgb(255, 255, 255);
     -unity-font-style: normal;
@@ -754,13 +756,14 @@
     -unity-font: url('project://database/Assets/Fonts/wbv5.ttf?fileID=12800000&guid=8c127f47e96b8924c880f2cf373482b0&type=3#wbv5');
     -unity-font-definition: none;
     -unity-background-image-tint-color: rgb(255, 255, 255);
+    border-bottom-width: 8px;
 }
 
 .YellowButtonTallStyle:active {
     position: relative;
     font-size: 42px;
     width: 350px;
-    height: 150px;
+    height: 100px;
     background-color: rgba(56, 56, 56, 0);
     color: rgb(255, 255, 255);
     -unity-font-style: normal;
@@ -776,13 +779,14 @@
     -unity-font: url('project://database/Assets/Fonts/wbv5.ttf?fileID=12800000&guid=8c127f47e96b8924c880f2cf373482b0&type=3#wbv5');
     -unity-font-definition: none;
     -unity-background-image-tint-color: rgb(255, 255, 255);
+    border-bottom-width: 8px;
 }
 
 .RedButtonTallStyle {
     position: relative;
     font-size: 42px;
     width: 350px;
-    height: 150px;
+    height: 100px;
     background-color: rgba(56, 56, 56, 0);
     color: rgb(255, 255, 255);
     -unity-font-style: normal;
@@ -798,13 +802,14 @@
     -unity-font: url('project://database/Assets/Fonts/wbv5.ttf?fileID=12800000&guid=8c127f47e96b8924c880f2cf373482b0&type=3#wbv5');
     -unity-font-definition: none;
     -unity-background-image-tint-color: rgb(255, 255, 255);
+    border-bottom-width: 8px;
 }
 
 .RedButtonTallStyle:hover {
     position: relative;
     font-size: 42px;
     width: 350px;
-    height: 150px;
+    height: 100px;
     background-color: rgba(56, 56, 56, 0);
     color: rgb(255, 255, 255);
     -unity-font-style: normal;
@@ -820,13 +825,14 @@
     -unity-font: url('project://database/Assets/Fonts/wbv5.ttf?fileID=12800000&guid=8c127f47e96b8924c880f2cf373482b0&type=3#wbv5');
     -unity-font-definition: none;
     -unity-background-image-tint-color: rgb(255, 255, 255);
+    border-bottom-width: 8px;
 }
 
 .RedButtonTallStyle:active {
     position: relative;
     font-size: 42px;
     width: 350px;
-    height: 150px;
+    height: 100px;
     background-color: rgba(56, 56, 56, 0);
     color: rgb(255, 255, 255);
     -unity-font-style: normal;
@@ -842,6 +848,7 @@
     -unity-font: url('project://database/Assets/Fonts/wbv5.ttf?fileID=12800000&guid=8c127f47e96b8924c880f2cf373482b0&type=3#wbv5');
     -unity-font-definition: none;
     -unity-background-image-tint-color: rgb(255, 255, 255);
+    border-bottom-width: 8px;
 }
 
 .toyo-name {

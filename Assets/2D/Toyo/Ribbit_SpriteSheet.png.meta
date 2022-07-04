@@ -66,12 +66,12 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 8192
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
+    textureCompression: 2
+    compressionQuality: 100
+    crunchedCompression: 1
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
@@ -1428,15 +1428,15 @@ TextureImporter:
       Ribbit_SpriteSheet_3: -453520979
       Ribbit_SpriteSheet_27: -1978516545
       Ribbit_SpriteSheet_18: 912633129
-      Ribbit_SpriteSheet_38: -1923530425
+      Ribbit_SpriteSheet_50: -1997050753
       Ribbit_SpriteSheet_29: 1560295729
       Ribbit_SpriteSheet_0: 743234805
-      Ribbit_SpriteSheet_50: -1997050753
       Ribbit_SpriteSheet_44: 1497170188
       Ribbit_SpriteSheet_6: 662668850
-      Ribbit_SpriteSheet_42: -2110698773
       Ribbit_SpriteSheet_46: 1438589599
       Ribbit_SpriteSheet_53: 1547887888
+      Ribbit_SpriteSheet_42: -2110698773
+      Ribbit_SpriteSheet_54: -1262241166
       Ribbit_SpriteSheet_13: -2133794958
       Ribbit_SpriteSheet_31: -1238823955
       Ribbit_SpriteSheet_34: -12403837
@@ -1445,12 +1445,12 @@ TextureImporter:
       Ribbit_SpriteSheet_21: 413180833
       Ribbit_SpriteSheet_20: -49582992
       Ribbit_SpriteSheet_17: 1245010168
-      Ribbit_SpriteSheet_49: 1546827655
-      Ribbit_SpriteSheet_54: -1262241166
+      Ribbit_SpriteSheet_38: -1923530425
       Ribbit_SpriteSheet_11: 1546432358
+      Ribbit_SpriteSheet_49: 1546827655
       Ribbit_SpriteSheet_10: 1981183919
-      Ribbit_SpriteSheet_24: 1363493721
       Ribbit_SpriteSheet_47: -1235092705
+      Ribbit_SpriteSheet_24: 1363493721
       Ribbit_SpriteSheet_8: 349553571
       Ribbit_SpriteSheet_37: 123479698
       Ribbit_SpriteSheet_58: -571871692

@@ -66,12 +66,12 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 8192
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
+    textureCompression: 2
+    compressionQuality: 100
+    crunchedCompression: 1
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
@@ -1401,7 +1401,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Wang_Hu_SpriteSheet_22: 145039941
+      Wang_Hu_SpriteSheet_4: 499866849
       Wang_Hu_SpriteSheet_26: -1487239167
       Wang_Hu_SpriteSheet_55: -191507236
       Wang_Hu_SpriteSheet_37: -725955469
@@ -1424,16 +1424,16 @@ TextureImporter:
       Wang_Hu_SpriteSheet_31: -969502405
       Wang_Hu_SpriteSheet_27: -1963814737
       Wang_Hu_SpriteSheet_57: 1530507478
-      Wang_Hu_SpriteSheet_40: -500131884
-      Wang_Hu_SpriteSheet_19: -986788616
+      Wang_Hu_SpriteSheet_53: -1969178407
       Wang_Hu_SpriteSheet_43: 1647945295
-      Wang_Hu_SpriteSheet_45: 1598272591
+      Wang_Hu_SpriteSheet_19: -986788616
+      Wang_Hu_SpriteSheet_40: -500131884
       Wang_Hu_SpriteSheet_24: 1266204541
       Wang_Hu_SpriteSheet_2: 1345590634
       Wang_Hu_SpriteSheet_28: 1316470036
       Wang_Hu_SpriteSheet_8: -1930222750
       Wang_Hu_SpriteSheet_29: -1216770086
-      Wang_Hu_SpriteSheet_53: -1969178407
+      Wang_Hu_SpriteSheet_45: 1598272591
       Wang_Hu_SpriteSheet_44: -525618330
       Wang_Hu_SpriteSheet_13: -1336180652
       Wang_Hu_SpriteSheet_33: -1094739466
@@ -1459,7 +1459,7 @@ TextureImporter:
       Wang_Hu_SpriteSheet_54: -171533983
       Wang_Hu_SpriteSheet_32: -1896367327
       Wang_Hu_SpriteSheet_12: -511816557
-      Wang_Hu_SpriteSheet_4: 499866849
+      Wang_Hu_SpriteSheet_22: 145039941
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

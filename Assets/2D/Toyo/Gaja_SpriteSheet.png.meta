@@ -66,12 +66,12 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 8192
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
+    textureCompression: 2
+    compressionQuality: 100
+    crunchedCompression: 1
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
@@ -1402,7 +1402,6 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       Gaja_SpriteSheet_35: 1976360529
-      Gaja_SpriteSheet_51: -1430725823
       Gaja_SpriteSheet_52: -1545308614
       Gaja_SpriteSheet_2: 1225737181
       Gaja_SpriteSheet_13: -1463764248
@@ -1425,8 +1424,8 @@ TextureImporter:
       Gaja_SpriteSheet_34: -331315535
       Gaja_SpriteSheet_26: -1881050057
       Gaja_SpriteSheet_8: -2016180066
-      Gaja_SpriteSheet_44: -322109889
       Gaja_SpriteSheet_53: -2064489926
+      Gaja_SpriteSheet_44: -322109889
       Gaja_SpriteSheet_39: 584275654
       Gaja_SpriteSheet_28: -1981633666
       Gaja_SpriteSheet_27: 1971368860
@@ -1458,8 +1457,9 @@ TextureImporter:
       Gaja_SpriteSheet_20: -1155457654
       Gaja_SpriteSheet_31: 897913701
       Gaja_SpriteSheet_22: 958541654
-      Gaja_SpriteSheet_7: 438432444
+      Gaja_SpriteSheet_51: -1430725823
       Gaja_SpriteSheet_30: 555584146
+      Gaja_SpriteSheet_7: 438432444
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
