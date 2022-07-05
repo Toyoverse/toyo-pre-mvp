@@ -25,7 +25,19 @@ public class ToyoManager : Singleton<ToyoManager>
     private List<ToyoObject> _toyoList;
     public List<ToyoObject> ToyoList => _toyoList ??= CreateToyoObjectList();
 
-    public static ToyoObject GetSelectedToyo() => Instance.ToyoList.Find(toyoObject => toyoObject.IsToyoSelected);
+    public static ToyoObject GetSelectedToyo()
+    {
+        if (Instance.ToyoList.Find(toyoObject => toyoObject.IsToyoSelected) == null)
+            SetFirstToyoToSelected(); 
+        return Instance.ToyoList.Find(toyoObject => toyoObject.IsToyoSelected);
+    }
+
+    private static void SetFirstToyoToSelected()
+    {
+        Debug.Log("SetFirstToyoToSelected");
+        Instance.ToyoList[0].IsToyoSelected = true;
+        Instance.carouselToyo.SetFirstSelectedObject();
+    }
 
     public static void SetSelectedBox(GameObject selectedBox) => Instance._selectedBox = selectedBox;
     
@@ -34,6 +46,9 @@ public class ToyoManager : Singleton<ToyoManager>
     public static Camera MainCamera;
 
     private Player _player;
+    
+    public ToyoPersonaSO toyoPersonaSOTestPreventsNull;
+    
     public Player Player
     {
         get => _player;
@@ -111,8 +126,20 @@ public class ToyoManager : Singleton<ToyoManager>
     }
 
     private GameObject GetToyoPersonaPrefab(ToyoPersona toyoPersona)
-    { 
-        return toyoPersonaPrefabs.FirstOrDefault(toyoPersonaPrefab => string.Equals(toyoPersonaPrefab.toyoName, toyoPersona.name, StringComparison.CurrentCultureIgnoreCase))?.toyoPrefab;
+    {
+        ToyoPersonaSO _first = null;
+        foreach (var _toyoPersonaPrefab in toyoPersonaPrefabs)
+        {
+            if (string.Equals(_toyoPersonaPrefab.toyoName, toyoPersona.name, StringComparison.CurrentCultureIgnoreCase))
+            {
+                _first = _toyoPersonaPrefab;
+                break;
+            }
+        }
+
+        if (_first == null) //TODO: Remove after fix null
+            return toyoPersonaSOTestPreventsNull.toyoPrefab;
+        return _first?.toyoPrefab;
     }
 
     public static void SetPlayerData(Player playerData)

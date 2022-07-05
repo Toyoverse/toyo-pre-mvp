@@ -594,7 +594,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23e2b4819c044505bcff49abbd8913c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDebug: 0
+  isDebug: 1
   BlockchainIntegration: {fileID: 1082540502}
   loginURL: https://players-web-bff-dev.herokuapp.com/player/login
   baseURL: https://ts-toyo-web-bff.herokuapp.com
@@ -651,6 +651,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 10a76e9d02744ae4da9b8323ae9f0b5a, type: 2}
   openBoxToyoPivot: {fileID: 64713333}
   mainMenuToyoPivot: {fileID: 1479302849}
+  toyoPersonaSOTestPreventsNull: {fileID: 0}
 --- !u!114 &1082540502
 MonoBehaviour:
   m_ObjectHideFlags: 0

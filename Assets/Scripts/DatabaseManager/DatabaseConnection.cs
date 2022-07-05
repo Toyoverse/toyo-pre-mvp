@@ -33,7 +33,7 @@ namespace Database
         private void Awake()
         {
             if (!isDebug) return;
-            TextAsset _jsonTextAsset = Resources.Load<TextAsset>("DatabasePlaceholder");    
+            TextAsset _jsonTextAsset = Resources.Load<TextAsset>("DatabasePlaceholder");
             OnConnectionSuccess(_jsonTextAsset.text);
         }
         
@@ -104,15 +104,15 @@ namespace Database
         {
             request.SetRequestHeader("Access-Control-Allow-Origin", "*");
             yield return request.SendWebRequest();
-                
+
             if (request.error != null)
-                Debug.Log (request.error);
+                Debug.Log (request.error + " | " + URL);
             else
             {
                 var _json = request.downloadHandler.text;
                 callback.Invoke(_json);
+                Debug.Log("Request success!" + " | " + URL);
             }
-
         }
         
         private void OnConnectionSuccess(string json)

@@ -10,11 +10,9 @@ namespace UI
 {
     public class OpenBoxScreen : UIController
     {
-                
         public void AwesomeButton()
             => ScreenManager.Instance.GoToScreen(ScreenState.MainMenu);
-        
-        
+
         private string vitalityProgressName = "Vitality";
         private string resistanceProgressName = "Resistance";
         private string resilienceProgressName = "Resilience";
@@ -60,7 +58,6 @@ namespace UI
         {
             yield return new WaitForSeconds(1.5f);
             FadeController.Out();
-            Debug.Log("out");
         }
 
         protected void SetToyoRarity(TOYO_RARITY rarity)
@@ -71,6 +68,8 @@ namespace UI
 
         protected void SetToyoStats(ToyoObject selectedToyo = null)
         {
+            /*if (selectedToyo == null)
+                return;*/
             foreach (TOYO_STAT _stat in Enum.GetValues(typeof(TOYO_STAT)))
                 SetStatUI(_stat, selectedToyo);
         }

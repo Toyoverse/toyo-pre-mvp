@@ -104,16 +104,20 @@ public class ToyoObject : MonoBehaviour
     
     public ToyoObject(Toyo toyo)
     {
-        SetTotalStats(toyo.parts.ToList());
+        if (toyo.parts != null)
+        {
+            SetTotalStats(toyo.parts.ToList());
+            _numberOfParts = toyo.parts.Length;
+        }
+        else
+            Debug.LogError(toyo.name + ".parts is null.");
 
         _rarity = toyo.toyoPersonaOrigin.rarity;
         
         //Todo Uncoment this when we use toyo rename system
         //_toyoName = !string.IsNullOrEmpty(toyo.name) ? toyo.name : toyo.parts[0].toyoPersona.name;
         _toyoName = toyo.toyoPersonaOrigin.name;
-        _numberOfParts = toyo.parts.Length;
         IsToyoSelected = toyo.isToyoSelected;
-        
     }
 
     private void SetToyoModel()
