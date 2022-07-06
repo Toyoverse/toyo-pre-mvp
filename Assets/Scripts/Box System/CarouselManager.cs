@@ -27,8 +27,9 @@ public class CarouselManager : MonoBehaviour
 
     public Transform CurrentSelectedObject { get; private set; }
 
-    private Vector3 _selectedPlatformRotation = new Vector3(0, 0, 5.5f);
+    private Vector3 _selectedPlatformRotation = new Vector3(0, 0, 7f);
     private Vector3 _leftPlatformRotation = new Vector3(0, 0, -2f);
+    private Vector3 _backPlatformRotation = new Vector3(0, 0, 0f);
 
     public event Action OnEndRotation;
     
@@ -89,6 +90,9 @@ public class CarouselManager : MonoBehaviour
             else 
                 RotateToBack(_object);
         }
+
+        if (isToyoCarousel)
+            CorrectSelectedPlatformRotation(CurrentSelectedObject, 1);
     }
 
     void RotateLeft(Transform objectToRotate)
@@ -121,10 +125,11 @@ public class CarouselManager : MonoBehaviour
             if (is2DCarousel)
                 objectToRotate.LookAt(ToyoManager.MainCamera.transform);
 
+            CorrectToyoPlatformsRotation(objectToRotate, _ourTimeDelta);
+
             yield return null;
         }
         
-        ForcePlatformCenterRotation();
         OnEndRotation?.Invoke();
     }
     
@@ -178,12 +183,40 @@ public class CarouselManager : MonoBehaviour
             RotateLeft(_object);
     }
 
-    private void ForcePlatformCenterRotation()
+    private void CorrectToyoPlatformsRotation(Transform objectToRotate, float ourTimeDelta)
     {
         if (!isToyoCarousel) return;
-        CurrentSelectedObject.GetChild(1).transform.localRotation = Quaternion.Euler(_selectedPlatformRotation);
-        var _previousToyo = _currentSelectedIndex < allObjects.Count - 1
-            ? allObjects[_currentSelectedIndex + 1] : allObjects[0];
-        _previousToyo.GetChild(1).transform.localRotation = Quaternion.Euler(_leftPlatformRotation);
+        
+        CorrectNextPlatformRotation(ourTimeDelta);
+        CorrectSelectedPlatformRotation(objectToRotate, ourTimeDelta);
+        CorrectAntiPreviousPlatformRotation(ourTimeDelta);
+    }
+
+    private void CorrectSelectedPlatformRotation(Transform objectToRotate, float ourTimeDelta)
+    {
+        var _selectedPlatform = objectToRotate.GetChild(1);
+        _selectedPlatform.localRotation = Quaternion.Lerp(_selectedPlatform.localRotation,
+            Quaternion.Euler(_selectedPlatformRotation), ourTimeDelta);
+    }
+
+    private void CorrectNextPlatformRotation(float ourTimeDelta)
+    {
+        var _nextPlatform = _currentSelectedIndex < allObjects.Count - 1
+            ? allObjects[_currentSelectedIndex + 1].GetChild(1) : allObjects[0].GetChild(1);
+        _nextPlatform.localRotation = Quaternion.Lerp(_nextPlatform.localRotation,
+            Quaternion.Euler(_leftPlatformRotation), ourTimeDelta);
+    }
+
+    private void CorrectAntiPreviousPlatformRotation(float ourTimeDelta)
+    {
+        var _i = _currentSelectedIndex switch
+        {
+            0 => allObjects.Count - 2,
+            1 => allObjects.Count - 1,
+            _ => _currentSelectedIndex - 2
+        };
+        var _antiPreviousPlatform = allObjects[_i].GetChild(1);
+        _antiPreviousPlatform.localRotation = Quaternion.Lerp(_antiPreviousPlatform.localRotation,
+            Quaternion.Euler(_backPlatformRotation), ourTimeDelta);
     }
 }
