@@ -27,9 +27,9 @@ public class CarouselManager : MonoBehaviour
 
     public Transform CurrentSelectedObject { get; private set; }
 
-    private Vector3 _selectedPlatformRotation = new Vector3(0, 0, 7f);
-    private Vector3 _leftPlatformRotation = new Vector3(0, 0, -2f);
-    private Vector3 _backPlatformRotation = new Vector3(0, 0, 0f);
+    [SerializeField] private Vector3 _selectedPlatformRotation;
+    [SerializeField] private Vector3 _leftPlatformRotation;
+    [SerializeField] private Vector3 _backPlatformRotation;
 
     public event Action OnEndRotation;
     
@@ -201,8 +201,7 @@ public class CarouselManager : MonoBehaviour
 
     private void CorrectNextPlatformRotation(float ourTimeDelta)
     {
-        var _nextPlatform = _currentSelectedIndex < allObjects.Count - 1
-            ? allObjects[_currentSelectedIndex + 1].GetChild(1) : allObjects[0].GetChild(1);
+        var _nextPlatform = GetNextObject().GetChild(1);
         _nextPlatform.localRotation = Quaternion.Lerp(_nextPlatform.localRotation,
             Quaternion.Euler(_leftPlatformRotation), ourTimeDelta);
     }
