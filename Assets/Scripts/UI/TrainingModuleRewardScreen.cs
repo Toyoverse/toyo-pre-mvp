@@ -17,6 +17,14 @@ public class TrainingModuleRewardScreen : UIController
     public string eventTitle = "NEW EVENT NAME!";
     public int eventTime = 4736;
 
+    private TrainingConfig _trainingConfig;
+
+    public override void ActiveScreen()
+    {
+        base.ActiveScreen();
+        CreateTrainingConfig();
+    }
+    
     protected override void UpdateUI()
     {
         ApplySelectedActions();
@@ -52,4 +60,7 @@ public class TrainingModuleRewardScreen : UIController
         SetTextInLabel(rewardDescriptionName, "Try again to get card.");
         SetVisualElementSprite(rewardImageName, null);
     }
+
+    private void CreateTrainingConfig() 
+        => _trainingConfig = new TrainingConfig(ScreenManager.Instance.trainingModuleScript.trainingConfigSo);
 }

@@ -104,3 +104,12 @@ public enum RANKING_TYPE
     SIDERITE = 6,
     MASTER = 7
 }
+
+public enum TRAINING_RESULT
+{
+    NONE = 0,
+    TOTALLY_WRONG = 1,
+    WRONG_POSITION = 2,
+    TOTALLY_CORRECT = 3
+}
+

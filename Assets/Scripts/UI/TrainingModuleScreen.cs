@@ -37,8 +37,9 @@ public class TrainingModuleScreen : UIController
     public Dictionary<int, TrainingActionSO> selectedActions = new Dictionary<int, TrainingActionSO>();
     public FontAsset fontAsset;
 
-    [Header("Possible Actions")] public TrainingActionSO[] possibleActions;
-    
+    [Header("Training Configuration")] public TrainingConfigSO trainingConfigSo;
+    private TrainingConfig _trainingConfig;
+
     //TODO: Get real variables in server
     private int _eventTime = 5436;
     private string _eventTitle = "TRAINING MODULE SEASON ONE!";
@@ -65,6 +66,7 @@ public class TrainingModuleScreen : UIController
     public override void ActiveScreen()
     {
         base.ActiveScreen();
+        CreateTrainingConfig();
         AddActionSelectEvents();
         DisableAllCombinationPoolVisualElements();
         UpdateUI();
@@ -273,7 +275,7 @@ public class TrainingModuleScreen : UIController
     }
 
     private List<TrainingActionSO> GetFilteredActions(TrainingActionType filter) 
-        => possibleActions.Where(action => action.type == filter).ToList();
+        => _trainingConfig.possibleActions.Where(action => action.type == filter).ToList();
 
     private void OpenActionSelectionScreen()
     {
@@ -346,6 +348,8 @@ public class TrainingModuleScreen : UIController
     {
         selectedActions = new Dictionary<int, TrainingActionSO>();
     }
+
+    private void CreateTrainingConfig() => _trainingConfig = new TrainingConfig(trainingConfigSo);
 }
 
 public enum TrainingActionType
