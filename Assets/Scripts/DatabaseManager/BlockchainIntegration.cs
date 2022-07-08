@@ -32,7 +32,27 @@ public class BlockchainIntegration : MonoBehaviour
         
         var _message = ((int)(System.DateTime.UtcNow.Subtract(new System.DateTime(1970, 1, 1))).TotalSeconds)
             .ToString();
-        var _signature = await Web3Wallet.Sign(_message);
+        var _signature = "";
+        
+        #if (UNITY_WEBGL || UNITY_WEBGL_API) && !UNITY_EDITOR
+        try 
+        {
+            _signature = await Web3GL.Sign(_message);
+        } 
+        catch (Exception e) 
+        {
+            Debug.LogException(e, this);
+        }
+        #else
+        try 
+        {
+            _signature = await Web3Wallet.Sign(_message);
+        } 
+        catch (Exception e) 
+        {
+            Debug.LogException(e, this);
+        }
+        #endif
         _account = await EVM.Verify(_message, _signature);
 
         var _parameterList = new[]
