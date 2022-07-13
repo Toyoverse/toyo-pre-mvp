@@ -37,5 +37,53 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9bbd07f6cf5019245bcbea678cab3c35, type: 2}
   - {fileID: 11400000, guid: 612bb1d0f701d1249964c2958a92895b, type: 2}
   - {fileID: 11400000, guid: c9d16304356449f4b92aa4b85f50c1c0, type: 2}
-  - {fileID: 11400000, guid: 18409e1f7eaf281499613c5ebd158506, type: 2}
-  - {fileID: 11400000, guid: 6972b2ae28210d742acc8a134bffc9bd, type: 2}
+  minimumActionsToPlay: 3
+  cardRewardReward: {fileID: 11400000, guid: 28468acf1f760e74d91e4f43e5324dbf, type: 2}
+  trainingModes:
+  - toyoRarities: 0100000002000000
+    blowConfigs:
+    - blows: 3
+      invest: 100
+      duration: 360
+      reward: 150
+    - blows: 4
+      invest: 150
+      duration: 420
+      reward: 250
+    - blows: 5
+      invest: 200
+      duration: 480
+      reward: 350
+  - toyoRarities: 0300000004000000
+    blowConfigs:
+    - blows: 3
+      invest: 100
+      duration: 360
+      reward: 170
+    - blows: 4
+      invest: 150
+      duration: 420
+      reward: 290
+    - blows: 5
+      invest: 200
+      duration: 480
+      reward: 400
+  - toyoRarities: 0500000006000000
+    blowConfigs:
+    - blows: 3
+      invest: 100
+      duration: 360
+      reward: 200
+    - blows: 4
+      invest: 150
+      duration: 420
+      reward: 400
+    - blows: 5
+      invest: 200
+      duration: 480
+      reward: 600
+  eventTitle: TRAINING MODULE SEASON ONE!
+  inTrainingTitle: Toyo in training...
+  rewardTitle: Default Title
+  losesMiniGame: Discover the correct combination to unlock this week's secret collectible.
+  alreadyWon: You've already received this week's collectible.

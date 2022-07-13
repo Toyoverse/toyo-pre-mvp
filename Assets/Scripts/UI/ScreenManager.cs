@@ -17,9 +17,9 @@ namespace UI
         [SerializeField] private OpenBoxScreen openBoxScript;
         [SerializeField] private LoreThemeScreen loreThemeScript;
         [SerializeField] public TrainingModuleScreen trainingModuleScript;
-        [SerializeField] private TrainingModuleRewardScreen trainingModuleRewardScript;
-        [SerializeField] private UnboxingScreen unboxingScreen;
-        [SerializeField] private MetamaskScreen metamaskScreen;
+        [SerializeField] public TrainingModuleRewardScreen trainingModuleRewardScript;
+        [SerializeField] private UnboxingScreen unboxingScript;
+        [SerializeField] private MetamaskScreen metamaskScript;
 
         public static ScreenState ScreenState { get; private set; }
         private static ScreenState _oldScreenState;
@@ -56,9 +56,9 @@ namespace UI
                 ScreenState.OpenBox => openBoxScript.DisableScreen,
                 ScreenState.LoreTheme => loreThemeScript.DisableScreen,
                 ScreenState.TrainingModule => trainingModuleScript.DisableScreen,
-                ScreenState.Unboxing => unboxingScreen.DisableScreen,
-                ScreenState.Metamask => metamaskScreen.DisableScreen,
-                ScreenState.TrainingModuleRewards => trainingModuleScript.DisableScreen
+                ScreenState.Unboxing => unboxingScript.DisableScreen,
+                ScreenState.Metamask => metamaskScript.DisableScreen,
+                ScreenState.TrainingModuleRewards => trainingModuleRewardScript.DisableScreen
             };
         }
 
@@ -73,9 +73,9 @@ namespace UI
                 ScreenState.OpenBox => openBoxScript.ActiveScreen,
                 ScreenState.LoreTheme => loreThemeScript.ActiveScreen,
                 ScreenState.TrainingModule => trainingModuleScript.ActiveScreen,
-                ScreenState.Unboxing => unboxingScreen.ActiveScreen,
-                ScreenState.Metamask => metamaskScreen.ActiveScreen,
-                ScreenState.TrainingModuleRewards => trainingModuleScript.ActiveScreen,
+                ScreenState.Unboxing => unboxingScript.ActiveScreen,
+                ScreenState.Metamask => metamaskScript.ActiveScreen,
+                ScreenState.TrainingModuleRewards => trainingModuleRewardScript.ActiveScreen,
                 _ => throw new ArgumentOutOfRangeException()
             };
         }
@@ -89,8 +89,9 @@ namespace UI
             openBoxScript ??= GetComponent<OpenBoxScreen>();
             loreThemeScript ??= GetComponent<LoreThemeScreen>();
             trainingModuleScript ??= GetComponent<TrainingModuleScreen>();
-            metamaskScreen ??= GetComponent<MetamaskScreen>();
-            unboxingScreen ??= GetComponent<UnboxingScreen>();
+            metamaskScript ??= GetComponent<MetamaskScreen>();
+            unboxingScript ??= GetComponent<UnboxingScreen>();
+            trainingModuleRewardScript ??= GetComponent<TrainingModuleRewardScreen>();
         }
     }
 

@@ -15,7 +15,7 @@
             <ui:VisualElement name="rewardsBackground" style="width: 50%; height: 75%; left: 25%; background-color: rgb(108, 108, 108); justify-content: flex-start; align-items: center; position: absolute; bottom: -65%; padding-left: 1%; padding-right: 1%; flex-direction: column;">
                 <ui:Label text="Exprerimental Training" display-tooltip-when-elided="true" name="rewardTitle" style="font-size: 30px; -unity-font: url(&apos;project://database/Assets/Fonts/wbv5.ttf?fileID=12800000&amp;guid=8c127f47e96b8924c880f2cf373482b0&amp;type=3#wbv5&apos;); -unity-font-definition: none; color: rgb(255, 255, 255); -unity-text-align: upper-left; margin-top: 10px;" />
                 <ui:GroupBox name="rewardBox" style="flex-direction: row; align-items: center; justify-content: space-around; width: 100%; height: 80%;">
-                    <ui:VisualElement name="cardImage" style="background-color: rgb(154, 99, 99); width: 50%; height: 100%;" />
+                    <ui:VisualElement name="cardImage" style="background-color: rgba(255, 255, 255, 0); width: 50%; height: 100%; background-image: none;" />
                     <ui:GroupBox name="textBox" style="width: 50%; height: 100%; align-items: center; justify-content: center;">
                         <ui:Label text="RECEIVE" display-tooltip-when-elided="true" name="titleReward" style="-unity-font-definition: none; -unity-font: url(&apos;project://database/Assets/Fonts/wbv5.ttf?fileID=12800000&amp;guid=8c127f47e96b8924c880f2cf373482b0&amp;type=3#wbv5&apos;); font-size: 32px; color: rgb(255, 255, 255); -unity-text-align: upper-center; white-space: normal; margin-bottom: 10px;" />
                         <ui:Label text="350 $TOYO" display-tooltip-when-elided="true" name="rewardValue" style="-unity-font-definition: none; -unity-font: url(&apos;project://database/Assets/Fonts/wbv5.ttf?fileID=12800000&amp;guid=8c127f47e96b8924c880f2cf373482b0&amp;type=3#wbv5&apos;); font-size: 42px; color: rgb(255, 255, 255); -unity-text-align: upper-center; white-space: normal;" />
@@ -27,18 +27,33 @@
             <ui:GroupBox name="actions" style="width: 100%; height: 90%; position: relative; flex-direction: row; align-items: stretch; justify-content: center; top: -5%;">
                 <ui:GroupBox name="Action_1" class="actionStyle">
                     <ui:VisualElement name="action1" class="actionImageStyle" />
+                    <ui:VisualElement name="action1_correct" class="actionImageStyle" style="position: absolute; background-color: rgba(0, 255, 20, 0.27); display: none;" />
+                    <ui:VisualElement name="action1_wrong" class="actionImageStyle" style="position: absolute; background-color: rgba(255, 0, 0, 0.27); display: none;" />
+                    <ui:VisualElement name="action1_wrongPos" class="actionImageStyle" style="position: absolute; background-color: rgba(255, 224, 0, 0.27); display: none;" />
                 </ui:GroupBox>
                 <ui:GroupBox name="Action_2" class="actionStyle" style="visibility: visible; display: flex;">
                     <ui:VisualElement name="action2" class="actionImageStyle" />
+                    <ui:VisualElement name="action2_correct" class="actionImageStyle" style="position: absolute; background-color: rgba(0, 255, 20, 0.27); display: none;" />
+                    <ui:VisualElement name="action2_wrong" class="actionImageStyle" style="position: absolute; background-color: rgba(255, 0, 0, 0.27); display: none;" />
+                    <ui:VisualElement name="action2_wrongPos" class="actionImageStyle" style="position: absolute; background-color: rgba(255, 224, 0, 0.27); display: none;" />
                 </ui:GroupBox>
                 <ui:GroupBox name="Action_3" class="actionStyle" style="display: flex;">
                     <ui:VisualElement name="action3" class="actionImageStyle" />
+                    <ui:VisualElement name="action3_correct" class="actionImageStyle" style="position: absolute; background-color: rgba(0, 255, 20, 0.27); display: none;" />
+                    <ui:VisualElement name="action3_wrong" class="actionImageStyle" style="position: absolute; background-color: rgba(255, 0, 0, 0.27); display: none;" />
+                    <ui:VisualElement name="action3_wrongPos" class="actionImageStyle" style="position: absolute; background-color: rgba(255, 224, 0, 0.27); display: none;" />
                 </ui:GroupBox>
                 <ui:GroupBox name="Action_4" class="actionStyle" style="display: none;">
                     <ui:VisualElement name="action4" class="actionImageStyle" />
+                    <ui:VisualElement name="action4_correct" class="actionImageStyle" style="position: absolute; background-color: rgba(0, 255, 20, 0.27); display: none;" />
+                    <ui:VisualElement name="action4_wrong" class="actionImageStyle" style="position: absolute; background-color: rgba(255, 0, 0, 0.27); display: none;" />
+                    <ui:VisualElement name="action4_wrongPos" class="actionImageStyle" style="position: absolute; background-color: rgba(255, 224, 0, 0.27); display: none;" />
                 </ui:GroupBox>
                 <ui:GroupBox name="Action_5" class="actionStyle" style="display: none;">
                     <ui:VisualElement name="action5" class="actionImageStyle" />
+                    <ui:VisualElement name="action5_correct" class="actionImageStyle" style="position: absolute; background-color: rgba(0, 255, 20, 0.27); display: none;" />
+                    <ui:VisualElement name="action5_wrong" class="actionImageStyle" style="position: absolute; background-color: rgba(255, 0, 0, 0.27); display: none;" />
+                    <ui:VisualElement name="action5_wrongPos" class="actionImageStyle" style="position: absolute; background-color: rgba(255, 224, 0, 0.27); display: none;" />
                 </ui:GroupBox>
             </ui:GroupBox>
         </ui:GroupBox>

@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UIElements;
 
 namespace UI
@@ -11,8 +13,31 @@ namespace UI
         public string normalModeName = "NormalMode";
         public string rankedModeName = "RankedMode"; 
         public string trainingModeName = "TrainingMode";
+        
+        public List<CustomButton> trainingModuleButtons;
 
         public static GAME_MODE GameMode { get; private set; }
+
+        public override void ActiveScreen()
+        {
+            base.ActiveScreen();
+            if (TrainingConfig.Instance.disableTrainingModule)
+            {
+                AddComingSoonPopUp(trainingModuleButtons);
+                FadeTrainingModuleButtons();
+            }
+            else
+                RevealTrainingModuleButtons();
+            
+            EnableButtonEvents(trainingModuleButtons);
+        }
+
+        public override void DisableScreen()
+        {
+            if (TrainingConfig.Instance.disableTrainingModule)
+                DisableButtonEvents(trainingModuleButtons);
+            base.DisableScreen();
+        }
 
         private void AddModeEvents()
         {
@@ -87,11 +112,39 @@ namespace UI
 
         public void ToyoInfoButton() => ScreenManager.Instance.GoToScreen(ScreenState.ToyoInfo);
 
-        public enum GAME_MODE
+        private void FadeTrainingModuleButtons()
         {
-            Normal = 0,
-            Ranked = 1,
-            Training = 2
+            foreach (var _cb in trainingModuleButtons)
+            {
+                Debug.Log(_cb.name);
+                ChangeVisualElementOpacity(_cb.name, 0.4f);
+            }
         }
+        
+        private void RevealTrainingModuleButtons()
+        {
+            foreach (var _cb in trainingModuleButtons)
+                ChangeVisualElementOpacity(_cb.name, 1);
+        }
+
+        private void AddComingSoonPopUp(List<CustomButton> buttonList)
+        {
+            if(buttonList.Count <= 0 || Root == null)
+                return;
+            foreach (var _cb in buttonList)
+            {
+                _cb.onClickEvent = new UnityEvent();
+                _cb.onClickEvent.AddListener(ShowComingSoonPopUp);
+            }
+        }
+
+        private void ShowComingSoonPopUp() => GenericPopUp.Instance.ShowPopUp("Coming soon...");
     }
+}
+
+public enum GAME_MODE
+{
+    Normal = 0,
+    Ranked = 1,
+    Training = 2
 }

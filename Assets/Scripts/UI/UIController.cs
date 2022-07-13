@@ -21,20 +21,20 @@ namespace UI
         public virtual void ActiveScreen()
         {
             uiDoc.gameObject.SetActive(true);
-            EnableButtonEvents();
+            EnableButtonEvents(buttons);
         }
 
         public virtual void DisableScreen()
         {
-            DisableButtonEvents();
+            DisableButtonEvents(buttons);
             uiDoc.gameObject.SetActive(false);
         }
 
-        private void EnableButtonEvents()
+        protected void EnableButtonEvents(List<CustomButton> buttonList)
         {
-            if(buttons.Count <= 0 || Root == null)
+            if(buttonList.Count <= 0 || Root == null)
                 return;
-            foreach (var _cb in buttons)
+            foreach (var _cb in buttonList)
             {
                 if (Root?.Q<Button>(_cb.name) != null)
                 {
@@ -55,12 +55,12 @@ namespace UI
             UpdateUI();
         }
 
-        private void DisableButtonEvents()
+        protected void DisableButtonEvents(List<CustomButton> buttonList)
         {
-            if (buttons.Count <= 0 || Root == null)
+            if (buttonList.Count <= 0 || Root == null)
                 return;
 
-            foreach (var _cb in buttons)
+            foreach (var _cb in buttonList)
             {
                 if (Root?.Q<Button>(_cb.name) != null)
                 {
@@ -79,7 +79,7 @@ namespace UI
             }
         }
 
-        private void PlayClickSound()
+        protected void PlayClickSound()
         {
             AudioManager.Instance.PlayOneShot(AudioManager.Instance.buttonClickSfx, transform.position);
         }
@@ -122,6 +122,14 @@ namespace UI
                 _visualE.style.display = DisplayStyle.None;
         }
 
+        protected void ChangeVisualElementOpacity(string elementName, float opacity)
+        {
+            var _visualE = Root?.Q<VisualElement>(elementName);
+            if (_visualE != null)
+                _visualE.style.opacity = opacity;
+            Debug.Log(_visualE.name + "OPACITY: " + _visualE.style.opacity);
+        }
+
         protected Label CreateNewLabel(string labelName, string labelText, FontAsset fontAsset, int fontSize, Color fontColor, Color backgroundColor)
         {
             return new Label()
@@ -160,22 +168,27 @@ namespace UI
             return _result;
         }
 
-        
-        private readonly DateTime _epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-        protected long GetTimeStampFromDate(DateTime date)
+        protected string ConvertMinutesToString(float durationInMinutes)
         {
-            TimeSpan _elapsedTime = date - _epoch;
-            return (long) _elapsedTime.TotalSeconds;
+            var _minutes = durationInMinutes;
+            var _hours = 0;
+            var _days = 0;
+            while (_minutes >= 60)
+            {
+                _hours += 1;
+                _minutes -= 60;
+            }
+            while (_hours >= 24)
+            {
+                _days += 1;
+                _hours -= 24;
+            }
+
+            var _result = _days > 0 ? _days + "d " : "";
+            _result += _hours > 0 ? _hours + "h " : "";
+            _result += _minutes + "m";
+            return _result;
         }
-
-        /*protected DateTime GetDateFromTimeStamp(long timeStamp)
-        {
-            
-        }*/
-
-        protected long GetActualTimeStamp()
-            => (long)System.DateTime.UtcNow.Subtract(new System.DateTime(
-                1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalSeconds;
     }
 
     [Serializable]

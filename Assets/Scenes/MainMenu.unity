@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -173,7 +173,7 @@ Transform:
   m_Children:
   - {fileID: 487040005}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &487040004
 GameObject:
@@ -276,6 +276,67 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1 &674453453
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 674453454}
+  - component: {fileID: 674453455}
+  m_Layer: 0
+  m_Name: TrainingConfig
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &674453454
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 674453453}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 926265097}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &674453455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 674453453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 241d492b8b8ec0c46a18118d7067ee5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disableTrainingModule: 1
+  trainingConfigSo: {fileID: 11400000, guid: ba24712e20df32c4c8b0c530c796f2e8, type: 2}
+  possibleActions: []
+  correctCombination: []
+  trainingModes: []
+  cardRewardReward: {fileID: 0}
+  minimumActionsToPlay: 0
+  eventTitle: 
+  inTrainingTitle: 
+  rewardTitle: 
+  losesMiniGame: 
+  alreadyWon: 
+  eventTime: 5436
+  investValue: 0
+  receiveValue: 0
+  durationValue: 0
+  selectedTrainingActions: []
 --- !u!1 &862515984
 GameObject:
   m_ObjectHideFlags: 0
@@ -322,7 +383,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.3333334, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -345,7 +406,42 @@ Transform:
   m_Children:
   - {fileID: 2064109399}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &926265096
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 926265097}
+  m_Layer: 0
+  m_Name: GlobalManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &926265097
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 926265096}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.6740173, y: 0.2688837, z: 5.314789}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1082540500}
+  - {fileID: 7102462047279068690}
+  - {fileID: 1473551603}
+  - {fileID: 674453454}
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &929510543
 GameObject:
@@ -487,7 +583,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 846010148232438009, guid: 0e0ca5e275a236342a4d5a7c3054fea3, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 846010148232438009, guid: 0e0ca5e275a236342a4d5a7c3054fea3, type: 3}
       propertyPath: m_AnchorMax.x
@@ -594,7 +690,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23e2b4819c044505bcff49abbd8913c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDebug: 0
+  isDebug: 1
   BlockchainIntegration: {fileID: 1082540502}
   loginURL: https://players-web-bff-dev.herokuapp.com/player/login
   baseURL: https://ts-toyo-web-bff.herokuapp.com
@@ -608,13 +704,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1082540498}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.979137, y: 0.4940927, z: 4.160658}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 4.6531544, y: 0.225209, z: -1.1541309}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_Father: {fileID: 926265097}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1082540501
 MonoBehaviour:
@@ -664,7 +760,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1fe579e10b54639a87451d7de029966, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skipLogin: 0
+  skipLogin: 1
   rememberMe: {fileID: 0}
 --- !u!1 &1084469477
 GameObject:
@@ -1035,13 +1131,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1473551600}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.6740173, y: -0.2688837, z: -5.314789}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_Father: {fileID: 926265097}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1479302849 stripped
 Transform:
@@ -1279,7 +1375,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5980487877605738610, guid: 7b99b8d7d3e28664aad2228ff6fd1b01, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5980487877605738610, guid: 7b99b8d7d3e28664aad2228ff6fd1b01, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1328,7 +1424,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 926265097}
     m_Modifications:
     - target: {fileID: 7102462045466808449, guid: 660f390f34faaa04880d8946af0dc79c, type: 3}
       propertyPath: m_Name
@@ -1336,19 +1432,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7102462045466808451, guid: 660f390f34faaa04880d8946af0dc79c, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7102462045466808451, guid: 660f390f34faaa04880d8946af0dc79c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.626126
+      value: -1.9521087
       objectReference: {fileID: 0}
     - target: {fileID: 7102462045466808451, guid: 660f390f34faaa04880d8946af0dc79c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.1586616
+      value: -0.1102221
       objectReference: {fileID: 0}
     - target: {fileID: 7102462045466808451, guid: 660f390f34faaa04880d8946af0dc79c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.27978945
+      value: -5.0349994
       objectReference: {fileID: 0}
     - target: {fileID: 7102462045466808451, guid: 660f390f34faaa04880d8946af0dc79c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1356,15 +1452,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7102462045466808451, guid: 660f390f34faaa04880d8946af0dc79c, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7102462045466808451, guid: 660f390f34faaa04880d8946af0dc79c, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7102462045466808451, guid: 660f390f34faaa04880d8946af0dc79c, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7102462045466808451, guid: 660f390f34faaa04880d8946af0dc79c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1380,6 +1476,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 660f390f34faaa04880d8946af0dc79c, type: 3}
+--- !u!4 &7102462047279068690 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7102462045466808451, guid: 660f390f34faaa04880d8946af0dc79c, type: 3}
+  m_PrefabInstance: {fileID: 7102462047279068689}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8643416931491663162
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1391,6 +1492,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1084469479}
+    - target: {fileID: 2005667296, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1417057146985304550, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1442,6 +1547,18 @@ PrefabInstance:
     - target: {fileID: 8643416932187837703, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
       propertyPath: m_Name
       value: Screens
+      objectReference: {fileID: 0}
+    - target: {fileID: 8643416932187837819, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
+      propertyPath: buttons.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8643416932187837819, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
+      propertyPath: buttons.Array.data[2].name
+      value: toyoButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 8643416932187837819, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
+      propertyPath: buttons.Array.data[2].onClickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ToyoInfoButton
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}

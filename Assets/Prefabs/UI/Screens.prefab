@@ -1240,6 +1240,9 @@ MonoBehaviour:
   StartingPosition: {fileID: 1789746292}
   allObjects: []
   anchor: {fileID: 5409863526510657621}
+  _selectedPlatformRotation: {x: 0, y: 0, z: 0}
+  _leftPlatformRotation: {x: 0, y: 0, z: 0}
+  _backPlatformRotation: {x: 0, y: 0, z: 0}
 --- !u!1 &8202573549011325311
 GameObject:
   m_ObjectHideFlags: 0
@@ -1344,6 +1347,9 @@ MonoBehaviour:
   - {fileID: 7264091222593931999}
   - {fileID: 7264091221572580988}
   anchor: {fileID: 8643416932932090321}
+  _selectedPlatformRotation: {x: 0, y: 0, z: 0}
+  _leftPlatformRotation: {x: 0, y: 0, z: 0}
+  _backPlatformRotation: {x: 0, y: 0, z: 0}
 --- !u!1 &8643416932187837703
 GameObject:
   m_ObjectHideFlags: 0
@@ -1416,8 +1422,8 @@ MonoBehaviour:
   loreThemeScript: {fileID: 1499928037245794682}
   trainingModuleScript: {fileID: 9199315776819746690}
   trainingModuleRewardScript: {fileID: 6214543187492908520}
-  unboxingScreen: {fileID: 6072516106304441697}
-  metamaskScreen: {fileID: 1354601111}
+  unboxingScript: {fileID: 6072516106304441697}
+  metamaskScript: {fileID: 1354601111}
   haveToyo: 0
 --- !u!114 &8643416932187837818
 MonoBehaviour:
@@ -1511,13 +1517,13 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - name: modeButton
+  - name: toyoButton
     onClickEvent:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 8643416932187837819}
           m_TargetAssemblyTypeName: UI.MainMenuScreen, Assembly-CSharp
-          m_MethodName: EnableTrainingModeSelection
+          m_MethodName: ToyoInfoButton
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1563,6 +1569,39 @@ MonoBehaviour:
   normalModeName: NormalMode
   rankedModeName: RankedMode
   trainingModeName: TrainingMode
+  trainingModuleButtons:
+  - name: modeButton
+    onClickEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8643416932187837819}
+          m_TargetAssemblyTypeName: UI.MainMenuScreen, Assembly-CSharp
+          m_MethodName: EnableTrainingModeSelection
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - name: startButton
+    onClickEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8643416932187837819}
+          m_TargetAssemblyTypeName: UI.MainMenuScreen, Assembly-CSharp
+          m_MethodName: StartButton
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!114 &8643416932187837816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1976,6 +2015,22 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - name: inTrainingTimeButton
+    onClickEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 9199315776819746690}
+          m_TargetAssemblyTypeName: TrainingModuleScreen, Assembly-CSharp
+          m_MethodName: FinishTraining
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   eventTitleName: eventTitle
   eventTimeName: eventTime
   combPoolContainer: actions
@@ -1999,7 +2054,7 @@ MonoBehaviour:
   - removeA5
   startTrainingButtonName: startButton
   inTrainingBoxName: inTrainingBox
-  inTrainingTimeButtonName: timeButton
+  inTrainingTimeButtonName: inTrainingTimeButton
   rewardTitleName: rewardTitle
   investName: invest
   receiveName: receive
@@ -2008,7 +2063,6 @@ MonoBehaviour:
   actionScrollName: actionScroll
   previewActionName: actionImage
   fontAsset: {fileID: 0}
-  trainingConfigSo: {fileID: 11400000, guid: ba24712e20df32c4c8b0c530c796f2e8, type: 2}
 --- !u!114 &6214543187492908520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2046,13 +2100,36 @@ MonoBehaviour:
   rewardImageName: cardImage
   rewardDescriptionName: rewardDescription
   combinationPoolNames:
+  - Action_1
+  - Action_2
+  - Action_3
+  - Action_4
+  - Action_5
+  combinationPoolImageNames:
   - action1
   - action2
   - action3
   - action4
   - action5
-  eventTitle: NEW EVENT NAME!
-  eventTime: 4736
+  borderCorrectImageNames:
+  - action1_correct
+  - action2_correct
+  - action3_correct
+  - action4_correct
+  - action5_correct
+  borderWrongPositionImageNames:
+  - action1_wrongPos
+  - action2_wrongPos
+  - action3_wrongPos
+  - action4_wrongPos
+  - action5_wrongPos
+  borderTotallyWrongImageNames:
+  - action1_wrong
+  - action2_wrong
+  - action3_wrong
+  - action4_wrong
+  - action5_wrong
+  cardCollected: 0
 --- !u!114 &6072516106304441697
 MonoBehaviour:
   m_ObjectHideFlags: 0
