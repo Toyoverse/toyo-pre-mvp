@@ -2056,9 +2056,9 @@ MonoBehaviour:
   inTrainingBoxName: inTrainingBox
   inTrainingTimeButtonName: inTrainingTimeButton
   rewardTitleName: rewardTitle
-  investName: invest
-  receiveName: receive
-  durationName: duration
+  investName: investName
+  receiveName: receiveName
+  durationName: durationName
   actionSelectionAreaName: actionsSelectorBox
   actionScrollName: actionScroll
   previewActionName: actionImage

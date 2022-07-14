@@ -7,7 +7,9 @@ using UnityEngine.Rendering.UI;
 [Serializable]
 public class TrainingConfig : Singleton<TrainingConfig>
 {
-    public bool disableTrainingModule; //TODO: Implement
+    [Header("Debug")]
+    public bool disableTrainingModule;
+    public bool ignoreTrainingTimer;
     [Header("Base data")] public TrainingConfigSO trainingConfigSo;
 
     //Current config usable
@@ -37,9 +39,9 @@ public class TrainingConfig : Singleton<TrainingConfig>
     
     //TODO: Get real variables in server
     public int eventTime = 5436;
-    public float investValue = 0;
-    public float receiveValue = 0;
-    public int durationValue = 0; //Duration in minutes
+    [HideInInspector] public float investValue = 0;
+    [HideInInspector] public float receiveValue = 0;
+    [HideInInspector] public int durationValue = 0; //Duration in minutes
 
     public long endTrainingTimeStamp { get; private set; }
     //

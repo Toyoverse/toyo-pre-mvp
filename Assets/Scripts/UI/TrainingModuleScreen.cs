@@ -165,7 +165,7 @@ public class TrainingModuleScreen : UIController
     {
         var _startButton = Root.Q<Button>(startTrainingButtonName);
         if (_startButton == null) return;
-        _startButton.visible = !TrainingConfig.Instance.IsInTraining() && TrainingConfig.Instance.IsMinimumActionsToPlay();
+        _startButton.visible = (!TrainingConfig.Instance.IsInTraining() && TrainingConfig.Instance.IsMinimumActionsToPlay());
     }
 
     private void CheckAndRevealNextAction()
@@ -300,7 +300,7 @@ public class TrainingModuleScreen : UIController
 
     public void FinishTraining()
     {
-        if (TrainingConfig.Instance.GetTrainingTimeRemain() > 0)
+        if (TrainingConfig.Instance.GetTrainingTimeRemain() > 0 && !TrainingConfig.Instance.ignoreTrainingTimer)
             return;
         GoToRewardScreen();
     }
