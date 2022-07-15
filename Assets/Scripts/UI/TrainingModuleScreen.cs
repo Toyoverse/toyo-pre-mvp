@@ -38,7 +38,7 @@ public class TrainingModuleScreen : UIController
         CheckActionsCountAndRevealOrNo();
         TrainingConfig.Instance.ApplyRewardsCalculation();
         SetTextInLabel(eventTitleName, TrainingConfig.Instance.eventTitle);
-        SetTextInLabel(eventTimeName, ConvertMinutesToString(TrainingConfig.Instance.eventTime));
+        SetTextInLabel(eventTimeName, ConvertMinutesToString(TrainingConfig.Instance.GetEventTimeRemain()));
         SetTextInLabel(investName, "Invest: $" + TrainingConfig.Instance.investValue);
         SetTextInLabel(receiveName, "Receive: $" + TrainingConfig.Instance.receiveValue);
         SetTextInLabel(durationName, "Duration: " + ConvertMinutesToString(TrainingConfig.Instance.durationValue));

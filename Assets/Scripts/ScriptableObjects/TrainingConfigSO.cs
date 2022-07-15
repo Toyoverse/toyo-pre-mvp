@@ -8,7 +8,7 @@ public class TrainingConfigSO : ScriptableObject
     public TrainingActionSO[] possibleActions;
     public TrainingActionSO[] correctCombination;
     public int minimumActionsToPlay;
-    public CardRewardSO cardRewardReward;
+    public CardRewardSO cardReward;
     public TrainingMode[] trainingModes;
 
     [Header("Default strings")] 
@@ -19,6 +19,9 @@ public class TrainingConfigSO : ScriptableObject
     public string rewardTitle;
     public string losesMiniGame;
     public string alreadyWon;
+    
+    [Header("End event")]
+    public long endEventTimeStamp;
 }
 
 [Serializable]

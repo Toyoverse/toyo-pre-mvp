@@ -38,7 +38,7 @@ public class TrainingConfig : Singleton<TrainingConfig>
     [HideInInspector] public TOYO_RARITY GetSelectedToyoRarity() => _selectedToyoRarity;
     
     //TODO: Get real variables in server
-    public int eventTime = 5436;
+    [HideInInspector] public long endEventTimeStamp = 0;
     [HideInInspector] public float investValue = 0;
     [HideInInspector] public float receiveValue = 0;
     [HideInInspector] public int durationValue = 0; //Duration in minutes
@@ -73,12 +73,18 @@ public class TrainingConfig : Singleton<TrainingConfig>
         var _secondsRemain = endTrainingTimeStamp - GetActualTimeStamp();
         return ConvertSecondsInMinutes((int)_secondsRemain);
     }
+    
+    public int GetEventTimeRemain()
+    {
+        var _secondsRemain = endEventTimeStamp - GetActualTimeStamp();
+        return ConvertSecondsInMinutes((int)_secondsRemain);
+    }
 
     private void Start()
     {
         possibleActions = trainingConfigSo.possibleActions;
         correctCombination = trainingConfigSo.correctCombination;
-        cardRewardReward = trainingConfigSo.cardRewardReward;
+        cardRewardReward = trainingConfigSo.cardReward;
         trainingModes = trainingConfigSo.trainingModes;
         losesMiniGame = trainingConfigSo.losesMiniGame;
         alreadyWon = trainingConfigSo.alreadyWon;
@@ -86,6 +92,7 @@ public class TrainingConfig : Singleton<TrainingConfig>
         eventTitle = trainingConfigSo.eventTitle;
         minimumActionsToPlay = trainingConfigSo.minimumActionsToPlay;
         inTrainingTitle = trainingConfigSo.inTrainingTitle;
+        endEventTimeStamp = trainingConfigSo.endEventTimeStamp;
     }
 
     public List<TRAINING_RESULT> CompareCombination(List<TrainingActionSO> selectedActions)
