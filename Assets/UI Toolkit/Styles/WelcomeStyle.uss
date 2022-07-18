@@ -1013,7 +1013,7 @@
 
 .checkStatus {
     display: flex;
-    background-image: url('project://database/Assets/Images/Buttons/Training_Module_check.png?fileID=2800000&guid=9fa19a2b4ed445e4b99eeb1776a51422&type=3#Training_Module_check');
+    background-image: url('project://database/Assets/Images/Buttons/Training_Module_check.png?fileID=21300000&guid=fdabaae9b8084ab6b590930112d87bd9&type=3#Training_Module_check');
     background-color: rgba(255, 255, 255, 0);
     width: 256px;
     height: 256px;
@@ -1044,6 +1044,10 @@
 
 .textTypeAlteHassReg {
     -unity-font: url('project://database/Assets/Fonts/AlteHaasGroteskRegular.ttf?fileID=12800000&guid=4abf9d5b3674fc24384d6f37bccc9aa7&type=3#AlteHaasGroteskRegular');
+}
+
+.textTypeAlteHassBld {
+    -unity-font: url('project://database/Assets/Fonts/AlteHaasGroteskBold.ttf?fileID=12800000&guid=980abd6e80517af469bdc42e84136b1d&type=3#AlteHaasGroteskBold');
 }
 
 .valueMarging {
