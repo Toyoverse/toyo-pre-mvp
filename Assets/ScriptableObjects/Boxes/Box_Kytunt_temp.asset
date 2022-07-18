@@ -21,15 +21,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cd61f82d42dd48244b16c9cbae686c95, type: 2}
   - {fileID: 11400000, guid: f718709eaabfa7941a4e7a84f579f8f9, type: 2}
   dropRate:
-  - Rarity: 0
-    DropChance: 70
   - Rarity: 1
-    DropChance: 20
+    DropChance: 70
   - Rarity: 2
-    DropChance: 5.5
+    DropChance: 20
   - Rarity: 3
-    DropChance: 2.5
+    DropChance: 5.5
   - Rarity: 4
-    DropChance: 0
+    DropChance: 2.5
   - Rarity: 5
+    DropChance: 0
+  - Rarity: 6
     DropChance: 0

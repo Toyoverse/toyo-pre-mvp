@@ -25,7 +25,8 @@ public class BlockchainIntegration : MonoBehaviour
         {
             //PlayerPrefs.SetString("TokenJWT", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ3YWxsZXRJZCI6IjB4MGM0ZWJmMzBlZTRhNjA3ZTJlMTBhYWI2Y2ZhMzVkMDQzNDJlYWVlYiIsInRyYW5zYWN0aW9uIjoiZGZnNTR3ZWZkIiwiaWF0IjoxNjU2MzY0MjQ3LCJleHAiOjE2NTY5NjkwNDd9.Hl_B8b5xdcCn5p9slJPs1-b26sZSpdYBZSCRsH6akgk");
             //PlayerPrefs.SetString("TokenJWT", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ3YWxsZXRJZCI6IjB4NEU4QTM1NTc2RkJhZkM1ODBEZTliNGIxYUM2OGI2QmU3OWIyQTJFOCIsInRyYW5zYWN0aW9uIjoiX2NyZWF0ZWRfYnlfbWlncmF0aW9uX3Rvb2wiLCJpYXQiOjE2NTY2MTczNzksImV4cCI6MTY1NzIyMjE3OX0.MdMmFaMphpid7juVKfd-RdOidxTA8_jLnl-U2FgEcEs");
-            PlayerPrefs.SetString("TokenJWT", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ3YWxsZXRJZCI6IjB4NEU4QTM1NTc2RkJhZkM1ODBEZTliNGIxYUM2OGI2QmU3OWIyQTJFOCIsInRyYW5zYWN0aW9uIjoiZGZnNTR3ZWZkIiwiaWF0IjoxNjU3MjI3NDY5LCJleHAiOjE2NTc4MzIyNjl9.ZnK-aYXfFKNFpsSAqbJSt8ZGQdWSRjmQpiRmZNSN5rg");
+            //PlayerPrefs.SetString("TokenJWT", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ3YWxsZXRJZCI6IjB4NEU4QTM1NTc2RkJhZkM1ODBEZTliNGIxYUM2OGI2QmU3OWIyQTJFOCIsInRyYW5zYWN0aW9uIjoiZGZnNTR3ZWZkIiwiaWF0IjoxNjU3MjI3NDY5LCJleHAiOjE2NTc4MzIyNjl9.ZnK-aYXfFKNFpsSAqbJSt8ZGQdWSRjmQpiRmZNSN5rg");
+            PlayerPrefs.SetString("TokenJWT", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ3YWxsZXRJZCI6IjB4ZmY2NTRhYTAyMDBlNTUxZGJlOWMwMGM4YjVjMWY0ZTg4ZDc0ZmNjMyIsInRyYW5zYWN0aW9uIjoiMHhmZjY1NGFhMDIwMGU1NTFkYmU5YzAwYzhiNWMxZjRlODhkNzRmY2MzIiwiaWF0IjoxNjU3OTE1MTE3LCJleHAiOjE2NTg1MTk5MTd9.vxOiDNXs6lnCovzSyHfm3DfWMOaQIRkNSdU4gBXIvSg");
             GoToNextScreen();
             return;
         }
@@ -119,5 +120,32 @@ public class BlockchainIntegration : MonoBehaviour
         var _databaseToyoList = ToyoManager.Instance.Player.toyos;
         var _toyoListIndex = _databaseToyoList.TakeWhile(toyo => !toyo.objectId.Equals(toyoWithDetails.objectId)).Count();
         _databaseToyoList[_toyoListIndex] = toyoWithDetails;
+        Loading.EndLoading?.Invoke(); //test
+    }
+
+    public void RefreshButton()
+    {
+        if (Loading.InLoading)
+            return;
+        switch (ScreenManager.ScreenState)
+        {
+            case ScreenState.None:
+            case ScreenState.Welcome:
+            case ScreenState.LoreTheme:
+            case ScreenState.Unboxing:
+            case ScreenState.Metamask:
+            case ScreenState.TrainingModuleRewards:
+                break;
+            default:
+                GenericPopUp.Instance.ShowPopUp("Are you sure?", YesRefresh, () => { });
+                break;
+        }
+    }
+
+    private void YesRefresh()
+    {
+        Loading.StartLoading?.Invoke();
+        _databaseConnection.CallGetPlayerToyo(OnToyoListSuccess);
+        Debug.Log("Refresh!");
     }
 }
