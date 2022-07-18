@@ -120,7 +120,6 @@ public class BlockchainIntegration : MonoBehaviour
         var _databaseToyoList = ToyoManager.Instance.Player.toyos;
         var _toyoListIndex = _databaseToyoList.TakeWhile(toyo => !toyo.objectId.Equals(toyoWithDetails.objectId)).Count();
         _databaseToyoList[_toyoListIndex] = toyoWithDetails;
-        Loading.EndLoading?.Invoke(); //test
     }
 
     public void RefreshButton()
