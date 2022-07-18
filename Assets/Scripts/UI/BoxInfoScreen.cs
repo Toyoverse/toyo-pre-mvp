@@ -39,7 +39,7 @@ namespace UI
             => GenericPopUp.Instance.ShowPopUp(ConfirmMessage, OpenSelectedBox, () => {});
 
         public override void BackButton() 
-            => ScreenManager.Instance.GoToScreen(ScreenManager.Instance.haveToyo 
+            => ScreenManager.Instance.GoToScreen(ToyoManager.Instance.ToyoList.Count > 0 
                 ? ScreenState.MainMenu : ScreenState.Welcome);
 
         public void NextBoxButton()

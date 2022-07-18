@@ -27,7 +27,7 @@ public class BlockchainIntegration : MonoBehaviour
             //PlayerPrefs.SetString("TokenJWT", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ3YWxsZXRJZCI6IjB4NEU4QTM1NTc2RkJhZkM1ODBEZTliNGIxYUM2OGI2QmU3OWIyQTJFOCIsInRyYW5zYWN0aW9uIjoiX2NyZWF0ZWRfYnlfbWlncmF0aW9uX3Rvb2wiLCJpYXQiOjE2NTY2MTczNzksImV4cCI6MTY1NzIyMjE3OX0.MdMmFaMphpid7juVKfd-RdOidxTA8_jLnl-U2FgEcEs");
             //PlayerPrefs.SetString("TokenJWT", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ3YWxsZXRJZCI6IjB4NEU4QTM1NTc2RkJhZkM1ODBEZTliNGIxYUM2OGI2QmU3OWIyQTJFOCIsInRyYW5zYWN0aW9uIjoiZGZnNTR3ZWZkIiwiaWF0IjoxNjU3MjI3NDY5LCJleHAiOjE2NTc4MzIyNjl9.ZnK-aYXfFKNFpsSAqbJSt8ZGQdWSRjmQpiRmZNSN5rg");
             PlayerPrefs.SetString("TokenJWT", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ3YWxsZXRJZCI6IjB4ZmY2NTRhYTAyMDBlNTUxZGJlOWMwMGM4YjVjMWY0ZTg4ZDc0ZmNjMyIsInRyYW5zYWN0aW9uIjoiMHhmZjY1NGFhMDIwMGU1NTFkYmU5YzAwYzhiNWMxZjRlODhkNzRmY2MzIiwiaWF0IjoxNjU3OTE1MTE3LCJleHAiOjE2NTg1MTk5MTd9.vxOiDNXs6lnCovzSyHfm3DfWMOaQIRkNSdU4gBXIvSg");
-            GoToNextScreen();
+            CallDatabaseConnection();
             return;
         }
         
@@ -75,15 +75,12 @@ public class BlockchainIntegration : MonoBehaviour
             //PlayerPrefs.SetInt("RememberMe", rememberMe.isOn ? 1 : 0);
         }
 
-        GoToNextScreen();
+        CallDatabaseConnection();
     }
 
-    private void GoToNextScreen()
+    private void CallDatabaseConnection()
     {
-        ScreenManager.Instance.GoToScreen(ScreenManager.Instance.haveToyo
-            ? ScreenState.MainMenu
-            : ScreenState.Welcome);
-        
+        Loading.EndLoading += GoToNextScreen;
         _databaseConnection.CallGetPlayerBoxes(OnBoxesSuccess);
     }
     
@@ -146,5 +143,12 @@ public class BlockchainIntegration : MonoBehaviour
         Loading.StartLoading?.Invoke();
         _databaseConnection.CallGetPlayerToyo(OnToyoListSuccess);
         Debug.Log("Refresh!");
+    }
+
+    private void GoToNextScreen()
+    {
+        ScreenManager.Instance.GoToScreen(ToyoManager.Instance.ToyoList.Count > 0
+            ? ScreenState.MainMenu
+            : ScreenState.Welcome);
     }
 }

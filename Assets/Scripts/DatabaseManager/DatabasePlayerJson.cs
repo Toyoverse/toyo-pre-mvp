@@ -49,7 +49,7 @@ namespace Database
         public string idOpenBox;
         public string idClosedBox;
         public string type;
-        public ToyoRegion region;
+        public string region;
         public string currentOwner;
         public string lastUnboxingStartedAt;
         public string typeId;

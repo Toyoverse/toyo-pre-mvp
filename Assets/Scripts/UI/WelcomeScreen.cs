@@ -14,10 +14,7 @@ namespace UI
         }
 
         public void OpenSeaButton()
-        {
-            ScreenManager.Instance.haveToyo = true;
-            Debug.Log("OpenSea button has clicked!");
-        }
+            => Debug.Log("OpenSea button has clicked!");
 
         public void BoxesButton()
             => ScreenManager.Instance.GoToScreen(ScreenState.BoxInfo);

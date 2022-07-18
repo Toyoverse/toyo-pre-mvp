@@ -127,7 +127,7 @@ namespace UI
             var _visualE = Root?.Q<VisualElement>(elementName);
             if (_visualE != null)
                 _visualE.style.opacity = opacity;
-            Debug.Log(_visualE.name + "OPACITY: " + _visualE.style.opacity);
+            //Debug.Log(_visualE.name + "OPACITY: " + _visualE.style.opacity);
         }
 
         protected Label CreateNewLabel(string labelName, string labelText, FontAsset fontAsset, int fontSize, Color fontColor, Color backgroundColor)

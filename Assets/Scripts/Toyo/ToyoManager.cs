@@ -34,7 +34,6 @@ public class ToyoManager : Singleton<ToyoManager>
 
     private static void SetFirstToyoToSelected()
     {
-        Debug.Log("SetFirstToyoToSelected");
         Instance.ToyoList[0].IsToyoSelected = true;
         Instance.carouselToyo.SetFirstSelectedObject();
     }
@@ -158,16 +157,14 @@ public class ToyoManager : Singleton<ToyoManager>
     {
         if (GetBoxTypeInPlayerBox(boxFromPlayer) == boxConfigInCarousel.BoxType
             && GetBoxRegionInPlayerBox(boxFromPlayer) == boxConfigInCarousel.BoxRegion)
-        {
             boxConfigInCarousel.boxList.Add(boxFromPlayer);
-        }
     }
 
     private static BOX_TYPE GetBoxTypeInPlayerBox(Box box)
     {
         return box.type?.ToUpper() switch
         {
-            "REGULAR" => BOX_TYPE.Regular,
+            "SIMPLE" => BOX_TYPE.Regular,
             "FORTIFIED" => BOX_TYPE.Fortified,
             _ => BOX_TYPE.None
         };
@@ -176,7 +173,7 @@ public class ToyoManager : Singleton<ToyoManager>
     private static BOX_REGION GetBoxRegionInPlayerBox(Box box)
     {
         var _boxRegion = "";
-        _boxRegion = string.IsNullOrEmpty(box.region.name) ? box.toyo?.toyoPersonaOrigin?.region : box.region.name;
+        _boxRegion = string.IsNullOrEmpty(box.region) ? box.toyo?.toyoPersonaOrigin?.region : box.region;
         return _boxRegion?.ToUpper() switch
         {
             "KYTUNT" => BOX_REGION.Kytunt,

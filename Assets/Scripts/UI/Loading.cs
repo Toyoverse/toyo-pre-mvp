@@ -39,7 +39,14 @@ public class Loading : MonoBehaviour
     {
         SetLoading(false);
         loadingCanvas.SetActive(false);
+        ClearLoading();
     }
 
     private void SetLoading(bool on) => InLoading = on;
+
+    private void ClearLoading()
+    {
+        EndLoading = null;
+        EndLoading += DisableLoading;
+    }
 }

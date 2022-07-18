@@ -148,7 +148,10 @@ public class CarouselManager : MonoBehaviour
     public void SwipeRight()
     {
         AudioManager.Instance.rotateRightSfx.PlayOneShot(transform.position);
-        
+
+        if (allObjects.Count <= 1)
+            return;
+
         _objectToHide = GetPreviousObject();
         if (_currentSelectedIndex + 1 < allObjects.Count)
         {
@@ -167,6 +170,9 @@ public class CarouselManager : MonoBehaviour
     public void SwipeLeft()
     {
         AudioManager.Instance.rotateLeftSfx.PlayOneShot(transform.position);
+        
+        if (allObjects.Count <= 1)
+            return;
         
         _objectToHide = GetNextObject();
         if (_currentSelectedIndex > 0)

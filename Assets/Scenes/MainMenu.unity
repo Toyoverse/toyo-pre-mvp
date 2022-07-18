@@ -657,7 +657,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 741288181}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1082540502}
+        m_TargetAssemblyTypeName: BlockchainIntegration, Assembly-CSharp
+        m_MethodName: RefreshButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &741288181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1053,7 +1065,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23e2b4819c044505bcff49abbd8913c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDebug: 1
+  isDebug: 0
   BlockchainIntegration: {fileID: 1082540502}
   loginURL: https://players-web-bff-dev.herokuapp.com/player/login
   baseURL: https://ts-toyo-web-bff.herokuapp.com
@@ -1123,7 +1135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1fe579e10b54639a87451d7de029966, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skipLogin: 1
+  skipLogin: 0
   rememberMe: {fileID: 0}
 --- !u!1 &1084469477
 GameObject:

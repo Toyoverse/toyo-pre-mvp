@@ -111,7 +111,8 @@ namespace Database
             {
                 var _json = request.downloadHandler.text;
                 callback.Invoke(_json);
-                Debug.Log("Request success!" + " | " + URL);
+                /*Debug.Log("Request: " + URL);
+                Debug.Log("json: " + _json);*/
             }
         }
         

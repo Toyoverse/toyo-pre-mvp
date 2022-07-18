@@ -24,7 +24,7 @@ namespace UI
         public static ScreenState ScreenState { get; private set; }
         private static ScreenState _oldScreenState;
 
-        public bool haveToyo = false; //TODO: Get server variable
+        //public bool haveToyo = false; //TODO: Get server variable
 
         private void Start()
         {
