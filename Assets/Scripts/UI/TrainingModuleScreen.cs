@@ -304,6 +304,12 @@ public class TrainingModuleScreen : UIController
             return;
         GoToRewardScreen();
     }
+    
+    public void cardSelectorOpen()
+    {
+        Debug.Log("Button pressed - Open card selection");
+        
+    }
 
     private void CheckTrainingAndEnableTrainingUI() 
     {
