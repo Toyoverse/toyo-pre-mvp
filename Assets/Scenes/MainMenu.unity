@@ -1135,7 +1135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1fe579e10b54639a87451d7de029966, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skipLogin: 0
+  skipLogin: 1
   rememberMe: {fileID: 0}
 --- !u!1 &1084469477
 GameObject:

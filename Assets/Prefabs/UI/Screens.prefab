@@ -1329,7 +1329,7 @@ GameObject:
   - component: {fileID: 9143381196206024043}
   - component: {fileID: 4025787577072653789}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Button4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1383,7 +1383,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: cac17890abb08504cbb9e8a5098f7ab8, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1439,12 +1439,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 9199315776819746690}
         m_TargetAssemblyTypeName: TrainingModuleScreen, Assembly-CSharp
-        m_MethodName: cardSelectorOpen
-        m_Mode: 1
+        m_MethodName: OpenActionSelection
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1516,7 +1516,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: cac17890abb08504cbb9e8a5098f7ab8, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1572,8 +1572,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 9199315776819746690}
         m_TargetAssemblyTypeName: TrainingModuleScreen, Assembly-CSharp
-        m_MethodName: cardSelectorOpen
-        m_Mode: 1
+        m_MethodName: OpenActionSelection
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1582,6 +1582,54 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &625551054863188220
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4492684773462687632}
+  - component: {fileID: 8206593267312781816}
+  m_Layer: 5
+  m_Name: TrainingActionSelect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &4492684773462687632
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 625551054863188220}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8643416932187837700}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8206593267312781816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 625551054863188220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PanelSettings: {fileID: 11400000, guid: d267664279a0e304e99f6e5eb559eead, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: 306adb8a11ba3214eb50bc4097c49356, type: 3}
+  m_SortingOrder: 1
 --- !u!1 &663754546231323076
 GameObject:
   m_ObjectHideFlags: 0
@@ -2060,7 +2108,7 @@ GameObject:
   - component: {fileID: 3379728502841992065}
   - component: {fileID: 3599060447919176082}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Button1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2114,7 +2162,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: cac17890abb08504cbb9e8a5098f7ab8, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2170,12 +2218,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 9199315776819746690}
         m_TargetAssemblyTypeName: TrainingModuleScreen, Assembly-CSharp
-        m_MethodName: cardSelectorOpen
-        m_Mode: 1
+        m_MethodName: OpenActionSelection
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2193,7 +2241,7 @@ GameObject:
   - component: {fileID: 8244641192063724183}
   - component: {fileID: 7840431993003946145}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Button3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2247,7 +2295,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: cac17890abb08504cbb9e8a5098f7ab8, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2303,12 +2351,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 9199315776819746690}
         m_TargetAssemblyTypeName: TrainingModuleScreen, Assembly-CSharp
-        m_MethodName: cardSelectorOpen
-        m_Mode: 1
+        m_MethodName: OpenActionSelection
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -3490,7 +3538,7 @@ GameObject:
   - component: {fileID: 2688523428817389927}
   - component: {fileID: 482127878432462808}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Button2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3544,7 +3592,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: cac17890abb08504cbb9e8a5098f7ab8, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3600,12 +3648,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 9199315776819746690}
         m_TargetAssemblyTypeName: TrainingModuleScreen, Assembly-CSharp
-        m_MethodName: cardSelectorOpen
-        m_Mode: 1
+        m_MethodName: OpenActionSelection
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -4623,7 +4671,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8643416932187837700}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1312412985725994424
 MonoBehaviour:
@@ -4790,6 +4838,7 @@ GameObject:
   - component: {fileID: 8643416932187837817}
   - component: {fileID: 1499928037245794682}
   - component: {fileID: 9199315776819746690}
+  - component: {fileID: 296645599982888364}
   - component: {fileID: 6214543187492908520}
   - component: {fileID: 6072516106304441697}
   - component: {fileID: 1354601111}
@@ -4821,6 +4870,7 @@ Transform:
   - {fileID: 8643416933332351271}
   - {fileID: 1059816983858712850}
   - {fileID: 2607433889784995432}
+  - {fileID: 4492684773462687632}
   - {fileID: 6850177555032459416}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -4847,6 +4897,7 @@ MonoBehaviour:
   trainingModuleRewardScript: {fileID: 6214543187492908520}
   unboxingScript: {fileID: 6072516106304441697}
   metamaskScript: {fileID: 1354601111}
+  trainingActionSelectScript: {fileID: 0}
 --- !u!114 &8643416932187837818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5439,13 +5490,6 @@ MonoBehaviour:
           m_CallState: 2
   eventTitleName: eventTitle
   eventTimeName: eventTime
-  combPoolContainer: actions
-  combPoolNames:
-  - Action_1
-  - Action_2
-  - Action_3
-  - Action_4
-  - Action_5
   combPoolImagesNames:
   - action1
   - action2
@@ -5459,6 +5503,19 @@ MonoBehaviour:
   - removeA4
   - removeA5
   startTrainingButtonName: startButton
+  combPoolObjects:
+  - {fileID: 2472303585480251854}
+  - {fileID: 5767717948325206062}
+  - {fileID: 4874916797696207489}
+  - {fileID: 7814853899235503484}
+  - {fileID: 5863931063359269388}
+  combPoolImages:
+  - {fileID: 6713616583982743533}
+  - {fileID: 3379728502841992065}
+  - {fileID: 2688523428817389927}
+  - {fileID: 8244641192063724183}
+  - {fileID: 9143381196206024043}
+  combPoolContainer: {fileID: 2012295084720712916}
   inTrainingBoxName: inTrainingBox
   inTrainingTimeButtonName: inTrainingTimeButton
   rewardTitleName: rewardTitle
@@ -5469,6 +5526,77 @@ MonoBehaviour:
   actionScrollName: actionScroll
   previewActionName: actionImage
   fontAsset: {fileID: 0}
+--- !u!114 &296645599982888364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8643416932187837703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38fb3791663fa5e45aeca17dc2247baa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiDoc: {fileID: 8206593267312781816}
+  buttons:
+  - name: punchesButton
+    onClickEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 296645599982888364}
+          m_TargetAssemblyTypeName: TrainingActionSelectScreen, Assembly-CSharp
+          m_MethodName: PunchesButton
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - name: kicksButton
+    onClickEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 296645599982888364}
+          m_TargetAssemblyTypeName: TrainingActionSelectScreen, Assembly-CSharp
+          m_MethodName: KicksButton
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - name: movesButton
+    onClickEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 296645599982888364}
+          m_TargetAssemblyTypeName: TrainingActionSelectScreen, Assembly-CSharp
+          m_MethodName: MovesButton
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  combPoolObjects:
+  - {fileID: 2472303585480251854}
+  - {fileID: 5767717948325206062}
+  - {fileID: 4874916797696207489}
+  - {fileID: 7814853899235503484}
+  - {fileID: 5863931063359269388}
+  actionScrollName: actionScroll
+  fontAsset: {fileID: 0}
+  previewActionName: actionImage
 --- !u!114 &6214543187492908520
 MonoBehaviour:
   m_ObjectHideFlags: 0

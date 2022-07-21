@@ -11,11 +11,14 @@ public class TrainingModuleScreen : UIController
 {
     public string eventTitleName;
     public string eventTimeName;
-    public string combPoolContainer;
-    public string[] combPoolNames;
+    //public string combPoolContainer;
+    //public string[] combPoolNames;
     public string[] combPoolImagesNames;
     public string[] removePoolNames;
     public string startTrainingButtonName;
+    public GameObject[] combPoolObjects;
+    public UnityEngine.UI.Image[] combPoolImages;
+    public Transform combPoolContainer;
 
     [Header("In Training names")] 
     public string inTrainingBoxName;
@@ -35,7 +38,7 @@ public class TrainingModuleScreen : UIController
 
     protected override void UpdateUI()
     {
-        CheckActionsCountAndRevealOrNo();
+        CheckAndRevealStartButton();
         TrainingConfig.Instance.ApplyRewardsCalculation();
         SetTextInLabel(eventTitleName, TrainingConfig.Instance.eventTitle);
         SetTextInLabel(eventTimeName, ConvertMinutesToString(TrainingConfig.Instance.GetEventTimeRemain()));
@@ -48,117 +51,48 @@ public class TrainingModuleScreen : UIController
     public override void ActiveScreen()
     {
         base.ActiveScreen();
-        //CreateTrainingConfig();
-        AddActionSelectEvents();
-        DisableAllCombinationPoolVisualElements();
+        ResetCombinationPool();
         CheckAndApplyInTrainingActions();
         UpdateUI();
     }
 
     public override void DisableScreen()
     {
-        RemoveActionSelectEvents();
-        TrainingConfig.Instance.ResetAllTrainingModule(ClearPossibleActionsEvents);
+        CheckToResetTrainingModule();
         base.DisableScreen();
     }
 
-    public override void OnDestroy()
+    private void CheckToResetTrainingModule()
     {
-        base.OnDestroy();
-        RemoveActionSelectEvents();
-        ClearPossibleActionsEvents();
-    }
-    
-    private void AddActionSelectEvents()
-    {
-        for (var _i = 0; _i < combPoolImagesNames.Length; _i++)
-        {
-            var _selectedActionIndex = _i;
-            var _addActionButton = Root?.Q<VisualElement>(combPoolImagesNames[_i]);
-            _addActionButton?.RegisterCallback<ClickEvent>
-            (_ =>
-                {
-                    TrainingConfig.Instance.SetSelectedID(_selectedActionIndex);
-                    OpenActionSelectionScreen();
-                }
-            );
-            var _deleteActionButton = Root?.Q<VisualElement>(removePoolNames[_i]);
-            _deleteActionButton?.RegisterCallback<ClickEvent>
-            (_ => 
-                {
-                    RemoveAction(_selectedActionIndex);
-                }
-            );
-        }
+        if (ScreenManager.ScreenState == ScreenState.TrainingActionSelect)
+            return;
+        TrainingConfig.Instance.ResetAllTrainingModule(/*ClearPossibleActionsEvents*/);
+        ClearActionsImages();
     }
 
-    private void RemoveActionSelectEvents()
+    public void OpenActionSelection(int buttonID)
     {
-        for (var _i = 0; _i < combPoolImagesNames.Length; _i++)
-        {
-            var _selectedActionIndex = _i;
-            var _addActionButton = Root?.Q<VisualElement>(combPoolImagesNames[_i]);
-            _addActionButton?.UnregisterCallback<ClickEvent>
-            (_ =>
-                {
-                    TrainingConfig.Instance.SetSelectedID(_selectedActionIndex);
-                    OpenActionSelectionScreen();
-                }
-            );
-            var _deleteActionButton = Root?.Q<VisualElement>(removePoolNames[_i]);
-            _deleteActionButton?.UnregisterCallback<ClickEvent>
-            (_ => 
-                {
-                    RemoveAction(_selectedActionIndex);
-                }
-            );
-        }
+        TrainingConfig.Instance.SetSelectedID(buttonID);
+        OpenActionSelectionScreen();
     }
 
     private void ConfirmAction(TrainingActionSO actionSo)
     {
-        EnableVisualElement(combPoolNames[TrainingConfig.Instance.selectedActionID]);
-        EnableVisualElement(removePoolNames[TrainingConfig.Instance.selectedActionID]);
-        SetVisualElementSprite(combPoolImagesNames[TrainingConfig.Instance.selectedActionID], actionSo.sprite);
-        CloseActionSelectionScreen();
-        if (!TrainingConfig.Instance.selectedActionsDict.ContainsKey(TrainingConfig.Instance.selectedActionID))
-            TrainingConfig.Instance.selectedActionsDict.Add(TrainingConfig.Instance.selectedActionID, actionSo);
-        else
-            TrainingConfig.Instance.selectedActionsDict[TrainingConfig.Instance.selectedActionID] = actionSo;
+        combPoolObjects[TrainingConfig.Instance.selectedActionID].gameObject.SetActive(true);
+        //EnableVisualElement(removePoolNames[TrainingConfig.Instance.selectedActionID]); //TODO: Add remove button
+        SetActionSprite(TrainingConfig.Instance.selectedActionID, actionSo.sprite);
+        TrainingConfig.Instance.AddToSelectedActionsDict(TrainingConfig.Instance.selectedActionID, actionSo);
         TrainingConfig.Instance.ApplyTrainingMode();
         TrainingConfig.Instance.ApplyBlowConfig();
         UpdateUI();
     }
+    
+    public void SetActionSprite(int id, Sprite sprite) => combPoolImages[id].sprite = sprite;
 
-    private void RemoveAction(int i)
+    private void SetActionToLastPosition(GameObject actionObj)
     {
-        TrainingConfig.Instance.selectedActionsDict.Remove(i);
-        SetVisualElementSprite(combPoolImagesNames[i], null);
-        DisableVisualElement(combPoolNames[i]);
-        DisableVisualElement(removePoolNames[i]);
-        TrainingConfig.Instance.ApplyBlowConfig();
-        UpdateUI();
-    }
-
-    private void DisableAllRemoveButtons()
-    {
-        foreach (var _buttonName in removePoolNames)
-            DisableVisualElement(_buttonName);
-    }
-
-    private void SetActionToLastPosition(string actionName)
-    {
-        var _action = Root.Q<VisualElement>(actionName);
-        var _actionContainer = Root.Q<VisualElement>(combPoolContainer);
-        _actionContainer?.Insert(_actionContainer.childCount, _action);
-    }
-
-    private void CheckActionsCountAndRevealOrNo()
-    {
-        if (TrainingConfig.Instance.selectedActionsDict.Count >= combPoolNames.Length)
-            return;
-        CheckAndRevealNextAction();
-        CheckAndRevealStartButton();
+        actionObj.transform.SetParent(null);
+        actionObj.transform.SetParent(combPoolContainer);
     }
 
     private void CheckAndRevealStartButton()
@@ -168,40 +102,25 @@ public class TrainingModuleScreen : UIController
         _startButton.visible = (!TrainingConfig.Instance.IsInTraining() && TrainingConfig.Instance.IsMinimumActionsToPlay());
     }
 
-    private void CheckAndRevealNextAction()
-    {
-        if (!IsNecessaryRevealNewAction())
-            return;
-        RevealNextAction();
-    }
-
-    private bool IsNecessaryRevealNewAction()
-    {
-        var _activeActionCount = 0;
-        foreach (var _name in combPoolNames)
-        {
-            if (ActionIsEnabled(_name))
-                _activeActionCount++;
-        }
-        return TrainingConfig.Instance.selectedActionsDict.Count >= _activeActionCount;
-    }
-
     private void RevealNextAction()
     {
-        for (var _i = 0; _i < combPoolNames.Length; _i++)
+        for (var _i = 0; _i < combPoolObjects.Length; _i++)
         {
-            if (ActionIsEnabled(combPoolNames[_i])) 
+            if (combPoolObjects[_i].gameObject.activeInHierarchy) 
                 continue;
-            SetActionToLastPosition(combPoolNames[_i]);
-            EnableVisualElement(combPoolNames[_i]);
+            SetActionToLastPosition(combPoolObjects[_i].gameObject);
+            combPoolObjects[_i].gameObject.SetActive(true);
             break;
         }
     }
 
-    private void DisableAllCombinationPoolVisualElements()
+    private void ResetCombinationPool() 
     {
-        foreach (var _name in combPoolNames)
-            DisableVisualElement(_name);
+        if (ScreenManager.OldScreenState == ScreenState.TrainingActionSelect)
+            return;
+        foreach (var _obj in combPoolObjects)
+            _obj.gameObject.SetActive(false);
+        combPoolObjects[0].SetActive(true);
     }
 
     private void CheckAndApplyInTrainingActions()
@@ -215,75 +134,7 @@ public class TrainingModuleScreen : UIController
         }
     }
 
-    private bool ActionIsEnabled(string actionName)
-    {
-        var _visualE = Root?.Q<VisualElement>(actionName);
-        if (_visualE != null)
-            return _visualE.style.display != DisplayStyle.None;
-        else
-        {
-            Debug.Log(actionName + "is null!");
-            return false;
-        }
-    }
-
-    public void PunchesButton()
-        => SetPossibleActions(TrainingActionType.Punch);
-
-    public void KicksButton()
-        => SetPossibleActions(TrainingActionType.Kick);
-
-    public void MovesButton()
-        => SetPossibleActions(TrainingActionType.Move);
-
-    private void SetPossibleActions(TrainingActionType type)
-    {
-        ClearPossibleActionsEvents();
-        var _scrollView = Root.Q<ScrollView>(actionScrollName);
-        _scrollView.Clear();
-        TrainingConfig.Instance.SetOldTypeActionSelected(type);
-        foreach (var _action in TrainingConfig.Instance.GetFilteredActions(type))
-        {
-            var _label = CreateNewLabel(_action.id.ToString(), _action.name, fontAsset, 
-                                        32, Color.black, Color.white);
-            _label.RegisterCallback<MouseEnterEvent>(_ 
-                => SetVisualElementSprite(previewActionName, _action.sprite));
-            _label.RegisterCallback<MouseUpEvent>(_
-                => ConfirmAction(_action));
-            _scrollView.Add(_label);
-        }
-    }
-
-    private void ClearPossibleActionsEvents()
-    {
-        if(TrainingConfig.Instance.OldTypeSelectedIsNone())
-            return;
-        foreach (var _action in TrainingConfig.Instance.GetFilteredActionsOnOldType())
-        {
-            var _label = Root.Q<Label>(_action.id.ToString());
-            _label.UnregisterCallback<MouseEnterEvent>(_ 
-                => SetVisualElementSprite(previewActionName, _action.sprite));
-            _label.UnregisterCallback<MouseUpEvent>(_
-                => ConfirmAction(_action));
-        }
-    }
-
-    private void OpenActionSelectionScreen()
-    {
-        var _actionArea = Root.Q<GroupBox>(actionSelectionAreaName);
-        _actionArea.visible = true;
-        SetVisualElementSprite(previewActionName, null);
-    }
-
-    private void CloseActionSelectionScreen()
-    {
-        ClearPossibleActionsEvents();
-        var _scrollView = Root.Q<ScrollView>(actionScrollName);
-        _scrollView.Clear();
-        TrainingConfig.Instance.SetOldTypeActionSelected(TrainingActionType.None);
-        var _actionArea = Root.Q<GroupBox>(actionSelectionAreaName);
-        _actionArea.visible = false;
-    }
+    private void OpenActionSelectionScreen() => ScreenManager.Instance.GoToScreen(ScreenState.TrainingActionSelect);
 
     public void TrainingInfoButton() => ScreenManager.Instance.GoToScreen(ScreenState.LoreTheme);
 
@@ -304,12 +155,6 @@ public class TrainingModuleScreen : UIController
             return;
         GoToRewardScreen();
     }
-    
-    public void cardSelectorOpen()
-    {
-        Debug.Log("Button pressed - Open card selection");
-        
-    }
 
     private void CheckTrainingAndEnableTrainingUI() 
     {
@@ -317,13 +162,32 @@ public class TrainingModuleScreen : UIController
         {
             EnableVisualElement(inTrainingBoxName);
             SetTextInButton(inTrainingTimeButtonName, ConvertMinutesToString(TrainingConfig.Instance.GetTrainingTimeRemain()));
-            DisableAllRemoveButtons();
+            //DisableAllRemoveButtons(); //TODO: Disable remove buttons
+            DisableInteractableActionButtons();
         }
         else
+        {
             DisableVisualElement(inTrainingBoxName);
+            EnableInteractableActionButtons();
+        }
     }
 
-    public void GoToRewardScreen() => ScreenManager.Instance.GoToScreen(ScreenState.TrainingModuleRewards);
+    private void EnableInteractableActionButtons() => ActionButtonsInteractable(true);
+    private void DisableInteractableActionButtons() => ActionButtonsInteractable(false);
+
+    private void ActionButtonsInteractable(bool on)
+    {
+        for(var _i = 0; _i < combPoolObjects.Length; _i++)
+            combPoolObjects[_i].GetComponentInChildren<UnityEngine.UI.Button>().interactable = on;
+    }
+
+    private void GoToRewardScreen() => ScreenManager.Instance.GoToScreen(ScreenState.TrainingModuleRewards);
+    
+    private void ClearActionsImages()
+    {
+        for (var _i = 0; _i < combPoolImages.Length; _i++)
+            combPoolImages[_i].sprite = null;
+    }
 }
 
 public enum TrainingActionType

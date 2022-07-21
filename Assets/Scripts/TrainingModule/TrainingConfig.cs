@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Rendering.UI;
 
 [Serializable]
 public class TrainingConfig : Singleton<TrainingConfig>
@@ -50,7 +49,6 @@ public class TrainingConfig : Singleton<TrainingConfig>
     public void SetOldTypeActionSelected(TrainingActionType type) => _oldTypeSelected = type;
     public TrainingActionType GetOldTypeActionSelected() => _oldTypeSelected;
     public bool OldTypeSelectedIsNone() => _oldTypeSelected == TrainingActionType.None;
-    
 
     //
     public int selectedActionID { get; private set; }
@@ -176,22 +174,29 @@ public class TrainingConfig : Singleton<TrainingConfig>
     {
         selectedTrainingActions = new();
         var _i = 0;
+        var _timeOut = 0;
         while (_i < actionsDict.Count)
         {
-            foreach (var _action in actionsDict.Where(action => _i == action.Key))
+            if (_i != _timeOut)
+                _i = 99;
+            foreach (var _action in actionsDict)
             {
-                selectedTrainingActions.Add(_action.Value);
-                _i++;
-                break;
+                if (_i == _action.Key)
+                {
+                    selectedTrainingActions.Add(_action.Value);
+                    _i++;
+                    break;
+                }
             }
+
+            _timeOut++;
         }
     }
     
-    public void ResetAllTrainingModule(Action callback)
+    public void ResetAllTrainingModule()
     {
         SetTrainingActionList(selectedActionsDict);
         ResetSelectedActionsDictionary();
-        callback?.Invoke();
     }
     
     private void ResetSelectedActionsDictionary() => selectedActionsDict = new Dictionary<int, TrainingActionSO>();
@@ -253,5 +258,15 @@ public class TrainingConfig : Singleton<TrainingConfig>
             seconds -= 60;
         }
         return _result;
+    }
+    //
+
+    public void AddToSelectedActionsDict(int key, TrainingActionSO action)
+    {
+        Debug.Log("Try add selectedActionDict: key_" + key + "|action_" + action.name);
+        if (selectedActionsDict.ContainsKey(key))
+            selectedActionsDict[key] = action;
+        else
+            selectedActionsDict.Add(key, action);
     }
 }

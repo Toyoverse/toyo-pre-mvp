@@ -6,6 +6,7 @@ public class TransitionControl : Singleton<TransitionControl>
 {
     public Animator animator;
     public event Action OnCompletelyHiddenScreen;
+    public event Action OnEndTransition;
     public Image image;
 
     public void Awake()
@@ -19,6 +20,7 @@ public class TransitionControl : Singleton<TransitionControl>
 
     public void PlayTransition()
     {
+        Loading.StartLoading?.Invoke();
         EnableTransition();
         animator.Play("BaseLayer.Transition", 0, 0);
     }
@@ -35,12 +37,18 @@ public class TransitionControl : Singleton<TransitionControl>
     
     private void DisableTransition()
     {
+        OnEndTransition?.Invoke();
         ClearTransitionEvents();
         animator.enabled = false;
         image.enabled = false;
+        Loading.EndLoading?.Invoke();
     }
 
-    private void ClearTransitionEvents() => OnCompletelyHiddenScreen = null;
-    
+    private void ClearTransitionEvents()
+    {
+        OnCompletelyHiddenScreen = null;
+        OnEndTransition = null;
+    }
+
     private void OnDestroy() => ClearTransitionEvents();
 }

@@ -20,9 +20,10 @@ namespace UI
         [SerializeField] public TrainingModuleRewardScreen trainingModuleRewardScript;
         [SerializeField] private UnboxingScreen unboxingScript;
         [SerializeField] private MetamaskScreen metamaskScript;
+        [SerializeField] private TrainingActionSelectScreen trainingActionSelectScript;
 
         public static ScreenState ScreenState { get; private set; }
-        private static ScreenState _oldScreenState;
+        public static ScreenState OldScreenState;
 
         //public bool haveToyo = false; //TODO: Get server variable
 
@@ -36,12 +37,12 @@ namespace UI
         {
             AddCloseCurrentScreenEvent();
             AddOpenNewScreenEvent(newScreen);
-            _oldScreenState = ScreenState;
+            OldScreenState = ScreenState;
             ScreenState = newScreen;
             TransitionControl.Instance.PlayTransition();
         }
 
-        public void BackToOldScreen() => GoToScreen(_oldScreenState);
+        public void BackToOldScreen() => GoToScreen(OldScreenState);
 
         private void AddCloseCurrentScreenEvent()
         {
@@ -58,7 +59,8 @@ namespace UI
                 ScreenState.TrainingModule => trainingModuleScript.DisableScreen,
                 ScreenState.Unboxing => unboxingScript.DisableScreen,
                 ScreenState.Metamask => metamaskScript.DisableScreen,
-                ScreenState.TrainingModuleRewards => trainingModuleRewardScript.DisableScreen
+                ScreenState.TrainingModuleRewards => trainingModuleRewardScript.DisableScreen,
+                ScreenState.TrainingActionSelect => trainingActionSelectScript.DisableScreen
             };
         }
 
@@ -76,6 +78,7 @@ namespace UI
                 ScreenState.Unboxing => unboxingScript.ActiveScreen,
                 ScreenState.Metamask => metamaskScript.ActiveScreen,
                 ScreenState.TrainingModuleRewards => trainingModuleRewardScript.ActiveScreen,
+                ScreenState.TrainingActionSelect => trainingActionSelectScript.ActiveScreen,
                 _ => throw new ArgumentOutOfRangeException()
             };
         }
@@ -92,6 +95,7 @@ namespace UI
             metamaskScript ??= GetComponent<MetamaskScreen>();
             unboxingScript ??= GetComponent<UnboxingScreen>();
             trainingModuleRewardScript ??= GetComponent<TrainingModuleRewardScreen>();
+            trainingActionSelectScript ??= GetComponent<TrainingActionSelectScreen>();
         }
     }
 
@@ -107,6 +111,7 @@ namespace UI
         TrainingModule = 7,
         Unboxing = 8,
         Metamask = 9,
-        TrainingModuleRewards = 10
+        TrainingModuleRewards = 10,
+        TrainingActionSelect = 11
     }
 }
