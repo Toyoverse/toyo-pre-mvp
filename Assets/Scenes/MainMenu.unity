@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -754,7 +754,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 2.0789473, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1069,9 +1069,12 @@ MonoBehaviour:
   BlockchainIntegration: {fileID: 1082540502}
   loginURL: https://players-web-bff-dev.herokuapp.com/player/login
   baseURL: https://ts-toyo-web-bff.herokuapp.com
+  openBoxBaseURL: https://ts-unboxing-web-bff.herokuapp.com
   boxesSufixURL: /player/boxes
   toyosSufixURL: /player/toyos
   toyosDetailSufixURL: /player/toyo/
+  closedBoxSufixURL: /player/box/closedbox/
+  openBoxSufixURL: /player/box/
 --- !u!4 &1082540500
 Transform:
   m_ObjectHideFlags: 0
@@ -1135,7 +1138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1fe579e10b54639a87451d7de029966, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skipLogin: 1
+  skipLogin: 0
   rememberMe: {fileID: 0}
 --- !u!1 &1084469477
 GameObject:

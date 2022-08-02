@@ -19,7 +19,9 @@ namespace Database
         private string loginURL = "https://players-web-bff-dev.herokuapp.com/player/login";
 
         [SerializeField]
-        private string baseURL = "https://ts-toyo-web-bff.herokuapp.com/api";
+        private string baseURL = "https://ts-toyo-web-bff.herokuapp.com";
+
+        [SerializeField] private string openBoxBaseURL = "https://ts-unboxing-web-bff.herokuapp.com";
 
         [SerializeField]
         private string boxesSufixURL = "/player/boxes";
@@ -29,6 +31,12 @@ namespace Database
         
         [SerializeField]
         private string toyosDetailSufixURL = "/player/toyo/";
+
+        [SerializeField]
+        private string closedBoxSufixURL = "/player/box/closedbox/";
+
+        [SerializeField]
+        private string openBoxSufixURL = "/player/box/";
         
         private void Awake()
         {
@@ -55,6 +63,20 @@ namespace Database
         {
             URL = baseURL + toyosSufixURL;
             var _request = GenerateRequest(HTTP_REQUEST.GET);
+            StartCoroutine(ProcessRequestCoroutine(callback, _request));
+        }
+        
+        public void GetOpenBox(Action<string> callback, string boxId)
+        {
+            URL = openBoxBaseURL + closedBoxSufixURL + boxId;
+            var _request = GenerateRequest(HTTP_REQUEST.GET);
+            StartCoroutine(ProcessRequestCoroutine(callback, _request));
+        }
+
+        public void PostOpenBox(Action<string> callback, string boxId)
+        {
+            URL = openBoxBaseURL + openBoxSufixURL + boxId;
+            var _request = GenerateRequest(HTTP_REQUEST.POST);
             StartCoroutine(ProcessRequestCoroutine(callback, _request));
         }
 

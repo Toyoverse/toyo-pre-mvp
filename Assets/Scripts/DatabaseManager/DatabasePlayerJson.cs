@@ -37,6 +37,19 @@ namespace Database
     }
 
     [Serializable]
+    public class OpenBox
+    {
+        public string toyoHash;
+        public string toyoSignature;
+        public string tokenId;
+        public string typeId;
+        public string tokenIdClosedBox;
+        public string tokenIdOpenBox;
+        public Toyo toyo;
+        public bool isOpen;
+    }
+
+    [Serializable]
     public class Box
     {
         public string id;

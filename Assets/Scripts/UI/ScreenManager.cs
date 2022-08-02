@@ -10,14 +10,14 @@ namespace UI
     public class ScreenManager : Singleton<ScreenManager>
     {
         [Header("Scripts References")]
+        [SerializeField] public BoxInfoScreen boxInfoScript;
+        [SerializeField] public TrainingModuleScreen trainingModuleScript;
+        [SerializeField] public TrainingModuleRewardScreen trainingModuleRewardScript;
         [SerializeField] private WelcomeScreen welcomeScript;
         [SerializeField] private MainMenuScreen mainMenuScript;
         [SerializeField] private ToyoInfoScreen toyoInfoScript;
-        [SerializeField] private BoxInfoScreen boxInfoScript;
         [SerializeField] private OpenBoxScreen openBoxScript;
         [SerializeField] private LoreThemeScreen loreThemeScript;
-        [SerializeField] public TrainingModuleScreen trainingModuleScript;
-        [SerializeField] public TrainingModuleRewardScreen trainingModuleRewardScript;
         [SerializeField] private UnboxingScreen unboxingScript;
         [SerializeField] private MetamaskScreen metamaskScript;
         [SerializeField] private TrainingActionSelectScreen trainingActionSelectScript;

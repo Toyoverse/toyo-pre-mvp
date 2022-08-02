@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Database;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -56,15 +57,24 @@ namespace UI
             UpdateUI();
         }
 
-        private BoxConfig GetBoxSelected() 
+        public BoxConfig GetBoxSelected() 
             => carousel.CurrentSelectedObject.GetComponent<BoxConfig>();
 
         private void OpenSelectedBox()
         {
-            
+            Loading.StartLoading?.Invoke();
             ToyoManager.SetSelectedBox(carousel.CurrentSelectedObject.gameObject);
-            GetBoxSelected().unboxingVfx.SetRarityColor(TOYO_RARITY.PROTOTYPE); //TODO: Move to correct location and pass correct color
+            DatabaseConnection.Instance.GetOpenBox(DatabaseConnection.Instance.BlockchainIntegration.CallOpenBox, GetBoxSelected().boxList[0].id);
+        }
+
+        public void CallOpenBoxAnimation(string json)
+        {
+            var _myBox = JsonUtility.FromJson<OpenBox>(json);
+
+            TOYO_RARITY myToyoRarity = ParseEnums.StringToEnum<TOYO_RARITY>(_myBox.toyo.toyoPersonaOrigin.rarity);
+            GetBoxSelected().unboxingVfx.SetRarityColor(myToyoRarity);
             ScreenManager.Instance.GoToScreen(ScreenState.Unboxing);
+            Loading.EndLoading?.Invoke();
         }
 
         private void SetTitleText(string text)

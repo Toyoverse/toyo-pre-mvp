@@ -128,6 +128,7 @@ public class Web3GL
     {
         SignMessage(_message);
         string response = SignMessageResponse();
+     
         while (response == "")
         {
             await new WaitForSeconds(1f);
