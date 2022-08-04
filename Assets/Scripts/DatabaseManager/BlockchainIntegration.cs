@@ -30,7 +30,8 @@ public class BlockchainIntegration : MonoBehaviour
         Loading.StartLoading?.Invoke();
         if (skipLogin)
         {
-            PlayerPrefs.SetString("TokenJWT", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ3YWxsZXRJZCI6IjB4ZmY2NTRhYTAyMDBlNTUxZGJlOWMwMGM4YjVjMWY0ZTg4ZDc0ZmNjMyIsInRyYW5zYWN0aW9uIjoiMHhmZjY1NGFhMDIwMGU1NTFkYmU5YzAwYzhiNWMxZjRlODhkNzRmY2MzIiwiaWF0IjoxNjU3OTE1MTE3LCJleHAiOjE2NTg1MTk5MTd9.vxOiDNXs6lnCovzSyHfm3DfWMOaQIRkNSdU4gBXIvSg");
+            //PlayerPrefs.SetString("TokenJWT", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ3YWxsZXRJZCI6IjB4ZmY2NTRhYTAyMDBlNTUxZGJlOWMwMGM4YjVjMWY0ZTg4ZDc0ZmNjMyIsInRyYW5zYWN0aW9uIjoiMHhmZjY1NGFhMDIwMGU1NTFkYmU5YzAwYzhiNWMxZjRlODhkNzRmY2MzIiwiaWF0IjoxNjU3OTE1MTE3LCJleHAiOjE2NTg1MTk5MTd9.vxOiDNXs6lnCovzSyHfm3DfWMOaQIRkNSdU4gBXIvSg");
+            PlayerPrefs.SetString("TokenJWT", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ3YWxsZXRJZCI6IjB4YjAxYjkyNjg4ODg4MTY0NTc4M2I2MmU1ZWVhZWY1N2RjZTM0YmRhNSIsInRyYW5zYWN0aW9uIjoiZGZnNTR3ZWZkIiwiaWF0IjoxNjU5Mzg3NzUwLCJleHAiOjE2NTk5OTI1NTB9.OoUfj7FiFpYMKf_lWFXclR5YkYvjG9ptFD-IxXpZvGw");
             CallDatabaseConnection();
             return;
         }
