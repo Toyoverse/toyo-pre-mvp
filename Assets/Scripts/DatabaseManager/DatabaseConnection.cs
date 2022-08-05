@@ -119,6 +119,7 @@ namespace Database
                     _form.AddField(_parameter.Item1, _parameter.Item2);
 
             UnityWebRequest _requestPost = UnityWebRequest.Post (uri, _form);
+            _requestPost.SetRequestHeader("Authorization", PlayerPrefs.GetString("TokenJWT"));
             return _requestPost;
         }
         

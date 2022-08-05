@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine.Serialization;
 
 namespace Database
 {
@@ -52,7 +53,7 @@ namespace Database
     [Serializable]
     public class Box
     {
-        public string id;
+        public string objectId;
         public bool isOpen;
         public string hash;
         public Toyo toyo;
@@ -67,6 +68,12 @@ namespace Database
         public string lastUnboxingStartedAt;
         public string typeId;
         public Modifier[] modifiers;
+    }
+
+    [Serializable]
+    public class BoxParent
+    {
+        public Box box;
     }
     
     [Serializable]
@@ -91,7 +98,7 @@ namespace Database
         public string tokenId;
         public string transactionHash;
         
-        public ToyoPersona toyoPersonaOrigin; // Todo : remove, this is temporary only for the wrong JSON
+        [FormerlySerializedAs("toyoPersona")] public ToyoPersona toyoPersonaOrigin; // Todo : remove, this is temporary only for the wrong JSON
         //public ToyoPersona toyoPersonaOrigin; 
         public ToyoPart[] parts;
     }
@@ -164,9 +171,6 @@ namespace Database
         public string name;
         public int bodyType;
         public string thumbnail;
-
-        //New
-        //public ToyoRegion region;
         public string region;
         public string rarity;
     }

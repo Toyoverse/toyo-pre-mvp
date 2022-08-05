@@ -112,13 +112,6 @@ public class BlockchainIntegration : MonoBehaviour
     {
         var _myBox = JsonUtility.FromJson<OpenBox>(json);
         
-        Debug.Log(_myBox.toyo.toyoPersonaOrigin.rarity);
-        Debug.Log(_myBox.toyo.toyoPersonaOrigin.rarity);
-        Debug.Log(_myBox.toyo.toyoPersonaOrigin.rarity);
-        Debug.Log(_myBox.toyo.toyoPersonaOrigin.rarity);
-        Debug.Log(_myBox.toyo.toyoPersonaOrigin.rarity);
-        Debug.Log(_myBox.toyo.toyoPersonaOrigin.rarity);
-        
         OpenBox(_myBox);
     }
 
@@ -157,7 +150,7 @@ public class BlockchainIntegration : MonoBehaviour
         }
 
         _databaseConnection.PostOpenBox(ScreenManager.Instance.boxInfoScript.CallOpenBoxAnimation, 
-            ScreenManager.Instance.boxInfoScript.GetBoxSelected().boxList[0].id);
+            ScreenManager.Instance.boxInfoScript.GetBoxSelected().boxList[0].objectId);
     }
 
     public void OnToyoListSuccess(string json)

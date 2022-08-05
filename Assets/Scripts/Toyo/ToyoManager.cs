@@ -38,6 +38,12 @@ public class ToyoManager : Singleton<ToyoManager>
         Instance.carouselToyo.SetFirstSelectedObject();
     }
 
+    public void AddToyoToToyoObjectList(Toyo toyo)
+    {
+        toyo.isToyoSelected = true;
+        InstantiateAndConfigureToyo(toyo, ref _toyoList);
+    }
+
     public static void SetSelectedBox(GameObject selectedBox) => Instance._selectedBox = selectedBox;
     
     public static GameObject GetSelectedBox() => Instance._selectedBox;
@@ -92,7 +98,7 @@ public class ToyoManager : Singleton<ToyoManager>
     private GameObject InstantiateAndConfigureToyo(Toyo databaseToyo, ref List<ToyoObject> toyoObjectList)
     {
         var _toyoPrefab = Instantiate(GetToyoPersonaPrefab(databaseToyo.toyoPersonaOrigin), toyoListParent);
-        var _toyoObjectInstance =_toyoPrefab.AddComponent<ToyoObject, Toyo>(databaseToyo);
+        var _toyoObjectInstance = _toyoPrefab.AddComponent<ToyoObject, Toyo>(databaseToyo);
         _toyoObjectInstance.spriteAnimator = _toyoPrefab.GetComponentInChildren<SpriteAnimator>();
         carouselToyo.allObjects.Add(_toyoPrefab.transform);
         toyoObjectList.Add(_toyoObjectInstance);
@@ -156,7 +162,8 @@ public class ToyoManager : Singleton<ToyoManager>
     private static void CompareBoxModifiers(Box boxFromPlayer, BoxConfig boxConfigInCarousel)
     {
         if (GetBoxTypeInPlayerBox(boxFromPlayer) == boxConfigInCarousel.BoxType
-            && GetBoxRegionInPlayerBox(boxFromPlayer) == boxConfigInCarousel.BoxRegion)
+            && GetBoxRegionInPlayerBox(boxFromPlayer) == boxConfigInCarousel.BoxRegion
+            && !boxFromPlayer.isOpen)
             boxConfigInCarousel.boxList.Add(boxFromPlayer);
     }
 

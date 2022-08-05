@@ -5,6 +5,7 @@ using System.Linq;
 using Database;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Box = Database.Box;
 
 namespace UI
 {
@@ -64,17 +65,18 @@ namespace UI
         {
             Loading.StartLoading?.Invoke();
             ToyoManager.SetSelectedBox(carousel.CurrentSelectedObject.gameObject);
-            DatabaseConnection.Instance.GetOpenBox(DatabaseConnection.Instance.BlockchainIntegration.CallOpenBox, GetBoxSelected().boxList[0].id);
+            DatabaseConnection.Instance.GetOpenBox(DatabaseConnection.Instance.BlockchainIntegration.CallOpenBox, GetBoxSelected().boxList[0].objectId);
         }
 
         public void CallOpenBoxAnimation(string json)
         {
-            var _myBox = JsonUtility.FromJson<OpenBox>(json);
+            var _myBox = JsonUtility.FromJson<BoxParent>(json);
 
-            TOYO_RARITY myToyoRarity = ParseEnums.StringToEnum<TOYO_RARITY>(_myBox.toyo.toyoPersonaOrigin.rarity);
+            TOYO_RARITY myToyoRarity = ParseEnums.StringToEnum<TOYO_RARITY>(_myBox.box.toyo.toyoPersonaOrigin.rarity);
             GetBoxSelected().unboxingVfx.SetRarityColor(myToyoRarity);
-            ScreenManager.Instance.GoToScreen(ScreenState.Unboxing);
             Loading.EndLoading?.Invoke();
+            ToyoManager.Instance.AddToyoToToyoObjectList(_myBox.box.toyo);
+            ScreenManager.Instance.GoToScreen(ScreenState.Unboxing);
         }
 
         private void SetTitleText(string text)
