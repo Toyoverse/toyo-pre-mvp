@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7740a3cfd3d819e4db2ae8142f88ebcc, type: 3}
-  m_Name: 12TA_Action_StepForward
+  m_Name: 12TA_Action_SingleJump
   m_EditorClassIdentifier: 
-  name: Step Forward
+  name: Single Jump
   type: 3
-  sprite: {fileID: 21300000, guid: 3594a865861da6a4da203594efb6a218, type: 3}
+  sprite: {fileID: 21300000, guid: 1493017aa8f975143b3d6ed85c64d0d1, type: 3}
   id: 12
