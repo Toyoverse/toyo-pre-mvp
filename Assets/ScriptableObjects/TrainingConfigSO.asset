@@ -53,6 +53,16 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9c90bc1624e3c214cb33a7c0e89bdaab, type: 2}
   - {fileID: 11400000, guid: 6459864a0e8f89447af43688d55679bc, type: 2}
   - {fileID: 11400000, guid: 39b9509746c11084f8e66f2926f4f4f6, type: 2}
+  - {fileID: 11400000, guid: da7ad46282a8cea4c81428cedc7e88d3, type: 2}
+  - {fileID: 11400000, guid: bf1402059395fed40a32d2bf5ced05e2, type: 2}
+  - {fileID: 11400000, guid: 7793bf5092224864390f8c97f3079505, type: 2}
+  - {fileID: 11400000, guid: a8f46faa81006214a8b8e9132655b560, type: 2}
+  - {fileID: 11400000, guid: 535a7914d7be8c347a10e0bdc547e59f, type: 2}
+  - {fileID: 11400000, guid: 24534a319f70c444684d71143d71abea, type: 2}
+  - {fileID: 11400000, guid: 5e9e5f5daaf9bde4f81540aefcc523c7, type: 2}
+  - {fileID: 11400000, guid: 53b5cbba7d0c5c749b8def075387d4f4, type: 2}
+  - {fileID: 11400000, guid: 2fe3632062a3287448e572e546986634, type: 2}
+  - {fileID: 11400000, guid: 0d4313764fb006143a3c5d9504cb61a0, type: 2}
   correctCombinations:
   - toyoPersona: {fileID: 11400000, guid: 5d8cb6abf0ea5b0409f0bf311eafc006, type: 2}
     actions:
