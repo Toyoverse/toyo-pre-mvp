@@ -115,6 +115,8 @@ public class TrainingModuleScreen : UIController
 
     public void RevealNextAction()
     {
+        if (GetActionsRevealCount() > TrainingConfig.Instance.selectedActionsDict.Count)
+            return;
         for (var _i = 0; _i < combPoolObjects.Length; _i++)
         {
             if (combPoolObjects[_i].gameObject.activeInHierarchy) 
@@ -124,6 +126,9 @@ public class TrainingModuleScreen : UIController
             break;
         }
     }
+
+    private int GetActionsRevealCount()
+        =>  combPoolObjects.Count(obj => obj.activeInHierarchy);
 
     private void DisableActionObject(int id) => combPoolObjects[id].SetActive(false);
 

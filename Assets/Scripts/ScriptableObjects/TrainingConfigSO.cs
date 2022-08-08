@@ -24,6 +24,12 @@ public class TrainingConfigSO : ScriptableObject
     
     [Header(("Reward"))]
     public CardRewardSO cardReward;
+    
+    public void SendToServer()
+    {
+        //TODO: Implement post to server
+        Debug.Log("Send to server TEST! Yay!");
+    }
 }
 
 [Serializable]

@@ -19,8 +19,19 @@ namespace Editor
             {
                 myScript.SwipeLeft();
             }
-		
         }
+    }
 
+    [CustomEditor(typeof(TrainingConfigSO))]
+    public class TrainingConfigEditor : UnityEditor.Editor
+    {
+        public override void OnInspectorGUI()
+        {
+            DrawDefaultInspector();
+
+            TrainingConfigSO _myScript = (TrainingConfigSO)target;
+            if (GUILayout.Button("Send TrainingConfig to Server"))
+                _myScript.SendToServer();
+        }
     }
 }

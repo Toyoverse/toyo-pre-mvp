@@ -31,7 +31,9 @@ public class TrainingConfig : Singleton<TrainingConfig>
     [HideInInspector] public string rewardTitle;
     [HideInInspector] public string losesMiniGame;
     [HideInInspector] public string alreadyWon;
-    
+
+    public bool loreScreenAlreadyOpen { get; private set; }
+    public void LoreScreenOpen() => loreScreenAlreadyOpen = true;
     private TrainingMode _selectedMode;
     private BlowConfig _selectedBlowConfig;
     [HideInInspector] public TrainingMode GetSelectedMode() => _selectedMode;
@@ -65,6 +67,7 @@ public class TrainingConfig : Singleton<TrainingConfig>
 
     //
     private bool _inTraining = false;
+    
     public void SetInTraining(bool on)
     {
         _inTraining = on;

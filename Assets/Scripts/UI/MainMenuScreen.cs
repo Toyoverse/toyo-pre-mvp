@@ -85,7 +85,13 @@ namespace UI
         public void StartButton()
         {
             //TODO: Send selected Toyo to Training Module Screen
-            ScreenManager.Instance.GoToScreen(ScreenState.LoreTheme);
+            if(TrainingConfig.Instance.loreScreenAlreadyOpen)
+                ScreenManager.Instance.GoToScreen(ScreenState.TrainingModule);
+            else
+            {
+                TrainingConfig.Instance.LoreScreenOpen();
+                ScreenManager.Instance.GoToScreen(ScreenState.LoreTheme);
+            }
         }
 
         public void SetMode(GAME_MODE newGameMode)

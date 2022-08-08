@@ -9,6 +9,7 @@ public class LoreThemeScreen : UIController
     public string titleName = "infoTitle";
     public string descriptionName = "descriptionText";
     public string timerName = "timingInfo";
+    public string timeRemainString = "Time Remaining: ";
     
     //[Header("Texts in UI")] 
     public string titleText => TrainingConfig.Instance.eventTitle;
@@ -33,12 +34,9 @@ The link between them may keep immutable if their Heart Bound was pure but may b
         }
     }
 
-    private string GetTimerString()
-    {
-        //TODO: Return the remaining time of this quest
-        return "TIME REMAINING: " + timer;
-    }
+    private string GetTimerString() => timeRemainString + timer;
 
+    
     private void UpdateTimerText() => SetTextInLabel(timerName, GetTimerString());
 
     protected override void UpdateUI()
