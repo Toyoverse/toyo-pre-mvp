@@ -5,11 +5,10 @@ using UnityEngine.UIElements;
 
 public class TrainingActionSelectScreen : UIController
 {
-    public GameObject[] combPoolObjects;
+    private TrainingModuleScreen _trainingModuleScreen => ScreenManager.Instance.trainingModuleScript;
     public string actionScrollName;
     public FontAsset fontAsset;
     public string previewActionName;
-    private TrainingModuleScreen _trainingModuleScreen => ScreenManager.Instance.trainingModuleScript;
     private int _buttonID;
     private Sprite _actionSprite;
 
@@ -55,14 +54,14 @@ public class TrainingActionSelectScreen : UIController
     
     private void ConfirmAction(TrainingActionSO actionSo)
     {
-        RevealNextAction();
-        //EnableVisualElement(removePoolNames[TrainingConfig.Instance.selectedActionID]); //TODO: Add remove button
+        _trainingModuleScreen.RevealRemoveButton(TrainingConfig.Instance.selectedActionID);
         TrainingConfig.Instance.AddToSelectedActionsDict(TrainingConfig.Instance.selectedActionID, actionSo);
         TrainingConfig.Instance.ApplyTrainingMode();
         TrainingConfig.Instance.ApplyBlowConfig();
         ClearPossibleActionsEvents();
         SetButtonSpriteVariables(TrainingConfig.Instance.selectedActionID, actionSo.sprite);
         Loading.EndLoading += SetActionSprite;
+        Loading.EndLoading += _trainingModuleScreen.RevealNextAction;
         ScreenManager.Instance.GoToScreen(ScreenState.TrainingModule);
     }
     
@@ -73,13 +72,5 @@ public class TrainingActionSelectScreen : UIController
     {
         _buttonID = id;
         _actionSprite = sprite;
-    }
-
-    private void RevealNextAction()
-    {
-        var _id = TrainingConfig.Instance.selectedActionID + 1;
-        if(_id >= combPoolObjects.Length)
-            return;
-        combPoolObjects[_id].gameObject.SetActive(true);
     }
 }

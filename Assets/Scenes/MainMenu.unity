@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -559,18 +559,23 @@ MonoBehaviour:
   disableTrainingModule: 0
   ignoreTrainingTimer: 0
   trainingConfigSo: {fileID: 11400000, guid: ba24712e20df32c4c8b0c530c796f2e8, type: 2}
+  toyoPersona: {fileID: 0}
   possibleActions: []
-  correctCombination: []
+  allCorrectCombinationList: []
+  correctCombination:
+    toyoPersona: {fileID: 0}
+    actions: []
   trainingModes: []
   cardRewardReward: {fileID: 0}
   minimumActionsToPlay: 0
   eventTitle: 
   inTrainingTitle: 
+  lore: 
   rewardTitle: 
   losesMiniGame: 
   alreadyWon: 
+  startEventTimeStamp: 0
   endEventTimeStamp: 0
-  investValue: 0
   receiveValue: 0
   durationValue: 0
   selectedTrainingActions: []
@@ -754,7 +759,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.0789473, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1874,9 +1879,29 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 592535304838286338, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1417057146985304550, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2106393607985408427, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2959851119621525762, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6346065880333187647, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7607902632173615287, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8643416932187837700, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
       propertyPath: m_RootOrder

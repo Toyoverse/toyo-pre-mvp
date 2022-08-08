@@ -11,9 +11,13 @@ public class TrainingConfig : Singleton<TrainingConfig>
     public bool ignoreTrainingTimer;
     [Header("Base data")] public TrainingConfigSO trainingConfigSo;
 
+    //TODO: Get correct Toyo selected
+    public ToyoPersonaSO toyoPersona;
+    
     //Current config usable
     [HideInInspector] public TrainingActionSO[] possibleActions;
-    [HideInInspector] public TrainingActionSO[] correctCombination;
+    [HideInInspector] public ToyoActionCombination[] allCorrectCombinationList;
+    [HideInInspector] public ToyoActionCombination correctCombination;
     [HideInInspector] public TrainingMode[] trainingModes;
     [HideInInspector] public CardRewardSO cardRewardReward;
     [HideInInspector] public int minimumActionsToPlay;
@@ -21,6 +25,7 @@ public class TrainingConfig : Singleton<TrainingConfig>
     //Default strings
     [HideInInspector] public string eventTitle;
     [HideInInspector] public string inTrainingTitle;
+    [HideInInspector] public string lore;
     
     //Default phrases for reward description
     [HideInInspector] public string rewardTitle;
@@ -37,8 +42,9 @@ public class TrainingConfig : Singleton<TrainingConfig>
     [HideInInspector] public TOYO_RARITY GetSelectedToyoRarity() => _selectedToyoRarity;
     
     //TODO: Get real variables in server
+    [HideInInspector] public long startEventTimeStamp = 0;
     [HideInInspector] public long endEventTimeStamp = 0;
-    [HideInInspector] public float investValue = 0;
+    //[HideInInspector] public float investValue = 0;
     [HideInInspector] public float receiveValue = 0;
     [HideInInspector] public int durationValue = 0; //Duration in minutes
 
@@ -81,7 +87,7 @@ public class TrainingConfig : Singleton<TrainingConfig>
     private void Start()
     {
         possibleActions = trainingConfigSo.possibleActions;
-        correctCombination = trainingConfigSo.correctCombination;
+        allCorrectCombinationList = trainingConfigSo.correctCombinations;
         cardRewardReward = trainingConfigSo.cardReward;
         trainingModes = trainingConfigSo.trainingModes;
         losesMiniGame = trainingConfigSo.losesMiniGame;
@@ -90,7 +96,9 @@ public class TrainingConfig : Singleton<TrainingConfig>
         eventTitle = trainingConfigSo.eventTitle;
         minimumActionsToPlay = trainingConfigSo.minimumActionsToPlay;
         inTrainingTitle = trainingConfigSo.inTrainingTitle;
-        endEventTimeStamp = trainingConfigSo.endEventTimeStamp;
+        startEventTimeStamp = ConvertDateInfoInTimeStamp(trainingConfigSo.startEventDateInfo);
+        endEventTimeStamp = ConvertDateInfoInTimeStamp(trainingConfigSo.endEventDateInfo);
+        lore = trainingConfigSo.lore;
     }
 
     public List<TRAINING_RESULT> CompareCombination(List<TrainingActionSO> selectedActions)
@@ -105,10 +113,19 @@ public class TrainingConfig : Singleton<TrainingConfig>
     private TRAINING_RESULT GetResultToAction(TrainingActionSO selectedAction, int position)
     {
         var _result = TRAINING_RESULT.TOTALLY_WRONG;
-
-        for (var _i = 0; _i < correctCombination.Length; _i++)
+        correctCombination = null;
+        foreach (var _comb in allCorrectCombinationList)
         {
-            if (correctCombination[_i] != selectedAction) continue;
+            if (toyoPersona != _comb.toyoPersona) //TODO: Need testing
+                continue;
+            correctCombination = _comb;
+        }
+        if(correctCombination == null)
+            Debug.LogError("Toyo Persona not found in correctCombination list");
+
+        for (var _i = 0; _i < correctCombination.actions.Length; _i++)
+        {
+            if (correctCombination.actions[_i] != selectedAction) continue;
             _result += 1;
             if (position == _i)
                 _result += 1;
@@ -119,6 +136,10 @@ public class TrainingConfig : Singleton<TrainingConfig>
     
     public void ApplyTrainingMode()
     {
+        SetSelectedMode(trainingModes.First(mode => mode != null));
+        
+        //This feature has been deferred to the future.
+        /* 
         foreach (var _mode in trainingModes)
         {
             if (_mode.toyoRarities.Any(rarity => rarity == GetSelectedToyoRarity()))
@@ -129,7 +150,7 @@ public class TrainingConfig : Singleton<TrainingConfig>
             }
 
             Debug.Log("ToyoRarity not found in TrainingModes. (rarity: " + GetSelectedToyoRarity());
-        }
+        }*/
     }
     
     public void ApplyBlowConfig()
@@ -148,14 +169,14 @@ public class TrainingConfig : Singleton<TrainingConfig>
 
     private void SetBlowConfigCalculationValues()
     {
-        investValue = GetSelectedBlowConfig().invest;
+        //investValue = GetSelectedBlowConfig().invest;
         receiveValue = GetSelectedBlowConfig().reward;
         durationValue = GetSelectedBlowConfig().duration;
     }
 
     private void ResetCalculationValues()
     {
-        investValue = 0;
+        //investValue = 0;
         receiveValue = 0;
         durationValue = 0;
     }
@@ -259,6 +280,13 @@ public class TrainingConfig : Singleton<TrainingConfig>
         }
         return _result;
     }
+
+    private long ConvertDateInfoInTimeStamp(DateInfo dateInfo)
+    {
+        var _dateTime = new DateTime(dateInfo.year, dateInfo.month, dateInfo.day, 
+            dateInfo.hour, dateInfo.minute, dateInfo.second, DateTimeKind.Utc);
+        return GetTimeStampFromDate(_dateTime);
+    }
     //
 
     public void AddToSelectedActionsDict(int key, TrainingActionSO action)
@@ -269,4 +297,6 @@ public class TrainingConfig : Singleton<TrainingConfig>
         else
             selectedActionsDict.Add(key, action);
     }
+
+    public void RemoveActionToDict(int key) => selectedActionsDict.Remove(key);
 }

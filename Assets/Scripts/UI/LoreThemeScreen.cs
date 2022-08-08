@@ -10,13 +10,14 @@ public class LoreThemeScreen : UIController
     public string descriptionName = "descriptionText";
     public string timerName = "timingInfo";
     
-    [Header("Texts in UI")] //TODO: Get real strings (Maybe json or txt)
-    public string titleText = "WEEKLY LORE THEME";
-    public string descriptionText = @"Lore
+    //[Header("Texts in UI")] 
+    public string titleText => TrainingConfig.Instance.eventTitle;
+    public string descriptionText => TrainingConfig.Instance.lore;
+    /*@"Lore
 When a Toyo makes much choices by its own, it slowly rises the ability to become rogue which isn't bad by definition. 
 A rogue second generation Toyo is nothing more than a Toyo that don't depend on the Mentor's Heart link anymore. 
-The link between them may keep immutable if their Heart Bound was pure but may be completely dismantled if it was corrupted.";
-    public string timer = "03D 18H 35M";
+The link between them may keep immutable if their Heart Bound was pure but may be completely dismantled if it was corrupted.";*/
+    public string timer => ConvertMinutesToString(TrainingConfig.Instance.GetEventTimeRemain());
 
     private float _count = 0;
 
