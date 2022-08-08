@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7740a3cfd3d819e4db2ae8142f88ebcc, type: 3}
-  m_Name: TrainingActionSO_template 11
+  m_Name: 22TA_Move_Block_StealthKiss
   m_EditorClassIdentifier: 
-  name: Flaming Claw
-  type: 1
-  sprite: {fileID: 21300000, guid: 25fba11ba6fe69541a52936000674cd2, type: 3}
-  id: 11
+  name: Stealth Kiss
+  type: 3
+  sprite: {fileID: 21300000, guid: 287b5f49fbe844a286b2634b7bd2699e, type: 3}
+  id: 22

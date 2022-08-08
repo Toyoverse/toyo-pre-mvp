@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7740a3cfd3d819e4db2ae8142f88ebcc, type: 3}
-  m_Name: TrainingActionSO_template 8
+  m_Name: 28TA_Kick_Heavy_FlyingKnee
   m_EditorClassIdentifier: 
-  name: Jump Across
-  type: 3
-  sprite: {fileID: 21300000, guid: 3e3a726c9ee51ac4f83da80d2e47364e, type: 3}
-  id: 8
+  name: Flying Knee
+  type: 2
+  sprite: {fileID: 21300000, guid: a15defbdc83b09441ad7456ecc4b1b02, type: 3}
+  id: 28

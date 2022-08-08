@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7740a3cfd3d819e4db2ae8142f88ebcc, type: 3}
-  m_Name: TrainingActionSO_template 16
+  m_Name: 26TA_Move_Fast_LaserMind
   m_EditorClassIdentifier: 
-  name: Palm
-  type: 1
-  sprite: {fileID: 21300000, guid: dd9bec58c094ec645b7cff312fad4cb0, type: 3}
-  id: 16
+  name: Laser Mind
+  type: 3
+  sprite: {fileID: 21300000, guid: a5e0624c751b43d6855e690d4bd0b78b, type: 3}
+  id: 26

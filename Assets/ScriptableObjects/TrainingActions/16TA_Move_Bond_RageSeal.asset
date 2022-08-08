@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7740a3cfd3d819e4db2ae8142f88ebcc, type: 3}
-  m_Name: TrainingActionSO_template 14
+  m_Name: 16TA_Move_Bond_RageSeal
   m_EditorClassIdentifier: 
-  name: High Punch
-  type: 1
-  sprite: {fileID: 21300000, guid: 15653febfdee4004ea1d7d88d56d5ae2, type: 3}
-  id: 14
+  name: Rage Seal
+  type: 3
+  sprite: {fileID: 21300000, guid: d8835bd6406343cf9c28db0b9080b4b4, type: 3}
+  id: 16

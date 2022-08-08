@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7740a3cfd3d819e4db2ae8142f88ebcc, type: 3}
-  m_Name: TrainingActionSO_template 18
+  m_Name: 11TA_Move_DoubleJump
   m_EditorClassIdentifier: 
-  name: Quake Stomp
-  type: 2
-  sprite: {fileID: 21300000, guid: abbb8ffd570c3da4eb13a67c70dd4350, type: 3}
-  id: 18
+  name: Double Jump
+  type: 3
+  sprite: {fileID: 21300000, guid: e439c9b08a7a80b4a9a7004060b57dd4, type: 3}
+  id: 11

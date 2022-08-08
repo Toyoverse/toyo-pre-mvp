@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7740a3cfd3d819e4db2ae8142f88ebcc, type: 3}
-  m_Name: TrainingActionSO_template 6
+  m_Name: 03TA_Kick_FastKick
   m_EditorClassIdentifier: 
-  name: Push
-  type: 3
-  sprite: {fileID: 21300000, guid: c73fe6398dfe3c449b47239747da743c, type: 3}
-  id: 6
+  name: Fast Kick
+  type: 2
+  sprite: {fileID: 21300000, guid: 81e8587ce59acf648927903ebbf3d037, type: 3}
+  id: 3
