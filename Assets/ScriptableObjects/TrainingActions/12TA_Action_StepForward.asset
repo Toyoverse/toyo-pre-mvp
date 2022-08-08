@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7740a3cfd3d819e4db2ae8142f88ebcc, type: 3}
-  m_Name: 18TA_Move_Bond_ThirdEyeTaunt
+  m_Name: 12TA_Action_StepForward
   m_EditorClassIdentifier: 
-  name: Third Eye Taunt
+  name: Step Forward
   type: 3
-  sprite: {fileID: 21300000, guid: fd23810ddddc4ab4be9f2c3b5c20a83e, type: 3}
-  id: 18
+  sprite: {fileID: 21300000, guid: 3594a865861da6a4da203594efb6a218, type: 3}
+  id: 12

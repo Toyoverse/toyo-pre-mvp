@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7740a3cfd3d819e4db2ae8142f88ebcc, type: 3}
-  m_Name: 17TA_Move_Bond_SteadyHeart
+  m_Name: 08TA_Kick_LowKick
   m_EditorClassIdentifier: 
-  name: Steady Heart
-  type: 3
-  sprite: {fileID: 21300000, guid: e9773dcba55944f1b4c9936d047a03fe, type: 3}
-  id: 17
+  name: Low Kick
+  type: 2
+  sprite: {fileID: 21300000, guid: b964e6241c6e7014794a7ac23a9c163a, type: 3}
+  id: 8

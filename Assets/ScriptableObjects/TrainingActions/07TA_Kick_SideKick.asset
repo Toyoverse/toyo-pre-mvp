@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7740a3cfd3d819e4db2ae8142f88ebcc, type: 3}
-  m_Name: 20TA_Move_Block_OpenChested
+  m_Name: 07TA_Kick_SideKick
   m_EditorClassIdentifier: 
-  name: Open Chested
-  type: 3
-  sprite: {fileID: 21300000, guid: f53541391dc344dda9da48da3dfde482, type: 3}
-  id: 20
+  name: Side Kick
+  type: 2
+  sprite: {fileID: 21300000, guid: 21281424dae481c4080356f52551cd37, type: 3}
+  id: 7
