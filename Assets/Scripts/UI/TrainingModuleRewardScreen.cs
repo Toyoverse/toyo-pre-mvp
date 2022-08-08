@@ -18,10 +18,10 @@ public class TrainingModuleRewardScreen : UIController
     public string[] borderCorrectImageNames;
     public string[] borderWrongPositionImageNames;
     public string[] borderTotallyWrongImageNames;
-
+    
+    private string _eventTitle = TrainingConfig.Instance.eventTitle;
+    private int _eventTime => TrainingConfig.Instance.GetEventTimeRemain();
     //TODO: Get correct variables in server
-    private string _eventTitle = "NEW EVENT NAME!";
-    private int _eventTime = 4736;
     public bool cardCollected;
     private string _coinPrefix = "$TOYO";
 
@@ -148,6 +148,6 @@ public class TrainingModuleRewardScreen : UIController
     {
         var _trainingResults = TrainingConfig.Instance.CompareCombination(GetTrainingActions());
         var _hits = _trainingResults.Count(result => result == TRAINING_RESULT.TOTALLY_CORRECT);
-        return _hits == TrainingConfig.Instance.correctCombination.Length;
+        return _hits == TrainingConfig.Instance.correctCombination.actions.Length;
     }
 }

@@ -1522,7 +1522,7 @@ GameObject:
   - component: {fileID: 900902427589962955}
   - component: {fileID: 7866819440404709042}
   m_Layer: 5
-  m_Name: Close_Button
+  m_Name: Close_Button4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1629,7 +1629,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 900902427589962955}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 9199315776819746690}
+        m_TargetAssemblyTypeName: TrainingModuleScreen, Assembly-CSharp
+        m_MethodName: RemoveAction
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &625551054863188220
 GameObject:
   m_ObjectHideFlags: 0
@@ -1904,7 +1916,7 @@ GameObject:
   - component: {fileID: 649270729417067952}
   - component: {fileID: 6035386783838342541}
   m_Layer: 5
-  m_Name: Close_Button
+  m_Name: Close_Button3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2011,7 +2023,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 649270729417067952}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 9199315776819746690}
+        m_TargetAssemblyTypeName: TrainingModuleScreen, Assembly-CSharp
+        m_MethodName: RemoveAction
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2166712528499435285
 GameObject:
   m_ObjectHideFlags: 0
@@ -2758,7 +2782,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7530518683214953317}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 9199315776819746690}
+        m_TargetAssemblyTypeName: TrainingModuleScreen, Assembly-CSharp
+        m_MethodName: RemoveAction
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3762820926208738393
 GameObject:
   m_ObjectHideFlags: 0
@@ -3804,7 +3840,7 @@ GameObject:
   - component: {fileID: 4222548571099942927}
   - component: {fileID: 69284377140907192}
   m_Layer: 5
-  m_Name: Close_Button
+  m_Name: Close_Button1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3911,7 +3947,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4222548571099942927}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 9199315776819746690}
+        m_TargetAssemblyTypeName: TrainingModuleScreen, Assembly-CSharp
+        m_MethodName: RemoveAction
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6806768583358275348
 GameObject:
   m_ObjectHideFlags: 0
@@ -3974,7 +4022,7 @@ GameObject:
   - component: {fileID: 1702438313700950844}
   - component: {fileID: 6264600332001323810}
   m_Layer: 5
-  m_Name: Close_Button
+  m_Name: Close_Button2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4081,7 +4129,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1702438313700950844}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 9199315776819746690}
+        m_TargetAssemblyTypeName: TrainingModuleScreen, Assembly-CSharp
+        m_MethodName: RemoveAction
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7814853899235503484
 GameObject:
   m_ObjectHideFlags: 0
@@ -4839,13 +4899,6 @@ MonoBehaviour:
   titleName: infoTitle
   descriptionName: descriptionText
   timerName: timingInfo
-  titleText: WEEKLY LORE THEME
-  descriptionText: "Lore\r\nWhen a Toyo makes much choices by its own, it slowly
-    rises the ability to become rogue which isn't bad by definition. \r\nA rogue
-    second generation Toyo is nothing more than a Toyo that don't depend on the Mentor's
-    Heart link anymore. \r\nThe link between them may keep immutable if their Heart
-    Bound was pure but may be completely dismantled if it was corrupted."
-  timer: 03D 18H 35M
 --- !u!114 &9199315776819746690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4990,18 +5043,6 @@ MonoBehaviour:
           m_CallState: 2
   eventTitleName: eventTitle
   eventTimeName: eventTime
-  combPoolImagesNames:
-  - action1
-  - action2
-  - action3
-  - action4
-  - action5
-  removePoolNames:
-  - removeA1
-  - removeA2
-  - removeA3
-  - removeA4
-  - removeA5
   startTrainingButtonName: startButton
   combPoolObjects:
   - {fileID: 2472303585480251854}
@@ -5009,6 +5050,12 @@ MonoBehaviour:
   - {fileID: 4874916797696207489}
   - {fileID: 7814853899235503484}
   - {fileID: 5863931063359269388}
+  removeButtonsPool:
+  - {fileID: 2959851119621525762}
+  - {fileID: 6346065880333187647}
+  - {fileID: 7607902632173615287}
+  - {fileID: 2106393607985408427}
+  - {fileID: 592535304838286338}
   combPoolImages:
   - {fileID: 6713616583982743533}
   - {fileID: 3379728502841992065}
@@ -5088,12 +5135,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  combPoolObjects:
-  - {fileID: 2472303585480251854}
-  - {fileID: 5767717948325206062}
-  - {fileID: 4874916797696207489}
-  - {fileID: 7814853899235503484}
-  - {fileID: 5863931063359269388}
   actionScrollName: actionScroll
   fontAsset: {fileID: 0}
   previewActionName: actionImage

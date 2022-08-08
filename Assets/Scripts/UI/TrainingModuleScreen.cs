@@ -10,28 +10,28 @@ using UnityEngine.UIElements;
 public class TrainingModuleScreen : UIController
 {
     public string eventTitleName;
+
     public string eventTimeName;
+
     //public string combPoolContainer;
     //public string[] combPoolNames;
-    public string[] combPoolImagesNames;
-    public string[] removePoolNames;
+    /*public string[] combPoolImagesNames;
+    public string[] removePoolNames;*/
     public string startTrainingButtonName;
     public GameObject[] combPoolObjects;
+    public GameObject[] removeButtonsPool;
     public UnityEngine.UI.Image[] combPoolImages;
     public Transform combPoolContainer;
 
-    [Header("In Training names")] 
-    public string inTrainingBoxName;
+    [Header("In Training names")] public string inTrainingBoxName;
     public string inTrainingTimeButtonName;
 
-    [Header("Reward names")]
-    public string rewardTitleName;
+    [Header("Reward names")] public string rewardTitleName;
     public string investName;
     public string receiveName;
     public string durationName;
 
-    [Header("Actions Selection names")]
-    public string actionSelectionAreaName;
+    [Header("Actions Selection names")] public string actionSelectionAreaName;
     public string actionScrollName;
     public string previewActionName;
     public FontAsset fontAsset;
@@ -42,12 +42,12 @@ public class TrainingModuleScreen : UIController
         TrainingConfig.Instance.ApplyRewardsCalculation();
         SetTextInLabel(eventTitleName, TrainingConfig.Instance.eventTitle);
         SetTextInLabel(eventTimeName, ConvertMinutesToString(TrainingConfig.Instance.GetEventTimeRemain()));
-        SetTextInLabel(investName, "Invest: $" + TrainingConfig.Instance.investValue);
+        //SetTextInLabel(investName, "Invest: $" + TrainingConfig.Instance.investValue);
         SetTextInLabel(receiveName, "Receive: $" + TrainingConfig.Instance.receiveValue);
         SetTextInLabel(durationName, "Duration: " + ConvertMinutesToString(TrainingConfig.Instance.durationValue));
         CheckTrainingAndEnableTrainingUI();
     }
-    
+
     public override void ActiveScreen()
     {
         base.ActiveScreen();
@@ -66,7 +66,7 @@ public class TrainingModuleScreen : UIController
     {
         if (ScreenManager.ScreenState == ScreenState.TrainingActionSelect)
             return;
-        TrainingConfig.Instance.ResetAllTrainingModule(/*ClearPossibleActionsEvents*/);
+        TrainingConfig.Instance.ResetAllTrainingModule( /*ClearPossibleActionsEvents*/);
         ClearActionsImages();
     }
 
@@ -76,17 +76,28 @@ public class TrainingModuleScreen : UIController
         OpenActionSelectionScreen();
     }
 
+    public void RemoveAction(int id)
+    {
+        TrainingConfig.Instance.SetSelectedID(id);
+        DisableRemoveButton(id);
+        SetActionSprite(id, null);
+        TrainingConfig.Instance.RemoveActionToDict(id);
+        DisableActionObject(id);
+        TrainingConfig.Instance.ApplyBlowConfig();
+        UpdateUI();
+    }
+
     private void ConfirmAction(TrainingActionSO actionSo)
     {
         combPoolObjects[TrainingConfig.Instance.selectedActionID].gameObject.SetActive(true);
-        //EnableVisualElement(removePoolNames[TrainingConfig.Instance.selectedActionID]); //TODO: Add remove button
+        DisableRemoveButton(TrainingConfig.Instance.selectedActionID);
         SetActionSprite(TrainingConfig.Instance.selectedActionID, actionSo.sprite);
         TrainingConfig.Instance.AddToSelectedActionsDict(TrainingConfig.Instance.selectedActionID, actionSo);
         TrainingConfig.Instance.ApplyTrainingMode();
         TrainingConfig.Instance.ApplyBlowConfig();
         UpdateUI();
     }
-    
+
     public void SetActionSprite(int id, Sprite sprite) => combPoolImages[id].sprite = sprite;
 
     private void SetActionToLastPosition(GameObject actionObj)
@@ -102,7 +113,7 @@ public class TrainingModuleScreen : UIController
         _startButton.visible = (!TrainingConfig.Instance.IsInTraining() && TrainingConfig.Instance.IsMinimumActionsToPlay());
     }
 
-    private void RevealNextAction()
+    public void RevealNextAction()
     {
         for (var _i = 0; _i < combPoolObjects.Length; _i++)
         {
@@ -113,6 +124,8 @@ public class TrainingModuleScreen : UIController
             break;
         }
     }
+
+    private void DisableActionObject(int id) => combPoolObjects[id].SetActive(false);
 
     private void ResetCombinationPool() 
     {
@@ -162,7 +175,7 @@ public class TrainingModuleScreen : UIController
         {
             EnableVisualElement(inTrainingBoxName);
             SetTextInButton(inTrainingTimeButtonName, ConvertMinutesToString(TrainingConfig.Instance.GetTrainingTimeRemain()));
-            //DisableAllRemoveButtons(); //TODO: Disable remove buttons
+            DisableAllRemoveButtons(); 
             DisableInteractableActionButtons();
         }
         else
@@ -187,6 +200,15 @@ public class TrainingModuleScreen : UIController
     {
         for (var _i = 0; _i < combPoolImages.Length; _i++)
             combPoolImages[_i].sprite = null;
+    }
+    
+    private void DisableRemoveButton(int id) => removeButtonsPool[id].SetActive(false);
+    public void RevealRemoveButton(int id) => removeButtonsPool[id].SetActive(true);
+
+    private void DisableAllRemoveButtons()
+    {
+        foreach (var _gameObject in removeButtonsPool)
+            _gameObject.SetActive(false);
     }
 }
 
