@@ -84,6 +84,8 @@ namespace Database
         {
             foreach (var _toyo in toyoList)
             {
+                yield return new WaitForSeconds(2f);
+                
                 URL = baseURL + toyosDetailSufixURL + _toyo.objectId;
                 var _request = GenerateRequest(HTTP_REQUEST.GET);
                 yield return ProcessRequestCoroutine(callback, _request);

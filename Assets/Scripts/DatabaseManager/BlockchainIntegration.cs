@@ -111,8 +111,8 @@ public class BlockchainIntegration : MonoBehaviour
     public void CallOpenBox(string json)
     {
         var _myBox = JsonUtility.FromJson<OpenBox>(json);
-        
-        OpenBox(_myBox);
+
+        ApproveNftTransfer(_myBox);
     }
 
     public async void OpenBox(OpenBox myBox)
@@ -140,17 +140,78 @@ public class BlockchainIntegration : MonoBehaviour
         // gas limit OPTIONAL
         string gasLimit = "";
         // gas price OPTIONAL
-        string gasPrice = "";
+        string gasPrice = "50";
         // connects to user's browser wallet (metamask) to update contract state
-        try {
+        try
+        {
+            Debug.Log("Debugging opened box transaction parameters.");
+            Debug.Log(_typeId);
+            Debug.Log(_code);
+            Debug.Log(_signature);
+            Debug.Log(_tokenId);
+            
             string tx = await Web3GL.SendContract(method, abi, contract, args, value, gasLimit, gasPrice);
             Debug.Log(tx);
+            
+            string txStatus = "pending";
+            while (txStatus == "pending")
+            {
+                string chain = "polygon";
+                string network = "testnet";
+                txStatus = await EVM.TxStatus(chain, network, tx);
+                Debug.Log(tx);
+                new WaitForSeconds(1.5f);
+            }
+            
+            Debug.Log(txStatus);
         } catch (Exception e) {
             Debug.LogException(e, this);
         }
 
         _databaseConnection.PostOpenBox(ScreenManager.Instance.boxInfoScript.CallOpenBoxAnimation, 
             ScreenManager.Instance.boxInfoScript.GetBoxSelected().boxList[0].objectId);
+    }
+
+    private async void ApproveNftTransfer(OpenBox myBox)
+    {
+        // APPROVE
+        string approve_abi = "[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"}],\"name\":\"approve\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]";
+        
+        // NftToken (Mumbai)
+        string approve_contract = "0xc02173691984D68625C455e0AB45f52581c008Da";
+        string approve_method = "approve";
+        
+        // NftTokenSwap (Mumbai)
+        string _approved_to = "0x53904b4640474d2f79b822ad4e2c40597d886bd5";
+        string _approved_tokenId = myBox.tokenId;
+
+        string[] approve_obj = { _approved_to, _approved_tokenId };
+        string approve_args = JsonConvert.SerializeObject(approve_obj);
+
+        string approve_value = "0";
+        string approve_gasLimit = "";
+        string approve_gasPrice = "50";
+
+        try {
+            string tx = await Web3GL.SendContract(approve_method, approve_abi, approve_contract, approve_args, approve_value, approve_gasLimit, approve_gasPrice);
+            
+            string txStatus = "pending";
+            while (txStatus == "pending")
+            {
+                string chain = "polygon";
+                string network = "testnet";
+                txStatus = await EVM.TxStatus(chain, network, tx);
+                Debug.Log(tx);
+                new WaitForSeconds(1.5f);
+            }
+            
+            Debug.Log(txStatus);
+            //if(txStatus == "success")
+                OpenBox(myBox);
+
+        } catch (Exception e) {
+            Debug.LogException(e, this);
+        }
     }
 
     public void OnToyoListSuccess(string json)
