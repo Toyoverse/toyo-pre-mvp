@@ -1096,7 +1096,7 @@
     padding-top: 0;
     padding-bottom: 0;
     background-color: rgba(0, 0, 0, 0);
-    color: rgba(255, 255, 255, 255);
+    color: rgb(255, 255, 255);
     -unity-font: url('project://database/Assets/Fonts/AlteHaasGroteskBold.ttf?fileID=12800000&guid=980abd6e80517af469bdc42e84136b1d&type=3#AlteHaasGroteskBold');
     -unity-font-definition: url('project://database/Assets/Fonts/AlteHaasGroteskRegular%20SDF.asset?fileID=11400000&guid=df18b3370003fdd4cbb283ebecda13ad&type=2#AlteHaasGroteskRegular SDF');
 }
@@ -1106,7 +1106,7 @@
     height: 30%;
     white-space: normal;
     -unity-text-align: middle-center;
-    color: rgba(255, 255, 255, 255);
+    color: rgb(255, 255, 255);
     margin-left: 0;
     margin-right: 0;
     margin-top: 0;
@@ -1117,4 +1117,21 @@
     padding-bottom: 0;
     top: 20px;
     -unity-font-style: bold;
+}
+
+.TopPageHeaderImage {
+    background-color: rgba(108, 108, 108, 0);
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: -61%;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-image: url('project://database/Assets/Images/Buttons/Training_Module_Time_Box.png?fileID=2800000&guid=7096456697cc4a6a8b75bba6b1bdd9b6&type=3#Training_Module_Time_Box');
+    width: 150%;
+    height: 50%;
+    scale: 0.5 0.5;
+    flex-direction: row;
 }
