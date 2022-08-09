@@ -26,6 +26,7 @@ public class TrainingConfig : Singleton<TrainingConfig>
     [HideInInspector] public string eventTitle;
     [HideInInspector] public string inTrainingTitle;
     [HideInInspector] public string lore;
+    [HideInInspector] public string sendToyoToTrainingPopUp;
     
     //Default phrases for reward description
     [HideInInspector] public string rewardTitle;
@@ -102,6 +103,7 @@ public class TrainingConfig : Singleton<TrainingConfig>
         startEventTimeStamp = ConvertDateInfoInTimeStamp(trainingConfigSo.startEventDateInfo);
         endEventTimeStamp = ConvertDateInfoInTimeStamp(trainingConfigSo.endEventDateInfo);
         lore = trainingConfigSo.lore;
+        sendToyoToTrainingPopUp = trainingConfigSo.sendToyoToTrainingPopUp;
     }
 
     public List<TRAINING_RESULT> CompareCombination(List<TrainingActionSO> selectedActions)

@@ -84,6 +84,7 @@ public class TrainingModuleScreen : UIController
         TrainingConfig.Instance.RemoveActionToDict(id);
         DisableActionObject(id);
         TrainingConfig.Instance.ApplyBlowConfig();
+        RevealNextAction();
         UpdateUI();
     }
 
@@ -159,7 +160,8 @@ public class TrainingModuleScreen : UIController
     public override void BackButton() => ScreenManager.Instance.GoToScreen(ScreenState.MainMenu);
 
     public void StartButton()
-        => GenericPopUp.Instance.ShowPopUp("Are you sure?", SendToyoToTraining, () => {});
+        => GenericPopUp.Instance.ShowPopUp(TrainingConfig.Instance.sendToyoToTrainingPopUp,
+            SendToyoToTraining, () => {});
 
     private void SendToyoToTraining()
     {

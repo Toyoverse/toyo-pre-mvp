@@ -11,6 +11,7 @@ public class TrainingConfigSO : ScriptableObject
     public string losesMiniGame;
     public string alreadyWon;
     public string lore;
+    public string sendToyoToTrainingPopUp;
 
     [Header("Events dates")]
     public DateInfo startEventDateInfo;

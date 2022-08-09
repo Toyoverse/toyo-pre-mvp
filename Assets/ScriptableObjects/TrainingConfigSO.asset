@@ -18,6 +18,7 @@ MonoBehaviour:
   losesMiniGame: Discover the correct combination to unlock this week's secret collectible.
   alreadyWon: You've already received this week's collectible.
   lore: Here's a pretty cool story...
+  sendToyoToTrainingPopUp: Are you sure?
   startEventDateInfo:
     day: 1
     month: 8
