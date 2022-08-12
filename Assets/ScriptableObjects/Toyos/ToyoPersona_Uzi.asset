@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 134d4ca8295d41f8bfd4fa631cfc2bbf, type: 3}
-  m_Name: ToyoPersona_Sphynx
+  m_Name: ToyoPersona_Uzi
   m_EditorClassIdentifier: 
   objectId: 3VYo3WbxmBr
   toyoName: Sphynx
