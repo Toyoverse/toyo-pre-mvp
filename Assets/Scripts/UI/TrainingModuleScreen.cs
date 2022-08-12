@@ -43,8 +43,8 @@ public class TrainingModuleScreen : UIController
         SetTextInLabel(eventTitleName, TrainingConfig.Instance.eventTitle);
         SetTextInLabel(eventTimeName, ConvertMinutesToString(TrainingConfig.Instance.GetEventTimeRemain()));
         //SetTextInLabel(investName, "Invest: $" + TrainingConfig.Instance.investValue);
-        SetTextInLabel(receiveName, "Receive: $" + TrainingConfig.Instance.receiveValue);
-        SetTextInLabel(durationName, "Duration: " + ConvertMinutesToString(TrainingConfig.Instance.durationValue));
+        SetTextInLabel(receiveName, /*"Receive: $" + */TrainingConfig.Instance.receiveValue.ToString());
+        SetTextInLabel(durationName, /*"Duration: " + */ConvertMinutesToString(TrainingConfig.Instance.durationValue));
         CheckTrainingAndEnableTrainingUI();
     }
 
@@ -94,7 +94,7 @@ public class TrainingModuleScreen : UIController
         DisableRemoveButton(TrainingConfig.Instance.selectedActionID);
         SetActionSprite(TrainingConfig.Instance.selectedActionID, actionSo.sprite);
         TrainingConfig.Instance.AddToSelectedActionsDict(TrainingConfig.Instance.selectedActionID, actionSo);
-        TrainingConfig.Instance.ApplyTrainingMode();
+        //TrainingConfig.Instance.ApplyTrainingMode();
         TrainingConfig.Instance.ApplyBlowConfig();
         UpdateUI();
     }

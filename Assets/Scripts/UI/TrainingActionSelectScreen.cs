@@ -56,7 +56,7 @@ public class TrainingActionSelectScreen : UIController
     {
         _trainingModuleScreen.RevealRemoveButton(TrainingConfig.Instance.selectedActionID);
         TrainingConfig.Instance.AddToSelectedActionsDict(TrainingConfig.Instance.selectedActionID, actionSo);
-        TrainingConfig.Instance.ApplyTrainingMode();
+        //TrainingConfig.Instance.ApplyTrainingMode();
         TrainingConfig.Instance.ApplyBlowConfig();
         ClearPossibleActionsEvents();
         SetButtonSpriteVariables(TrainingConfig.Instance.selectedActionID, actionSo.sprite);

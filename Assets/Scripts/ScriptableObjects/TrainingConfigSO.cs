@@ -4,13 +4,13 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "TrainingConfigSO", menuName = "ScriptableObject/TrainingConfigSO")]
 public class TrainingConfigSO : ScriptableObject
 {
-    [Header("Default strings")] 
+    [Header("Event Default strings")] 
     public string eventTitle;
-    public string inTrainingTitle;
+    public string inTrainingMessage;
     public string rewardTitle;
-    public string losesMiniGame;
+    public string losesMessage;
     public string alreadyWon;
-    public string lore;
+    public string eventStory;
     public string sendToyoToTrainingPopUp;
 
     [Header("Events dates")]
@@ -19,12 +19,13 @@ public class TrainingConfigSO : ScriptableObject
     
     [Header("Actions")]
     public TrainingActionSO[] possibleActions;
-    public ToyoActionCombination[] correctCombinations;
     public int minimumActionsToPlay;
-    public TrainingMode[] trainingModes;
+    public BlowConfig[] blowConfigs;
     
-    [Header(("Reward"))]
-    public CardRewardSO cardReward;
+    [Header(("Rewards"))]
+    public CardRewardSO[] cardRewards;
+    public float boundReward;
+    public float bonusBoundReward;
     
     public void SendToServer()
     {
@@ -34,17 +35,9 @@ public class TrainingConfigSO : ScriptableObject
 }
 
 [Serializable]
-public class TrainingMode
-{
-    //public TOYO_RARITY[] toyoRarities;
-    public BlowConfig[] blowConfigs;
-}
-
-[Serializable]
 public class BlowConfig
 {
     public int blows;
-    public float reward;
     [Header("Duration in minutes")]
     public int duration;
 }
@@ -60,11 +53,4 @@ public class DateInfo
     public int hour;
     public int minute;
     public int second;
-}
-
-[Serializable]
-public class ToyoActionCombination
-{
-    public ToyoPersonaSO toyoPersona;
-    public TrainingActionSO[] actions;
 }

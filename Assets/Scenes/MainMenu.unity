@@ -559,18 +559,17 @@ MonoBehaviour:
   disableTrainingModule: 0
   ignoreTrainingTimer: 0
   trainingConfigSo: {fileID: 11400000, guid: ba24712e20df32c4c8b0c530c796f2e8, type: 2}
-  toyoPersona: {fileID: 0}
+  selectedToyoPersona: {fileID: 0}
   possibleActions: []
-  allCorrectCombinationList: []
-  correctCombination:
-    toyoPersona: {fileID: 0}
-    actions: []
   trainingModes: []
-  cardRewardReward: {fileID: 0}
+  cardRewards: []
   minimumActionsToPlay: 0
+  boundReward: 0
+  bonusBoundReward: 0
   eventTitle: 
-  inTrainingTitle: 
-  lore: 
+  inTrainingMessage: 
+  eventStory: 
+  sendToyoToTrainingPopUp: 
   rewardTitle: 
   losesMiniGame: 
   alreadyWon: 
@@ -1143,7 +1142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1fe579e10b54639a87451d7de029966, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skipLogin: 0
+  skipLogin: 1
   rememberMe: {fileID: 0}
 --- !u!1 &1084469477
 GameObject:
@@ -1875,12 +1874,20 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1084469479}
+    - target: {fileID: 1371998235, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2005667296, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 592535304838286338, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1312412985725994424, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
+      propertyPath: m_SortingOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1417057146985304550, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
@@ -1891,16 +1898,32 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2959851119621525762, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
-      propertyPath: m_IsActive
-      value: 0
+    - target: {fileID: 2417098665332506254, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1084469479}
+    - target: {fileID: 4221916497546418582, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 6346065880333187647, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6788643833457570390, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7607902632173615287, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8206593267312781816, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8634730487659289645, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
+      propertyPath: m_SortingOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8643416932187837700, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
@@ -1962,6 +1985,26 @@ PrefabInstance:
     - target: {fileID: 8643416932187837819, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
       propertyPath: buttons.Array.data[2].onClickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ToyoInfoButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 8643416932212452400, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8643416932592604651, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8643416932935162363, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8643416933037881495, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8643416933332351268, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}

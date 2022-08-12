@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 public class TrainingModuleRewardScreen : UIController
-{   
+{
     public string eventTitleName = "eventTitle";
     public string eventTimeName = "eventTime";
     public string rewardTitleName = "rewardTitle";
@@ -18,9 +18,11 @@ public class TrainingModuleRewardScreen : UIController
     public string[] borderCorrectImageNames;
     public string[] borderWrongPositionImageNames;
     public string[] borderTotallyWrongImageNames;
-    
-    private string _eventTitle = TrainingConfig.Instance.eventTitle;
+
+    private string _eventTitle => TrainingConfig.Instance.eventTitle;
+
     private int _eventTime => TrainingConfig.Instance.GetEventTimeRemain();
+
     //TODO: Get correct variables in server
     public bool cardCollected;
     private string _coinPrefix = "$TOYO";
@@ -32,7 +34,7 @@ public class TrainingModuleRewardScreen : UIController
         base.ActiveScreen();
         CheckAndSetBordersAfterCompare();
     }
-    
+
     protected override void UpdateUI()
     {
         ApplySelectedActions();
@@ -40,7 +42,7 @@ public class TrainingModuleRewardScreen : UIController
         SetTextInLabel(eventTimeName, ConvertMinutesToString(_eventTime));
         ShowRewards();
     }
-    
+
     public void ClaimButton()
     {
         //TODO: Claim Rewards
@@ -63,7 +65,8 @@ public class TrainingModuleRewardScreen : UIController
     private void ShowRewards()
     {
         SetTextInLabel(rewardTitleName, TrainingConfig.Instance.rewardTitle);
-        SetTextInLabel(rewardValueName, TrainingConfig.Instance.GetSelectedBlowConfig().reward + " " + _coinPrefix);
+        //SetTextInLabel(rewardValueName, TrainingConfig.Instance.GetSelectedBlowConfig().reward + " " + _coinPrefix);
+        SetTextInLabel(rewardValueName, TrainingConfig.Instance.boundReward + " " + _coinPrefix);
         CheckAndRewardCard();
     }
 
@@ -101,15 +104,17 @@ public class TrainingModuleRewardScreen : UIController
             SetTextInLabel(rewardDescriptionName, TrainingConfig.Instance.alreadyWon);
             return;
         }
+
         if (!WonTheCard())
         {
             SetVisualElementSprite(rewardImageName, null); //TODO: Add default image for no card won
             SetTextInLabel(rewardDescriptionName, TrainingConfig.Instance.losesMiniGame);
             return;
         }
-        SetVisualElementSprite(rewardImageName, 
-            TrainingConfig.Instance.cardRewardReward.cardImage);
-        SetTextInLabel(rewardDescriptionName, TrainingConfig.Instance.cardRewardReward.description);
+
+        var _card = TrainingConfig.Instance.GetCardReward();
+        SetVisualElementSprite(rewardImageName, _card.cardImage);
+        SetTextInLabel(rewardDescriptionName, _card.description);
         SetCardCollected();
     }
 
@@ -148,6 +153,7 @@ public class TrainingModuleRewardScreen : UIController
     {
         var _trainingResults = TrainingConfig.Instance.CompareCombination(GetTrainingActions());
         var _hits = _trainingResults.Count(result => result == TRAINING_RESULT.TOTALLY_CORRECT);
-        return _hits == TrainingConfig.Instance.correctCombination.actions.Length;
+        //return _hits == TrainingConfig.Instance.correctCombination.actions.Length;
+        return _hits == TrainingConfig.Instance.GetCardReward().correctCombination.Length;
     }
 }

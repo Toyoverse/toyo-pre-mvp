@@ -13,7 +13,7 @@ public class LoreThemeScreen : UIController
     
     //[Header("Texts in UI")] 
     public string titleText => TrainingConfig.Instance.eventTitle;
-    public string descriptionText => TrainingConfig.Instance.lore;
+    public string descriptionText => TrainingConfig.Instance.eventStory;
     /*@"Lore
 When a Toyo makes much choices by its own, it slowly rises the ability to become rogue which isn't bad by definition. 
 A rogue second generation Toyo is nothing more than a Toyo that don't depend on the Mentor's Heart link anymore. 

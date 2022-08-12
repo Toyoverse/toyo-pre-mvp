@@ -15,5 +15,11 @@ MonoBehaviour:
   id: 0
   cardName: CardTemplate
   description: DescriptionTemplate
+  memory: 
   cardType: 1
   cardImage: {fileID: 21300000, guid: 226d9f0845463294c9b564a06ec23daa, type: 3}
+  toyoPersona: {fileID: 11400000, guid: d3f6f63f02ee18246a597077bcf2ad01, type: 2}
+  correctCombination:
+  - {fileID: 11400000, guid: f272dbe45c053de4b8a7c033afc59054, type: 2}
+  - {fileID: 11400000, guid: 18409e1f7eaf281499613c5ebd158506, type: 2}
+  - {fileID: 11400000, guid: 18409e1f7eaf281499613c5ebd158506, type: 2}

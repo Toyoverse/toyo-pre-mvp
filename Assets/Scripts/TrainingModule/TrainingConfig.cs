@@ -12,22 +12,22 @@ public class TrainingConfig : Singleton<TrainingConfig>
     [Header("Base data")] public TrainingConfigSO trainingConfigSo;
 
     //TODO: Get correct Toyo selected
-    public ToyoPersonaSO toyoPersona;
-    
+    public ToyoPersonaSO selectedToyoPersona;
+
     //Current config usable
     [HideInInspector] public TrainingActionSO[] possibleActions;
-    [HideInInspector] public ToyoActionCombination[] allCorrectCombinationList;
-    [HideInInspector] public ToyoActionCombination correctCombination;
-    [HideInInspector] public TrainingMode[] trainingModes;
-    [HideInInspector] public CardRewardSO cardRewardReward;
+    [HideInInspector] public BlowConfig[] blowConfigs;
+    [HideInInspector] public CardRewardSO[] cardRewards;
     [HideInInspector] public int minimumActionsToPlay;
+    [HideInInspector] public float boundReward;
+    [HideInInspector] public float bonusBoundReward;
     
     //Default strings
     [HideInInspector] public string eventTitle;
-    [HideInInspector] public string inTrainingTitle;
-    [HideInInspector] public string lore;
+    [HideInInspector] public string inTrainingMessage;
+    [HideInInspector] public string eventStory;
     [HideInInspector] public string sendToyoToTrainingPopUp;
-    
+
     //Default phrases for reward description
     [HideInInspector] public string rewardTitle;
     [HideInInspector] public string losesMiniGame;
@@ -35,10 +35,7 @@ public class TrainingConfig : Singleton<TrainingConfig>
 
     public bool loreScreenAlreadyOpen { get; private set; }
     public void LoreScreenOpen() => loreScreenAlreadyOpen = true;
-    private TrainingMode _selectedMode;
     private BlowConfig _selectedBlowConfig;
-    [HideInInspector] public TrainingMode GetSelectedMode() => _selectedMode;
-    [HideInInspector] public void SetSelectedMode(TrainingMode trainingMode) => _selectedMode = trainingMode;
     [HideInInspector] public BlowConfig GetSelectedBlowConfig() => _selectedBlowConfig;
     [HideInInspector] public void SetSelectedBlowConfig(BlowConfig blowConfig) => _selectedBlowConfig = blowConfig;
     private TOYO_RARITY _selectedToyoRarity = TOYO_RARITY.COMMON; //TODO: Get rarity of Toyo selected
@@ -91,19 +88,21 @@ public class TrainingConfig : Singleton<TrainingConfig>
     private void Start()
     {
         possibleActions = trainingConfigSo.possibleActions;
-        allCorrectCombinationList = trainingConfigSo.correctCombinations;
-        cardRewardReward = trainingConfigSo.cardReward;
-        trainingModes = trainingConfigSo.trainingModes;
-        losesMiniGame = trainingConfigSo.losesMiniGame;
+        //allCorrectCombinationList = trainingConfigSo.correctCombinations;
+        cardRewards = trainingConfigSo.cardRewards;
+        blowConfigs = trainingConfigSo.blowConfigs;
+        losesMiniGame = trainingConfigSo.losesMessage;
         alreadyWon = trainingConfigSo.alreadyWon;
         rewardTitle = trainingConfigSo.rewardTitle;
         eventTitle = trainingConfigSo.eventTitle;
         minimumActionsToPlay = trainingConfigSo.minimumActionsToPlay;
-        inTrainingTitle = trainingConfigSo.inTrainingTitle;
+        inTrainingMessage = trainingConfigSo.inTrainingMessage;
         startEventTimeStamp = ConvertDateInfoInTimeStamp(trainingConfigSo.startEventDateInfo);
         endEventTimeStamp = ConvertDateInfoInTimeStamp(trainingConfigSo.endEventDateInfo);
-        lore = trainingConfigSo.lore;
+        eventStory = trainingConfigSo.eventStory;
         sendToyoToTrainingPopUp = trainingConfigSo.sendToyoToTrainingPopUp;
+        boundReward = trainingConfigSo.boundReward;
+        bonusBoundReward = trainingConfigSo.bonusBoundReward;
     }
 
     public List<TRAINING_RESULT> CompareCombination(List<TrainingActionSO> selectedActions)
@@ -117,50 +116,31 @@ public class TrainingConfig : Singleton<TrainingConfig>
 
     private TRAINING_RESULT GetResultToAction(TrainingActionSO selectedAction, int position)
     {
-        var _result = TRAINING_RESULT.TOTALLY_WRONG;
-        correctCombination = null;
-        foreach (var _comb in allCorrectCombinationList)
+        var _result = TRAINING_RESULT.TOTALLY_WRONG; 
+        TrainingActionSO[] _correctCombination = null;
+        foreach (var _card in cardRewards)
         {
-            if (toyoPersona != _comb.toyoPersona) //TODO: Need testing
+            if (selectedToyoPersona != _card.toyoPersona) //TODO: Need testing
                 continue;
-            correctCombination = _comb;
+            _correctCombination = _card.correctCombination; //TODO: Need testing
         }
-        if(correctCombination == null)
-            Debug.LogError("Toyo Persona not found in correctCombination list");
+        if(_correctCombination == null)
+            Debug.LogError("Correct combination not found - ToyoPersona: " + selectedToyoPersona.toyoName);
 
-        for (var _i = 0; _i < correctCombination.actions.Length; _i++)
+        for (var _i = 0; _i < _correctCombination.Length; _i++)
         {
-            if (correctCombination.actions[_i] != selectedAction) continue;
-            _result += 1;
+            if (_correctCombination[_i] != selectedAction) continue;
+            _result += 1; 
             if (position == _i)
                 _result += 1;
         }
         Debug.Log(_result);
         return _result;
     }
-    
-    public void ApplyTrainingMode()
-    {
-        SetSelectedMode(trainingModes.First(mode => mode != null));
-        
-        //This feature has been deferred to the future.
-        /* 
-        foreach (var _mode in trainingModes)
-        {
-            if (_mode.toyoRarities.Any(rarity => rarity == GetSelectedToyoRarity()))
-            {
-                SetSelectedMode(_mode);
-                Debug.Log(_mode.toyoRarities[0]);
-                return;
-            }
 
-            Debug.Log("ToyoRarity not found in TrainingModes. (rarity: " + GetSelectedToyoRarity());
-        }*/
-    }
-    
     public void ApplyBlowConfig()
     {
-        foreach (var _blowConfig in GetSelectedMode().blowConfigs)
+        foreach (var _blowConfig in blowConfigs)
         {
             if(_blowConfig.blows != selectedActionsDict.Count)
                 continue;
@@ -175,7 +155,8 @@ public class TrainingConfig : Singleton<TrainingConfig>
     private void SetBlowConfigCalculationValues()
     {
         //investValue = GetSelectedBlowConfig().invest;
-        receiveValue = GetSelectedBlowConfig().reward;
+        //receiveValue = GetSelectedBlowConfig().reward;
+        receiveValue = boundReward;
         durationValue = GetSelectedBlowConfig().duration;
     }
 
@@ -304,4 +285,17 @@ public class TrainingConfig : Singleton<TrainingConfig>
     }
 
     public void RemoveActionToDict(int key) => selectedActionsDict.Remove(key);
+    
+    public CardRewardSO GetCardReward()
+    {
+        for (var _i = 0; _i < Instance.cardRewards.Length; _i++)
+        {
+            if(Instance.cardRewards[_i].toyoPersona != Instance.selectedToyoPersona)
+                continue;
+            return Instance.cardRewards[_i];
+        }
+
+        Debug.LogError("CardReward not found - Persona: " + Instance.selectedToyoPersona.toyoName);
+        return null;
+    }
 }
