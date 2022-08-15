@@ -73,7 +73,7 @@ public class TrainingConfig : Singleton<TrainingConfig>
     }
 
     public bool IsInTraining() => _inTraining;
-    public int GetTrainingTimeRemain()
+    public int GetTrainingTimeRemainInMinutes()
     {
         var _secondsRemain = endTrainingTimeStamp - GetActualTimeStamp();
         return ConvertSecondsInMinutes((int)_secondsRemain);

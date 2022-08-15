@@ -37,7 +37,7 @@ public class TrainingModuleScreen : UIController
         CheckAndRevealStartButton();
         TrainingConfig.Instance.ApplyRewardsCalculation();
         UpdateTextsInUI();
-        CheckTrainingAndEnableTrainingUI();
+        EnableTrainingUI();
         UpdateProgressTraining();
     }
 
@@ -178,7 +178,26 @@ public class TrainingModuleScreen : UIController
     {
         TrainingConfig.Instance.SetInTraining(true);
         EnableAllProgressImages();
+        DisableLastEmptyAction();
         UpdateUI();
+    }
+    
+    private void DisableLastEmptyAction()
+    {
+        if (GetActionsRevealCount() <= TrainingConfig.Instance.selectedActionsDict.Count)
+            return;
+        GetLastActionRevealed().SetActive(false);
+    }
+
+    private GameObject GetLastActionRevealed()
+    {
+        for (var _i = 0; _i < combPoolObjects.Length; _i++)
+        {
+            if(combPoolObjects[_i].activeInHierarchy)
+                continue;
+            return combPoolObjects[_i - 1];
+        }
+        return combPoolObjects.Last();
     }
 
     private void EnableAllProgressImages() => AllProgressImagesSetActive(true);
@@ -192,17 +211,17 @@ public class TrainingModuleScreen : UIController
 
     public void FinishTraining()
     {
-        if (TrainingConfig.Instance.GetTrainingTimeRemain() > 0 && !TrainingConfig.Instance.ignoreTrainingTimer)
+        if (TrainingConfig.Instance.GetTrainingTimeRemainInMinutes() > 0 && !TrainingConfig.Instance.ignoreTrainingTimer)
             return;
         GoToRewardScreen();
     }
 
-    private void CheckTrainingAndEnableTrainingUI() 
+    private void EnableTrainingUI() 
     {
         if (TrainingConfig.Instance.IsInTraining())
         {
             EnableVisualElement(inTrainingBoxName);
-            SetTextInButton(inTrainingTimeButtonName, ConvertMinutesToString(TrainingConfig.Instance.GetTrainingTimeRemain()));
+            SetTextInButton(inTrainingTimeButtonName, ConvertMinutesToString(TrainingConfig.Instance.GetTrainingTimeRemainInMinutes()));
             DisableAllRemoveButtons(); 
             DisableInteractableActionButtons();
         }
@@ -244,33 +263,24 @@ public class TrainingModuleScreen : UIController
         if (!TrainingConfig.Instance.IsInTraining())
             return;
         var _blowConfig = TrainingConfig.Instance.GetSelectedBlowConfig();
-        var _actualPercent = ((_blowConfig.duration - TrainingConfig.Instance.GetTrainingTimeRemain()) / _blowConfig.duration) * 100;
+        var _actualPercent = (((float)_blowConfig.duration - TrainingConfig.Instance.GetTrainingTimeRemainInMinutes()) / _blowConfig.duration) * 100;
         var _unitPercent = 100 / _blowConfig.blows;
         for (var _i = 0; _i < _blowConfig.blows; _i++)
         {
-            if(_actualPercent > (_unitPercent * (_i + 1)))
+            if (_actualPercent > (_unitPercent * (_i + 1)))
+            {
+                GetProgressActiveImages()[_i].fillAmount = 0;
                 continue;
-            var _inverseFill = ((float)_actualPercent / (_blowConfig.blows - _i)) / 100;
+            }
+            var _inverseFill = (_actualPercent / (_blowConfig.blows - _i)) / 100;
             var _correctFill = _inverseFill != 0 ? 1 - _inverseFill : 1;
             GetProgressActiveImages()[_i].fillAmount = _correctFill;
-            //Debug.Log("unit_" + _unitPercent + ", actual_" + _actualPercent + ", fill_" + _correctFill);
-            //TODO: Rever contas e testar fillAmount
             break;
         }
     }
 
     private List<Image> GetProgressActiveImages()
-    {
-        var _result = new List<Image>();
-        for (var _i =0; _i < progressImages.Length; _i++)
-        {
-            if (!progressImages[_i].gameObject.activeInHierarchy)
-                continue;
-            _result.Add(progressImages[_i]);
-        }
-
-        return _result;
-    }
+        =>  progressImages.Where(img => img.gameObject.activeInHierarchy).ToList();
 }
 
 public enum TrainingActionType
