@@ -11,7 +11,7 @@ public class UnboxingVfx : MonoBehaviour
     public float lightningDuration;
 
     private Color _rarityColor = Color.white;
-    public RarityColorConfigSO rarityColorConfigSo;
+    private RarityColorConfigSO rarityColorConfigSo => ToyoManager.Instance.rarityColorsConfig;
 
     public void OnEnable()
     {
