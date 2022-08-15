@@ -1074,10 +1074,10 @@
 .PopUpModesImages {
     height: 54%;
     background-color: rgba(158, 102, 168, 0);
-    width: 406px;
+    width: 60.5%;
     align-items: stretch;
     -unity-background-scale-mode: stretch-to-fill;
-    left: 120px;
+    left: 135px;
     top: 58px;
     background-image: url('project://database/Assets/Images/Buttons/Coming_Soon_Normal.png?fileID=2800000&guid=369be40b8baeca34693ab1943355f8c8&type=3#Coming_Soon_Normal');
 }
@@ -1099,6 +1099,7 @@
     color: rgb(255, 255, 255);
     -unity-font: url('project://database/Assets/Fonts/AlteHaasGroteskBold.ttf?fileID=12800000&guid=980abd6e80517af469bdc42e84136b1d&type=3#AlteHaasGroteskBold');
     -unity-font-definition: url('project://database/Assets/Fonts/AlteHaasGroteskRegular%20SDF.asset?fileID=11400000&guid=df18b3370003fdd4cbb283ebecda13ad&type=2#AlteHaasGroteskRegular SDF');
+    left: 40px;
 }
 
 .PopUpModesDescription {
@@ -1117,6 +1118,7 @@
     padding-bottom: 0;
     top: 20px;
     -unity-font-style: bold;
+    left: -20px;
 }
 
 .TopPageHeaderImage {
@@ -1134,4 +1136,22 @@
     height: 50%;
     scale: 0.5 0.5;
     flex-direction: row;
+}
+
+.ComingSoonNotePos {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    -unity-font: url('project://database/Assets/Fonts/AlteHaasGroteskRegular.ttf?fileID=12800000&guid=4abf9d5b3674fc24384d6f37bccc9aa7&type=3#AlteHaasGroteskRegular');
+    -unity-font-definition: url('project://database/Assets/Fonts/AlteHaasGroteskBold.ttf?fileID=12800000&guid=980abd6e80517af469bdc42e84136b1d&type=3#AlteHaasGroteskBold');
+    top: -48px;
+    font-size: 31px;
+    -unity-font-style: bold;
+    left: 0;
+    -unity-text-align: upper-center;
 }

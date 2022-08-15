@@ -1,19 +1,18 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Toolkit/Styles/WelcomeStyle.uss?fileID=7433441132597879392&amp;guid=9bf11cd79e85c3845bec6c228384c2d8&amp;type=3#WelcomeStyle" />
-    <ui:VisualElement name="ScreenTotalArea" class="backgroundStyle" style="flex-direction: row; align-items: stretch; justify-content: space-between; visibility: visible;">
-        <ui:GroupBox name="leftBox" class="groupBox" style="justify-content: flex-start;">
-            <ui:Button display-tooltip-when-elided="true" name="backButton" class="back-botton" />
-        </ui:GroupBox>
+    <ui:VisualElement name="ScreenTotalArea" class="backgroundStyle" style="flex-direction: row; align-items: stretch; justify-content: space-between; visibility: visible; flex-shrink: 1; flex-grow: 1;">
+        <ui:GroupBox name="leftBox" class="groupBox" style="justify-content: flex-start;" />
         <ui:GroupBox name="middleBox" class="groupBox" style="position: absolute; align-items: center; width: 45%; height: 100%; flex-direction: row; justify-content: space-between; left: 10%;">
-            <ui:Button display-tooltip-when-elided="true" name="previousToyoButton" class="Left-Arrow-Button" style="width: 15%; height: 8%; font-size: 28px;" />
-            <ui:Label text="Datu" display-tooltip-when-elided="true" name="toyoName" class="toyo-name" />
-            <ui:Button display-tooltip-when-elided="true" name="nextToyoButton" class="Right-Arrow-Button" style="width: 15%; height: 8%; font-size: 28px;" />
+            <ui:Button display-tooltip-when-elided="true" name="previousToyoButton" class="Left-Arrow-Button" style="width: 15%; height: 8%; font-size: 28px; left: 12%;" />
+            <ui:Label text="Datu" display-tooltip-when-elided="true" name="toyoName" class="toyo-name" style="position: relative; left: -225px; top: -317px; width: 128%; height: 15%;" />
+            <ui:Button display-tooltip-when-elided="true" name="nextToyoButton" class="Right-Arrow-Button" style="width: 15%; height: 8%; font-size: 28px; left: -561px;" />
+            <ui:Button display-tooltip-when-elided="true" name="backButton" text="SELECT TOYO" class="purpleButtonStyle" style="left: -139%; top: 467px; width: 512px; height: 128px;" />
         </ui:GroupBox>
         <ui:GroupBox name="rightBox" class="groupBox" style="align-items: stretch; color: rgb(231, 231, 231); width: 40%; justify-content: space-around;">
             <ui:VisualElement name="overviewDescription" style="height: 1070px; width: 998px; align-items: center; justify-content: space-around; flex-direction: column; scale: 0.7 0.8; background-image: url(&apos;project://database/Assets/Images/Buttons/Text_Box_Overview_0002.png?fileID=2800000&amp;guid=c808c153850e54a46a3f1eee3427cdc3&amp;type=3#Text_Box_Overview_0002&apos;); padding-bottom: 60px; padding-top: 0; left: -141px; display: flex;">
                 <ui:VisualElement name="tabsHeader" style="width: 926px; height: 102px; flex-direction: row; justify-content: space-between; margin-top: 12px;">
                     <ui:Button text="OVERVIEW" display-tooltip-when-elided="true" name="overviewStatic" class="header-Tab-buttons" style="width: 48%;" />
-                    <ui:Button text="TOYO PARTS" display-tooltip-when-elided="true" name="toyoPartsTabButton" class="header-Tab-buttons" style="left: -20px; width: 45%;" />
+                    <ui:Button text="TOYOPART" display-tooltip-when-elided="true" name="toyoPartsTabButton" class="header-Tab-buttons" style="left: -20px; width: 45%;" />
                 </ui:VisualElement>
                 <ui:GroupBox name="avgBoxNames" style="width: 66%; height: 5%; flex-direction: row; justify-content: space-between; margin-top: 0; margin-left: 0; margin-right: 0; margin-bottom: -50px; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; align-items: stretch; top: 20px; left: 20px;">
                     <ui:Label text="Avg. Level" display-tooltip-when-elided="true" name="lvlName" class="avg-name-list" />
@@ -80,11 +79,11 @@
             <ui:VisualElement name="toyoPartsDescription" style="height: 1116px; width: 998px; align-items: center; justify-content: space-around; flex-direction: column; scale: 0.7 0.75; background-image: url(&apos;project://database/Assets/Images/Buttons/Text_Box_Toyoparts_0002.png?fileID=2800000&amp;guid=af12736f6952ff64891b96fc83ce77ef&amp;type=3#Text_Box_Toyoparts_0002&apos;); padding-bottom: 60px; padding-top: 0; left: -141px; display: none;">
                 <ui:VisualElement name="tabsHeader" style="width: 926px; height: 102px; flex-direction: row; justify-content: space-between; border-top-width: 4px;">
                     <ui:Button text="OVERVIEW" display-tooltip-when-elided="true" name="overviewTabButton" class="header-Tab-buttons" style="width: 48%;" />
-                    <ui:Button text="TOYO PARTS" display-tooltip-when-elided="true" name="toyoPartsStatic" class="header-Tab-buttons" style="left: -20px; width: 45%;" />
+                    <ui:Button text="TOYOPART" display-tooltip-when-elided="true" name="toyoPartsStatic" class="header-Tab-buttons" style="left: -20px; width: 45%;" />
                 </ui:VisualElement>
-                <ui:VisualElement name="comingSoonDescription" style="width: 100%; height: 88%; align-items: center; justify-content: space-between;">
+                <ui:VisualElement name="comingSoonDescription" style="width: 100%; height: 88%; align-items: center; justify-content: space-between; display: flex;">
                     <ui:Label text="COMING SOON" display-tooltip-when-elided="true" name="comingSoonText" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; -unity-font: url(&apos;project://database/Assets/Fonts/AlteHaasGroteskRegular.ttf?fileID=12800000&amp;guid=4abf9d5b3674fc24384d6f37bccc9aa7&amp;type=3#AlteHaasGroteskRegular&apos;); -unity-font-definition: url(&apos;project://database/Assets/Fonts/AlteHaasGroteskRegular%20SDF.asset?fileID=11400000&amp;guid=df18b3370003fdd4cbb283ebecda13ad&amp;type=2#AlteHaasGroteskRegular SDF&apos;); top: 286px; font-size: 59px; -unity-font-style: bold;" />
-                    <ui:Label text="Our researchers are still investigating how &#10;Toyo parts are attached to each other. There &#10;seems to be something more than just the &#10;material that they are made of..." display-tooltip-when-elided="true" name="comingSoonnNote" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; -unity-font: url(&apos;project://database/Assets/Fonts/AlteHaasGroteskRegular.ttf?fileID=12800000&amp;guid=4abf9d5b3674fc24384d6f37bccc9aa7&amp;type=3#AlteHaasGroteskRegular&apos;); -unity-font-definition: url(&apos;project://database/Assets/Fonts/AlteHaasGroteskBold.ttf?fileID=12800000&amp;guid=980abd6e80517af469bdc42e84136b1d&amp;type=3#AlteHaasGroteskBold&apos;); top: -48px; font-size: 31px; -unity-font-style: bold; left: -100px;" />
+                    <ui:Label text="Our researchers are still investigating how &#10;Toyo parts are attached to each other. There &#10;seems to be something more than just the &#10;material that they are made of..." display-tooltip-when-elided="true" name="comingSoonnNote" class="ComingSoonNotePos" />
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:GroupBox>
