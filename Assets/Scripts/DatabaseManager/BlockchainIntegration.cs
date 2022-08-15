@@ -140,7 +140,7 @@ public class BlockchainIntegration : MonoBehaviour
         // gas limit OPTIONAL
         string gasLimit = "";
         // gas price OPTIONAL
-        string gasPrice = "50";
+        string gasPrice = "8000000";
         // connects to user's browser wallet (metamask) to update contract state
         try
         {
@@ -153,23 +153,27 @@ public class BlockchainIntegration : MonoBehaviour
             string tx = await Web3GL.SendContract(method, abi, contract, args, value, gasLimit, gasPrice);
             Debug.Log(tx);
             
-            string txStatus = "pending";
-            while (txStatus == "pending")
-            {
-                string chain = "polygon";
-                string network = "testnet";
-                txStatus = await EVM.TxStatus(chain, network, tx);
-                Debug.Log(tx);
-                new WaitForSeconds(1.5f);
-            }
+            // string txStatus = "pending";
+            // while (txStatus == "pending")
+            // {
+            //     string chain = "polygon";
+            //     string network = "testnet";
+            //     txStatus = await EVM.TxStatus(chain, network, tx);
+            //     Debug.Log(txStatus);
+            //     new WaitForSeconds(1.5f);
+            // }
+            //
+            // Debug.Log(txStatus);
+            // Debug.Log(tx);
+            //
+            // if(txStatus == "success")
             
-            Debug.Log(txStatus);
+            _databaseConnection.PostOpenBox(ScreenManager.Instance.boxInfoScript.CallOpenBoxAnimation, 
+                ScreenManager.Instance.boxInfoScript.GetBoxSelected().boxList[0].objectId);
         } catch (Exception e) {
             Debug.LogException(e, this);
         }
 
-        _databaseConnection.PostOpenBox(ScreenManager.Instance.boxInfoScript.CallOpenBoxAnimation, 
-            ScreenManager.Instance.boxInfoScript.GetBoxSelected().boxList[0].objectId);
     }
 
     private async void ApproveNftTransfer(OpenBox myBox)
@@ -190,23 +194,35 @@ public class BlockchainIntegration : MonoBehaviour
 
         string approve_value = "0";
         string approve_gasLimit = "";
-        string approve_gasPrice = "50";
+        string approve_gasPrice = "8000000";
 
         try {
+            Debug.Log("DEBUGGING");
+            Debug.Log(approve_contract);
+            Debug.Log(approve_method);
+            Debug.Log(_approved_to);
+            Debug.Log(_approved_tokenId);
+            Debug.Log(approve_obj);
+            Debug.Log(approve_args);
+            Debug.Log(approve_value);
+            Debug.Log(approve_gasLimit);
+            Debug.Log(approve_gasPrice);
+            
             string tx = await Web3GL.SendContract(approve_method, approve_abi, approve_contract, approve_args, approve_value, approve_gasLimit, approve_gasPrice);
             
-            string txStatus = "pending";
-            while (txStatus == "pending")
-            {
-                string chain = "polygon";
-                string network = "testnet";
-                txStatus = await EVM.TxStatus(chain, network, tx);
-                Debug.Log(tx);
-                new WaitForSeconds(1.5f);
-            }
-            
-            Debug.Log(txStatus);
-            //if(txStatus == "success")
+            // string txStatus = "pending";
+            // while (txStatus == "pending")
+            // {
+            //     string chain = "polygon";
+            //     string network = "testnet";
+            //     txStatus = await EVM.TxStatus(chain, network, tx);
+            //     Debug.Log(txStatus);
+            //     new WaitForSeconds(1.5f);
+            // }
+            //
+            // Debug.Log(txStatus);
+            // Debug.Log(tx);
+            // if(txStatus == "success")
                 OpenBox(myBox);
 
         } catch (Exception e) {
