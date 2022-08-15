@@ -9,7 +9,7 @@ using UnityEngine.UIElements;
 
 public class ToyoObject : MonoBehaviour
 {
-
+    public string objectId;
     public GameObject model;
     public SpriteAnimator spriteAnimator;
     

@@ -34,6 +34,7 @@ namespace UI
             _carouselToyoAnimator.PlayAnimation();
             SetToyoStats(_carouselToyoObject);
             SetToyoRarity(_carouselToyoObject.GetToyoRarity());
+            SetToyoId(GetSelectedToyoFromCarousel().objectId);
             Root.Q<Label>(toyoNameField).text = _carouselToyoObject.GetToyoName();
         }
 

@@ -101,6 +101,7 @@ public class ToyoManager : Singleton<ToyoManager>
     {
         var _toyoPrefab = Instantiate(GetToyoPersonaPrefab(databaseToyo.toyoPersonaOrigin), toyoListParent);
         var _toyoObjectInstance = _toyoPrefab.AddComponent<ToyoObject, Toyo>(databaseToyo);
+        _toyoObjectInstance.objectId = databaseToyo.objectId;
         _toyoObjectInstance.spriteAnimator = _toyoPrefab.GetComponentInChildren<SpriteAnimator>();
         carouselToyo.allObjects.Add(_toyoPrefab.transform);
         toyoObjectList.Add(_toyoObjectInstance);

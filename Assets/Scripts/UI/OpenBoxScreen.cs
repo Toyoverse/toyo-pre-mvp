@@ -63,7 +63,7 @@ namespace UI
         protected void SetToyoRarity(TOYO_RARITY rarity)
         {
             SetTextInLabel(rarityNameField, rarity.ToString());
-            SetLabelColor(rarityIdField, GetColorInRarity(rarity));
+            SetLabelColor(rarityNameField, GetColorInRarity(rarity));
         }
 
         private Color GetColorInRarity(TOYO_RARITY rarity)
@@ -78,10 +78,7 @@ namespace UI
             return Color.white;
         }
 
-        protected void SetToyoId(string id)
-        {
-            SetTextInLabel(rarityIdField, id);
-        }
+        protected void SetToyoId(string id) => SetTextInLabel(rarityIdField, id);
 
         protected void SetToyoStats(ToyoObject selectedToyo = null)
         {
