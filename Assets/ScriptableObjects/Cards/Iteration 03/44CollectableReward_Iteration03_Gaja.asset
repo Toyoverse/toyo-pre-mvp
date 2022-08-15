@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e7502ef7736c374d9b250f3e123ae44, type: 3}
+  m_Name: 44CollectableReward_Iteration03_Gaja
+  m_EditorClassIdentifier: 
+  id: 44
+  cardName: Rebellion of the Ferals
+  description: DescriptionTemplate
+  memory: 
+  cardType: 0
+  cardImage: {fileID: 21300000, guid: 226d9f0845463294c9b564a06ec23daa, type: 3}
+  toyoPersona: {fileID: 11400000, guid: 8ae07a4a9bca8ba4e819ba4a9e8008b3, type: 2}
+  correctCombination:
+  - {fileID: 11400000, guid: 694ab762af5fbbf42b0974ce7ec9b4d0, type: 2}
+  - {fileID: 11400000, guid: ae7ac8b49618038408c4481540f1fc13, type: 2}
+  - {fileID: 11400000, guid: b52184bde60566241a65593e40c2bf2f, type: 2}
+  - {fileID: 11400000, guid: 4c2e13054469c004d970dfcd33e4a613, type: 2}
