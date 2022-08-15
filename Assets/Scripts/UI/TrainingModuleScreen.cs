@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using Org.BouncyCastle.Security.Certificates;
 using UI;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
@@ -15,8 +14,8 @@ public class TrainingModuleScreen : UIController
     public string startTrainingButtonName;
     public GameObject[] combPoolObjects;
     public GameObject[] removeButtonsPool;
-    public UnityEngine.UI.Image[] combPoolImages;
-    public UnityEngine.UI.Image[] progressImages;
+    public Image[] combPoolImages;
+    public Image[] progressImages;
     public Sprite progressDefaultSprite;
     public Transform combPoolContainer;
 

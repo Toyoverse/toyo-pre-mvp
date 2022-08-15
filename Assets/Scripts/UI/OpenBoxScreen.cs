@@ -63,7 +63,19 @@ namespace UI
         protected void SetToyoRarity(TOYO_RARITY rarity)
         {
             SetTextInLabel(rarityNameField, rarity.ToString());
-            //Todo Rarity Color System
+            SetLabelColor(rarityIdField, GetColorInRarity(rarity));
+        }
+
+        private Color GetColorInRarity(TOYO_RARITY rarity)
+        {
+            foreach (var _rarityColor in ToyoManager.Instance.rarityColorsConfig.rarityColors)
+            {
+                if(_rarityColor.rarity != rarity)
+                    continue;
+                return _rarityColor.color;
+            }
+            Debug.Log("RarityColor not found.");
+            return Color.white;
         }
 
         protected void SetToyoId(string id)

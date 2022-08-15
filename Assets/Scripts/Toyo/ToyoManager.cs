@@ -25,6 +25,8 @@ public class ToyoManager : Singleton<ToyoManager>
     private List<ToyoObject> _toyoList;
     public List<ToyoObject> ToyoList => _toyoList ??= CreateToyoObjectList();
 
+    public RarityColorConfigSO rarityColorsConfig;
+
     public static ToyoObject GetSelectedToyo()
     {
         if (Instance.ToyoList.Find(toyoObject => toyoObject.IsToyoSelected) == null)

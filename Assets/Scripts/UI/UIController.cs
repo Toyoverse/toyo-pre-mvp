@@ -101,6 +101,14 @@ namespace UI
             if (_label != null)
                 _label.text = value;
         }
+
+        protected void SetLabelColor(string labelName, Color color)
+        {
+            var _label = Root?.Q<Label>(labelName);
+            if (_label != null)
+                _label.style.color = new StyleColor(color);
+        }
+        
         protected void SetTextInButton(string labelName, string value)
         {
             var _label = Root?.Q<Button>(labelName);

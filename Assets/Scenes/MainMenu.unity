@@ -1129,6 +1129,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 10a76e9d02744ae4da9b8323ae9f0b5a, type: 2}
   openBoxToyoPivot: {fileID: 64713333}
   mainMenuToyoPivot: {fileID: 1479302849}
+  rarityColorsConfig: {fileID: 11400000, guid: ba890244f8bb35a4c8052cdf3823c2d3, type: 2}
   toyoPersonaSOTestPreventsNull: {fileID: 0}
 --- !u!114 &1082540502
 MonoBehaviour:
