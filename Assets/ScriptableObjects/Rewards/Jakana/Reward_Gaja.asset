@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7b6b454d731d1314f9083a9c4c64ec92, type: 3}
-  m_Name: Reward_Template 1
+  m_Name: Reward_Gaja
   m_EditorClassIdentifier: 
-  rewardName: Doge_Template
-  sprite: {fileID: 21300000, guid: e90ad3641a243f24e8c2747b9c2044bb, type: 3}
-  toyoRarity: 6
+  rewardName: Gaja_Template
+  sprite: {fileID: 21300000, guid: 19547b23eca34f24595bd5db00f1743b, type: 3}
+  toyoRarity: 3

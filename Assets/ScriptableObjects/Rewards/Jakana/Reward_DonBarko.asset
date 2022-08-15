@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7b6b454d731d1314f9083a9c4c64ec92, type: 3}
-  m_Name: Reward_Template 6
+  m_Name: Reward_DonBarko
   m_EditorClassIdentifier: 
-  rewardName: Ming_Template
-  sprite: {fileID: 21300000, guid: 129aad58b5b153047a68bab60502d84d, type: 3}
-  toyoRarity: 3
+  rewardName: Don_Template
+  sprite: {fileID: 21300000, guid: d201bf0fba7f1924c90ea756c66a5cbc, type: 3}
+  toyoRarity: 2

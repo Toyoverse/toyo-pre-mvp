@@ -10,26 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3e20a67061cbbbb4daca2926ea086278, type: 3}
-  m_Name: Box_Jakana_temp
+  m_Name: Box_Jakana_Fortified
   m_EditorClassIdentifier: 
-  boxName: Jakana Template
+  boxName: Fortified Jakana Box
   boxRegion: 2
-  boxType: 1
+  boxType: 2
   possibleRewards:
   - {fileID: 11400000, guid: d32c67a6330ee4e4bb5e0ad303aac9cb, type: 2}
+  - {fileID: 11400000, guid: f9a9c22a2279733419058a45c8205681, type: 2}
+  - {fileID: 11400000, guid: 4b11458879c539042a67363bcea4643b, type: 2}
   - {fileID: 11400000, guid: 972043b5571fa2a4783bf259709d7705, type: 2}
   - {fileID: 11400000, guid: 5ada20f6de61b804ba1523c52547269f, type: 2}
   - {fileID: 11400000, guid: ed1de3764f665e24882f7cd651e48af1, type: 2}
+  - {fileID: 11400000, guid: dca7c8e483bb4874d8e0855dcd9204ff, type: 2}
+  - {fileID: 11400000, guid: e657890591ae5d846979e5b690bb8ed8, type: 2}
   dropRate:
   - Rarity: 1
-    DropChance: 70
+    DropChance: 0
   - Rarity: 2
-    DropChance: 20
+    DropChance: 0
   - Rarity: 3
-    DropChance: 5.5
+    DropChance: 70
   - Rarity: 4
-    DropChance: 2.5
+    DropChance: 20
   - Rarity: 5
-    DropChance: 0
+    DropChance: 7
   - Rarity: 6
-    DropChance: 0
+    DropChance: 3

@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7b6b454d731d1314f9083a9c4c64ec92, type: 3}
-  m_Name: Reward_Template 3
+  m_Name: Reward_Mizuchi
   m_EditorClassIdentifier: 
-  rewardName: Gaja_Template
-  sprite: {fileID: 21300000, guid: 19547b23eca34f24595bd5db00f1743b, type: 3}
-  toyoRarity: 3
+  rewardName: Mizuchi_Template
+  sprite: {fileID: 21300000, guid: c6cadf1893a71c84e96e64d9f22176d6, type: 3}
+  toyoRarity: 5

@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7b6b454d731d1314f9083a9c4c64ec92, type: 3}
-  m_Name: Reward_Template 3
+  m_Name: Reward_Yawara
   m_EditorClassIdentifier: 
-  rewardName: Haruko_Template
-  sprite: {fileID: 21300000, guid: c0ceb423cf05fd34292f72f0a2be1db9, type: 3}
-  toyoRarity: 5
+  rewardName: Yawara_Template
+  sprite: {fileID: 21300000, guid: e01f4e46b763ead47878ced9df438d0f, type: 3}
+  toyoRarity: 4

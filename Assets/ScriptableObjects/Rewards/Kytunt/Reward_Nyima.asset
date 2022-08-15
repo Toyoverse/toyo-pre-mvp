@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7b6b454d731d1314f9083a9c4c64ec92, type: 3}
-  m_Name: Reward_Template 5
+  m_Name: Reward_Nyima
   m_EditorClassIdentifier: 
-  rewardName: Slicky_Template
-  sprite: {fileID: 21300000, guid: ec73b9c68e584be4cb1c8be635da2d7e, type: 3}
-  toyoRarity: 1
+  rewardName: Nyima_Template
+  sprite: {fileID: 21300000, guid: 9f39fe6ad04ddbf40af4ee2c40fefbe6, type: 3}
+  toyoRarity: 2

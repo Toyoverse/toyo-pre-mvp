@@ -10,26 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3e20a67061cbbbb4daca2926ea086278, type: 3}
-  m_Name: Box_Kytunt_temp
+  m_Name: Box_Kytunt_SeedBox
   m_EditorClassIdentifier: 
-  boxName: Kytunt Template
+  boxName: Kytunt SeedBox
   boxRegion: 1
   boxType: 1
   possibleRewards:
-  - {fileID: 11400000, guid: 6391a371e6c547a4eab7be9871af8c75, type: 2}
+  - {fileID: 11400000, guid: 85c3c7ca740fcb24bb3546c66bf53a3e, type: 2}
+  - {fileID: 11400000, guid: ea68d33cbf643bc488ed5e093a8bcdaa, type: 2}
   - {fileID: 11400000, guid: 0fe4aa355b7a41e4d9be18f3f80d6274, type: 2}
+  - {fileID: 11400000, guid: 3b62d3ec26b3e2b49a7818da8b596307, type: 2}
   - {fileID: 11400000, guid: cd61f82d42dd48244b16c9cbae686c95, type: 2}
+  - {fileID: 11400000, guid: 6391a371e6c547a4eab7be9871af8c75, type: 2}
   - {fileID: 11400000, guid: f718709eaabfa7941a4e7a84f579f8f9, type: 2}
   dropRate:
   - Rarity: 1
-    DropChance: 70
+    DropChance: 52
   - Rarity: 2
-    DropChance: 20
+    DropChance: 32
   - Rarity: 3
-    DropChance: 5.5
+    DropChance: 10
   - Rarity: 4
-    DropChance: 2.5
+    DropChance: 4
   - Rarity: 5
-    DropChance: 0
+    DropChance: 1.5
   - Rarity: 6
-    DropChance: 0
+    DropChance: 0.5

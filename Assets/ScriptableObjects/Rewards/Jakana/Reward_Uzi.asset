@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7b6b454d731d1314f9083a9c4c64ec92, type: 3}
-  m_Name: Reward_Template
+  m_Name: Reward_Uzi
   m_EditorClassIdentifier: 
-  rewardName: Ribbit_Template
-  sprite: {fileID: 21300000, guid: 93dd67e81fdeb00488b88185e14fb23a, type: 3}
-  toyoRarity: 5
+  rewardName: Uzi_Template
+  sprite: {fileID: 21300000, guid: bea76b8125c017e41a5b7a9551336a8d, type: 3}
+  toyoRarity: 4
