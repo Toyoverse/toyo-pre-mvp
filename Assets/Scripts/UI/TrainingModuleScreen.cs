@@ -1,33 +1,29 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
+using Org.BouncyCastle.Security.Certificates;
 using UI;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
 using UnityEngine.UIElements;
+using Image = UnityEngine.UI.Image;
 
 public class TrainingModuleScreen : UIController
 {
     public string eventTitleName;
-
     public string eventTimeName;
-
-    //public string combPoolContainer;
-    //public string[] combPoolNames;
-    /*public string[] combPoolImagesNames;
-    public string[] removePoolNames;*/
+    
     public string startTrainingButtonName;
     public GameObject[] combPoolObjects;
     public GameObject[] removeButtonsPool;
     public UnityEngine.UI.Image[] combPoolImages;
+    public UnityEngine.UI.Image[] progressImages;
+    public Sprite progressDefaultSprite;
     public Transform combPoolContainer;
 
     [Header("In Training names")] public string inTrainingBoxName;
     public string inTrainingTimeButtonName;
 
     [Header("Reward names")] public string rewardTitleName;
-    public string investName;
     public string receiveName;
     public string durationName;
 
@@ -40,12 +36,17 @@ public class TrainingModuleScreen : UIController
     {
         CheckAndRevealStartButton();
         TrainingConfig.Instance.ApplyRewardsCalculation();
+        UpdateTextsInUI();
+        CheckTrainingAndEnableTrainingUI();
+        UpdateProgressTraining();
+    }
+
+    private void UpdateTextsInUI()
+    {
         SetTextInLabel(eventTitleName, TrainingConfig.Instance.eventTitle);
         SetTextInLabel(eventTimeName, ConvertMinutesToString(TrainingConfig.Instance.GetEventTimeRemain()));
-        //SetTextInLabel(investName, "Invest: $" + TrainingConfig.Instance.investValue);
         SetTextInLabel(receiveName, /*"Receive: $" + */TrainingConfig.Instance.receiveValue.ToString());
         SetTextInLabel(durationName, /*"Duration: " + */ConvertMinutesToString(TrainingConfig.Instance.durationValue));
-        CheckTrainingAndEnableTrainingUI();
     }
 
     public override void ActiveScreen()
@@ -81,6 +82,7 @@ public class TrainingModuleScreen : UIController
         TrainingConfig.Instance.SetSelectedID(id);
         DisableRemoveButton(id);
         SetActionSprite(id, null);
+        SetProgressSprite(id, progressDefaultSprite);
         TrainingConfig.Instance.RemoveActionToDict(id);
         DisableActionObject(id);
         TrainingConfig.Instance.ApplyBlowConfig();
@@ -90,16 +92,23 @@ public class TrainingModuleScreen : UIController
 
     private void ConfirmAction(TrainingActionSO actionSo)
     {
-        combPoolObjects[TrainingConfig.Instance.selectedActionID].gameObject.SetActive(true);
-        DisableRemoveButton(TrainingConfig.Instance.selectedActionID);
-        SetActionSprite(TrainingConfig.Instance.selectedActionID, actionSo.sprite);
-        TrainingConfig.Instance.AddToSelectedActionsDict(TrainingConfig.Instance.selectedActionID, actionSo);
-        //TrainingConfig.Instance.ApplyTrainingMode();
+        var _selectedID = TrainingConfig.Instance.selectedActionID;
+        combPoolObjects[_selectedID].gameObject.SetActive(true);
+        DisableRemoveButton(_selectedID);
+        SetActionsSprites(_selectedID, actionSo.sprite);
+        TrainingConfig.Instance.AddToSelectedActionsDict(_selectedID, actionSo);
         TrainingConfig.Instance.ApplyBlowConfig();
         UpdateUI();
     }
 
-    public void SetActionSprite(int id, Sprite sprite) => combPoolImages[id].sprite = sprite;
+    public void SetActionsSprites(int id, Sprite sprite)
+    {
+        SetActionSprite(id, sprite);
+        SetProgressSprite(id, sprite);
+    }
+
+    private void SetActionSprite(int id, Sprite sprite) => combPoolImages[id].sprite = sprite;
+    private void SetProgressSprite(int id, Sprite sprite) => progressImages[id].sprite = sprite;
 
     private void SetActionToLastPosition(GameObject actionObj)
     {
@@ -144,6 +153,7 @@ public class TrainingModuleScreen : UIController
 
     private void CheckAndApplyInTrainingActions()
     {
+        DisableAllProgressImages();
         if (!TrainingConfig.Instance.IsInTraining())
             return;
         for (var _i = 0; _i < TrainingConfig.Instance.selectedTrainingActions.Count; _i++)
@@ -151,6 +161,7 @@ public class TrainingModuleScreen : UIController
             TrainingConfig.Instance.SetSelectedID(_i);
             ConfirmAction(TrainingConfig.Instance.selectedTrainingActions[_i]);
         }
+        EnableAllProgressImages();
     }
 
     private void OpenActionSelectionScreen() => ScreenManager.Instance.GoToScreen(ScreenState.TrainingActionSelect);
@@ -166,7 +177,17 @@ public class TrainingModuleScreen : UIController
     private void SendToyoToTraining()
     {
         TrainingConfig.Instance.SetInTraining(true);
+        EnableAllProgressImages();
         UpdateUI();
+    }
+
+    private void EnableAllProgressImages() => AllProgressImagesSetActive(true);
+    private void DisableAllProgressImages() => AllProgressImagesSetActive(false);
+    
+    private void AllProgressImagesSetActive(bool isOn)
+    {
+        foreach (var _image in progressImages)
+            _image.gameObject.SetActive(isOn);
     }
 
     public void FinishTraining()
@@ -216,6 +237,39 @@ public class TrainingModuleScreen : UIController
     {
         foreach (var _gameObject in removeButtonsPool)
             _gameObject.SetActive(false);
+    }
+
+    private void UpdateProgressTraining()
+    {
+        if (!TrainingConfig.Instance.IsInTraining())
+            return;
+        var _blowConfig = TrainingConfig.Instance.GetSelectedBlowConfig();
+        var _actualPercent = ((_blowConfig.duration - TrainingConfig.Instance.GetTrainingTimeRemain()) / _blowConfig.duration) * 100;
+        var _unitPercent = 100 / _blowConfig.blows;
+        for (var _i = 0; _i < _blowConfig.blows; _i++)
+        {
+            if(_actualPercent > (_unitPercent * (_i + 1)))
+                continue;
+            var _inverseFill = ((float)_actualPercent / (_blowConfig.blows - _i)) / 100;
+            var _correctFill = _inverseFill != 0 ? 1 - _inverseFill : 1;
+            GetProgressActiveImages()[_i].fillAmount = _correctFill;
+            //Debug.Log("unit_" + _unitPercent + ", actual_" + _actualPercent + ", fill_" + _correctFill);
+            //TODO: Rever contas e testar fillAmount
+            break;
+        }
+    }
+
+    private List<Image> GetProgressActiveImages()
+    {
+        var _result = new List<Image>();
+        for (var _i =0; _i < progressImages.Length; _i++)
+        {
+            if (!progressImages[_i].gameObject.activeInHierarchy)
+                continue;
+            _result.Add(progressImages[_i]);
+        }
+
+        return _result;
     }
 }
 

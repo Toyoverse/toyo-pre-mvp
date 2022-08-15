@@ -2382,7 +2382,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 1
-  m_FillAmount: 0.483
+  m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 1
   m_UseSpriteMesh: 0
@@ -4567,7 +4567,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 1
-  m_FillAmount: 0.565
+  m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 1
   m_UseSpriteMesh: 0
@@ -10625,11 +10625,17 @@ MonoBehaviour:
   - {fileID: 3944455058025740982}
   - {fileID: 7073061396288953276}
   - {fileID: 6057934582273370968}
+  progressImages:
+  - {fileID: 7994460522673742797}
+  - {fileID: 8116830929941368103}
+  - {fileID: 6654184504155446414}
+  - {fileID: 1352812936298902639}
+  - {fileID: 6320314511962389791}
+  progressDefaultSprite: {fileID: 7482667652216324306, guid: bdf58c879874eba40a4cd2cdae8e5358, type: 3}
   combPoolContainer: {fileID: 2012295084720712916}
   inTrainingBoxName: inTrainingBox
   inTrainingTimeButtonName: inTrainingTimeButton
   rewardTitleName: rewardTitle
-  investName: investName
   receiveName: receiveValue
   durationName: durationValue
   actionSelectionAreaName: actionsSelectorBox

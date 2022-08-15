@@ -561,7 +561,7 @@ MonoBehaviour:
   trainingConfigSo: {fileID: 11400000, guid: ba24712e20df32c4c8b0c530c796f2e8, type: 2}
   selectedToyoPersona: {fileID: 0}
   possibleActions: []
-  trainingModes: []
+  blowConfigs: []
   cardRewards: []
   minimumActionsToPlay: 0
   boundReward: 0

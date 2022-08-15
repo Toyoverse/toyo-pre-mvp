@@ -54,19 +54,18 @@ public class TrainingActionSelectScreen : UIController
     
     private void ConfirmAction(TrainingActionSO actionSo)
     {
-        _trainingModuleScreen.RevealRemoveButton(TrainingConfig.Instance.selectedActionID);
-        TrainingConfig.Instance.AddToSelectedActionsDict(TrainingConfig.Instance.selectedActionID, actionSo);
-        //TrainingConfig.Instance.ApplyTrainingMode();
+        var _selectedID = TrainingConfig.Instance.selectedActionID;
+        _trainingModuleScreen.RevealRemoveButton(_selectedID);
+        TrainingConfig.Instance.AddToSelectedActionsDict(_selectedID, actionSo);
         TrainingConfig.Instance.ApplyBlowConfig();
         ClearPossibleActionsEvents();
-        SetButtonSpriteVariables(TrainingConfig.Instance.selectedActionID, actionSo.sprite);
-        Loading.EndLoading += SetActionSprite;
+        SetButtonSpriteVariables(_selectedID, actionSo.sprite);
+        Loading.EndLoading += SetActionSprites;
         Loading.EndLoading += _trainingModuleScreen.RevealNextAction;
         ScreenManager.Instance.GoToScreen(ScreenState.TrainingModule);
     }
     
-    private void SetActionSprite()
-        => _trainingModuleScreen.SetActionSprite(_buttonID, _actionSprite);
+    private void SetActionSprites() => _trainingModuleScreen.SetActionsSprites(_buttonID, _actionSprite);
 
     private void SetButtonSpriteVariables(int id, Sprite sprite)
     {

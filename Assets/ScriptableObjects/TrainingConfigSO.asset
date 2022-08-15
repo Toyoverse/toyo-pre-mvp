@@ -54,6 +54,8 @@ MonoBehaviour:
   - blows: 3
     duration: 360
   - blows: 4
+    duration: 420
+  - blows: 5
     duration: 480
   cardRewards: []
   boundReward: 0.35
