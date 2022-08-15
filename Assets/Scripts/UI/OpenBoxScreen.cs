@@ -66,6 +66,11 @@ namespace UI
             //Todo Rarity Color System
         }
 
+        protected void SetToyoId(string id)
+        {
+            SetTextInLabel(rarityIdField, id);
+        }
+
         protected void SetToyoStats(ToyoObject selectedToyo = null)
         {
             /*if (selectedToyo == null)
