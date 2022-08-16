@@ -43,13 +43,15 @@ namespace UI
         {
             Root?.Q<VisualElement>(normalModeName).RegisterCallback<ClickEvent>
             (_ 
-                    => {   DisableTrainingModeScreen(); 
-                    SetMode(GAME_MODE.Normal); }
+                    => {   /*DisableTrainingModeScreen(); 
+                    SetMode(GAME_MODE.Normal);*/
+                    ShowComingSoonPopUp(); }
             );
             Root?.Q<VisualElement>(rankedModeName).RegisterCallback<ClickEvent>
             (_ 
-                    => { DisableTrainingModeScreen(); 
-                    SetMode(GAME_MODE.Ranked); }
+                    => { /*DisableTrainingModeScreen(); 
+                    SetMode(GAME_MODE.Ranked);*/
+                    ShowComingSoonPopUp(); }
             );
             Root?.Q<VisualElement>(trainingModeName).RegisterCallback<ClickEvent>
             (_ 
@@ -62,13 +64,15 @@ namespace UI
         {
             Root?.Q<VisualElement>(normalModeName).UnregisterCallback<ClickEvent>
             (_ 
-                    => { DisableTrainingModeScreen(); 
-                    SetMode(GAME_MODE.Normal); }
+                    => { /*DisableTrainingModeScreen(); 
+                    SetMode(GAME_MODE.Normal);*/
+                    ShowComingSoonPopUp(); }
             );
             Root?.Q<VisualElement>(rankedModeName).UnregisterCallback<ClickEvent>
             (_ 
-                    => { DisableTrainingModeScreen(); 
-                    SetMode(GAME_MODE.Ranked); }
+                    => { /*DisableTrainingModeScreen(); 
+                    SetMode(GAME_MODE.Ranked);*/
+                    ShowComingSoonPopUp(); }
             );
             Root?.Q<VisualElement>(trainingModeName).UnregisterCallback<ClickEvent>
             (_ 
@@ -77,10 +81,7 @@ namespace UI
             );
         }
 
-        protected override void UpdateUI()
-        {
-            ToyoManager.MoveToyoToCenterMainMenu();
-        }
+        protected override void UpdateUI() => ToyoManager.MoveToyoToCenterMainMenu();
 
         public void StartButton()
         {
@@ -94,11 +95,7 @@ namespace UI
             }
         }
 
-        public void SetMode(GAME_MODE newGameMode)
-        {
-            GameMode = newGameMode;
-            Debug.Log(GameMode);
-        }
+        private void SetMode(GAME_MODE newGameMode) => GameMode = newGameMode;
 
         public void EnableTrainingModeSelection()
         {
@@ -107,7 +104,7 @@ namespace UI
             AddModeEvents();
         }
 
-        public void DisableTrainingModeScreen()
+        private void DisableTrainingModeScreen()
         {
             _trainingBackground = Root.Query<VisualElement>(modeBackgroundName);
             RemoveModeEvents();
