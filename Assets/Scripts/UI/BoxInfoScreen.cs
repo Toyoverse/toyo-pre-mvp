@@ -116,13 +116,13 @@ namespace UI
 
         private string GetBoxTitle(BoxConfig boxConfig)
         {
-            var _name = boxConfig.BoxName.ToUpper() + "BOX";
+            var _name = boxConfig.BoxName.ToUpper();
             return _name;
         }
 
         private string GetBoxDescription(BoxConfig boxConfig)
         {
-            var _name = boxConfig.BoxName.ToUpper() + " BOX";
+            var _name = boxConfig.BoxName.ToUpper();
             var _region = "REGION: " + boxConfig.BoxRegion.ToString().ToUpper();
             var _type = "TYPE: " + boxConfig.BoxType.ToString().ToUpper();
 
