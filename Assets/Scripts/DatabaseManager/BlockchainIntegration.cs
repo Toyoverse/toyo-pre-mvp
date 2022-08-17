@@ -140,7 +140,7 @@ public class BlockchainIntegration : MonoBehaviour
         // gas limit OPTIONAL
         string gasLimit = "";
         // gas price OPTIONAL
-        string gasPrice = "8000000";
+        string gasPrice = "80000000000";
         // connects to user's browser wallet (metamask) to update contract state
         try
         {
@@ -194,7 +194,7 @@ public class BlockchainIntegration : MonoBehaviour
 
         string approve_value = "0";
         string approve_gasLimit = "";
-        string approve_gasPrice = "8000000";
+        string approve_gasPrice = "80000000000";
 
         try {
             Debug.Log("DEBUGGING");
