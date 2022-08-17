@@ -85,7 +85,7 @@ namespace UI
 
         public void StartButton()
         {
-            //TODO: Send selected Toyo to Training Module Screen
+            TrainingConfig.Instance.SetSelectedToyoObject(ToyoManager.GetSelectedToyo());
             if(TrainingConfig.Instance.loreScreenAlreadyOpen)
                 ScreenManager.Instance.GoToScreen(ScreenState.TrainingModule);
             else
@@ -140,8 +140,6 @@ namespace UI
                 _cb.onClickEvent.AddListener(ShowComingSoonPopUp);
             }
         }
-
-        private void ShowComingSoonPopUp() => GenericPopUp.Instance.ShowPopUp("Coming soon...");
     }
 }
 

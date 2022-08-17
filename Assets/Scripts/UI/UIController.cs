@@ -47,9 +47,7 @@ namespace UI
                         });
                 }
                 else
-                {
                     Debug.Log(_cb.name + " not found in " + uiDoc.name);
-                }
             }
 
             UpdateUI();
@@ -73,9 +71,7 @@ namespace UI
                         });
                 }
                 else
-                {
                     Debug.Log(_cb.name + " not found in " + uiDoc.name);
-                }
             }
         }
 
@@ -197,6 +193,8 @@ namespace UI
             _result += _minutes + "m";
             return _result;
         }
+        
+        protected void ShowComingSoonPopUp() => GenericPopUp.Instance.ShowPopUp("Coming soon...");
     }
 
     [Serializable]

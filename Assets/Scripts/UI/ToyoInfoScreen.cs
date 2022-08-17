@@ -12,6 +12,7 @@ namespace UI
         public CarouselManager carousel;
 
         private ToyoObject _carouselToyoObject;
+        private ToyoObject _oldToyoObject;
         private SpriteAnimator _carouselToyoAnimator;
 
         public void NextToyoButton()
@@ -35,13 +36,17 @@ namespace UI
             SetToyoStats(_carouselToyoObject);
             SetToyoRarity(_carouselToyoObject.GetToyoRarity());
             SetToyoId(GetSelectedToyoFromCarousel().objectId);
-            Root.Q<Label>(toyoNameField).text = _carouselToyoObject.GetToyoName();
+            SetTextInLabel(toyoNameField, _carouselToyoObject.GetToyoName());
         }
 
         private void UpdateSelectedToyo()
         {
+            _oldToyoObject = _carouselToyoObject;
+            if (_oldToyoObject != null)
+                _oldToyoObject.IsToyoSelected = false;
             _carouselToyoObject = GetSelectedToyoFromCarousel();
             _carouselToyoAnimator = _carouselToyoObject.GetComponentInChildren<SpriteAnimator>();
+            _carouselToyoObject.IsToyoSelected = true;
         }
         
         private ToyoObject GetSelectedToyoFromCarousel() 

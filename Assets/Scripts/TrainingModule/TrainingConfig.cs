@@ -11,8 +11,8 @@ public class TrainingConfig : Singleton<TrainingConfig>
     public bool ignoreTrainingTimer;
     [Header("Base data")] public TrainingConfigSO trainingConfigSo;
 
-    //TODO: Get correct Toyo selected
-    public ToyoPersonaSO selectedToyoPersona;
+    public ToyoObject selectedToyoObject { get; private set; }
+    public void SetSelectedToyoObject(ToyoObject toyoObject) => selectedToyoObject = toyoObject;
 
     //Current config usable
     [HideInInspector] public TrainingActionSO[] possibleActions;
@@ -120,12 +120,16 @@ public class TrainingConfig : Singleton<TrainingConfig>
         TrainingActionSO[] _correctCombination = null;
         foreach (var _card in cardRewards)
         {
-            if (selectedToyoPersona != _card.toyoPersona) //TODO: Need testing
+            if (Instance.selectedToyoObject.GetToyoName() != _card.toyoPersona.toyoName) //TODO: Need testing
                 continue;
             _correctCombination = _card.correctCombination; //TODO: Need testing
         }
-        if(_correctCombination == null)
-            Debug.LogError("Correct combination not found - ToyoPersona: " + selectedToyoPersona.toyoName);
+
+        if (_correctCombination == null)
+        {
+            Debug.LogError("Correct combination not found - ToyoPersona: " + Instance.selectedToyoObject.GetToyoName());
+            return TRAINING_RESULT.NONE;
+        }
 
         for (var _i = 0; _i < _correctCombination.Length; _i++)
         {
@@ -290,12 +294,12 @@ public class TrainingConfig : Singleton<TrainingConfig>
     {
         for (var _i = 0; _i < Instance.cardRewards.Length; _i++)
         {
-            if(Instance.cardRewards[_i].toyoPersona != Instance.selectedToyoPersona)
+            if(Instance.cardRewards[_i].toyoPersona.toyoName != Instance.selectedToyoObject.GetToyoName())
                 continue;
             return Instance.cardRewards[_i];
         }
 
-        Debug.LogError("CardReward not found - Persona: " + Instance.selectedToyoPersona.toyoName);
+        Debug.LogError("CardReward not found - Persona: " + Instance.selectedToyoObject.GetToyoName());
         return null;
     }
 }

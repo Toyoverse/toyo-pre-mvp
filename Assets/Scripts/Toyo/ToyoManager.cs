@@ -30,8 +30,9 @@ public class ToyoManager : Singleton<ToyoManager>
     public static ToyoObject GetSelectedToyo()
     {
         if (Instance.ToyoList.Find(toyoObject => toyoObject.IsToyoSelected) == null)
-            SetFirstToyoToSelected(); 
-        return Instance.ToyoList.Find(toyoObject => toyoObject.IsToyoSelected);
+            SetFirstToyoToSelected();
+        var _selectedToyo = Instance.ToyoList.Find(toyoObject => toyoObject.IsToyoSelected);
+        return _selectedToyo;
     }
 
     private static void SetFirstToyoToSelected()
