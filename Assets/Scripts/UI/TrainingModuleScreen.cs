@@ -262,7 +262,8 @@ public class TrainingModuleScreen : UIController
         if (!TrainingConfig.Instance.IsInTraining())
             return;
         var _blowConfig = TrainingConfig.Instance.GetSelectedBlowConfig();
-        var _actualPercent = (((float)_blowConfig.duration - TrainingConfig.Instance.GetTrainingTimeRemainInMinutes()) / _blowConfig.duration) * 100;
+        var _actualPercent = (((float)_blowConfig.duration - TrainingConfig.Instance.GetTrainingTimeRemainInMinutes())
+                              / _blowConfig.duration) * 100;
         var _unitPercent = 100 / _blowConfig.blows;
         for (var _i = 0; _i < _blowConfig.blows; _i++)
         {

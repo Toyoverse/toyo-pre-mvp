@@ -12,7 +12,6 @@ namespace UI
         public CarouselManager carousel;
 
         private ToyoObject _carouselToyoObject;
-        private ToyoObject _oldToyoObject;
         private SpriteAnimator _carouselToyoAnimator;
 
         public void NextToyoButton()
@@ -41,9 +40,7 @@ namespace UI
 
         private void UpdateSelectedToyo()
         {
-            _oldToyoObject = _carouselToyoObject;
-            if (_oldToyoObject != null)
-                _oldToyoObject.IsToyoSelected = false;
+            ToyoManager.GetSelectedToyo().IsToyoSelected = false;
             _carouselToyoObject = GetSelectedToyoFromCarousel();
             _carouselToyoAnimator = _carouselToyoObject.GetComponentInChildren<SpriteAnimator>();
             _carouselToyoObject.IsToyoSelected = true;
