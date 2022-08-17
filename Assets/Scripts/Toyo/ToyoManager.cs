@@ -43,6 +43,7 @@ public class ToyoManager : Singleton<ToyoManager>
 
     public void AddToyoToToyoObjectList(Toyo toyo)
     {
+        GetSelectedToyo().IsToyoSelected = false;
         toyo.isToyoSelected = true;
         InstantiateAndConfigureToyo(toyo, ref _toyoList);
     }

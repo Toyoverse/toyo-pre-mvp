@@ -56,6 +56,7 @@ public class BlockchainIntegration : MonoBehaviour
         catch (Exception e) 
         {
             Debug.LogException(e, this);
+            Loading.EndLoading?.Invoke();
         }
         #else
         try 
@@ -66,6 +67,7 @@ public class BlockchainIntegration : MonoBehaviour
         catch (Exception e) 
         {
             Debug.LogException(e, this);
+            Loading.EndLoading?.Invoke();
         }
         #endif
         _account = await EVM.Verify(_message, _signature);
@@ -170,8 +172,10 @@ public class BlockchainIntegration : MonoBehaviour
             
             _databaseConnection.PostOpenBox(ScreenManager.Instance.boxInfoScript.CallOpenBoxAnimation, 
                 ScreenManager.Instance.boxInfoScript.GetBoxSelected().boxList[0].objectId);
+            
         } catch (Exception e) {
             Debug.LogException(e, this);
+            Loading.EndLoading?.Invoke();
         }
 
     }
@@ -227,6 +231,7 @@ public class BlockchainIntegration : MonoBehaviour
 
         } catch (Exception e) {
             Debug.LogException(e, this);
+            Loading.EndLoading?.Invoke();
         }
     }
 
