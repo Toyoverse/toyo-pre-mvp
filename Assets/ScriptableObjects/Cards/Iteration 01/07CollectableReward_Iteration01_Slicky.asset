@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 7
   cardName: The Glass Dome City
-  description: DescriptionTemplate
+  description: A city under a giant glass dome in the middle of the desert that was
+    once used to test nukes
   memory: 
   cardType: 1
   cardImage: {fileID: 21300000, guid: 226d9f0845463294c9b564a06ec23daa, type: 3}

@@ -14,8 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 38
   cardName: The Battle of Osaka
-  description: DescriptionTemplate
-  memory: 
+  description: The great war of Osaka, with Toyos battling, standing their ground
+    and defending territories
+  memory: "Aol hujplua Vzhrphu ayhkpapvuz hyl vujl hnhpu ilpun bzlk av qbzapmf doha
+    ohcl illu kvul.\_Aopz pz hu puzbsa baalylk if fvbun tvbaoz vm sfpun zlywluaz
+    dov tvkpmf aol whza av kljlpcl aol svdsf.  P mlls aoha P ohcl illu aolyl huk
+    aopunz dlyl kpmmlylua.  Vzhrh'z uld slhklyzopw wshuz av jvuzbtl dohalcly opt
+    zllz pu myvua vm opt av zhapzmf opz dhysprl klzpyl av iljvtl aol zbwyltl ybsly."
   cardType: 1
   cardImage: {fileID: 21300000, guid: 226d9f0845463294c9b564a06ec23daa, type: 3}
   toyoPersona: {fileID: 11400000, guid: 650c1b6890a00584d8beef301fb3f8aa, type: 2}

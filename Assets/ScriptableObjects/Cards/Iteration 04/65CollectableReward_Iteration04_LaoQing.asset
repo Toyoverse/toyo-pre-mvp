@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 65
   cardName: In the Claws of Humanity
-  description: DescriptionTemplate
+  description: The pause before the fight, it's time for concentration
   memory: 
   cardType: 1
   cardImage: {fileID: 21300000, guid: 226d9f0845463294c9b564a06ec23daa, type: 3}

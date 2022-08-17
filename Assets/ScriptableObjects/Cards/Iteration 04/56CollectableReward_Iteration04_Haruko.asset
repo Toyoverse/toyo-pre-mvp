@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 56
   cardName: After the Rain
-  description: DescriptionTemplate
-  memory: 
+  description: A short moment of peace in Kytunt
+  memory: Yk bgdbaeq ue oaybxqfq, tmdyazk ue dqefadqp.  U iuxx dqef gzpqd m oduyeaz
+    fdqq gzfux fuyq mimwqze yq fa rmoq m iadftk abbazqzf ad m dqmx ftdqmf.
   cardType: 0
   cardImage: {fileID: 21300000, guid: 226d9f0845463294c9b564a06ec23daa, type: 3}
   toyoPersona: {fileID: 11400000, guid: d3f6f63f02ee18246a597077bcf2ad01, type: 2}

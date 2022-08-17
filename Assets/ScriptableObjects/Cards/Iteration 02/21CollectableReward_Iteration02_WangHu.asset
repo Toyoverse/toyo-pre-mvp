@@ -14,8 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 21
   cardName: The Calm Before the Storm
-  description: DescriptionTemplate
-  memory: 
+  description: A peacefull sunrise moment at the beach, a silhouette of a meditating
+    Toyo can be seem against the sun rays
+  memory: P mlls aoha P ohcl illu aolyl hss hsvun, pu huvaoly dhf --- pulewspjhisf. 
+    Hz aol mybpa vm h whza spml... P puolypalk aol whpu pa dhz av mpnoa hz lultplz
+    aovzl dl vujl jhsslk iyvaolyz... huk zpzalyz.
   cardType: 1
   cardImage: {fileID: 21300000, guid: 226d9f0845463294c9b564a06ec23daa, type: 3}
   toyoPersona: {fileID: 11400000, guid: 650c1b6890a00584d8beef301fb3f8aa, type: 2}

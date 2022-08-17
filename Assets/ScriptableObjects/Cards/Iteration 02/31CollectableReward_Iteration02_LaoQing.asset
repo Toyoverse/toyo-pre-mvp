@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 31
   cardName: Battle for Freedom
-  description: DescriptionTemplate
+  description: Chaos, fights and mutiny rulling the streets of Jakana
   memory: 
   cardType: 3
   cardImage: {fileID: 21300000, guid: 226d9f0845463294c9b564a06ec23daa, type: 3}

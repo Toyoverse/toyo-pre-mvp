@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 48
   cardName: Rebellion of the Ferals
-  description: DescriptionTemplate
+  description: Victorious and free toyos celebrates their accomplishment
   memory: 
   cardType: 2
   cardImage: {fileID: 21300000, guid: 226d9f0845463294c9b564a06ec23daa, type: 3}
