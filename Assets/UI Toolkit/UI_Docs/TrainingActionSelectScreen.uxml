@@ -14,7 +14,7 @@
                 <ui:Button text="Confirm" display-tooltip-when-elided="true" name="confirmAction" class="purpleButtonStyle" style="position: absolute; top: 80%; scale: 0.6 0.6; display: none;" />
             </ui:GroupBox>
             <ui:GroupBox name="rightBox" style="height: 100%; flex-direction: column; align-items: flex-end; justify-content: center; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; width: 50%; opacity: 1; background-color: rgba(0, 0, 0, 0);">
-                <ui:ScrollView scroll-deceleration-rate="0,135" elasticity="0,1" name="actionScroll" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="AlwaysVisible" vertical-page-size="15" style="background-color: rgba(111, 111, 111, 0.67); left: 0; width: 60%; height: 60%; margin-right: 8%;" />
+                <ui:ScrollView scroll-deceleration-rate="0,135" elasticity="0,1" name="actionScroll" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="AlwaysVisible" vertical-page-size="15" style="background-color: rgba(111, 111, 111, 0); width: 60%; height: 60%; margin-right: 8%;" />
             </ui:GroupBox>
         </ui:GroupBox>
     </ui:VisualElement>

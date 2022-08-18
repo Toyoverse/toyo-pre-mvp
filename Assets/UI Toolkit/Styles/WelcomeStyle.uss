@@ -1004,8 +1004,8 @@
 }
 
 .unity-scroller--vertical > .unity-scroller__high-button {
-    left: -200px;
-    top: 600px;
+    left: -830%;
+    top: 680px;
     background-image: url('project://database/Assets/Images/Buttons/mini_rightarrow_normal.png?fileID=2800000&guid=70732642e89da434e923af6c3df80fb2&type=3#mini_rightarrow_normal');
     -unity-background-scale-mode: stretch-to-fill;
     background-color: rgba(0, 0, 0, 0);
@@ -1013,15 +1013,15 @@
     border-right-color: rgba(0, 0, 0, 0);
     border-top-color: rgba(0, 0, 0, 0);
     border-bottom-color: rgba(0, 0, 0, 0);
-    width: 256px;
-    height: 256px;
+    width: 200px;
+    height: 200px;
     -unity-background-image-tint-color: rgb(255, 255, 255);
     rotate: 90deg;
 }
 
 .unity-scroller--vertical > .unity-scroller__high-button:hover {
-    left: -200px;
-    top: 600px;
+    left: -830%;
+    top: 680px;
     background-image: url('project://database/Assets/Images/Buttons/mini_rightarrow_hover.png?fileID=2800000&guid=445cf528487b3bd4596b9f61637ee848&type=3#mini_rightarrow_hover');
     -unity-background-scale-mode: stretch-to-fill;
     background-color: rgba(0, 0, 0, 0);
@@ -1029,8 +1029,8 @@
     border-right-color: rgba(0, 0, 0, 0);
     border-top-color: rgba(0, 0, 0, 0);
     border-bottom-color: rgba(0, 0, 0, 0);
-    width: 256px;
-    height: 256px;
+    width: 200px;
+    height: 200px;
     -unity-background-image-tint-color: rgb(255, 255, 255);
     rotate: 90deg;
     translate: 0 40px;
@@ -1038,8 +1038,8 @@
 }
 
 .unity-scroller--vertical > .unity-scroller__high-button:active {
-    left: -200px;
-    top: 600px;
+    left: -830%;
+    top: 680px;
     background-image: url('project://database/Assets/Images/Buttons/mini_rightarrow_pressed.png?fileID=2800000&guid=1a3944abd7646ec498d4c72f3941a71f&type=3#mini_rightarrow_pressed');
     -unity-background-scale-mode: stretch-to-fill;
     background-color: rgba(0, 0, 0, 0);
@@ -1047,27 +1047,23 @@
     border-right-color: rgba(0, 0, 0, 0);
     border-top-color: rgba(0, 0, 0, 0);
     border-bottom-color: rgba(0, 0, 0, 0);
-    width: 256px;
-    height: 256px;
+    width: 200px;
+    height: 200px;
     -unity-background-image-tint-color: rgb(255, 255, 255);
     rotate: 90deg;
     translate: 0 40px;
 }
 
 .unity-scroller--vertical > .unity-scroller__low-button {
-    width: 256px;
-    height: 256px;
+    width: 200px;
+    height: 200px;
     background-color: rgba(0, 0, 0, 0);
-    margin-right: 0;
     display: flex;
     justify-content: space-around;
     align-items: flex-start;
     rotate: 90deg;
-    left: -200px;
-    top: -200px;
-    margin-left: 0;
-    margin-top: 0;
-    margin-bottom: 0;
+    left: -830%;
+    top: -185px;
     background-image: url('project://database/Assets/Images/Buttons/mini_leftarrow_normal.png?fileID=2800000&guid=4518f4fe95d84c34ea7308d7ba449feb&type=3#mini_leftarrow_normal');
     -unity-background-image-tint-color: rgb(255, 255, 255);
     border-left-color: rgba(0, 0, 0, 0);
@@ -1077,20 +1073,16 @@
 }
 
 .unity-scroller--vertical > .unity-scroller__low-button:hover {
-    width: 256px;
-    height: 256px;
+    width: 200px;
+    height: 200px;
     background-color: rgba(0, 0, 0, 0);
-    margin-right: 0;
     display: flex;
     justify-content: space-around;
     align-items: flex-start;
-    margin-left: 0;
-    margin-top: 0;
-    margin-bottom: 0;
     background-image: url('project://database/Assets/Images/Buttons/mini_leftarrow_hover.png?fileID=2800000&guid=8a09ceaee94ddb74f8e583881ec2f769&type=3#mini_leftarrow_hover');
     rotate: 90deg;
-    left: -200px;
-    top: -215px;
+    left: -830%;
+    top: -185px;
     translate: 0 -40px;
     transition-duration: 0.3s;
     border-left-color: rgba(0, 0, 0, 0);
@@ -1100,20 +1092,16 @@
 }
 
 .unity-scroller--vertical > .unity-scroller__low-button:active {
-    width: 256px;
-    height: 256px;
+    width: 200px;
+    height: 200px;
     background-color: rgba(0, 0, 0, 0);
-    margin-right: 0;
     display: flex;
     justify-content: space-around;
     align-items: flex-start;
-    margin-left: 0;
-    margin-top: 0;
-    margin-bottom: 0;
     background-image: url('project://database/Assets/Images/Buttons/mini_leftarrow_pressed.png?fileID=2800000&guid=8df616d5ddc007147b81714fe6f1a77e&type=3#mini_leftarrow_pressed');
     rotate: 90deg;
-    left: -200px;
-    top: -215px;
+    left: -830%;
+    top: -185px;
     translate: 0 -40px;
     border-left-color: rgba(0, 0, 0, 0);
     border-right-color: rgba(0, 0, 0, 0);
