@@ -134,7 +134,8 @@ namespace UI
             //Debug.Log(_visualE.name + "OPACITY: " + _visualE.style.opacity);
         }
 
-        protected Label CreateNewLabel(string labelName, string labelText, FontAsset fontAsset, int fontSize, Color fontColor, Color backgroundColor)
+        protected Label CreateNewLabel(string labelName, string labelText, FontAsset fontAsset, int fontSize, 
+            Color fontColor, Color backgroundColor, Texture2D backgroundTexture)
         {
             return new Label()
             {
@@ -145,7 +146,8 @@ namespace UI
                     fontSize = fontSize,
                     unityFontDefinition = new StyleFontDefinition(fontAsset),
                     backgroundColor = backgroundColor,
-                    color = fontColor
+                    color = fontColor, 
+                    backgroundImage = new StyleBackground(backgroundTexture)
                 }
             };
         }

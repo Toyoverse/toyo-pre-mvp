@@ -8,6 +8,7 @@ public class TrainingActionSelectScreen : UIController
     private TrainingModuleScreen _trainingModuleScreen => ScreenManager.Instance.trainingModuleScript;
     public string actionScrollName;
     public FontAsset fontAsset;
+    public Texture2D backgroundLabelTexture;
     public string previewActionName;
     private int _buttonID;
     private Sprite _actionSprite;
@@ -20,7 +21,7 @@ public class TrainingActionSelectScreen : UIController
         foreach (var _action in TrainingConfig.Instance.GetFilteredActions(type))
         {
             var _label = CreateNewLabel(_action.id.ToString(), _action.name, fontAsset, 
-                32, Color.black, Color.white);
+                32, Color.black, Color.white, backgroundLabelTexture);
             _label.RegisterCallback<MouseEnterEvent>(_ 
                 => SetVisualElementSprite(previewActionName, _action.sprite));
             _label.RegisterCallback<MouseUpEvent>(_
