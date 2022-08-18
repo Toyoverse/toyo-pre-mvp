@@ -10706,6 +10706,7 @@ MonoBehaviour:
           m_CallState: 2
   actionScrollName: actionScroll
   fontAsset: {fileID: 0}
+  backgroundLabelTexture: {fileID: 2800000, guid: 50c04c87fd938c3438fe1d7b4e49b845, type: 3}
   previewActionName: actionImage
 --- !u!114 &6214543187492908520
 MonoBehaviour:
