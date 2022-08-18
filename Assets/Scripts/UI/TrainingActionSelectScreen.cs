@@ -21,7 +21,7 @@ public class TrainingActionSelectScreen : UIController
         foreach (var _action in TrainingConfig.Instance.GetFilteredActions(type))
         {
             var _label = CreateNewLabel(_action.id.ToString(), _action.name, fontAsset, 
-                32, Color.black, Color.white, backgroundLabelTexture);
+                32, Color.white, Color.clear, backgroundLabelTexture);
             _label.RegisterCallback<MouseEnterEvent>(_ 
                 => SetVisualElementSprite(previewActionName, _action.sprite));
             _label.RegisterCallback<MouseUpEvent>(_

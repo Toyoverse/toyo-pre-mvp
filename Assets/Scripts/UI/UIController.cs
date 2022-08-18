@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.TextCore.Text;
@@ -147,7 +148,8 @@ namespace UI
                     unityFontDefinition = new StyleFontDefinition(fontAsset),
                     backgroundColor = backgroundColor,
                     color = fontColor, 
-                    backgroundImage = new StyleBackground(backgroundTexture)
+                    backgroundImage = new StyleBackground(backgroundTexture),
+                    paddingLeft = Length.Percent(4)
                 }
             };
         }
