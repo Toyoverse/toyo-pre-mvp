@@ -1,12 +1,14 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Toolkit/Styles/WelcomeStyle.uss?fileID=7433441132597879392&amp;guid=9bf11cd79e85c3845bec6c228384c2d8&amp;type=3#WelcomeStyle" />
     <ui:VisualElement name="ScreenTotalArea" class="backgroundStyle" style="flex-direction: row; align-items: stretch; justify-content: space-between; visibility: visible; flex-shrink: 1; flex-grow: 1;">
-        <ui:GroupBox name="leftBox" class="groupBox" style="justify-content: flex-start;" />
+        <ui:GroupBox name="leftBox" class="groupBox" style="justify-content: flex-start;">
+            <ui:Button display-tooltip-when-elided="true" name="backButton" class="back-botton" />
+        </ui:GroupBox>
         <ui:GroupBox name="middleBox" class="groupBox" style="position: absolute; align-items: center; width: 45%; height: 100%; flex-direction: row; justify-content: space-between; left: 10%;">
             <ui:Button display-tooltip-when-elided="true" name="previousToyoButton" class="Left-Arrow-Button" style="width: 15%; height: 8%; font-size: 28px; left: 12%;" />
             <ui:Label text="Datu" display-tooltip-when-elided="true" name="toyoName" class="toyo-name" style="position: relative; left: -225px; top: -317px; width: 128%; height: 15%;" />
             <ui:Button display-tooltip-when-elided="true" name="nextToyoButton" class="Right-Arrow-Button" style="width: 15%; height: 8%; font-size: 28px; left: -561px;" />
-            <ui:Button display-tooltip-when-elided="true" name="backButton" text="SELECT TOYO" class="purpleButtonStyle" style="left: -139%; top: 467px; width: 512px; height: 128px;" />
+            <ui:Button display-tooltip-when-elided="true" name="selectToyoButton" text="SELECT TOYO" class="purpleButtonStyle" style="left: -139%; top: 467px; width: 512px; height: 128px;" />
         </ui:GroupBox>
         <ui:GroupBox name="rightBox" class="groupBox" style="align-items: stretch; color: rgb(231, 231, 231); width: 40%; justify-content: space-around;">
             <ui:VisualElement name="overviewDescription" style="height: 1070px; width: 998px; align-items: center; justify-content: space-around; flex-direction: column; scale: 0.7 0.8; background-image: url(&apos;project://database/Assets/Images/Buttons/Text_Box_Overview_0002.png?fileID=2800000&amp;guid=c808c153850e54a46a3f1eee3427cdc3&amp;type=3#Text_Box_Overview_0002&apos;); padding-bottom: 60px; padding-top: 0; left: -141px; display: flex;">
