@@ -84,6 +84,7 @@ namespace UI
         public virtual void BackButton() => ScreenManager.Instance.BackToOldScreen();
         
         protected virtual void UpdateUI() {}
+        public void CallUpdateUI() => UpdateUI();
         
         protected void SetVisualElementSprite(string visualElementName, Sprite newSprite)
         {

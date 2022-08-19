@@ -97,6 +97,28 @@ namespace UI
             trainingModuleRewardScript ??= GetComponent<TrainingModuleRewardScreen>();
             trainingActionSelectScript ??= GetComponent<TrainingActionSelectScreen>();
         }
+
+        public UIController GetActualScreen()
+        {
+            if(ScreenState == ScreenState.None)
+                Debug.Log("ScreenState is None.");
+            
+            return ScreenState switch
+            {
+                ScreenState.Metamask => metamaskScript,
+                ScreenState.Welcome => welcomeScript,
+                ScreenState.MainMenu => mainMenuScript,
+                ScreenState.ToyoInfo => toyoInfoScript,
+                ScreenState.BoxInfo => boxInfoScript,
+                ScreenState.OpenBox => openBoxScript,
+                ScreenState.LoreTheme => loreThemeScript,
+                ScreenState.TrainingModule => trainingModuleScript,
+                ScreenState.Unboxing => unboxingScript,
+                ScreenState.TrainingModuleRewards => trainingModuleRewardScript,
+                ScreenState.TrainingActionSelect => trainingActionSelectScript,
+                _ => null
+            };
+        }
     }
 
     public enum ScreenState

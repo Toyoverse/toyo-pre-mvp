@@ -25,6 +25,8 @@ public class BlockchainIntegration : MonoBehaviour
     private string _account;
     private List<Toyo> _toyoList = new();
 
+    private readonly string _openBoxFailMessage = "Metamask Transaction Fail. Click to open box again.";
+
     public async void StartLoginMetamask()
     {
         Loading.StartLoading?.Invoke();
@@ -108,6 +110,7 @@ public class BlockchainIntegration : MonoBehaviour
         ToyoManager.InitializeBoxes();
         ToyoManager.SetPlayerBoxes();
         _databaseConnection.CallGetPlayerToyo(OnToyoListSuccess);
+        Debug.Log("Boxes update success!");
     }
 
     public void CallOpenBox(string json)
@@ -232,6 +235,7 @@ public class BlockchainIntegration : MonoBehaviour
         } catch (Exception e) {
             Debug.LogException(e, this);
             Loading.EndLoading?.Invoke();
+            GenericPopUp.Instance.ShowPopUp(_openBoxFailMessage);
         }
     }
 
@@ -251,6 +255,7 @@ public class BlockchainIntegration : MonoBehaviour
         var _myObject = JsonUtility.FromJson<CallbackToyoDetails>(json);
         _toyoList.Add(_myObject.toyo);
         UpdateToyoDetails(_myObject.toyo);
+        Debug.Log("Toyo Details Success: " + _myObject.toyo.name);
     }
 
     private void UpdateToyoDetails(Toyo toyoWithDetails)
@@ -282,8 +287,9 @@ public class BlockchainIntegration : MonoBehaviour
     private void YesRefresh()
     {
         Loading.StartLoading?.Invoke();
-        _databaseConnection.CallGetPlayerToyo(OnToyoListSuccess);
-        Debug.Log("Refresh!");
+        _databaseConnection.CallGetPlayerBoxes(OnBoxesSuccess);
+        ScreenManager.Instance.GetActualScreen().CallUpdateUI();
+        Debug.Log("Refresh clicked!");
     }
 
     private void GoToNextScreen()
