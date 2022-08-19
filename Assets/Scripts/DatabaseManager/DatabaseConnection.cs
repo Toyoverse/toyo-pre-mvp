@@ -37,6 +37,9 @@ namespace Database
 
         [SerializeField]
         private string openBoxSufixURL = "/player/box/";
+
+        [SerializeField] private string trainingBaseURL = "https://ts-trainning-web-bff.herokuapp.com";
+        [SerializeField] private string registerTrainingSuffixURL = "/training-events";
         
         private void Awake()
         {
@@ -93,6 +96,13 @@ namespace Database
             
             ToyoManager.StartGame();
         }
+
+        public void PostTrainingConfig(Action<string> callback, string jsonString)
+        {
+            URL = trainingBaseURL + registerTrainingSuffixURL;
+            var _request = GeneratePost(URL, jsonString, "eventConfig");
+            StartCoroutine(ProcessRequestCoroutine(callback, _request));
+        }
         
         private UnityWebRequest GenerateRequest (HTTP_REQUEST requestType, List<(string,string)> parameters = null) {
             
@@ -104,7 +114,7 @@ namespace Database
                 _ => throw new ArgumentOutOfRangeException(nameof(requestType), requestType, null)
             };
         }
-        
+
         private UnityWebRequest GenerateGet(string uri)
         {
             UnityWebRequest _requestGet = UnityWebRequest.Get(uri);
@@ -119,6 +129,17 @@ namespace Database
             if (parameters != null)
                 foreach (var _parameter in parameters)
                     _form.AddField(_parameter.Item1, _parameter.Item2);
+
+            UnityWebRequest _requestPost = UnityWebRequest.Post (uri, _form);
+            _requestPost.SetRequestHeader("Authorization", PlayerPrefs.GetString("TokenJWT"));
+            return _requestPost;
+        }
+        
+        private UnityWebRequest GeneratePost(string uri, string jsonString, string title)
+        {
+            WWWForm _form = new WWWForm();
+            
+            _form.AddField(title, jsonString);
 
             UnityWebRequest _requestPost = UnityWebRequest.Post (uri, _form);
             _requestPost.SetRequestHeader("Authorization", PlayerPrefs.GetString("TokenJWT"));

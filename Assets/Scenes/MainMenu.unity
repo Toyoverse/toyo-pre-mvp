@@ -556,10 +556,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 241d492b8b8ec0c46a18118d7067ee5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disableTrainingModule: 0
+  disableTrainingModule: 1
   ignoreTrainingTimer: 0
   trainingConfigSo: {fileID: 11400000, guid: ba24712e20df32c4c8b0c530c796f2e8, type: 2}
-  selectedToyoPersona: {fileID: 0}
   possibleActions: []
   blowConfigs: []
   cardRewards: []
@@ -1079,6 +1078,8 @@ MonoBehaviour:
   toyosDetailSufixURL: /player/toyo/
   closedBoxSufixURL: /player/box/closedbox/
   openBoxSufixURL: /player/box/
+  trainingBaseURL: https://ts-trainning-web-bff.herokuapp.com
+  registerTrainingSuffixURL: /training-events
 --- !u!4 &1082540500
 Transform:
   m_ObjectHideFlags: 0
@@ -1143,7 +1144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1fe579e10b54639a87451d7de029966, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skipLogin: 1
+  skipLogin: 0
   rememberMe: {fileID: 0}
 --- !u!1 &1084469477
 GameObject:

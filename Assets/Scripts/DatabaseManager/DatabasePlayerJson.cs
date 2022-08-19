@@ -197,5 +197,21 @@ namespace Database
         public string expiresAt;
     }
 
-
+    [Serializable]
+    public class TrainingConfigJSON
+    {
+        public string name;
+        public string startAt;
+        public string endAt;
+        public string story;
+        public bool isOngoing;
+        public float bondReward;
+        public float bonusBondReward;
+        public string toyoTrainingConfirmationMessage;
+        public string inTrainingMessage;
+        public string losesMessage;
+        public string rewardMessage;
+        public string[] blows;
+        public BlowConfig[] blowsConfig;
+    }
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static TimeTools;
 
 [Serializable]
 public class TrainingConfig : Singleton<TrainingConfig>
@@ -146,7 +147,7 @@ public class TrainingConfig : Singleton<TrainingConfig>
     {
         foreach (var _blowConfig in blowConfigs)
         {
-            if(_blowConfig.blows != selectedActionsDict.Count)
+            if(_blowConfig.qty != selectedActionsDict.Count)
                 continue;
             SetSelectedBlowConfig(_blowConfig);
             return;
@@ -227,57 +228,8 @@ public class TrainingConfig : Singleton<TrainingConfig>
     
     private void SetEndTrainingTimeStamp(long timeStamp) => endTrainingTimeStamp = timeStamp;
 
-    //TIMESTAMP METHODS
-    private readonly DateTime _epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-    protected long GetTimeStampFromDate(DateTime date)
-    {
-        var _elapsedTime = date - _epoch;
-        return (long)_elapsedTime.TotalSeconds;
-    }
-
-    protected long GetActualTimeStamp()
-        => (long)System.DateTime.UtcNow.Subtract(new System.DateTime(
-            1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalSeconds;
-    
-    private void TestEpoch() 
-    {
-        Debug.Log("GetActualTimeStamp: "+ GetActualTimeStamp());
-        Debug.Log("GetTimeStampFromDate DateTime.UtcNow: "+ GetTimeStampFromDate(DateTime.UtcNow));
-        Debug.Log("GetFinishTrainingEpoch (6h): "+ GetFinishTrainingEpoch(GetActualTimeStamp(), 360));
-    }
-
     private long GetFinishTrainingEpoch(long startTrainingEpoch, int trainingDurationInMinutes) 
         => startTrainingEpoch + GetSecondsInMinutes(trainingDurationInMinutes);
-
-    private int GetSecondsInMinutes(int minutes)
-    {
-        var _result = 0;
-        while (minutes > 0)
-        {
-            _result += 60;
-            minutes--;
-        }
-        return _result;
-    }
-
-    private int ConvertSecondsInMinutes(int seconds)
-    {
-        var _result = 0;
-        while (seconds > 60)
-        {
-            _result++;
-            seconds -= 60;
-        }
-        return _result;
-    }
-
-    private long ConvertDateInfoInTimeStamp(DateInfo dateInfo)
-    {
-        var _dateTime = new DateTime(dateInfo.year, dateInfo.month, dateInfo.day, 
-            dateInfo.hour, dateInfo.minute, dateInfo.second, DateTimeKind.Utc);
-        return GetTimeStampFromDate(_dateTime);
-    }
-    //
 
     public void AddToSelectedActionsDict(int key, TrainingActionSO action)
     {

@@ -264,15 +264,15 @@ public class TrainingModuleScreen : UIController
         var _blowConfig = TrainingConfig.Instance.GetSelectedBlowConfig();
         var _actualPercent = (((float)_blowConfig.duration - TrainingConfig.Instance.GetTrainingTimeRemainInMinutes())
                               / _blowConfig.duration) * 100;
-        var _unitPercent = 100 / _blowConfig.blows;
-        for (var _i = 0; _i < _blowConfig.blows; _i++)
+        var _unitPercent = 100 / _blowConfig.qty;
+        for (var _i = 0; _i < _blowConfig.qty; _i++)
         {
             if (_actualPercent > (_unitPercent * (_i + 1)))
             {
                 GetProgressActiveImages()[_i].fillAmount = 0;
                 continue;
             }
-            var _inverseFill = (_actualPercent / (_blowConfig.blows - _i)) / 100;
+            var _inverseFill = (_actualPercent / (_blowConfig.qty - _i)) / 100;
             var _correctFill = _inverseFill != 0 ? 1 - _inverseFill : 1;
             GetProgressActiveImages()[_i].fillAmount = _correctFill;
             break;

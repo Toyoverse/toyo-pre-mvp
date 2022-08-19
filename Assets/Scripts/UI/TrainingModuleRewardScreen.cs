@@ -146,7 +146,7 @@ public class TrainingModuleRewardScreen : UIController
     {
         var _trainingResults = TrainingConfig.Instance.CompareCombination(GetTrainingActions());
         var _hits = _trainingResults.Count(result => result == TRAINING_RESULT.TOTALLY_CORRECT);
-        return _hits == TrainingConfig.Instance.GetSelectedBlowConfig().blows;
+        return _hits == TrainingConfig.Instance.GetSelectedBlowConfig().qty;
     }
 
     private bool WinCardWithExactAmountOfMoves()

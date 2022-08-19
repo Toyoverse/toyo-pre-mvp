@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3020270f1234b574e8857d492173beb3, type: 3}
   m_Name: TrainingConfigSO
   m_EditorClassIdentifier: 
-  eventTitle: TRAINING MODULE SEASON ONE!
+  eventTitle: TrainingModule_Template_Test
   inTrainingMessage: Toyo in training...
   rewardTitle: Default Title
   losesMessage: Discover the correct combination to unlock this week's secret collectible.
@@ -51,12 +51,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 01a87f46e947e714f8ddb1dcb46d47db, type: 2}
   minimumActionsToPlay: 3
   blowConfigs:
-  - blows: 3
+  - qty: 3
     duration: 360
-  - blows: 4
+  - qty: 4
+    duration: 380
+  - qty: 5
     duration: 420
-  - blows: 5
-    duration: 480
   cardRewards: []
   boundReward: 0.35
   bonusBoundReward: 1.35
+  id: 
