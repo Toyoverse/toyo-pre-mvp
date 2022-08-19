@@ -10275,6 +10275,22 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - name: selectToyoButton
+    onClickEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8643416932187837816}
+          m_TargetAssemblyTypeName: UI.ToyoInfoScreen, Assembly-CSharp
+          m_MethodName: SelectToyoButton
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   overviewTabName: overviewDescription
   toyoTabName: toyoPartsDescription
   carousel: {fileID: 2930058948853807656}

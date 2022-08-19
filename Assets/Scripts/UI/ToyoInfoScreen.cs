@@ -30,7 +30,6 @@ namespace UI
 
         protected override void UpdateUI()
         {
-            UpdateSelectedToyo();
             _carouselToyoAnimator.PlayAnimation();
             SetToyoStats(_carouselToyoObject);
             SetToyoRarity(_carouselToyoObject.GetToyoRarity());
@@ -48,6 +47,13 @@ namespace UI
         
         private ToyoObject GetSelectedToyoFromCarousel() 
             => carousel.CurrentSelectedObject.GetComponent<ToyoObject>();
+        
+        public void SelectToyoButton()
+        {
+            UpdateSelectedToyo();
+            UpdateUI();
+            BackButton();
+        }
     }
 }
 
