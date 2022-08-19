@@ -5,7 +5,6 @@ using System.Linq;
 using Database;
 using UnityEngine;
 using UnityEngine.UIElements;
-using Box = Database.Box;
 
 namespace UI
 {
@@ -66,6 +65,28 @@ namespace UI
             Loading.StartLoading?.Invoke();
             ToyoManager.SetSelectedBox(carousel.CurrentSelectedObject.gameObject);
             DatabaseConnection.Instance.GetOpenBox(DatabaseConnection.Instance.BlockchainIntegration.CallOpenBox, GetBoxSelected().boxList[0].objectId);
+        }
+
+        public void TestOpenBox()
+        {
+            var json = "{     \"objectId\": \"ZWliRHUxbEFsVQ==\",             \"name\": \"Don Barko\",             \"hasTenParts\": true,             \"isToyoSelected\": false,             \"createdAt\": \"2022-07-07T15:34:16.518Z\",             \"updateAt\": \"2022-07-07T15:34:16.518Z\",             \"tokenId\": \"5230\",             \"toyoPersonaOrigin\": {                 \"objectId\": \"R8xYTwz4xl\",                 \"name\": \"Don Barko\",                 \"rarityId\": 2,                 \"rarity\": \"UNCOMMON\",                 \"thumbnail\": \"https://toyoverse.com/nft_thumbs/toyos/don-barko.png\",                 \"video\": \"https://toyoverse.com/nft_thumbs/toyos/don-barko.mp4\",                 \"bodyType\": 3,                 \"createdAt\": \"2022-07-01T01:04:12.482Z\",                 \"updateAt\": \"2022-07-01T01:04:12.482Z\"             }          }";
+            
+            var _myBox = JsonUtility.FromJson<Toyo>(json);
+
+            TOYO_RARITY myToyoRarity = ParseEnums.StringToEnum<TOYO_RARITY>(_myBox.toyoPersonaOrigin.rarity);
+            //GetBoxSelected().unboxingVfx.SetRarityColor(myToyoRarity);
+            Loading.EndLoading?.Invoke();
+            ToyoManager.Instance.AddToyoToToyoObjectList(_myBox);
+
+            carousel.SetFirstSelectedObject();
+            SetDescriptionText(GetBoxDescription(carousel.allObjects[0].GetComponent<BoxConfig>()));
+            SetTitleText(GetBoxTitle(carousel.allObjects[0].GetComponent<BoxConfig>()));
+            SetBoxCount(carousel.allObjects[0].GetComponent<BoxConfig>().Quantity);
+
+            ToyoManager.SetSelectedBox(carousel.allObjects[0].gameObject);
+            
+            ScreenManager.Instance.GoToScreen(ScreenState.Unboxing);
+            
         }
 
         public void CallOpenBoxAnimation(string json)

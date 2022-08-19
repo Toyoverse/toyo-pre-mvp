@@ -57,9 +57,9 @@ public class ToyoObject : MonoBehaviour
     
     public TOYO_RARITY GetToyoRarity() => ConvertStringToRarity(_rarity);
 
-    public int GetToyoLevel() => _toyoTotalPartsLevel / _numberOfParts;
+    public int GetToyoLevel() => _numberOfParts != 0 ? _toyoTotalPartsLevel / _numberOfParts : _toyoTotalPartsLevel;
 
-    public int GetToyoHearthBound() => _toyoTotalPartsHearthbound / _numberOfParts;
+    public int GetToyoHearthBound() => _numberOfParts != 0 ? _toyoTotalPartsHearthbound / _numberOfParts : _toyoTotalPartsHearthbound;
     
     void SetTotalStats(List<ToyoPart> parts)
     {

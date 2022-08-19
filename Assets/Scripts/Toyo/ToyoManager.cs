@@ -43,9 +43,12 @@ public class ToyoManager : Singleton<ToyoManager>
 
     public void AddToyoToToyoObjectList(Toyo toyo)
     {
+        GetSelectedToyo().transform.SetParent(carouselToyo.StartingPosition);
         GetSelectedToyo().IsToyoSelected = false;
         toyo.isToyoSelected = true;
-        InstantiateAndConfigureToyo(toyo, ref _toyoList);
+        var toyoPrefab = InstantiateAndConfigureToyo(toyo, ref _toyoList);
+        var databaseToyoList = Instance.Player.toyos.ToList();
+        carouselToyo.SetFirstSelectedObject	(toyoPrefab.transform, databaseToyoList.Count - 1);
     }
 
     public static void SetSelectedBox(GameObject selectedBox) => Instance._selectedBox = selectedBox;
