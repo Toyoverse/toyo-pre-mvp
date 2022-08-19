@@ -30,18 +30,23 @@ namespace UI
 
         protected override void UpdateUI()
         {
+            UpdateInfoCarouselSelectedToyo();
+        }
+
+        private void UpdateInfoCarouselSelectedToyo()
+        {
+            _carouselToyoObject = GetSelectedToyoFromCarousel();
+            _carouselToyoAnimator = _carouselToyoObject.GetComponentInChildren<SpriteAnimator>();
             _carouselToyoAnimator.PlayAnimation();
             SetToyoStats(_carouselToyoObject);
             SetToyoRarity(_carouselToyoObject.GetToyoRarity());
-            SetToyoId(GetSelectedToyoFromCarousel().objectId);
+            SetToyoId(GetSelectedToyoFromCarousel().tokenId);
             SetTextInLabel(toyoNameField, _carouselToyoObject.GetToyoName());
         }
 
-        private void UpdateSelectedToyo()
+        private void SelectCarouselToyo()
         {
             ToyoManager.GetSelectedToyo().IsToyoSelected = false;
-            _carouselToyoObject = GetSelectedToyoFromCarousel();
-            _carouselToyoAnimator = _carouselToyoObject.GetComponentInChildren<SpriteAnimator>();
             _carouselToyoObject.IsToyoSelected = true;
         }
         
@@ -50,7 +55,7 @@ namespace UI
         
         public void SelectToyoButton()
         {
-            UpdateSelectedToyo();
+            SelectCarouselToyo();
             UpdateUI();
             BackButton();
         }
