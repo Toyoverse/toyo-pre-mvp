@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Database;
+using Unity.VisualScripting;
 using UnityEngine;
 using static TimeTools;
 
@@ -36,7 +37,9 @@ public class TrainingConfigSO : ScriptableObject
     public void SendToServer()
     {
         Debug.Log("Send TrainingConfig to server initializing...");
-        DatabaseConnection.Instance.PostTrainingConfig(SendCallback, GetTrainingParametersInJSONString());
+        var _databaseConnection = new DatabaseConnection();
+        //DatabaseConnection.Instance.PostTrainingConfig(SendCallback, GetTrainingParametersInJSONString());
+        _databaseConnection.PostTrainingConfig(SendCallback, GetTrainingParametersInJSONString());
     }
 
     private void SendCallback(string json)

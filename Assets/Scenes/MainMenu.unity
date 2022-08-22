@@ -881,7 +881,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 241d492b8b8ec0c46a18118d7067ee5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disableTrainingModule: 1
+  disableTrainingModule: 0
   ignoreTrainingTimer: 0
   trainingConfigSo: {fileID: 11400000, guid: ba24712e20df32c4c8b0c530c796f2e8, type: 2}
   possibleActions: []
@@ -1469,7 +1469,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1fe579e10b54639a87451d7de029966, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skipLogin: 0
+  skipLogin: 1
   rememberMe: {fileID: 0}
 --- !u!1 &1084469477
 GameObject:

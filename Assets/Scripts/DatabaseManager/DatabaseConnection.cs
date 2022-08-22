@@ -101,7 +101,7 @@ namespace Database
         {
             URL = trainingBaseURL + registerTrainingSuffixURL;
             var _request = GeneratePost(URL, jsonString, "eventConfig");
-            StartCoroutine(ProcessRequestCoroutine(callback, _request));
+            RunCoroutineInEditor.StartCoroutine(ProcessRequestCoroutine(callback, _request));
         }
         
         private UnityWebRequest GenerateRequest (HTTP_REQUEST requestType, List<(string,string)> parameters = null) {
@@ -160,6 +160,9 @@ namespace Database
                 /*Debug.Log("Request: " + URL);
                 Debug.Log("json: " + _json);*/
             }
+
+            yield return new WaitForSeconds(2);
+            request.Dispose();
         }
         
         private void OnConnectionSuccess(string json)
