@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: ToyoPersona_Uzi
   m_EditorClassIdentifier: 
   objectId: 3VYo3WbxmBr
-  toyoName: Sphynx
+  toyoName: Uzi
   toyoPrefab: {fileID: 1945413062895215098, guid: 128b24cd3263b654ca12cfeb4a537917, type: 3}
