@@ -66,7 +66,7 @@ public class TrainingModuleScreen : UIController
     {
         if (ScreenManager.ScreenState == ScreenState.TrainingActionSelect)
             return;
-        TrainingConfig.Instance.ResetAllTrainingModule( /*ClearPossibleActionsEvents*/);
+        TrainingConfig.Instance?.ResetAllTrainingModule( /*ClearPossibleActionsEvents*/);
         ClearActionsImages();
     }
 
