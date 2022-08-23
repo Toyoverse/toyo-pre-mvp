@@ -34,7 +34,7 @@ namespace UI
 
         public override void DisableScreen()
         {
-            if (TrainingConfig.Instance.disableTrainingModule)
+            if (TrainingConfig.Instance != null && TrainingConfig.Instance.disableTrainingModule)
                 DisableButtonEvents(trainingModuleButtons);
             base.DisableScreen();
         }
