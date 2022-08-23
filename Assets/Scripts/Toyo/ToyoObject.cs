@@ -50,6 +50,9 @@ public class ToyoObject : MonoBehaviour
     private int _numberOfParts;
     private string _rarity;
     private float _minimunToyoStat = 9.0f; //Minimun value so it doesn't break the progress bar.
+    
+    private int _highLevelInToyoParts;
+    private int _fixedHeartBound = 20;
 
     public float GetToyoStat(TOYO_STAT stat) => _toyoStats[stat] > _minimunToyoStat ? _toyoStats[stat] : _minimunToyoStat;
 
@@ -57,9 +60,9 @@ public class ToyoObject : MonoBehaviour
     
     public TOYO_RARITY GetToyoRarity() => ConvertStringToRarity(_rarity);
 
-    public int GetToyoLevel() => _numberOfParts != 0 ? _toyoTotalPartsLevel / _numberOfParts : _toyoTotalPartsLevel;
+    public int GetToyoLevel() => _highLevelInToyoParts; /*_numberOfParts != 0 ? _toyoTotalPartsLevel / _numberOfParts : _toyoTotalPartsLevel;*/
 
-    public int GetToyoHearthBound() => _numberOfParts != 0 ? _toyoTotalPartsHearthbound / _numberOfParts : _toyoTotalPartsHearthbound;
+    public int GetToyoHearthBound() => _fixedHeartBound; /*_numberOfParts != 0 ? _toyoTotalPartsHearthbound / _numberOfParts : _toyoTotalPartsHearthbound;*/
     
     void SetTotalStats(List<ToyoPart> parts)
     {
@@ -78,6 +81,17 @@ public class ToyoObject : MonoBehaviour
 
         foreach (TOYO_STAT _stat in Enum.GetValues(typeof(TOYO_STAT)))
             _toyoStats[_stat] *= _bonusStats[_stat] > 0 ? _bonusStats[_stat] : 1;
+    }
+
+    private int GetHighLevelInToyoParts(List<ToyoPart> parts)
+    {
+        var _result = 0;
+        foreach (var _part in parts)
+        {
+            if (_part.toyoLevel > _result)
+                _result = _part.toyoLevel;
+        }
+        return _result;
     }
     
     private float GetStatValue(TOYO_STAT stat, ToyoPart part, bool isBonusStat = false)
@@ -111,6 +125,9 @@ public class ToyoObject : MonoBehaviour
         }
         else
             Debug.LogError(toyo.name + ".parts is null.");
+
+        if (toyo.parts != null) 
+            _highLevelInToyoParts = GetHighLevelInToyoParts(toyo.parts.ToList());
 
         _rarity = toyo.toyoPersonaOrigin.rarity;
         
