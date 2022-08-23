@@ -139,7 +139,7 @@ public class TrainingConfig : Singleton<TrainingConfig>
             if (position == _i)
                 _result += 1;
         }
-        Debug.Log(_result);
+        //Debug.Log(_result);
         return _result;
     }
 
@@ -154,7 +154,7 @@ public class TrainingConfig : Singleton<TrainingConfig>
         }
 
         SetSelectedBlowConfig(null);
-        Debug.Log("BlowConfig not found. (actionsCount: " + selectedActionsDict.Count);
+        Debug.Log("BlowConfig not found. - ActionsCount: " + selectedActionsDict.Count);
     }
 
     private void SetBlowConfigCalculationValues()

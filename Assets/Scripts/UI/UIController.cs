@@ -72,7 +72,7 @@ namespace UI
                         });
                 }
                 else
-                    Debug.Log(_cb.name + " not found in " + uiDoc.name);
+                    Debug.LogWarning(_cb.name + " not found in " + uiDoc.name);
             }
         }
 

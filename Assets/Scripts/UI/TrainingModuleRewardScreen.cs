@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UI;
 using UnityEngine;
-using UnityEngine.UIElements;
+using Image = UnityEngine.UI.Image;
 
 public class TrainingModuleRewardScreen : UIController
 {
@@ -13,11 +13,13 @@ public class TrainingModuleRewardScreen : UIController
     public string rewardValueName = "rewardValue";
     public string rewardImageName = "cardImage";
     public string rewardDescriptionName = "rewardDescription";
-    public string[] combinationPoolNames;
-    public string[] combinationPoolImageNames;
-    public string[] borderCorrectImageNames;
-    public string[] borderWrongPositionImageNames;
-    public string[] borderTotallyWrongImageNames;
+    
+    public GameObject[] combinationPoolObjects;
+    public Image[] combinationPoolImages;
+    public Image[] loadingPoolImages;
+    public GameObject[] correctPoolObjects;
+    public GameObject[] wrongPositionObjects;
+    public GameObject[] totallyWrongObjects;
 
     private string _eventTitle => TrainingConfig.Instance.eventTitle;
 
@@ -47,8 +49,16 @@ public class TrainingModuleRewardScreen : UIController
     {
         //TODO: Claim Rewards
         Debug.Log("Claim Rewards");
-        ScreenManager.Instance.GoToScreen(ScreenState.MainMenu);
         TrainingConfig.Instance.SetInTraining(false);
+        CallRewardsTransaction(GoToMainMenu);
+    }
+    
+    private void GoToMainMenu() => ScreenManager.Instance.GoToScreen(ScreenState.MainMenu);
+
+    private void CallRewardsTransaction(Action callback)
+    {
+        //TODO
+        callback?.Invoke();
     }
 
     private void ApplySelectedActions()
@@ -56,16 +66,16 @@ public class TrainingModuleRewardScreen : UIController
         //TODO: Get selected actions to database
         for (var _i = 0; _i < GetTrainingActions().Count; _i++)
         {
-            EnableVisualElement(combinationPoolNames[_i]);
-            //Root.Q<VisualElement>(combinationPoolNames[_i]).style.display = DisplayStyle.Flex;
-            SetVisualElementSprite(combinationPoolImageNames[_i], GetTrainingActions()[_i].sprite);
+            combinationPoolObjects[_i].SetActive(true);
+            var _actionSprite = GetTrainingActions()[_i].sprite;
+            combinationPoolImages[_i].sprite = _actionSprite;
+            loadingPoolImages[_i].sprite = _actionSprite;
         }
     }
 
     private void ShowRewards()
     {
         SetTextInLabel(rewardTitleName, TrainingConfig.Instance.rewardTitle);
-        //SetTextInLabel(rewardValueName, TrainingConfig.Instance.GetSelectedBlowConfig().reward + " " + _coinPrefix);
         SetTextInLabel(rewardValueName, TrainingConfig.Instance.boundReward + " " + _coinPrefix);
         CheckAndRewardCard();
     }
@@ -76,12 +86,21 @@ public class TrainingModuleRewardScreen : UIController
         var _results = TrainingConfig.Instance.CompareCombination(GetTrainingActions());
         for (var _i = 0; _i < _results.Count; _i++)
         {
-            EnableVisualElement(_results[_i] switch
+            switch (_results[_i])
             {
-                TRAINING_RESULT.TOTALLY_WRONG => borderTotallyWrongImageNames[_i],
-                TRAINING_RESULT.WRONG_POSITION => borderWrongPositionImageNames[_i],
-                TRAINING_RESULT.TOTALLY_CORRECT => borderCorrectImageNames[_i]
-            });
+                case TRAINING_RESULT.TOTALLY_WRONG:
+                    totallyWrongObjects[_i].SetActive(true);
+                    loadingPoolImages[_i].gameObject.SetActive(true);
+                    break;
+                case TRAINING_RESULT.WRONG_POSITION:
+                    wrongPositionObjects[_i].SetActive(true);
+                    loadingPoolImages[_i].gameObject.SetActive(true);
+                    break;
+                case TRAINING_RESULT.TOTALLY_CORRECT:
+                    loadingPoolImages[_i].gameObject.SetActive(false);
+                    correctPoolObjects[_i].SetActive(true);
+                    break;
+            }
         }
     }
 
@@ -89,10 +108,9 @@ public class TrainingModuleRewardScreen : UIController
     {
         for (var _i = 0; _i < GetTrainingActions().Count; _i++)
         {
-            Debug.Log("Disable Borders " + _i);
-            DisableVisualElement(borderTotallyWrongImageNames[_i]);
-            DisableVisualElement(borderWrongPositionImageNames[_i]);
-            DisableVisualElement(borderCorrectImageNames[_i]);
+            correctPoolObjects[_i].SetActive(false);
+            wrongPositionObjects[_i].SetActive(false);
+            totallyWrongObjects[_i].SetActive(false);
         }
     }
 
@@ -153,7 +171,6 @@ public class TrainingModuleRewardScreen : UIController
     {
         var _trainingResults = TrainingConfig.Instance.CompareCombination(GetTrainingActions());
         var _hits = _trainingResults.Count(result => result == TRAINING_RESULT.TOTALLY_CORRECT);
-        //return _hits == TrainingConfig.Instance.correctCombination.actions.Length;
-        return _hits == TrainingConfig.Instance.GetCardReward().correctCombination.Length;
+        return _hits == TrainingConfig.Instance.GetCardReward()?.correctCombination?.Length;
     }
 }
