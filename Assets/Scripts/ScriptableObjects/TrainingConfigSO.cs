@@ -36,26 +36,20 @@ public class TrainingConfigSO : ScriptableObject
 
     public void SendToServer()
     {
-        Debug.Log("Send TrainingConfig to server initializing...");
-        var _databaseConnection = new DatabaseConnection();
-        //DatabaseConnection.Instance.PostTrainingConfig(SendCallback, GetTrainingParametersInJSONString());
-        _databaseConnection.PostTrainingConfig(SendCallback, GetTrainingParametersInJSONString());
+        Debug.Log("Send TrainingConfig to server in JSON: " + GetTrainingParametersInJSONString());
+        DatabaseConnection.Instance.PostTrainingConfig(ResultCallback, GetTrainingParametersInJSONString());
     }
 
-    private void SendCallback(string json)
+    private void ResultCallback(string json)
         => Debug.Log("TrainingConfig posted to server successfully!");
 
     private string GetTrainingParametersInJSONString()
     {
-        var _blows = new string[possibleActions.Length];
-        for (var _i = 0; _i < possibleActions.Length; _i++)
-            _blows[_i] = possibleActions[_i].id.ToString();
-
-        var _trainingConfigJSON = new TrainingConfigJSON
+        var _trainingConfigJson = new TrainingConfigJSON()
         {
             name = eventTitle,
-            startAt = ConvertDateInfoInTimeStamp(startEventDateInfo).ToString(),
-            endAt = ConvertDateInfoInTimeStamp(endEventDateInfo).ToString(),
+            startAt = (int)ConvertDateInfoInTimeStamp(startEventDateInfo),
+            endAt = (int)ConvertDateInfoInTimeStamp(endEventDateInfo),
             story = eventStory,
             isOngoing = false,
             bondReward = this.boundReward,
@@ -64,21 +58,21 @@ public class TrainingConfigSO : ScriptableObject
             inTrainingMessage = this.inTrainingMessage,
             losesMessage = this.losesMessage,
             rewardMessage = alreadyWon,
-            blows = _blows,
+            blows = GetPossibleActionsStrings(),
             blowsConfig = blowConfigs
         };
 
-        var _jsonString = JsonUtility.ToJson(_trainingConfigJSON);
+        var _jsonString = JsonUtility.ToJson(_trainingConfigJson);
         return _jsonString;
     }
 
-    private List<int> GetPossibleActionsIdList()
+    private string[] GetPossibleActionsStrings()
     {
-        var _list = new List<int>();
-        foreach (var _trainingActionSo in possibleActions) 
-            _list.Add(_trainingActionSo.id);
+        var _blows = new string[possibleActions.Length];
+        for (var _i = 0; _i < possibleActions.Length; _i++)
+            _blows[_i] = possibleActions[_i].id.ToString();
 
-        return _list;
+        return _blows;
     }
 }
 

@@ -52,7 +52,7 @@ public class TrainingModuleScreen : UIController
     {
         base.ActiveScreen();
         ResetCombinationPool();
-        CheckAndApplyInTrainingActions();
+        ApplyInTrainingActions();
         UpdateUI();
     }
 
@@ -150,7 +150,7 @@ public class TrainingModuleScreen : UIController
         combPoolObjects[0].SetActive(true);
     }
 
-    private void CheckAndApplyInTrainingActions()
+    private void ApplyInTrainingActions()
     {
         DisableAllProgressImages();
         if (!TrainingConfig.Instance.IsInTraining())

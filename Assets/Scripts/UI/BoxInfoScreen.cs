@@ -64,7 +64,7 @@ namespace UI
         {
             Loading.StartLoading?.Invoke();
             ToyoManager.SetSelectedBox(carousel.CurrentSelectedObject.gameObject);
-            DatabaseConnection.Instance.GetOpenBox(DatabaseConnection.Instance.BlockchainIntegration.CallOpenBox, GetBoxSelected().boxList[0].objectId);
+            DatabaseConnection.Instance.GetOpenBox(DatabaseConnection.Instance.blockchainIntegration.CallOpenBox, GetBoxSelected().boxList[0].objectId);
         }
 
         public void TestOpenBox()

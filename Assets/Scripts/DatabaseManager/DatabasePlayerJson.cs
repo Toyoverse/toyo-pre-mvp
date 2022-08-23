@@ -201,8 +201,8 @@ namespace Database
     public class TrainingConfigJSON
     {
         public string name;
-        public string startAt;
-        public string endAt;
+        public int startAt;
+        public int endAt;
         public string story;
         public bool isOngoing;
         public float bondReward;

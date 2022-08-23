@@ -14,7 +14,7 @@ namespace UI
 
         public void LoginButton()
         {
-            DatabaseConnection.Instance.BlockchainIntegration.StartLoginMetamask();
+            DatabaseConnection.Instance.blockchainIntegration.StartLoginMetamask();
         }
     }
 }
