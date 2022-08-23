@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1082,7 +1082,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.0839329, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1394,15 +1394,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDebug: 0
-  BlockchainIntegration: {fileID: 1082540502}
+  blockchainIntegration: {fileID: 1082540502}
   loginURL: https://players-web-bff-dev.herokuapp.com/player/login
   baseURL: https://ts-toyo-web-bff.herokuapp.com
   openBoxBaseURL: https://ts-unboxing-web-bff.herokuapp.com
-  boxesSufixURL: /player/boxes
-  toyosSufixURL: /player/toyos
-  toyosDetailSufixURL: /player/toyo/
-  closedBoxSufixURL: /player/box/closedbox/
-  openBoxSufixURL: /player/box/
+  boxesSuffixURL: /player/boxes
+  toyosSuffixURL: /player/toyos
+  toyosDetailSuffixURL: /player/toyo/
+  closedBoxSuffixURL: /player/box/closedbox/
+  openBoxSuffixURL: /player/box/
   trainingBaseURL: https://ts-trainning-web-bff.herokuapp.com
   registerTrainingSuffixURL: /training-events
 --- !u!4 &1082540500
