@@ -12,6 +12,13 @@ using Vector3 = UnityEngine.Vector3;
 
 public class CarouselManager : MonoBehaviour
 {
+    private enum CAROUSEL_UNDER_4_POS
+    {
+        LEFT,
+        CENTRE,
+        RIGHT
+    }
+    
     public float carouselOffset = 5.0f;
 
     [SerializeField]
@@ -32,6 +39,8 @@ public class CarouselManager : MonoBehaviour
     [SerializeField] private Vector3 _backPlatformRotation;
 
     public event Action OnEndRotation;
+
+    private CAROUSEL_UNDER_4_POS _carouselUnder4Pos;
     
     public void SetFirstSelectedObject(Transform objectToSelect = null, int currentSelectedIndex = 0)
     { 
@@ -67,6 +76,8 @@ public class CarouselManager : MonoBehaviour
 
         if (is2DCarousel)
         {
+            if (allObjects.Count < 4)
+                _carouselUnder4Pos = CAROUSEL_UNDER_4_POS.CENTRE;
             int index = 0;
             foreach (var item in allObjects)
             {
@@ -197,6 +208,12 @@ public class CarouselManager : MonoBehaviour
 
         if (allObjects.Count <= 1)
             return;
+        if(allObjects.Count == 2 && _currentSelectedIndex == 0)
+            return;
+        if(allObjects.Count < 4 && _carouselUnder4Pos == CAROUSEL_UNDER_4_POS.RIGHT)
+            return;
+
+        _carouselUnder4Pos++;
 
         GetHiddenObjectFromList(allObjects, true);
         
@@ -221,6 +238,12 @@ public class CarouselManager : MonoBehaviour
         
         if (allObjects.Count <= 1)
             return;
+        if(allObjects.Count == 2 && _currentSelectedIndex == 1)
+            return;
+        if(allObjects.Count < 4 && _carouselUnder4Pos == CAROUSEL_UNDER_4_POS.LEFT)
+            return;
+
+        _carouselUnder4Pos--;
         
         GetHiddenObjectFromList(allObjects, false);
 
