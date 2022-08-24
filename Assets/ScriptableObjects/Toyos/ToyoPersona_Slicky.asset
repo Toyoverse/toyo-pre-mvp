@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectId: 3VYo3WbxmBr
   toyoName: Slicky
-  toyoPrefab: {fileID: 1945413062895215098, guid: d518f6864131fa34ea169d6f7d319dc7, type: 3}
+  toyoPrefab: {fileID: 1945413062895215098, guid: 2c965c9b4e2968848a63bb86d955e109, type: 3}
