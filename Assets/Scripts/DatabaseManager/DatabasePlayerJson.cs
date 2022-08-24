@@ -117,7 +117,7 @@ namespace Database
         public ToyoStats bonusStats;
         public ToyoPersona toyoPersona;
         public ToyoTheme toyoTheme;
-        public int toyoLevel;
+        public int level;
         public int hearthbound;
         public float toyoPartEXP;
         public bool isNFT;
@@ -128,7 +128,7 @@ namespace Database
     {
         public float vitality;
         public float resistance;
-        public float resilence;
+        public float resilience;
         public float physicalStrength;
         public float cyberForce;
         public float technique;
@@ -138,7 +138,6 @@ namespace Database
         public float precision;
         public float stamina;
         public float luck;
-        
     }
 
     [Serializable]

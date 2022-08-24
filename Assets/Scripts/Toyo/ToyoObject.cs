@@ -74,7 +74,7 @@ public class ToyoObject : MonoBehaviour
                 _bonusStats[_stat] += GetStatValue(_stat, _part, true);
             }
 
-            _toyoTotalPartsLevel += _part.toyoLevel;
+            _toyoTotalPartsLevel += _part.level;
             _toyoTotalPartsHearthbound += _part.hearthbound;
         }
             
@@ -88,8 +88,8 @@ public class ToyoObject : MonoBehaviour
         var _result = 0;
         foreach (var _part in parts)
         {
-            if (_part.toyoLevel > _result)
-                _result = _part.toyoLevel;
+            if (_part.level > _result)
+                _result = _part.level;
         }
         return _result;
     }
@@ -100,7 +100,7 @@ public class ToyoObject : MonoBehaviour
         {
             TOYO_STAT.VITALITY => isBonusStat ? part.bonusStats.vitality : part.stats.vitality ,
             TOYO_STAT.RESISTANCE => isBonusStat ? part.bonusStats.resistance : part.stats.resistance,
-            TOYO_STAT.RESILIENCE => isBonusStat ? part.bonusStats.resilence : part.stats.resilence,
+            TOYO_STAT.RESILIENCE => isBonusStat ? part.bonusStats.resilience : part.stats.resilience,
             TOYO_STAT.PHYSICAL_STRENGTH => isBonusStat ? part.bonusStats.physicalStrength : part.stats.physicalStrength,
             TOYO_STAT.CYBER_FORCE => isBonusStat ? part.bonusStats.cyberForce : part.stats.cyberForce,
             TOYO_STAT.TECHNIQUE => isBonusStat ? part.bonusStats.technique : part.stats.technique,
