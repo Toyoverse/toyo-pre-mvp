@@ -54,7 +54,11 @@ public class CarouselManager : MonoBehaviour
 
     private Transform _objectToHide;
 
-
+    private void UpdateCurrentSelectedToyo(Transform toyoTransform, int index)
+    {
+        CurrentSelectedObject = toyoTransform;
+        _currentSelectedIndex = index;
+    }
 
     private void OnEnable()
     {
@@ -62,12 +66,24 @@ public class CarouselManager : MonoBehaviour
             CurrentSelectedObject = allObjects[_currentSelectedIndex];
 
         if (is2DCarousel)
-            Set2DStartingPosition();
+        {
+            int index = 0;
+            foreach (var item in allObjects)
+            {
+                if (item == ToyoManager.GetSelectedToyo().transform)
+                { 
+                    UpdateCurrentSelectedToyo(item, index);
+                }
         
+                index++;
+            }
+            Set2DStartingPosition();
+        }
+
         MoveToStartingPosition();
     }
 
-    private void Set2DStartingPosition()
+    public void Set2DStartingPosition()
     {
         foreach (var _object in allObjects)
         {
@@ -79,7 +95,7 @@ public class CarouselManager : MonoBehaviour
         }
     }
 
-    private void MoveToStartingPosition()
+    public void MoveToStartingPosition()
     {
         foreach (var _object in allObjects.Where(objectToRotate => objectToRotate != CurrentSelectedObject))
         {
@@ -144,6 +160,36 @@ public class CarouselManager : MonoBehaviour
             yield return null;
         }
     }
+
+    private void GetHiddenObjectFromList(List<Transform> objects, bool isSwipeRight)
+    {
+        if (isSwipeRight)
+        {
+            if (objects.Count >= 4)
+            {
+                if (GetNextObject() == allObjects.First())
+                    _objectToHide = allObjects[1];
+                else if (GetNextObject() == allObjects.Last())
+                    _objectToHide = allObjects.First();
+                else
+                    _objectToHide = allObjects[_currentSelectedIndex + 2];
+            }
+        }
+        else
+        {
+            if (objects.Count >= 4)
+            {
+                if (GetPreviousObject() == allObjects.First())
+                    _objectToHide = allObjects.Last();
+                else if (GetPreviousObject() == allObjects[1])
+                    _objectToHide = allObjects.First();
+                else if (GetPreviousObject() == allObjects.Last())
+                    _objectToHide = allObjects[allObjects.Count - 2];
+                else
+                    _objectToHide = allObjects[_currentSelectedIndex - 2];
+            }
+        }
+    }
     
     public void SwipeRight()
     {
@@ -152,7 +198,11 @@ public class CarouselManager : MonoBehaviour
         if (allObjects.Count <= 1)
             return;
 
-        _objectToHide = GetPreviousObject();
+        GetHiddenObjectFromList(allObjects, true);
+        
+        foreach (var _object in allObjects.Where(IsObjectToRotate))
+            RotateRight(_object);
+        
         if (_currentSelectedIndex + 1 < allObjects.Count)
         {
             _currentSelectedIndex++;
@@ -163,8 +213,6 @@ public class CarouselManager : MonoBehaviour
             _currentSelectedIndex = 0;
             CurrentSelectedObject = allObjects[_currentSelectedIndex];
         }
-        foreach (var _object in allObjects.Where(IsObjectToRotate))
-            RotateRight(_object);
     }
     
     public void SwipeLeft()
@@ -174,7 +222,11 @@ public class CarouselManager : MonoBehaviour
         if (allObjects.Count <= 1)
             return;
         
-        _objectToHide = GetNextObject();
+        GetHiddenObjectFromList(allObjects, false);
+
+        foreach (var _object in allObjects.Where(IsObjectToRotate))
+            RotateLeft(_object);
+        
         if (_currentSelectedIndex > 0)
         {
             _currentSelectedIndex--;
@@ -185,8 +237,6 @@ public class CarouselManager : MonoBehaviour
             _currentSelectedIndex = allObjects.Count-1;
             CurrentSelectedObject = allObjects[_currentSelectedIndex];
         }
-        foreach (var _object in allObjects.Where(IsObjectToRotate))
-            RotateLeft(_object);
     }
 
     private void CorrectToyoPlatformsRotation(Transform objectToRotate, float ourTimeDelta)
