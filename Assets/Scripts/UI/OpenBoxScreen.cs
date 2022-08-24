@@ -93,12 +93,14 @@ namespace UI
             selectedToyo ??= _toyoObject;
             var _progressBar = GetProgressBar(stat);
             var _statValue = selectedToyo.GetToyoStat(stat);
+            //var _statValue = selectedToyo.GetToyoStatAverageAcrossAllParts(stat);
 
             maxStatValue = _progressBar.highValue;
             _progressBar.lowValue = _statValue <= maxStatValue ? _statValue : maxStatValue;
 
-            var _progressFieldName = GetFieldName(stat, "value");
-            SetTextInLabel(_progressFieldName, _progressBar.lowValue.ToString());
+            var _progressFieldName = GetFieldName(stat, "Value");
+            SetTextInLabel(_progressFieldName, /*_progressBar.lowValue.ToString()*/ _statValue.ToString());
+            //Debug.Log(_progressFieldName + _statValue);
             SetTextInLabel(toyoHearthBoundField, selectedToyo.GetToyoHearthBound().ToString());
             SetTextInLabel(toyoLevelField, selectedToyo.GetToyoLevel().ToString());
         }

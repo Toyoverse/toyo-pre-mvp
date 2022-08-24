@@ -55,6 +55,11 @@ public class ToyoObject : MonoBehaviour
     private int _fixedHeartBound = 20;
 
     public float GetToyoStat(TOYO_STAT stat) => _toyoStats[stat] > _minimunToyoStat ? _toyoStats[stat] : _minimunToyoStat;
+    public float GetToyoStatAverageAcrossAllParts(TOYO_STAT stat)
+    {
+        var _averageValue = _toyoStats[stat] / _numberOfParts;
+        return _averageValue > _minimunToyoStat ? _averageValue : _minimunToyoStat;
+    }
 
     public string GetToyoName() => _toyoName;
     
