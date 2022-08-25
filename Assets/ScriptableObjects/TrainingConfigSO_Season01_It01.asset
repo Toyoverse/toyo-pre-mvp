@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3020270f1234b574e8857d492173beb3, type: 3}
-  m_Name: TrainingConfigSO_Season01
+  m_Name: TrainingConfigSO_Season01_It01
   m_EditorClassIdentifier: 
   eventTitle: TRAINING MODULE SEASON ONE!
   inTrainingMessage: Toyo in training...
@@ -50,13 +50,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f87c225c2b8e2e2448724ad830eb9ef9, type: 2}
   - {fileID: 11400000, guid: 01a87f46e947e714f8ddb1dcb46d47db, type: 2}
   minimumActionsToPlay: 3
-  blowConfigs:
-  - blows: 3
-    duration: 360
-  - blows: 4
-    duration: 420
-  - blows: 5
-    duration: 480
-  cardRewards: []
+  blowConfigs: []
+  cardRewards:
+  - {fileID: 11400000, guid: 3aeb987b54c8e7345ae1101a5f39bc27, type: 2}
   boundReward: 0.35
   bonusBoundReward: 1.35
+  id: 
