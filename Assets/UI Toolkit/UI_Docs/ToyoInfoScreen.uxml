@@ -75,8 +75,8 @@
                 <ui:GroupBox name="RarityID" style="width: 90%; height: 8%; flex-direction: row; justify-content: space-between; margin-top: 0; margin-left: 0; margin-right: 0; margin-bottom: 0; padding-left: 10px; padding-right: 10px; align-items: stretch;">
                     <ui:Label text="RARITY TYPE" display-tooltip-when-elided="true" name="rarity_name" class="rarity_info rarity-info" />
                     <ui:GroupBox style="flex-direction: row;">
-                        <ui:Label text="ID" display-tooltip-when-elided="true" name="rarity_ID" class="rarity_info rarity-info" style="color: rgb(255, 255, 255); left: auto; top: auto; margin-right: 10px;" />
-                        <ui:Label text="#0000" display-tooltip-when-elided="true" name="rarity_number" class="rarity_info rarity-info" style="color: rgb(255, 255, 255); left: auto; top: auto; margin-left: 10px;" />
+                        <ui:Label text="ID" display-tooltip-when-elided="true" name="token_id_text" class="rarity_info rarity-info" style="color: rgb(255, 255, 255); left: auto; top: auto; margin-right: 10px;" />
+                        <ui:Label text="#0000" display-tooltip-when-elided="true" name="token_id_number" class="rarity_info rarity-info" style="color: rgb(255, 255, 255); left: auto; top: auto; margin-left: 10px;" />
                     </ui:GroupBox>
                 </ui:GroupBox>
             </ui:VisualElement>

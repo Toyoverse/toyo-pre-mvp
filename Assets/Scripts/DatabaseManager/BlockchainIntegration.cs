@@ -54,7 +54,6 @@ public class BlockchainIntegration : MonoBehaviour
         Loading.StartLoading?.Invoke();
         if (skipLogin)
         {
-            //PlayerPrefs.SetString("TokenJWT", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ3YWxsZXRJZCI6IjB4ZDZkNmU2NmJjNjAxOTQ0MDgzYzA0ZWJjZDEyYTIxMjc1MTU3MWY3MCIsInRyYW5zYWN0aW9uIjoiMHgxYTNkZDJhZWViZmI4N2Q2ODZlOWQ4NjU0MjExMjJhZTBmNDBjY2ZmODBmZWNiYTYzOTNiMjVkMTQyN2M4ODMyN2JhNTdmNzJkOWZhNTA1MzY0YjIzNDhjNWU4Y2QxZTVjNDk3ZTMxZjMzNmU4MGEyYjM0MTU0MzkxMDEzODk1MzFiIiwiaWF0IjoxNjYxMTk0NzIxLCJleHAiOjE2NjE3OTk1MjF9.zj-WdZHMFNJ8yXP65Dpwn6X3oO3TPHgAADkVvEDWw2w");
             PlayerPrefs.SetString("TokenJWT", tokenForTests);
             CallDatabaseConnection();
             return;

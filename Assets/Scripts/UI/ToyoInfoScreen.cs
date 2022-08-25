@@ -14,6 +14,12 @@ namespace UI
         private ToyoObject _carouselToyoObject;
         private SpriteAnimator _carouselToyoAnimator;
 
+        public override void ActiveScreen()
+        {
+            base.ActiveScreen();
+            UpdateUI();
+        }
+
         public void NextToyoButton()
         {
             _carouselToyoAnimator.StopAnimation();

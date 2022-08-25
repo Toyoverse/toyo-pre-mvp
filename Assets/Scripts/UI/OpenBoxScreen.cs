@@ -28,7 +28,7 @@ namespace UI
         
         protected string toyoNameField = "toyoName";
         protected string rarityNameField = "rarity_name";
-        protected string rarityIdField = "rarity_number";
+        protected string tokenIdNumber = "token_id_number";
         
         protected string toyoLevelField = "numberLvl";
         protected string toyoHearthBoundField = "numberHb";
@@ -42,12 +42,19 @@ namespace UI
         
 
         protected ToyoObject GetSelectedToyo() => ToyoManager.GetSelectedToyo();
+
+        public override void ActiveScreen()
+        {
+            base.ActiveScreen();
+            UpdateUI();
+        }
         
         protected override void UpdateUI()
         {
             _toyoObject = GetSelectedToyo();
             SetToyoStats();
             SetToyoRarity(_toyoObject.GetToyoRarity());
+            SetToyoId(_toyoObject.tokenId);
             Root.Q<Label>(toyoNameField).text = _toyoObject.GetToyoName();
             ToyoManager.MoveToyoToCenterOpenBox();
             if(FadeController.InFade)
@@ -78,7 +85,7 @@ namespace UI
             return Color.white;
         }
 
-        protected void SetToyoId(string id) => SetTextInLabel(rarityIdField, id);
+        protected void SetToyoId(string id) => SetTextInLabel(tokenIdNumber, id);
 
         protected void SetToyoStats(ToyoObject selectedToyo = null)
         {
