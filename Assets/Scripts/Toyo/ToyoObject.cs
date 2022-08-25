@@ -57,7 +57,7 @@ public class ToyoObject : MonoBehaviour
     public float GetToyoStat(TOYO_STAT stat) => _toyoStats[stat] > _minimunToyoStat ? _toyoStats[stat] : _minimunToyoStat;
     public float GetToyoStatAverageAcrossAllParts(TOYO_STAT stat)
     {
-        var _averageValue = _toyoStats[stat] / _numberOfParts;
+        var _averageValue = _numberOfParts != 0 ? _toyoStats[stat] / _numberOfParts : _toyoStats[stat];
         return _averageValue > _minimunToyoStat ? _averageValue : _minimunToyoStat;
     }
 

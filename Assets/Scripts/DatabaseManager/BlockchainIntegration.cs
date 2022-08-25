@@ -13,6 +13,27 @@ using System.Runtime.InteropServices;
 
 public class BlockchainIntegration : MonoBehaviour
 {
+    #region Production Ambient BlockchainInformation
+
+    public bool isProduction;
+    
+    private const string productionApproveContractForTokenUntil9476 = "0x07AE3987C679c0aFd2eC1ED2945278c37918816c";
+    private const string productionApproveContractForTokenOver9476 = "0x5c29302b5ae9e99f866704e28528d5be9b7b6a40";
+    private const string productionApprovedTo = "0xB86743535e2716E2cea0D285A3fc3c1A58e44318";
+
+    private const string productionSwapTokenContract = "0xB86743535e2716E2cea0D285A3fc3c1A58e44318";
+
+    #endregion
+
+    #region Test Ambient BlockchainInformation
+
+    private const string testApproveContract = "0xc02173691984D68625C455e0AB45f52581c008Da";
+    private const string testApprovedTo = "0x53904b4640474d2f79b822ad4e2c40597d886bd5";
+    
+    private const string testSwapTokenContract = "0x53904b4640474d2f79b822ad4e2c40597d886bd5";
+
+    #endregion
+    
     public bool skipLogin;
     public string tokenForTests;
     public Toggle rememberMe;
@@ -92,7 +113,6 @@ public class BlockchainIntegration : MonoBehaviour
         {
             PlayerPrefs.SetString("Account", _account);
             PlayerPrefs.SetString("TokenJWT", _loginCallback.token);
-            //PlayerPrefs.SetInt("RememberMe", rememberMe.isOn ? 1 : 0);
         }
 
         CallDatabaseConnection();
@@ -128,7 +148,7 @@ public class BlockchainIntegration : MonoBehaviour
         string abi = "[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_tokenId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_typeId\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"_code\",\"type\":\"string\"},{\"internalType\":\"bytes\",\"name\":\"_signature\",\"type\":\"bytes\"}],\"name\":\"swapToken\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]";
         
         // address of contract
-        var contract = "0x53904b4640474d2f79b822ad4e2c40597d886bd5"; //TODO: REMOVE HARD CODED CONTRACT
+        var contract = isProduction ? productionSwapTokenContract : testSwapTokenContract;
 
         // smart contract method to call
         string method = "swapToken";
@@ -151,29 +171,8 @@ public class BlockchainIntegration : MonoBehaviour
         // connects to user's browser wallet (metamask) to update contract state
         try
         {
-            Debug.Log("Debugging opened box transaction parameters.");
-            Debug.Log(_typeId);
-            Debug.Log(_code);
-            Debug.Log(_signature);
-            Debug.Log(_tokenId);
             
             string tx = await Web3GL.SendContract(method, abi, contract, args, value, gasLimit, gasPrice);
-            Debug.Log(tx);
-            
-            // string txStatus = "pending";
-            // while (txStatus == "pending")
-            // {
-            //     string chain = "polygon";
-            //     string network = "testnet";
-            //     txStatus = await EVM.TxStatus(chain, network, tx);
-            //     Debug.Log(txStatus);
-            //     new WaitForSeconds(1.5f);
-            // }
-            //
-            // Debug.Log(txStatus);
-            // Debug.Log(tx);
-            //
-            // if(txStatus == "success")
             
             _databaseConnection.PostOpenBox(ScreenManager.Instance.boxInfoScript.CallOpenBoxAnimation, 
                 ScreenManager.Instance.boxInfoScript.GetBoxSelected().boxList[0].objectId);
@@ -190,13 +189,20 @@ public class BlockchainIntegration : MonoBehaviour
         // APPROVE
         string approve_abi = "[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"}],\"name\":\"approve\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]";
         
-        // NftToken (Mumbai)
-        string approve_contract = "0xc02173691984D68625C455e0AB45f52581c008Da";
-        string approve_method = "approve";
-        
         // NftTokenSwap (Mumbai)
-        string _approved_to = "0x53904b4640474d2f79b822ad4e2c40597d886bd5";
+        string _approved_to = isProduction ? productionApprovedTo : testApprovedTo;
         string _approved_tokenId = myBox.tokenId;
+        
+        // NftToken (Mumbai)
+        string approve_contract = "";
+        if (isProduction)
+            approve_contract = int.Parse(productionApproveContractForTokenUntil9476) <= 9476
+                ? productionApproveContractForTokenUntil9476
+                : productionApproveContractForTokenOver9476;
+        else
+            approve_contract = testApproveContract;
+        
+        string approve_method = "approve";
 
         string[] approve_obj = { _approved_to, _approved_tokenId };
         string approve_args = JsonConvert.SerializeObject(approve_obj);
@@ -206,33 +212,10 @@ public class BlockchainIntegration : MonoBehaviour
         string approve_gasPrice = "80000000000";
 
         try {
-            Debug.Log("DEBUGGING");
-            Debug.Log(approve_contract);
-            Debug.Log(approve_method);
-            Debug.Log(_approved_to);
-            Debug.Log(_approved_tokenId);
-            Debug.Log(approve_obj);
-            Debug.Log(approve_args);
-            Debug.Log(approve_value);
-            Debug.Log(approve_gasLimit);
-            Debug.Log(approve_gasPrice);
             
             string tx = await Web3GL.SendContract(approve_method, approve_abi, approve_contract, approve_args, approve_value, approve_gasLimit, approve_gasPrice);
             
-            // string txStatus = "pending";
-            // while (txStatus == "pending")
-            // {
-            //     string chain = "polygon";
-            //     string network = "testnet";
-            //     txStatus = await EVM.TxStatus(chain, network, tx);
-            //     Debug.Log(txStatus);
-            //     new WaitForSeconds(1.5f);
-            // }
-            //
-            // Debug.Log(txStatus);
-            // Debug.Log(tx);
-            // if(txStatus == "success")
-                OpenBox(myBox);
+            OpenBox(myBox);
 
         } catch (Exception e) {
             Debug.LogException(e, this);

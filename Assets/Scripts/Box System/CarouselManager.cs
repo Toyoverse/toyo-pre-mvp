@@ -76,8 +76,11 @@ public class CarouselManager : MonoBehaviour
 
         if (is2DCarousel)
         {
-            if (allObjects.Count < 4)
+            if (allObjects.Count == 2)
+                _carouselUnder4Pos = CAROUSEL_UNDER_4_POS.RIGHT;
+            else if(allObjects.Count == 3)
                 _carouselUnder4Pos = CAROUSEL_UNDER_4_POS.CENTRE;
+            
             int index = 0;
             foreach (var item in allObjects)
             {
@@ -208,12 +211,13 @@ public class CarouselManager : MonoBehaviour
 
         if (allObjects.Count <= 1)
             return;
-        if(allObjects.Count == 2 && _currentSelectedIndex == 0)
-            return;
         if(allObjects.Count < 4 && _carouselUnder4Pos == CAROUSEL_UNDER_4_POS.RIGHT)
             return;
 
-        _carouselUnder4Pos++;
+        if (allObjects.Count == 2)
+            _carouselUnder4Pos = CAROUSEL_UNDER_4_POS.RIGHT;
+        else if(allObjects.Count == 3)
+            _carouselUnder4Pos++;
 
         GetHiddenObjectFromList(allObjects, true);
         
@@ -238,12 +242,13 @@ public class CarouselManager : MonoBehaviour
         
         if (allObjects.Count <= 1)
             return;
-        if(allObjects.Count == 2 && _currentSelectedIndex == 1)
-            return;
         if(allObjects.Count < 4 && _carouselUnder4Pos == CAROUSEL_UNDER_4_POS.LEFT)
             return;
 
-        _carouselUnder4Pos--;
+        if (allObjects.Count == 2)
+            _carouselUnder4Pos = CAROUSEL_UNDER_4_POS.LEFT;
+        else if(allObjects.Count == 3)
+            _carouselUnder4Pos--;
         
         GetHiddenObjectFromList(allObjects, false);
 
