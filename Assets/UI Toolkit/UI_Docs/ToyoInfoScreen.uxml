@@ -44,18 +44,18 @@
                         <ui:Label text="STRENGTH" display-tooltip-when-elided="true" name="StrengthName" class="label-list" />
                     </ui:VisualElement>
                     <ui:GroupBox name="progressBarBox" class="two-collum-list collums-list" style="align-items: flex-start;">
-                        <ui:ProgressBar title="Vitality" name="VitalityProgress" low-value="9" high-value="200" class="progresStyle" style="overflow: hidden; flex-direction: column; justify-content: flex-start; align-items: stretch;" />
-                        <ui:ProgressBar title="Precision" name="PrecisionProgress" high-value="200" class="progresStyle" />
-                        <ui:ProgressBar title="Luck" name="LuckProgress" high-value="200" class="progresStyle" />
-                        <ui:ProgressBar title="Stamina" name="StaminaProgress" high-value="200" class="progresStyle" />
-                        <ui:ProgressBar title="Analysis" name="AnalysisProgress" high-value="200" class="progresStyle" />
-                        <ui:ProgressBar title="Technique" name="TechniqueProgress" high-value="200" class="progresStyle" />
-                        <ui:ProgressBar title="Agility" name="AgilityProgress" high-value="200" class="progresStyle" />
-                        <ui:ProgressBar title="Speed" name="SpeedProgress" high-value="200" class="progresStyle" />
-                        <ui:ProgressBar title="Resilience" name="ResilienceProgress" high-value="200" class="progresStyle" />
-                        <ui:ProgressBar title="Resistance" name="ResistanceProgress" high-value="200" class="progresStyle" />
-                        <ui:ProgressBar title="Cyber Force" name="CyberForceProgress" high-value="200" class="progresStyle" />
-                        <ui:ProgressBar title="Strength" name="StrengthProgress" high-value="200" class="progresStyle" />
+                        <ui:ProgressBar title="Vitality" name="VitalityProgress" low-value="9" high-value="1000" class="progresStyle" style="overflow: hidden; flex-direction: column; justify-content: flex-start; align-items: stretch;" />
+                        <ui:ProgressBar title="Precision" name="PrecisionProgress" high-value="1000" class="progresStyle" />
+                        <ui:ProgressBar title="Luck" name="LuckProgress" high-value="1000" class="progresStyle" />
+                        <ui:ProgressBar title="Stamina" name="StaminaProgress" high-value="1000" class="progresStyle" />
+                        <ui:ProgressBar title="Analysis" name="AnalysisProgress" high-value="1000" class="progresStyle" />
+                        <ui:ProgressBar title="Technique" name="TechniqueProgress" high-value="1000" class="progresStyle" />
+                        <ui:ProgressBar title="Agility" name="AgilityProgress" high-value="1000" class="progresStyle" />
+                        <ui:ProgressBar title="Speed" name="SpeedProgress" high-value="1000" class="progresStyle" />
+                        <ui:ProgressBar title="Resilience" name="ResilienceProgress" high-value="1000" class="progresStyle" />
+                        <ui:ProgressBar title="Resistance" name="ResistanceProgress" high-value="1000" class="progresStyle" />
+                        <ui:ProgressBar title="Cyber Force" name="CyberForceProgress" high-value="1000" class="progresStyle" />
+                        <ui:ProgressBar title="Strength" name="StrengthProgress" high-value="1000" class="progresStyle" />
                     </ui:GroupBox>
                     <ui:VisualElement name="progressBarNumbers" class="two-collum-list collums-list" style="left: 0; width: 10%;">
                         <ui:Label text="100" display-tooltip-when-elided="true" name="VitalityValue" class="number-list" />
