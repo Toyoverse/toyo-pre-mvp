@@ -10,6 +10,7 @@ using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Runtime.InteropServices;
+using UnityEngine.Serialization;
 
 public class BlockchainIntegration : MonoBehaviour
 {

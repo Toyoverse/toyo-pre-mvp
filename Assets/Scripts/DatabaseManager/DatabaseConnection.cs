@@ -10,19 +10,36 @@ namespace Database
 {
     public class DatabaseConnection : Singleton<DatabaseConnection>
     {
+        #region Production Ambient DatabaseConnection Info
+        
+        [SerializeField]
+        private string productionLoginURL = "https://4nwemmj4hh.execute-api.us-east-1.amazonaws.com/production/player/login";
+        [SerializeField]
+        private string productionBaseURL = "https://r99i910fe6.execute-api.us-east-1.amazonaws.com/production";
+        [SerializeField]
+        private string productionOpenBoxBaseURL = "https://v49y0yol5a.execute-api.us-east-1.amazonaws.com/production";
+
+        #endregion
+        
+        #region Test Ambient DatabaseConnection Info
+
+        [SerializeField]
+        private string testLoginURL = "https://players-web-bff-dev.herokuapp.com/player/login";
+        [SerializeField]
+        private string testBaseURL = "https://ts-toyo-web-bff.herokuapp.com";
+        [SerializeField]
+        private string testOpenBoxBaseURL = "https://ts-unboxing-web-bff.herokuapp.com";
+
+        #endregion
+        
         public bool isDebug = false;
         public BlockchainIntegration blockchainIntegration;
         private IEnumerator _requestCoroutine;
         
         private string _url = "";
-        
-        [SerializeField]
-        private string loginURL = "https://players-web-bff-dev.herokuapp.com/player/login";
-
-        [SerializeField]
-        private string baseURL = "https://ts-toyo-web-bff.herokuapp.com";
-
-        [SerializeField] private string openBoxBaseURL = "https://ts-unboxing-web-bff.herokuapp.com";
+        private string loginURL;
+        private string baseURL;
+        private string openBoxBaseURL;
 
         [SerializeField]
         private string boxesSuffixURL = "/player/boxes";
@@ -44,6 +61,10 @@ namespace Database
         
         private void Awake()
         {
+            loginURL = blockchainIntegration.isProduction ? productionLoginURL : testLoginURL;
+            baseURL = blockchainIntegration.isProduction ? productionBaseURL : testBaseURL;
+            openBoxBaseURL = blockchainIntegration.isProduction ? productionOpenBoxBaseURL : testOpenBoxBaseURL;
+            
             if (!isDebug) return;
             var _jsonTextAsset = Resources.Load<TextAsset>("DatabasePlaceholder");
             OnConnectionSuccess(_jsonTextAsset.text);
