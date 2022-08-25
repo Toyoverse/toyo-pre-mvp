@@ -64,7 +64,8 @@ public class TrainingModuleScreen : UIController
 
     private void CheckToResetTrainingModule()
     {
-        if (ScreenManager.ScreenState == ScreenState.TrainingActionSelect)
+        if (ScreenManager.ScreenState == ScreenState.TrainingActionSelect
+            /*|| TrainingConfig.Instance.IsInTraining()*/)
             return;
         TrainingConfig.Instance?.ResetAllTrainingModule( /*ClearPossibleActionsEvents*/);
         ClearActionsImages();
@@ -89,7 +90,7 @@ public class TrainingModuleScreen : UIController
         UpdateUI();
     }
 
-    private void ConfirmAction(TrainingActionSO actionSo)
+    private void ConfirmInTrainingAction(TrainingActionSO actionSo)
     {
         var _selectedID = TrainingConfig.Instance.selectedActionID;
         combPoolObjects[_selectedID].gameObject.SetActive(true);
@@ -97,7 +98,7 @@ public class TrainingModuleScreen : UIController
         SetActionsSprites(_selectedID, actionSo.sprite);
         TrainingConfig.Instance.AddToSelectedActionsDict(_selectedID, actionSo);
         TrainingConfig.Instance.ApplyBlowConfig();
-        UpdateUI();
+        //UpdateUI();
     }
 
     public void SetActionsSprites(int id, Sprite sprite)
@@ -158,7 +159,7 @@ public class TrainingModuleScreen : UIController
         for (var _i = 0; _i < TrainingConfig.Instance.selectedTrainingActions.Count; _i++)
         {
             TrainingConfig.Instance.SetSelectedID(_i);
-            ConfirmAction(TrainingConfig.Instance.selectedTrainingActions[_i]);
+            ConfirmInTrainingAction(TrainingConfig.Instance.selectedTrainingActions[_i]);
         }
         EnableAllProgressImages();
     }
@@ -261,7 +262,11 @@ public class TrainingModuleScreen : UIController
     {
         if (!TrainingConfig.Instance.IsInTraining())
             return;
-        var _blowConfig = TrainingConfig.Instance.GetSelectedBlowConfig();
+        BlowConfig _blowConfig = null;
+        if (TrainingConfig.Instance.GetSelectedBlowConfig() == null)
+            TrainingConfig.Instance.ApplyBlowConfig();
+        _blowConfig = TrainingConfig.Instance.GetSelectedBlowConfig();
+        
         var _actualPercent = (((float)_blowConfig.duration - TrainingConfig.Instance.GetTrainingTimeRemainInMinutes())
                               / _blowConfig.duration) * 100;
         var _unitPercent = 100 / _blowConfig.qty;
