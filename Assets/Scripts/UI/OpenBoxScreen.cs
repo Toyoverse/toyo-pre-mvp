@@ -106,7 +106,7 @@ namespace UI
             _progressBar.lowValue = _statValue <= maxStatValue ? _statValue : maxStatValue;
 
             var _progressFieldName = GetFieldName(stat, "Value");
-            SetTextInLabel(_progressFieldName, /*_progressBar.lowValue.ToString()*/ _statValue.ToString());
+            SetTextInLabel(_progressFieldName, _progressBar.lowValue.ToString() /*_statValue.ToString()*/);
             //Debug.Log(_progressFieldName + _statValue);
             SetTextInLabel(toyoHearthBoundField, selectedToyo.GetToyoHearthBound().ToString());
             SetTextInLabel(toyoLevelField, selectedToyo.GetToyoLevel().ToString());
