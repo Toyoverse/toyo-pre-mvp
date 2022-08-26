@@ -1393,11 +1393,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23e2b4819c044505bcff49abbd8913c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  productionLoginURL: https://4nwemmj4hh.execute-api.us-east-1.amazonaws.com/production/player/login
+  productionBaseURL: https://r99i910fe6.execute-api.us-east-1.amazonaws.com/production
+  productionOpenBoxBaseURL: https://v49y0yol5a.execute-api.us-east-1.amazonaws.com/production
+  testLoginURL: https://players-web-bff-dev.herokuapp.com/player/login
+  testBaseURL: https://ts-toyo-web-bff.herokuapp.com
+  testOpenBoxBaseURL: https://ts-unboxing-web-bff.herokuapp.com
   isDebug: 0
   blockchainIntegration: {fileID: 1082540502}
-  loginURL: https://players-web-bff-dev.herokuapp.com/player/login
-  baseURL: https://ts-toyo-web-bff.herokuapp.com
-  openBoxBaseURL: https://ts-unboxing-web-bff.herokuapp.com
   boxesSuffixURL: /player/boxes
   toyosSuffixURL: /player/toyos
   toyosDetailSuffixURL: /player/toyo/

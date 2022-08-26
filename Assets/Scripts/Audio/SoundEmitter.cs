@@ -24,6 +24,11 @@ public class SoundEmitter : MonoBehaviour
     
     public FMOD.Studio.EventInstance ContinuousInstance;
 
+    private void Awake()
+    {
+        QualitySettings.vSyncCount = 0;
+    }
+
     private void Start()
     {
         ContinuousInstance = RuntimeManager.CreateInstance(continuousSound);
@@ -32,6 +37,16 @@ public class SoundEmitter : MonoBehaviour
         {
             //Signals.Get<EventChangeMusicParameters>().AddListener(ChangeMusicParameters);
         }
+    }
+    
+    private void OnApplicationFocus(bool hasFocus)
+    {
+        ContinuousInstance.setPaused(!hasFocus);
+    }
+    
+    private void OnApplicationPause(bool isPaused)
+    {
+        ContinuousInstance.setPaused(isPaused);
     }
     
     private void PlayContinuousSound()
