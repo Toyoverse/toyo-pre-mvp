@@ -172,7 +172,9 @@ namespace Database
         
         private IEnumerator ProcessRequestCoroutine (Action<string> callback, UnityWebRequest request)
         {
-            request.SetRequestHeader("Access-Control-Allow-Origin", "*");
+            if(!blockchainIntegration.isProduction)
+                request.SetRequestHeader("Access-Control-Allow-Origin", "*");
+            
             yield return request.SendWebRequest();
 
             if (request.error != null)
