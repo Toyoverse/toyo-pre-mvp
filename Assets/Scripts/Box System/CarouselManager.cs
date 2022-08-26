@@ -82,15 +82,15 @@ public class CarouselManager : MonoBehaviour
                 _carouselUnder4Pos = CAROUSEL_UNDER_4_POS.CENTRE;
             
             int index = 0;
-            foreach (var item in allObjects)
-            {
-                if (item == ToyoManager.GetSelectedToyo().transform)
-                { 
-                    UpdateCurrentSelectedToyo(item, index);
+            if(isToyoCarousel)
+                foreach (var item in allObjects)
+                {
+                    if (item == ToyoManager.GetSelectedToyo().transform)
+                    { 
+                        UpdateCurrentSelectedToyo(item, index);
+                    }
+                    index++;
                 }
-        
-                index++;
-            }
             Set2DStartingPosition();
         }
 
