@@ -196,7 +196,7 @@ public class BlockchainIntegration : MonoBehaviour
         // NftToken (Mumbai)
         string approve_contract = "";
         if (isProduction)
-            approve_contract = int.Parse(productionApproveContractForTokenUntil9476) <= 9476
+            approve_contract = int.Parse(_approved_tokenId) <= 9476
                 ? productionApproveContractForTokenUntil9476
                 : productionApproveContractForTokenOver9476;
         else
@@ -212,7 +212,7 @@ public class BlockchainIntegration : MonoBehaviour
         string approve_gasPrice = "80000000000";
 
         try {
-            
+
             string tx = await Web3GL.SendContract(approve_method, approve_abi, approve_contract, approve_args, approve_value, approve_gasLimit, approve_gasPrice);
             
             OpenBox(myBox);
