@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityTemplateProjects.Audio;
 
@@ -6,15 +5,11 @@ namespace UI
 {
     public class WelcomeScreen : UIController
     {
-        
         private void Start()
-        {
-            AudioManager.Instance.startHomePageSfx.PlayOneShot(transform.position);
-            
-        }
+            => AudioManager.Instance.startHomePageSfx.PlayOneShot(transform.position);
 
         public void OpenSeaButton()
-            => Debug.Log("OpenSea button has clicked!");
+            => Application.OpenURL("https://opensea.io/collection/toyo-first-9-jakana");
 
         public void BoxesButton()
             => ScreenManager.Instance.GoToScreen(ScreenState.BoxInfo);
