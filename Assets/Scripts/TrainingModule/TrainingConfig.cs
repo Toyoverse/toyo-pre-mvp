@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Database;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Serialization;
 using static TimeTools;
@@ -207,6 +208,7 @@ public class TrainingConfig : Singleton<TrainingConfig>
 
     private TrainingActionSO[] GetActionsFromIDs(string[] ids)
     {
+        //allTrainingActionsInProject = GetAllTrainingActionInProject();
         var _resultList = new TrainingActionSO[ids.Length];
         for (var _index = 0; _index < ids.Length; _index++)
         {
@@ -215,6 +217,7 @@ public class TrainingConfig : Singleton<TrainingConfig>
                 if (int.Parse(ids[_index]) != _trainingAction.id)
                     continue;
                 _resultList[_index] = _trainingAction;
+                Debug.Log("POSSIBLE ACTION [" + _index + "]: " + _resultList[_index].name);
                 break;
             }
         }
@@ -369,5 +372,19 @@ public class TrainingConfig : Singleton<TrainingConfig>
 
         Debug.LogError("CardReward not found - Persona: " + Instance.selectedToyoObject.GetToyoName());
         return null;
+    }
+
+    private List<TrainingActionSO> GetAllTrainingActionInProject()
+    {
+        var _guids = AssetDatabase.FindAssets("t:", new[] { "Assets/ScriptableObjects/TrainingActions" });
+        var _count = _guids.Length;
+        var _result = new List<TrainingActionSO>(_count);
+        for(var _i = 0; _i < _count; _i++)
+        {
+            var _path = AssetDatabase.GUIDToAssetPath(_guids[_i]);
+            _result[_i] = AssetDatabase.LoadAssetAtPath<TrainingActionSO>(_path);
+        }
+
+        return _result;
     }
 }
