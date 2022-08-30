@@ -16,7 +16,9 @@ MonoBehaviour:
   cardName: The Glass Dome City
   description: A city under a giant glass dome in the middle of the desert that was
     once used to test nukes
-  memory: 
+  memory: "Iu ynawpekj swo yhkoahu ikjepknaz. E bahp pdwp E skqhz jaaz pk oqnrera
+    kjya E habp pda hwxknwpknu, iwo lqza oajpen k ywnejdk a k wikn jwo i\xE3ko za
+    Zn. Hqzsec."
   cardType: 3
   cardImage: {fileID: 21300000, guid: 226d9f0845463294c9b564a06ec23daa, type: 3}
   toyoPersona: {fileID: 11400000, guid: dad42110bac49994aa84d18ba921ff00, type: 2}
