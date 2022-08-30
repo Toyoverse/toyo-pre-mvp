@@ -12,26 +12,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3020270f1234b574e8857d492173beb3, type: 3}
   m_Name: TrainingConfigSO_Season01_It01
   m_EditorClassIdentifier: 
-  eventTitle: TRAINING MODULE SEASON ONE!
+  eventTitle: Welcome, Mentors!
   inTrainingMessage: Toyo in training...
-  rewardTitle: Default Title
-  losesMessage: Discover the correct combination to unlock this week's secret collectible.
-  alreadyWon: You've already received this week's collectible.
-  eventStory: Here's a pretty cool story...
+  rewardTitle: Congratulations! Here's your reward
+  losesMessage: Discover the correct combination to unlock this week's secret collectable.
+  alreadyWon: You've already received this week's collectable.
+  eventStory: "Lucid Inc. informs you: the fun of our Mentors is of the highest priority. 
+    Materialize and explore Lucid Inc's brand new Laboratorial Complex through your
+    UI!  Finally you will interact with your Toyos! Take your time but don't forget,
+    before you face H64 Earth you need to train your Toyos!  Select from 3 to 5 fighting
+    moves for your Toyo to train. Our data has shown that if your combination matches
+    a combination stored in your Toyo's memory, our researchers gain access to valuable
+    historical data \u2014 And if that happens, you will have access to that data
+    too, isn't that amazing?   But be careful with this new technology and report
+    any findings to us as directed. You will be rewarded, regardless the quality
+    of the extracted data.  Lucid Inc. wishes all Mentors good luck in this new adventure. "
   sendToyoToTrainingPopUp: Are you sure?
   startEventDateInfo:
-    day: 1
+    day: 5
     month: 8
     year: 2022
-    hour: 10
-    minute: 30
+    hour: 12
+    minute: 0
     second: 0
   endEventDateInfo:
-    day: 7
+    day: 10
     month: 8
     year: 2022
-    hour: 10
-    minute: 30
+    hour: 23
+    minute: 45
     second: 0
   possibleActions:
   - {fileID: 11400000, guid: 6972b2ae28210d742acc8a134bffc9bd, type: 2}
@@ -53,6 +62,22 @@ MonoBehaviour:
   blowConfigs: []
   cardRewards:
   - {fileID: 11400000, guid: 3aeb987b54c8e7345ae1101a5f39bc27, type: 2}
+  - {fileID: 11400000, guid: 208f4e3e0283c154bb2804981850f4ae, type: 2}
+  - {fileID: 11400000, guid: 681f9cc089f0a3c4db0a2115a10b1c6a, type: 2}
+  - {fileID: 11400000, guid: 28a5d7b219593604e855ec5d1d9f9642, type: 2}
+  - {fileID: 11400000, guid: b72b817dd23e04f4aacc62bc836c77a5, type: 2}
+  - {fileID: 11400000, guid: c8b10402a5b735a46bec67782e21df11, type: 2}
+  - {fileID: 11400000, guid: 7e40edb0a7203e34ba80ba394c876cb1, type: 2}
+  - {fileID: 11400000, guid: 685be1a0077b05a4ab7b5a70e346653f, type: 2}
+  - {fileID: 11400000, guid: 3ae5ffa0c361bc24a827de2ef9a58861, type: 2}
+  - {fileID: 11400000, guid: 5838ba98f1eca694b8ceff4188c27c7e, type: 2}
+  - {fileID: 11400000, guid: 794a54e5dcb635f45b590994cb504949, type: 2}
+  - {fileID: 11400000, guid: 9b57e055593869c4281adaddfb1ea892, type: 2}
+  - {fileID: 11400000, guid: f53c0dac348560a4881c6affa348c474, type: 2}
+  - {fileID: 11400000, guid: e1bf8a6e144a64345b2d805585aa2b39, type: 2}
+  - {fileID: 11400000, guid: eb5e8c36365c8b940a330135116f5450, type: 2}
+  - {fileID: 11400000, guid: 2b11e78e0abc21a4698e0e4c51e19684, type: 2}
+  - {fileID: 11400000, guid: 04c596c1d6e69cb4eb7c4fcb6706c2b6, type: 2}
   boundReward: 0.35
   bonusBoundReward: 1.35
   id: 
