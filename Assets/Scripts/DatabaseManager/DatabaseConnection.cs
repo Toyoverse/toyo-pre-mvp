@@ -58,6 +58,7 @@ namespace Database
 
         [SerializeField] private string trainingBaseURL = "https://ts-trainning-web-bff.herokuapp.com";
         [SerializeField] private string registerTrainingSuffixURL = "/training-events";
+        [SerializeField] private string getCurrentTrainingSuffixURL = "/training-events/search/current";
         
         private void Awake()
         {
@@ -116,13 +117,28 @@ namespace Database
                 yield return ProcessRequestCoroutine(callback, _request);
             }
             
-            ToyoManager.StartGame();
+            TrainingConfig.Instance.InitializeTrainingModule();
         }
 
         public void PostTrainingConfig(Action<string> callback, string jsonString)
         {
             _url = trainingBaseURL + registerTrainingSuffixURL;
             var _request = GeneratePost(_url, jsonString);
+            StartCoroutine(ProcessRequestCoroutine(callback, _request));
+        }
+
+        public void GetCurrentTrainingConfig(Action<string> callback)
+        {
+            _url = trainingBaseURL + getCurrentTrainingSuffixURL;
+            var _request = GenerateRequest(HTTP_REQUEST.GET);
+            StartCoroutine(ProcessRequestCoroutine(callback, _request));
+        }
+
+        public void CallGetInTrainingList(Action<string> callback)
+        {
+            //TODO: Set correct URL 
+            _url = trainingBaseURL + "/training/trainingList"; 
+            var _request = GenerateRequest(HTTP_REQUEST.GET);
             StartCoroutine(ProcessRequestCoroutine(callback, _request));
         }
         

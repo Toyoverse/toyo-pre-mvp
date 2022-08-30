@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Database;
 using UnityEngine;
+using UnityEngine.Serialization;
 using static TimeTools;
 
 [Serializable]
@@ -10,8 +12,14 @@ public class TrainingConfig : Singleton<TrainingConfig>
     [Header("Debug")]
     public bool disableTrainingModule;
     public bool ignoreTrainingTimer;
-    [Header("Base data")] public TrainingConfigSO trainingConfigSo;
+    
+    [Header("If offline - base data")] 
+    public bool useOfflineData;
+    public TrainingConfigSO trainingConfigSo;
 
+    [Header("Source - Required to find objects when receiving information from the server")]
+    public List<TrainingActionSO> allTrainingActionsInProject;
+    
     public ToyoObject selectedToyoObject { get; private set; }
     public void SetSelectedToyoObject(ToyoObject toyoObject) => selectedToyoObject = toyoObject;
 
@@ -20,8 +28,8 @@ public class TrainingConfig : Singleton<TrainingConfig>
     [HideInInspector] public BlowConfig[] blowConfigs;
     [HideInInspector] public CardRewardSO[] cardRewards;
     [HideInInspector] public int minimumActionsToPlay;
-    [HideInInspector] public float boundReward;
-    [HideInInspector] public float bonusBoundReward;
+    [HideInInspector] public float bondReward;
+    [HideInInspector] public float bonusBondReward;
     
     //Default strings
     [HideInInspector] public string eventTitle;
@@ -30,7 +38,7 @@ public class TrainingConfig : Singleton<TrainingConfig>
     [HideInInspector] public string sendToyoToTrainingPopUp;
 
     //Default phrases for reward description
-    [HideInInspector] public string rewardTitle;
+    [HideInInspector] public string rewardTitle = "Congratulations! Here's your reward";
     [HideInInspector] public string losesMiniGame;
     [HideInInspector] public string alreadyWon;
 
@@ -56,6 +64,9 @@ public class TrainingConfig : Singleton<TrainingConfig>
     public void SetOldTypeActionSelected(TrainingActionType type) => _oldTypeSelected = type;
     public TrainingActionType GetOldTypeActionSelected() => _oldTypeSelected;
     public bool OldTypeSelectedIsNone() => _oldTypeSelected == TrainingActionType.None;
+    
+    private List<ToyoTrainingInfo> _listOfToyosInTraining;
+    public List<ToyoTrainingInfo> GetListOfToyosInTraining => _listOfToyosInTraining;
 
     //
     public int selectedActionID { get; private set; }
@@ -65,15 +76,70 @@ public class TrainingConfig : Singleton<TrainingConfig>
     public bool IsMinimumActionsToPlay() => selectedActionsDict.Count >= minimumActionsToPlay;
 
     //
-    private bool _inTraining = false;
-    
-    public void SetInTraining(bool on)
+    private bool _selectedToyoIsInTraining;
+    public bool IsInTraining() => _selectedToyoIsInTraining;
+
+    public void SetIsInTraining()
     {
-        _inTraining = on;
-        SetTrainingTimeStamp();
+        var _tokenID = ToyoManager.GetSelectedToyo().tokenId;
+        var _isInTraining = IsInTrainingCheckInServer(_tokenID);
+        if (_isInTraining)
+            SetTrainingTimeStamp();
+        _selectedToyoIsInTraining = _isInTraining;
     }
 
-    public bool IsInTraining() => _inTraining;
+    private bool IsInTrainingCheckInServer(string tokenID)
+    {
+        //TODO: GET TRAINING IN SERVER
+        return false;
+    }
+
+    public void SetInTrainingOnServer()
+    {
+        var _tokenID = ToyoManager.GetSelectedToyo().tokenId;
+        //TODO: SEND TOYO TO TRAINING IN SERVER ...AND BLOCKCHAIN?
+    }
+
+    public void ClaimCallInServer()
+    {
+        //TODO: SEND CLAIM TO SERVER ...AND BLOCKCHAIN?
+    }
+    
+    public void InitializeTrainingModule()
+    {
+        if (Instance.disableTrainingModule)
+        {
+            ToyoManager.StartGame();
+            return;
+        }
+
+        if (useOfflineData)
+            SetTrainingConfigValues();
+        else
+            DatabaseConnection.Instance.GetCurrentTrainingConfig(OnGetTrainingSuccess);
+    }
+
+    public void OnGetTrainingSuccess(string json)
+    {
+        var _myObject = JsonUtility.FromJson<TrainingConfigJSON>(json);
+        SetTrainingConfigValues(_myObject);
+        ToyoManager.StartGame();
+        return; //TODO: Remover StartGame e return quando API de Toyos em treinamento estiver pronta
+        DatabaseConnection.Instance.CallGetInTrainingList(CreateToyosInTrainingList);
+    }
+    
+    public void CreateToyosInTrainingList(string json)
+    {
+        var _myObject = JsonUtility.FromJson<ToyosInTrainingListJSON>(json);
+        //TODO: GET ALL TRAININGS AND CREATE LIST
+        _listOfToyosInTraining = new();
+        foreach (var _trainingInfo in _myObject.trainingInfos)
+            _listOfToyosInTraining.Add(_trainingInfo);
+        
+        Debug.Log("InTrainingList Details Success! Toyos in training: " + _listOfToyosInTraining.Count);
+        ToyoManager.StartGame();
+    }
+
     public int GetTrainingTimeRemainInMinutes()
     {
         var _secondsRemain = endTrainingTimeStamp - GetActualTimeStamp();
@@ -86,24 +152,74 @@ public class TrainingConfig : Singleton<TrainingConfig>
         return ConvertSecondsInMinutes((int)_secondsRemain);
     }
 
-    private void Start()
+    private void SetTrainingConfigValues(TrainingConfigJSON trainingConfigJson = null)
     {
-        possibleActions = trainingConfigSo.possibleActions;
-        //allCorrectCombinationList = trainingConfigSo.correctCombinations;
-        cardRewards = trainingConfigSo.cardRewards;
-        blowConfigs = trainingConfigSo.blowConfigs;
-        losesMiniGame = trainingConfigSo.losesMessage;
-        alreadyWon = trainingConfigSo.alreadyWon;
-        rewardTitle = trainingConfigSo.rewardTitle;
-        eventTitle = trainingConfigSo.eventTitle;
-        minimumActionsToPlay = trainingConfigSo.minimumActionsToPlay;
-        inTrainingMessage = trainingConfigSo.inTrainingMessage;
-        startEventTimeStamp = ConvertDateInfoInTimeStamp(trainingConfigSo.startEventDateInfo);
-        endEventTimeStamp = ConvertDateInfoInTimeStamp(trainingConfigSo.endEventDateInfo);
-        eventStory = trainingConfigSo.eventStory;
-        sendToyoToTrainingPopUp = trainingConfigSo.sendToyoToTrainingPopUp;
-        boundReward = trainingConfigSo.boundReward;
-        bonusBoundReward = trainingConfigSo.bonusBoundReward;
+        if (useOfflineData)
+        {
+            possibleActions = trainingConfigSo.possibleActions;
+            cardRewards = trainingConfigSo.cardRewards;
+            blowConfigs = trainingConfigSo.blowConfigs;
+            losesMiniGame = trainingConfigSo.losesMessage;
+            alreadyWon = trainingConfigSo.alreadyWon;
+            //rewardTitle = trainingConfigSo.rewardTitle; TODO: GET CARD NAME?
+            eventTitle = trainingConfigSo.eventTitle;
+            minimumActionsToPlay = GetMinimumActionsToPlay(blowConfigs); 
+            inTrainingMessage = trainingConfigSo.inTrainingMessage;
+            startEventTimeStamp = ConvertDateInfoInTimeStamp(trainingConfigSo.startEventDateInfo);
+            endEventTimeStamp = ConvertDateInfoInTimeStamp(trainingConfigSo.endEventDateInfo);
+            eventStory = trainingConfigSo.eventStory;
+            sendToyoToTrainingPopUp = trainingConfigSo.sendToyoToTrainingPopUp;
+            bondReward = trainingConfigSo.bondReward;
+            bonusBondReward = trainingConfigSo.bonusBondReward;
+            return;
+        }
+
+        if(trainingConfigJson == null)
+            Debug.LogError("TrainingConfig Json is null.");
+        possibleActions = GetActionsFromIDs(trainingConfigJson.blows);
+        //cardRewards = trainingConfigJson.cardRewards; //TODO GET CARDS
+        blowConfigs = trainingConfigJson.blowsConfig;
+        losesMiniGame = trainingConfigJson.losesMessage;
+        alreadyWon = trainingConfigJson.rewardMessage;
+        //rewardTitle = trainingConfigJson.rewardTitle; TODO: GET CARD NAME?
+        eventTitle = trainingConfigJson.name;
+        minimumActionsToPlay = GetMinimumActionsToPlay(blowConfigs); 
+        inTrainingMessage = trainingConfigJson.inTrainingMessage;
+        startEventTimeStamp = trainingConfigJson.startAt;
+        endEventTimeStamp = trainingConfigJson.endAt;
+        eventStory = trainingConfigJson.story;
+        sendToyoToTrainingPopUp = trainingConfigJson.toyoTrainingConfirmationMessage;
+        bondReward = trainingConfigJson.bondReward;
+        bonusBondReward = trainingConfigJson.bonusBondReward;
+    }
+
+    private int GetMinimumActionsToPlay(BlowConfig[] blowConfigs)
+    {
+        var _result = 5; //Maximum possible blows
+        foreach (var _blowConfig in blowConfigs)
+        {
+            if (_result > _blowConfig.qty)
+                _result = _blowConfig.qty;
+        }
+        
+        return _result;
+    }
+
+    private TrainingActionSO[] GetActionsFromIDs(string[] ids)
+    {
+        var _resultList = new TrainingActionSO[ids.Length];
+        for (var _index = 0; _index < ids.Length; _index++)
+        {
+            foreach (var _trainingAction in allTrainingActionsInProject)
+            {
+                if (int.Parse(ids[_index]) != _trainingAction.id)
+                    continue;
+                _resultList[_index] = _trainingAction;
+                break;
+            }
+        }
+
+        return _resultList;
     }
 
     public List<TRAINING_RESULT> CompareCombination(List<TrainingActionSO> selectedActions)
@@ -161,7 +277,7 @@ public class TrainingConfig : Singleton<TrainingConfig>
     {
         //investValue = GetSelectedBlowConfig().invest;
         //receiveValue = GetSelectedBlowConfig().reward;
-        receiveValue = boundReward;
+        receiveValue = bondReward;
         durationValue = GetSelectedBlowConfig().duration;
     }
 

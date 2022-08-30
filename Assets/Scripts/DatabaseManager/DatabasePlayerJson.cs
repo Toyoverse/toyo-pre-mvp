@@ -213,4 +213,21 @@ namespace Database
         public string[] blows;
         public BlowConfig[] blowsConfig;
     }
+
+    [Serializable]
+    public class ToyosInTrainingListJSON
+    {
+        //TODO: COMPARE WITH SERVER AND VALIDATE THIS
+        public List<ToyoTrainingInfo> trainingInfos;
+    }
+
+    [Serializable]
+    public class ToyoTrainingInfo
+    {
+        private TrainingConfigJSON training;
+        public Toyo toyo;
+        public int startAt;
+        public int endAt;
+        public int[] combination;
+    }
 }

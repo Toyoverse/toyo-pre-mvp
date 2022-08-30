@@ -49,7 +49,7 @@ public class TrainingModuleRewardScreen : UIController
     {
         //TODO: Claim Rewards
         Debug.Log("Claim Rewards");
-        TrainingConfig.Instance.SetInTraining(false);
+        TrainingConfig.Instance.ClaimCallInServer();
         CallRewardsTransaction(GoToMainMenu);
     }
     
@@ -76,7 +76,7 @@ public class TrainingModuleRewardScreen : UIController
     private void ShowRewards()
     {
         SetTextInLabel(rewardTitleName, TrainingConfig.Instance.rewardTitle);
-        SetTextInLabel(rewardValueName, TrainingConfig.Instance.boundReward + " " + _coinPrefix);
+        SetTextInLabel(rewardValueName, TrainingConfig.Instance.bondReward + " " + _coinPrefix);
         CheckAndRewardCard();
     }
 

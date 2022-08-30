@@ -52,6 +52,7 @@ public class TrainingModuleScreen : UIController
     {
         base.ActiveScreen();
         ResetCombinationPool();
+        TrainingConfig.Instance.SetIsInTraining();
         ApplyInTrainingActions();
         UpdateUI();
     }
@@ -176,7 +177,8 @@ public class TrainingModuleScreen : UIController
 
     private void SendToyoToTraining()
     {
-        TrainingConfig.Instance.SetInTraining(true);
+        //TrainingConfig.Instance.SetInTraining(true);
+        TrainingConfig.Instance.SetInTrainingOnServer();
         EnableAllProgressImages();
         DisableLastEmptyAction();
         UpdateUI();

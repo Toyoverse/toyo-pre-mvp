@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Database;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 using static TimeTools;
 
 [CreateAssetMenu(fileName = "TrainingConfigSO", menuName = "ScriptableObject/TrainingConfigSO")]
@@ -11,7 +12,7 @@ public class TrainingConfigSO : ScriptableObject
     [Header("Event Default strings")] 
     public string eventTitle;
     public string inTrainingMessage;
-    public string rewardTitle;
+    //public string rewardTitle;
     public string losesMessage;
     public string alreadyWon;
     public string eventStory;
@@ -23,16 +24,12 @@ public class TrainingConfigSO : ScriptableObject
     
     [Header("Actions")]
     public TrainingActionSO[] possibleActions;
-    public int minimumActionsToPlay;
     public BlowConfig[] blowConfigs;
     
     [Header(("Rewards"))]
     public CardRewardSO[] cardRewards;
-    public float boundReward;
-    public float bonusBoundReward;
-
-    [Header("Training Event ID")]
-    public string id;
+    public float bondReward;
+    public float bonusBondReward;
 
     public void SendToServer()
     {
@@ -52,8 +49,8 @@ public class TrainingConfigSO : ScriptableObject
             endAt = (int)ConvertDateInfoInTimeStamp(endEventDateInfo),
             story = eventStory,
             isOngoing = false,
-            bondReward = this.boundReward,
-            bonusBondReward = this.bonusBoundReward,
+            bondReward = this.bondReward,
+            bonusBondReward = this.bonusBondReward,
             toyoTrainingConfirmationMessage = sendToyoToTrainingPopUp,
             inTrainingMessage = this.inTrainingMessage,
             losesMessage = this.losesMessage,
