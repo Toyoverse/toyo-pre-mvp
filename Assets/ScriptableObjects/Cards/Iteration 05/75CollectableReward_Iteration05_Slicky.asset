@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 75
   cardName: Arena of Trials
-  description: A mega event in Jakana inside a big arena, full of different areas
-    and different obstacles
+  description: A mega event happened in Jakana inside a big arena. Who or what is
+    behind this?
   memory: 
   cardType: 1
   cardImage: {fileID: 21300000, guid: 226d9f0845463294c9b564a06ec23daa, type: 3}
