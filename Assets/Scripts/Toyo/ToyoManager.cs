@@ -29,6 +29,11 @@ public class ToyoManager : Singleton<ToyoManager>
 
     public static ToyoObject GetSelectedToyo()
     {
+        if (Instance.ToyoList.Count == 0)
+        {
+            Debug.Log("No toyo to select. Toyo List is empty!");
+            return null;
+        }
         if (Instance.ToyoList.Find(toyoObject => toyoObject.IsToyoSelected) == null)
             SetFirstToyoToSelected();
         var _selectedToyo = Instance.ToyoList.Find(toyoObject => toyoObject.IsToyoSelected);
@@ -43,8 +48,12 @@ public class ToyoManager : Singleton<ToyoManager>
 
     public void AddToyoToToyoObjectList(Toyo toyo)
     {
-        GetSelectedToyo().transform.SetParent(carouselToyo.StartingPosition);
-        GetSelectedToyo().IsToyoSelected = false;
+        if (GetSelectedToyo() != null)
+        {
+            GetSelectedToyo().transform.SetParent(carouselToyo.StartingPosition);
+            GetSelectedToyo().IsToyoSelected = false;
+        }
+
         toyo.isToyoSelected = true;
         var toyoPrefab = InstantiateAndConfigureToyo(toyo, ref _toyoList);
         var databaseToyoList = Instance.Player.toyos.ToList();

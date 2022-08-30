@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 41
   cardName: Rebellion of the Ferals
-  description: Victorious and free toyos celebrates their accomplishment
+  description: There's a lot of war and suffering on this data. But, somehow, freedom
+    is also here
   memory: 
   cardType: 0
   cardImage: {fileID: 21300000, guid: 226d9f0845463294c9b564a06ec23daa, type: 3}

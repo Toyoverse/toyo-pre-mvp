@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: 30CollectableReward_Iteration02_Uzi
   m_EditorClassIdentifier: 
   id: 30
-  cardName: Battle for Freedom
-  description: Chaos, fights and mutiny rulling the streets of Jakana
+  cardName: You Got a Friend in Me
+  description: The Toyos were released somehow from the scientific quadrant making
+    their way into Jakana
   memory: 
   cardType: 2
   cardImage: {fileID: 21300000, guid: 226d9f0845463294c9b564a06ec23daa, type: 3}

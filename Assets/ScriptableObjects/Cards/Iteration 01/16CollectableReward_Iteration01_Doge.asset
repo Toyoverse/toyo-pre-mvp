@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: 16CollectableReward_Iteration01_Doge
   m_EditorClassIdentifier: 
   id: 16
-  cardName: The Glass Dome City
-  description: A city under a giant glass dome in the middle of the desert that was
-    once used to test nukes
+  cardName: Making Some Friends
+  description: It's a Toyo memory card? It has data encoded on it and a picture of
+    a single scientist at work
   memory: Iye gyx'd lovsofo sd. S wecd rkfo loox cywo mkxsxo-ybsoxdon Dyiy, kxn usxn
     yp cdsvv kw...  Led Nb. Vengsq gkxdon wo dy lo wemr wybo...
   cardType: 0

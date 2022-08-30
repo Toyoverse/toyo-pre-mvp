@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: 37CollectableReward_Iteration03_Datu
   m_EditorClassIdentifier: 
   id: 37
-  cardName: The Battle of Osaka
-  description: The great war of Osaka, with Toyos battling, standing their ground
-    and defending territories
+  cardName: The Battle of the Automata
+  description: The records show an epic event in the history of the Toyoverse called
+    The Battle of the Automata
   memory: Gur Gblbf jrer noyr gb oevat hf pybfre; gur Cnynjnavnaf oryvrir va gur
     Xvat ntnva.  Ohg zl jbex vf sne sebz svavfurq...
   cardType: 3
