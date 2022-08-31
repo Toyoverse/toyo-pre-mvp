@@ -16,7 +16,9 @@ MonoBehaviour:
   cardName: Arena of Trials
   description: A mega event happened in Jakana inside a big arena. Who or what is
     behind this?
-  memory: 
+  memory: Wkh rxwvlghuv exlow vrphwklqj xqghuqhdwk zkdw zdv wkhuh ehiruh, vkdshohvv,
+    jurwhvtxh, dv li wr nhhs hyhubwklqj zh zdqwhg wr ohdyh ehklqg.  Wkhb fdoo lw
+    wkh Duhqd Ri Wuldov.
   cardType: 3
   cardImage: {fileID: 21300000, guid: 226d9f0845463294c9b564a06ec23daa, type: 3}
   toyoPersona: {fileID: 11400000, guid: 5801cf382ca0256469cf687e816e52df, type: 2}

@@ -16,7 +16,9 @@ MonoBehaviour:
   cardName: Rebellion of the Ferals
   description: There's a lot of war and suffering on this data. But, somehow, freedom
     is also here
-  memory: 
+  memory: "Fbzr bs gur Ncrk, bhe zragbef, ner abgvpvat fvzvynevgvrf orgjrra gurz
+    naq gur bgure srenyf.  Vs jr whfg fgnaq urer, vg jvyy bayl or n znggre bs gvzr
+    orsber Xvat Bs Greebe\_jvcrf gurz nyy bhg."
   cardType: 0
   cardImage: {fileID: 21300000, guid: 226d9f0845463294c9b564a06ec23daa, type: 3}
   toyoPersona: {fileID: 11400000, guid: 10a76e9d02744ae4da9b8323ae9f0b5a, type: 2}
