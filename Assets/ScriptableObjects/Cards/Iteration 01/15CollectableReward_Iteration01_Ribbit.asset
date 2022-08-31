@@ -20,7 +20,7 @@ MonoBehaviour:
     Zh vshqw wkh gdb sdlqwlqj pb froruixo vsrwv.  Ri doo wkdw zh vkduhg, L zloo qhyhu
     irujhw klv vploh.
   cardType: 3
-  cardImage: {fileID: 21300000, guid: 226d9f0845463294c9b564a06ec23daa, type: 3}
+  cardImage: {fileID: 21300000, guid: 661b74bdf10e48aea3944695d45fdb90, type: 3}
   toyoPersona: {fileID: 11400000, guid: 5801cf382ca0256469cf687e816e52df, type: 2}
   correctCombination:
   - {fileID: 11400000, guid: c2f28a95ea76bae4da370bfa95d538f8, type: 2}

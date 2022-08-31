@@ -19,7 +19,7 @@ MonoBehaviour:
   memory: Pda banwho hkkgaz wp qo sepd zeozwej, okia araj wppwygaz qo, xqp bknpqjwpahu
     sa sana mqeyg ajkqcd pk aoywla qjpeh sa sana bkqjz xu "Ko Ranzwzaenko".
   cardType: 2
-  cardImage: {fileID: 21300000, guid: 226d9f0845463294c9b564a06ec23daa, type: 3}
+  cardImage: {fileID: 21300000, guid: 9e6c73d841f9fcd42ab81c089d1dfc3d, type: 3}
   toyoPersona: {fileID: 11400000, guid: dad42110bac49994aa84d18ba921ff00, type: 2}
   correctCombination:
   - {fileID: 11400000, guid: 01a87f46e947e714f8ddb1dcb46d47db, type: 2}

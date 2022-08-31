@@ -18,7 +18,7 @@ MonoBehaviour:
     a single scientist at work
   memory: Bqdtmbe ftq Fakae zqqp xqmpqdetub me ygot me ftq Rqdmxe zqqp Paz Nmdwa.
   cardType: 0
-  cardImage: {fileID: 21300000, guid: 226d9f0845463294c9b564a06ec23daa, type: 3}
+  cardImage: {fileID: 21300000, guid: 0159f71fafb44c68beb79ee3a5853925, type: 3}
   toyoPersona: {fileID: 11400000, guid: 76862368c38e1eb40bf46e17a77f25df, type: 2}
   correctCombination:
   - {fileID: 11400000, guid: 01a87f46e947e714f8ddb1dcb46d47db, type: 2}

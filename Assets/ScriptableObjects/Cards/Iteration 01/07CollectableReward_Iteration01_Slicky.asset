@@ -19,7 +19,7 @@ MonoBehaviour:
   memory: Ft. Nwfyki dwknv ocpa qh wu. Agu, jg ocfg wu vq hkpf yjcvgxgt jg pggfgf
     vq ocmg oqtg qh wu!
   cardType: 1
-  cardImage: {fileID: 21300000, guid: 226d9f0845463294c9b564a06ec23daa, type: 3}
+  cardImage: {fileID: 21300000, guid: 06c9c878cd634841b254078450edf0f5, type: 3}
   toyoPersona: {fileID: 11400000, guid: 15f667b5ee695b94a826097d3763568c, type: 2}
   correctCombination:
   - {fileID: 11400000, guid: 9bbd07f6cf5019245bcbea678cab3c35, type: 2}

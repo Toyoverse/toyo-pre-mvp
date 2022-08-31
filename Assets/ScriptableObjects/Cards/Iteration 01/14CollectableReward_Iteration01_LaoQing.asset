@@ -19,7 +19,7 @@ MonoBehaviour:
   memory: Fwlm.... ymj ufns... mzsy itbs ymj bjfpjw kjwfqx... pnqq ymj ywfnytwx fsi
     ijxjwyjwx tk ymj Itrf.  N fr... Qft Vnsl.
   cardType: 3
-  cardImage: {fileID: 21300000, guid: 226d9f0845463294c9b564a06ec23daa, type: 3}
+  cardImage: {fileID: 21300000, guid: 768c16761342435bad8ac63a3856c25c, type: 3}
   toyoPersona: {fileID: 11400000, guid: 108edc6dd21513d4e961c22eff4f7ad4, type: 2}
   correctCombination:
   - {fileID: 11400000, guid: 18409e1f7eaf281499613c5ebd158506, type: 2}
