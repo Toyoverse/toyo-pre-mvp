@@ -16,8 +16,8 @@ MonoBehaviour:
   cardName: Fist of the Three
   description: Some sort of Toyo memory card? It has encrypted data on it and an
     image of three fists
-  memory: Cneg bs zl fgeratgu V uvq sebz gur jbeyq...  Nyybjvat yrtraqf naq zlgu
-    gb svyy gur tnc.
+  memory: Cneg bs zl fgeratgu V uvq sebz Xlghag...  Nyybjvat yrtraqf naq zlgu gb
+    svyy gur tnc.
   cardType: 1
   cardImage: {fileID: 21300000, guid: 226d9f0845463294c9b564a06ec23daa, type: 3}
   toyoPersona: {fileID: 11400000, guid: a68e45f6f0b2b70459123f950f977c22, type: 2}
