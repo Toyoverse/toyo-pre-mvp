@@ -64,7 +64,7 @@ namespace UI
         {
             Loading.StartLoading?.Invoke();
             ToyoManager.SetSelectedBox(carousel.CurrentSelectedObject.gameObject);
-            DatabaseConnection.Instance.GetOpenBox(DatabaseConnection.Instance.blockchainIntegration.CallOpenBox, GetBoxSelected().boxList[0].objectId);
+            DatabaseConnection.Instance.GetOpenBox(DatabaseConnection.Instance.blockchainIntegration.CallOpenBox, GetBoxSelected().GetFirstUnopenedBoxId());
         }
 
         public void TestOpenBox()
@@ -81,7 +81,7 @@ namespace UI
             carousel.SetFirstSelectedObject();
             SetDescriptionText(GetBoxDescription(carousel.allObjects[0].GetComponent<BoxConfig>()));
             SetTitleText(GetBoxTitle(carousel.allObjects[0].GetComponent<BoxConfig>()));
-            SetBoxCount(carousel.allObjects[0].GetComponent<BoxConfig>().Quantity);
+            SetBoxCount(carousel.allObjects[0].GetComponent<BoxConfig>().GetQuantity());
 
             ToyoManager.SetSelectedBox(carousel.allObjects[0].gameObject);
             
@@ -95,9 +95,9 @@ namespace UI
 
             TOYO_RARITY myToyoRarity = ParseEnums.StringToEnum<TOYO_RARITY>(_myBox.box.toyo.toyoPersonaOrigin.rarity);
             GetBoxSelected().unboxingVfx.SetRarityColor(myToyoRarity);
+            GetBoxSelected().GetFirstUnopenedBox().isOpen = true;
             Loading.EndLoading?.Invoke();
             ToyoManager.Instance.AddToyoToToyoObjectList(_myBox.box.toyo);
-            DatabaseConnection.Instance.blockchainIntegration.CallOnlyUpdateBoxes();
             ScreenManager.Instance.GoToScreen(ScreenState.Unboxing);
         }
 
@@ -125,13 +125,13 @@ namespace UI
             {
                 SetDescriptionText(GetBoxDescription(carousel.allObjects[0].GetComponent<BoxConfig>()));
                 SetTitleText(GetBoxTitle(carousel.allObjects[0].GetComponent<BoxConfig>()));
-                SetBoxCount(carousel.allObjects[0].GetComponent<BoxConfig>().Quantity);
+                SetBoxCount(carousel.allObjects[0].GetComponent<BoxConfig>().GetQuantity());
                 return;
             }
             SetDescriptionText(GetBoxDescription(GetBoxSelected()));
             SetTitleText(GetBoxTitle(GetBoxSelected()));
             SetPossibleRewards(GetBoxSelected());
-            var _boxAmount = GetBoxSelected().Quantity;
+            var _boxAmount = GetBoxSelected().GetQuantity();
             SetBoxCount(_boxAmount);
             CheckCountAndEnableOrDisableOpenBoxButton(_boxAmount);
         }

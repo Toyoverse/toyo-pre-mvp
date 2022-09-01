@@ -123,8 +123,6 @@ public class BlockchainIntegration : MonoBehaviour
         Loading.EndLoading += GoToNextScreen;
         _databaseConnection.CallGetPlayerBoxes(OnBoxesSuccess);
     }
-    
-    public void CallOnlyUpdateBoxes() => _databaseConnection.CallGetPlayerBoxes(OnBoxesSuccess);
 
     public void OnBoxesSuccess(string json)
     {
@@ -177,7 +175,7 @@ public class BlockchainIntegration : MonoBehaviour
             string tx = await Web3GL.SendContract(method, abi, contract, args, value, gasLimit, gasPrice);
             
             _databaseConnection.PostOpenBox(ScreenManager.Instance.boxInfoScript.CallOpenBoxAnimation, 
-                ScreenManager.Instance.boxInfoScript.GetBoxSelected().boxList[0].objectId);
+                ScreenManager.Instance.boxInfoScript.GetBoxSelected().GetFirstUnopenedBoxId());
             
         } catch (Exception e) {
             Debug.LogException(e, this);

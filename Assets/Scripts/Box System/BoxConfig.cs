@@ -42,8 +42,50 @@ public class BoxConfig : MonoBehaviour
     private Dictionary<TOYO_RARITY, float> _dropRate;
     public Dictionary<TOYO_RARITY, float> DropRate => _dropRate ??= boxConfigSo.DropRate; 
 
-    public int Quantity => boxList.Count;
     public UnboxingVfx unboxingVfx;
+
+    public Box GetFirstUnopenedBox()
+    {
+        var box = new Box();
+        for (var i = 0; i < boxList.Count; i++)
+        {
+            if(boxList[i].isOpen)
+                continue;
+
+            box = boxList[i];
+            break;
+        }
+
+        return box;
+    }
+
+    public string GetFirstUnopenedBoxId()
+    {
+        var id = "";
+        for (var i = 0; i < boxList.Count; i++)
+        {
+            if(boxList[i].isOpen)
+                continue;
+
+            id = boxList[i].objectId;
+            break;
+        }
+
+        return id;
+    }
+    
+    public int GetQuantity()
+    {
+        var quantity = 0;
+
+        foreach (var item in boxList)
+        {
+            if (!item.isOpen)
+                quantity++;
+        }
+
+        return quantity;
+    }
 
     public void OnEnable()
     {
