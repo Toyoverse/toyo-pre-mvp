@@ -11,4 +11,5 @@ public class CardRewardSO : ScriptableObject
     public Sprite cardImage;
     public ToyoPersonaSO toyoPersona;
     public TrainingActionSO[] correctCombination;
+    public string imageURL;
 }

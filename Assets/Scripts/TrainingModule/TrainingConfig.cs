@@ -74,6 +74,7 @@ public class TrainingConfig : Singleton<TrainingConfig>
     public void SetSelectedID(int newID) => selectedActionID = newID;
     public Dictionary<int, TrainingActionSO> selectedActionsDict = new ();
     public List<TrainingActionSO> selectedTrainingActions;
+    
     public bool IsMinimumActionsToPlay() => selectedActionsDict.Count >= minimumActionsToPlay;
 
     //
@@ -85,24 +86,48 @@ public class TrainingConfig : Singleton<TrainingConfig>
         var _tokenID = ToyoManager.GetSelectedToyo().tokenId;
         var _isInTraining = IsInTrainingCheckInServer(_tokenID);
         if (_isInTraining)
+        {
             SetTrainingTimeStamp();
+            SetTrainingActionList(GetTrainingInfoById(_tokenID).combination);
+        }
         _selectedToyoIsInTraining = _isInTraining;
     }
-
+    
+    private Dictionary<string, ToyoTrainingInfo> _tempServerTraining = new();
     private bool IsInTrainingCheckInServer(string tokenID)
     {
-        //TODO: GET TRAINING IN SERVER
-        return false;
+        if (!_tempServerTraining.ContainsKey(tokenID))
+            _tempServerTraining.Add(tokenID, new ToyoTrainingInfo()
+            {
+                isInTraining = false,
+                combination = new []
+                {
+                    "3",
+                    "2",
+                    "4"
+                }
+            });
+        return _tempServerTraining[tokenID].isInTraining;
+        //TODO: GET TOYO TRAINING IN SERVER
+    }
+
+    private ToyoTrainingInfo GetTrainingInfoById(string tokenID)
+    {
+        //TODO: GET REAL TRAINING INFO
+        return _tempServerTraining[tokenID];
     }
 
     public void SetInTrainingOnServer()
     {
         var _tokenID = ToyoManager.GetSelectedToyo().tokenId;
+        _tempServerTraining[_tokenID].isInTraining = true;
         //TODO: SEND TOYO TO TRAINING IN SERVER ...AND BLOCKCHAIN?
     }
 
     public void ClaimCallInServer()
     {
+        var _tokenID = ToyoManager.GetSelectedToyo().tokenId;
+        _tempServerTraining[_tokenID].isInTraining = false;
         //TODO: SEND CLAIM TO SERVER ...AND BLOCKCHAIN?
     }
     
@@ -175,8 +200,11 @@ public class TrainingConfig : Singleton<TrainingConfig>
             return;
         }
 
-        if(trainingConfigJson == null)
+        if (trainingConfigJson == null)
+        {
             Debug.LogError("TrainingConfig Json is null.");
+            return;
+        }
         possibleActions = GetActionsFromIDs(trainingConfigJson.blows);
         //cardRewards = trainingConfigJson.cardRewards; //TODO GET CARDS
         blowConfigs = trainingConfigJson.blowsConfig;
@@ -223,6 +251,19 @@ public class TrainingConfig : Singleton<TrainingConfig>
         }
 
         return _resultList;
+    }
+    
+    private TrainingActionSO GetActionFromID(string id)
+    {
+        foreach (var _trainingAction in allTrainingActionsInProject)
+        {
+            if (int.Parse(id) != _trainingAction.id)
+                continue;
+            return _trainingAction;
+        }
+
+        Debug.LogError("ID " + id + " not found in TrainingActionsList.");
+        return null;
     }
 
     public List<TRAINING_RESULT> CompareCombination(List<TrainingActionSO> selectedActions)
@@ -324,6 +365,16 @@ public class TrainingConfig : Singleton<TrainingConfig>
         }
     }
     
+    private void SetTrainingActionList(string[] actionsIDs)
+    {
+        selectedTrainingActions = new();
+
+        for (var _i = 0; _i < actionsIDs.Length; _i++)
+        {
+            selectedTrainingActions.Add(GetActionFromID(actionsIDs[_i]));
+        }
+    }
+    
     public void ResetAllTrainingModule()
     {
         SetTrainingActionList(selectedActionsDict);
@@ -374,7 +425,7 @@ public class TrainingConfig : Singleton<TrainingConfig>
         return null;
     }
 
-    private List<TrainingActionSO> GetAllTrainingActionInProject()
+    /*private List<TrainingActionSO> GetAllTrainingActionInProject()
     {
         var _guids = AssetDatabase.FindAssets("t:", new[] { "Assets/ScriptableObjects/TrainingActions" });
         var _count = _guids.Length;
@@ -386,5 +437,5 @@ public class TrainingConfig : Singleton<TrainingConfig>
         }
 
         return _result;
-    }
+    }*/
 }

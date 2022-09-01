@@ -215,6 +215,13 @@ namespace Database
     }
 
     [Serializable]
+    public class TrainingConfigCallbackID
+    {
+        public string message;
+        public string body;
+    }
+
+    [Serializable]
     public class ToyosInTrainingListJSON
     {
         //TODO: COMPARE WITH SERVER AND VALIDATE THIS
@@ -228,6 +235,27 @@ namespace Database
         public Toyo toyo;
         public int startAt;
         public int endAt;
-        public int[] combination;
+        public bool isInTraining;
+        public string[] combination;
+    }
+
+    [Serializable]
+    public class CardRewardEventJSON
+    {
+        public string trainingEventId;
+        public string toyoPersonaId;
+        public string[] correctBlowsCombinationIds;
+        public CardRewardJSON cardReward;
+    }
+
+    [Serializable]
+    public class CardRewardJSON
+    {
+        public string name;
+        public string description;
+        public string rotText;
+        public string type;
+        public string cardId;
+        public string imageUrl;
     }
 }

@@ -30,15 +30,38 @@ public class TrainingConfigSO : ScriptableObject
     public CardRewardSO[] cardRewards;
     public float bondReward;
     public float bonusBondReward;
+    
+    //Intern control to send cardRewards
+    private string _trainingID;
+    private int _cardCount = 0;
 
     public void SendToServer()
     {
         Debug.Log("Send TrainingConfig to server in JSON: " + GetTrainingParametersInJSONString());
-        DatabaseConnection.Instance.PostTrainingConfig(ResultCallback, GetTrainingParametersInJSONString());
+        DatabaseConnection.Instance.PostTrainingConfig(PostTrainingCallback, GetTrainingParametersInJSONString());
     }
 
-    private void ResultCallback(string json)
-        => Debug.Log("TrainingConfig posted to server successfully!");
+    private void PostTrainingCallback(string json)
+    {
+        var _myObject = JsonUtility.FromJson<TrainingConfigCallbackID>(json);
+        _trainingID = _myObject.body;
+        Debug.Log("ResultMessage:" + _myObject.message + " | Body: " + _trainingID);
+        CallPostCardReward();
+    }
+
+    private void CallPostCardReward(string json = null)
+    {
+        if(json != null)
+            Debug.Log("CardPostResult: " + json);
+        if (_cardCount >= cardRewards.Length)
+        {
+            Debug.Log("All card rewards have been posted on the server!");
+            return;
+        }
+        var _cardJson = GetCardRewardInJSONString(cardRewards[_cardCount]);
+        DatabaseConnection.Instance.PostCardReward(CallPostCardReward, _cardJson);
+        _cardCount++;
+    }
 
     private string GetTrainingParametersInJSONString()
     {
@@ -70,6 +93,37 @@ public class TrainingConfigSO : ScriptableObject
             _blows[_i] = possibleActions[_i].id.ToString();
 
         return _blows;
+    }
+
+    private string GetCardRewardInJSONString(CardRewardSO card)
+    {
+        var _cardRewardJson = new CardRewardEventJSON()
+        {
+            trainingEventId = _trainingID,
+            toyoPersonaId = card.toyoPersona.objectId,
+            correctBlowsCombinationIds = GetCombinationInStringArray(card.correctCombination),
+            cardReward = new()
+            {
+                name = card.name,
+                description = card.description,
+                rotText = card.memory,
+                type = card.cardType.ToString(),
+                cardId = card.id.ToString(),
+                imageUrl = card.imageURL
+            }
+        };
+        
+        var _jsonString = JsonUtility.ToJson(_cardRewardJson);
+        return _jsonString;
+    }
+
+    private string[] GetCombinationInStringArray(TrainingActionSO[] combination)
+    {
+        var _result = new string[combination.Length];
+        for (var _i = 0; _i < combination.Length; _i++)
+            _result[_i] = combination[_i].id.ToString();
+        
+        return _result;
     }
 }
 

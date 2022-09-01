@@ -59,6 +59,7 @@ namespace Database
         [SerializeField] private string trainingBaseURL = "https://ts-trainning-web-bff.herokuapp.com";
         [SerializeField] private string registerTrainingSuffixURL = "/training-events";
         [SerializeField] private string getCurrentTrainingSuffixURL = "/training-events/search/current";
+        [SerializeField] private string registerCardRewardSuffixURL = "/toyo-persona-training-events";
         
         private void Awake()
         {
@@ -123,6 +124,13 @@ namespace Database
         public void PostTrainingConfig(Action<string> callback, string jsonString)
         {
             _url = trainingBaseURL + registerTrainingSuffixURL;
+            var _request = GeneratePost(_url, jsonString);
+            StartCoroutine(ProcessRequestCoroutine(callback, _request));
+        }
+
+        public void PostCardReward(Action<string> callback, string jsonString)
+        {
+            _url = trainingBaseURL + registerCardRewardSuffixURL;
             var _request = GeneratePost(_url, jsonString);
             StartCoroutine(ProcessRequestCoroutine(callback, _request));
         }
