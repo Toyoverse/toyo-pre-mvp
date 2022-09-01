@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 134d4ca8295d41f8bfd4fa631cfc2bbf, type: 3}
   m_Name: ToyoPersona_Lao_Qing
   m_EditorClassIdentifier: 
-  objectId: 1VYo3WbxmBr
+  objectId_dev: HdE75KYLEu
+  objectId_prod: Oi4fu1aJSG
   toyoName: Lao Qing
   toyoPrefab: {fileID: 1945413062895215098, guid: 65906402d10a47b4c91704a7e1bc4c5e, type: 3}

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 134d4ca8295d41f8bfd4fa631cfc2bbf, type: 3}
   m_Name: ToyoPersona_Doge
   m_EditorClassIdentifier: 
-  objectId: 4VYo3WbxmBr
+  objectId_dev: SlVD8e6onM
+  objectId_prod: QcyQL44Zv4
   toyoName: Doge
   toyoPrefab: {fileID: 1945413062895215098, guid: f0ec6e8fb5b37314e9e0779b1b4d0537, type: 3}

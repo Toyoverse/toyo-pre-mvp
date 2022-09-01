@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 134d4ca8295d41f8bfd4fa631cfc2bbf, type: 3}
   m_Name: ToyoPersona_Ribbit
   m_EditorClassIdentifier: 
-  objectId: 3VYo3WbxmBr
+  objectId_dev: Fq5HNieozz
+  objectId_prod: 3Gc2vNAUnc
   toyoName: Ribbit
   toyoPrefab: {fileID: 1945413062895215098, guid: d518f6864131fa34ea169d6f7d319dc7, type: 3}

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 134d4ca8295d41f8bfd4fa631cfc2bbf, type: 3}
   m_Name: ToyoPersona_Mizuchi
   m_EditorClassIdentifier: 
-  objectId: 3VYo3WbxmBr
+  objectId_dev: iGI0z7RIBI
+  objectId_prod: XFtzfuUqH2
   toyoName: Mizuchi
   toyoPrefab: {fileID: 1945413062895215098, guid: caa281c98a7a81542b03073ab007b380, type: 3}

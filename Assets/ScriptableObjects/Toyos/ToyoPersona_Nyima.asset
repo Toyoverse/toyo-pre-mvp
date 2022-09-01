@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 134d4ca8295d41f8bfd4fa631cfc2bbf, type: 3}
   m_Name: ToyoPersona_Nyima
   m_EditorClassIdentifier: 
-  objectId: 3VYo3WbxmBr
+  objectId_dev: WYWZmbfFuE
+  objectId_prod: 3LB0Yvmo52
   toyoName: Nyima
   toyoPrefab: {fileID: 1945413062895215098, guid: fb3adfcaa276257478e517e114b833cc, type: 3}

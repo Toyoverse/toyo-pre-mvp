@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 134d4ca8295d41f8bfd4fa631cfc2bbf, type: 3}
   m_Name: ToyoPersona_Black_Eyes
   m_EditorClassIdentifier: 
-  objectId: 3VYo3WbxmBr
+  objectId_dev: g2muNnKVuS
+  objectId_prod: 8UlqOpXGcd
   toyoName: BlkEy3z
   toyoPrefab: {fileID: 1945413062895215098, guid: 5897b7da9593b4c44b131ccf9ef200be, type: 3}
