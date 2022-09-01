@@ -20,7 +20,7 @@ MonoBehaviour:
     vw kpwqkm jcb bw mvbmz bpm wbpmz ycilzivba. Pwxmncttg, Q'tt jm vwb bwzv bw xqmkma
     jg bpm nmzita.
   cardType: 0
-  cardImage: {fileID: 21300000, guid: 226d9f0845463294c9b564a06ec23daa, type: 3}
+  cardImage: {fileID: 21300000, guid: c31d5fa19964b924cb15c1804543218a, type: 3}
   toyoPersona: {fileID: 11400000, guid: 5d8cb6abf0ea5b0409f0bf311eafc006, type: 2}
   correctCombination:
   - {fileID: 11400000, guid: a65c319791929f74f9429a91abdc0aff, type: 2}

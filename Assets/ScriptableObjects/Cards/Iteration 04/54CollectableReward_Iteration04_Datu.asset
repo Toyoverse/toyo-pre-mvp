@@ -18,7 +18,7 @@ MonoBehaviour:
   memory: Angher yvirf rkhorenagyl naq arj fgbevrf ner orvat gbyq sebz gur zbhguf
     bs gur lbhat.  Gur raq unf orra cbfgcbarq.
   cardType: 0
-  cardImage: {fileID: 21300000, guid: 226d9f0845463294c9b564a06ec23daa, type: 3}
+  cardImage: {fileID: 21300000, guid: 1bec1b31b174fe84783311059956d994, type: 3}
   toyoPersona: {fileID: 11400000, guid: a68e45f6f0b2b70459123f950f977c22, type: 2}
   correctCombination:
   - {fileID: 11400000, guid: 01a87f46e947e714f8ddb1dcb46d47db, type: 2}

@@ -19,7 +19,7 @@ MonoBehaviour:
   memory: Dl jhuuva npcl pu.  Aybl Rfabuaphuz dpss wylchps. Aol wyvwoljf dpss jvtl
     aybl.
   cardType: 1
-  cardImage: {fileID: 21300000, guid: 226d9f0845463294c9b564a06ec23daa, type: 3}
+  cardImage: {fileID: 21300000, guid: a59f41bbea737bd4280d3e95a5a5faa5, type: 3}
   toyoPersona: {fileID: 11400000, guid: 650c1b6890a00584d8beef301fb3f8aa, type: 2}
   correctCombination:
   - {fileID: 11400000, guid: 01a87f46e947e714f8ddb1dcb46d47db, type: 2}

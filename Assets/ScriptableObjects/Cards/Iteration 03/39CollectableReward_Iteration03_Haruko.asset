@@ -19,7 +19,7 @@ MonoBehaviour:
   memory: U ime odqmfqp nk ftq uybqfge ar ftq dustfqage fa qzegdq ftmf ftq tmdyazuage
     nmxmzoq ue ymuzfmuzqp.  Me xazs me U qjuef, ftqdq iuxx nq tabq.
   cardType: 0
-  cardImage: {fileID: 21300000, guid: 226d9f0845463294c9b564a06ec23daa, type: 3}
+  cardImage: {fileID: 21300000, guid: 469652f765a77634da6751c31caf7d71, type: 3}
   toyoPersona: {fileID: 11400000, guid: d3f6f63f02ee18246a597077bcf2ad01, type: 2}
   correctCombination:
   - {fileID: 11400000, guid: f87c225c2b8e2e2448724ad830eb9ef9, type: 2}

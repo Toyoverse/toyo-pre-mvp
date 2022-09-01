@@ -20,7 +20,7 @@ MonoBehaviour:
     qoiuvh o uzwadgs ct as ucwbu hvsfs...  Cbs pfihoz pzck hc rsghfcm hvs uohsg \u2014
     obr piwzr o dohv tcf tfssrca"
   cardType: 0
-  cardImage: {fileID: 21300000, guid: 226d9f0845463294c9b564a06ec23daa, type: 3}
+  cardImage: {fileID: 21300000, guid: 4f7fd8730c77fc947808e69088af552d, type: 3}
   toyoPersona: {fileID: 11400000, guid: 8ae07a4a9bca8ba4e819ba4a9e8008b3, type: 2}
   correctCombination:
   - {fileID: 11400000, guid: 694ab762af5fbbf42b0974ce7ec9b4d0, type: 2}

@@ -20,7 +20,7 @@ MonoBehaviour:
     sana wxha pk dahl pda narkhqpekjwnu banwho\_wcwejop pda ywjejao wjz sa sana wxha
     pk ikra bknswnz wcwejop kpdan mqwnpano."
   cardType: 2
-  cardImage: {fileID: 21300000, guid: 226d9f0845463294c9b564a06ec23daa, type: 3}
+  cardImage: {fileID: 21300000, guid: befe1861c46df3c489343e8c5473b9ec, type: 3}
   toyoPersona: {fileID: 11400000, guid: dad42110bac49994aa84d18ba921ff00, type: 2}
   correctCombination:
   - {fileID: 11400000, guid: f87c225c2b8e2e2448724ad830eb9ef9, type: 2}

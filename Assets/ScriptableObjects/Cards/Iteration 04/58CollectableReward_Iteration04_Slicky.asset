@@ -19,7 +19,7 @@ MonoBehaviour:
   memory: Vjg hgtcnu pggf vq qdga vjg qwvukfgtu.  Vjku yca, yg yknn ickp oqtg ygcrqpu
     vq dnqy gxgtavjkpi wr!
   cardType: 0
-  cardImage: {fileID: 21300000, guid: 226d9f0845463294c9b564a06ec23daa, type: 3}
+  cardImage: {fileID: 21300000, guid: 12606d538cc750e4eafd2bed6841404d, type: 3}
   toyoPersona: {fileID: 11400000, guid: 15f667b5ee695b94a826097d3763568c, type: 2}
   correctCombination:
   - {fileID: 11400000, guid: 367df68e40fc12746a8ba65708f551ab, type: 2}

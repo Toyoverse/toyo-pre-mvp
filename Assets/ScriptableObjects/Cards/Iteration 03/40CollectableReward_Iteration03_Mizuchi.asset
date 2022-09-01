@@ -18,7 +18,7 @@ MonoBehaviour:
     The Battle of the Automata
   memory: YZNOMJT.... MDK VGG MZWZGN VKVMO.  GZVQZ IJ... IJ NPMQDQJMN.
   cardType: 1
-  cardImage: {fileID: 21300000, guid: 226d9f0845463294c9b564a06ec23daa, type: 3}
+  cardImage: {fileID: 21300000, guid: 6d2c2e220a104d74d99f7438f3939e26, type: 3}
   toyoPersona: {fileID: 11400000, guid: f682deaa431577145a57c166ef005660, type: 2}
   correctCombination:
   - {fileID: 11400000, guid: 6972b2ae28210d742acc8a134bffc9bd, type: 2}

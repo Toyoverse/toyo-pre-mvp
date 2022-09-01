@@ -17,7 +17,7 @@ MonoBehaviour:
   description: Are we lacking data or is it really a short moment of peace in Kytunt?
   memory: J tff nbslt gspn uif qbtu fwfszxifsf J hp.  Uiftf bsf qfbdfgvm ujnft.
   cardType: 1
-  cardImage: {fileID: 21300000, guid: 226d9f0845463294c9b564a06ec23daa, type: 3}
+  cardImage: {fileID: 21300000, guid: 20be326cdd34b6b4dba0fda2079b59e7, type: 3}
   toyoPersona: {fileID: 11400000, guid: a24b304f0592779449a93653cef018ae, type: 2}
   correctCombination:
   - {fileID: 11400000, guid: 6972b2ae28210d742acc8a134bffc9bd, type: 2}

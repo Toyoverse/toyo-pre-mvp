@@ -18,7 +18,7 @@ MonoBehaviour:
   memory: T dte ypie ez esp sfxlyd ez otdnfdd esp qfefcp zq Vjefye.   Hp lcp qlntyr
     l yph pcl cfwpo fyopc yph actyntawpd.
   cardType: 0
-  cardImage: {fileID: 21300000, guid: 226d9f0845463294c9b564a06ec23daa, type: 3}
+  cardImage: {fileID: 21300000, guid: bfaf2e06fd802164d932dd5092b3a372, type: 3}
   toyoPersona: {fileID: 11400000, guid: 8aa8173adb48573488c6a3914b096271, type: 2}
   correctCombination:
   - {fileID: 11400000, guid: 01a87f46e947e714f8ddb1dcb46d47db, type: 2}

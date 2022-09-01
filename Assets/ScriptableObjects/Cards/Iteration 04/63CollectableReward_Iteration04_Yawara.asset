@@ -19,7 +19,7 @@ MonoBehaviour:
   memory: Gur Xvat Bs Greebe'f ivbyrapr cebzbgrf n fvyrag qvfphffvba nzbat bhe Zragbef,
     gur Ncrk.
   cardType: 1
-  cardImage: {fileID: 21300000, guid: 226d9f0845463294c9b564a06ec23daa, type: 3}
+  cardImage: {fileID: 21300000, guid: 8e75e35f9ae77e142a2b37582e3f999f, type: 3}
   toyoPersona: {fileID: 11400000, guid: 10a76e9d02744ae4da9b8323ae9f0b5a, type: 2}
   correctCombination:
   - {fileID: 11400000, guid: 01a87f46e947e714f8ddb1dcb46d47db, type: 2}

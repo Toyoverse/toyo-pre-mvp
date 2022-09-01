@@ -19,7 +19,7 @@ MonoBehaviour:
   memory: Xyxo yp ec ohzomdon dy wood dro Kzoh, xyb drosb Dyiyc wkno czomspsmkvvi
     pyb drow.  Go kvwycd nsnx'd qod yed yp drobo kvsfo.
   cardType: 2
-  cardImage: {fileID: 21300000, guid: 226d9f0845463294c9b564a06ec23daa, type: 3}
+  cardImage: {fileID: 21300000, guid: c56b8d85713205d4991b361766a21c5e, type: 3}
   toyoPersona: {fileID: 11400000, guid: 545a78c852ce80d4a9baad3dd85408bc, type: 2}
   correctCombination:
   - {fileID: 11400000, guid: 5514c49a076910b4080f65249ad698d3, type: 2}
