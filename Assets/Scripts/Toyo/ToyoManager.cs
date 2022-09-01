@@ -93,7 +93,12 @@ public class ToyoManager : Singleton<ToyoManager>
     }
 
     public static void AddBoxToGlobalList(BoxConfig box) => Instance._allBoxesConfigInCarousel.Add(box);
-    
+    public static void ResetBoxesGlobalList()
+    {
+        Instance._allBoxesConfigInCarousel.Clear();
+        Instance._allBoxesConfigInCarousel = new List<BoxConfig>();
+    }
+
     List<ToyoObject> CreateToyoObjectList()
     {
         var _databaseToyoList = Instance.Player.toyos.ToList();
@@ -128,6 +133,7 @@ public class ToyoManager : Singleton<ToyoManager>
     {
         MainCamera = Camera.main;
         var _boxManager = FindObjectsOfType<CarouselManager>(true).First(manager => !manager.isToyoCarousel);
+        ResetBoxesGlobalList();
         AddBoxesToGlobalList(_boxManager.allObjects);
     }
 
@@ -171,6 +177,7 @@ public class ToyoManager : Singleton<ToyoManager>
 
     public static void SetPlayerBoxes()
     {
+        ResetBoxesInCarousel();
         foreach (var _boxFromPlayer in Instance.Player.boxes)
             foreach (var _boxConfigInCarousel in Instance._allBoxesConfigInCarousel)
                 CompareBoxModifiers(_boxFromPlayer, _boxConfigInCarousel);
@@ -182,6 +189,15 @@ public class ToyoManager : Singleton<ToyoManager>
             && GetBoxRegionInPlayerBox(boxFromPlayer) == boxConfigInCarousel.BoxRegion
             && !boxFromPlayer.isOpen)
             boxConfigInCarousel.boxList.Add(boxFromPlayer);
+    }
+
+    private static void ResetBoxesInCarousel()
+    {
+        foreach (var _boxConfigInCarousel in Instance._allBoxesConfigInCarousel)
+        {
+            _boxConfigInCarousel.boxList.Clear();
+            _boxConfigInCarousel.boxList = new();
+        }
     }
 
     private static BOX_TYPE GetBoxTypeInPlayerBox(Box box)

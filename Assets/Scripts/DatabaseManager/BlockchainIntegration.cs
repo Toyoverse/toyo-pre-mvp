@@ -124,6 +124,8 @@ public class BlockchainIntegration : MonoBehaviour
         _databaseConnection.CallGetPlayerBoxes(OnBoxesSuccess);
     }
     
+    public void CallOnlyUpdateBoxes() => _databaseConnection.CallGetPlayerBoxes(OnBoxesSuccess);
+
     public void OnBoxesSuccess(string json)
     {
         var _myObject = JsonUtility.FromJson<DatabasePlayerJson>(json);

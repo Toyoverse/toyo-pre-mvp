@@ -97,6 +97,7 @@ namespace UI
             GetBoxSelected().unboxingVfx.SetRarityColor(myToyoRarity);
             Loading.EndLoading?.Invoke();
             ToyoManager.Instance.AddToyoToToyoObjectList(_myBox.box.toyo);
+            DatabaseConnection.Instance.blockchainIntegration.CallOnlyUpdateBoxes();
             ScreenManager.Instance.GoToScreen(ScreenState.Unboxing);
         }
 
