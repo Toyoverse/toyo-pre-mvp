@@ -197,6 +197,7 @@ public class TrainingConfig : Singleton<TrainingConfig>
             sendToyoToTrainingPopUp = trainingConfigSo.sendToyoToTrainingPopUp;
             bondReward = trainingConfigSo.bondReward;
             bonusBondReward = trainingConfigSo.bonusBondReward;
+            ToyoManager.StartGame();
             return;
         }
 
