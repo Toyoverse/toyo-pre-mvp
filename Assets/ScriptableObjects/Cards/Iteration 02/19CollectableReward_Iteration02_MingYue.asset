@@ -19,9 +19,10 @@ MonoBehaviour:
   memory: Qeb molmebzv zibxoiv pxvp... Qeb Dobxq Ebxoq tfii yb pbbk elsbofkd xylsb
     qeb zilrap...  Pljbelt Lpxhx xipl hkltp qefp...
   cardType: 2
-  cardImage: {fileID: 21300000, guid: 226d9f0845463294c9b564a06ec23daa, type: 3}
+  cardImage: {fileID: 21300000, guid: 066c49ac499035242998d2a78a181293, type: 3}
   toyoPersona: {fileID: 11400000, guid: 1d7755e1b7a73f04799b8c189bd9fa63, type: 2}
   correctCombination:
   - {fileID: 11400000, guid: 5514c49a076910b4080f65249ad698d3, type: 2}
   - {fileID: 11400000, guid: 01a87f46e947e714f8ddb1dcb46d47db, type: 2}
   - {fileID: 11400000, guid: 01a87f46e947e714f8ddb1dcb46d47db, type: 2}
+  imageURL: 

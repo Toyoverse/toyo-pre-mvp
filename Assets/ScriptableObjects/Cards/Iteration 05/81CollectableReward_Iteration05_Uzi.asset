@@ -19,7 +19,7 @@ MonoBehaviour:
   memory: Sa iqop becdp pk zabajz lawya wjz w pnqa pnwjobkniwpekj ej Fwgwjw xu wjz
     bkn pda banwho.  Pdwp'o sdu E'i ckejc bkn pda Wnajw kb Pnewho.
   cardType: 2
-  cardImage: {fileID: 21300000, guid: 226d9f0845463294c9b564a06ec23daa, type: 3}
+  cardImage: {fileID: 21300000, guid: 0c0ce276d7998904d80825f68083b581, type: 3}
   toyoPersona: {fileID: 11400000, guid: dad42110bac49994aa84d18ba921ff00, type: 2}
   correctCombination:
   - {fileID: 11400000, guid: 5514c49a076910b4080f65249ad698d3, type: 2}
@@ -27,3 +27,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 01a87f46e947e714f8ddb1dcb46d47db, type: 2}
   - {fileID: 11400000, guid: c2f28a95ea76bae4da370bfa95d538f8, type: 2}
   - {fileID: 11400000, guid: 9f6b423abf4fc5c48842aa3465f674ba, type: 2}
+  imageURL: 

@@ -18,7 +18,7 @@ MonoBehaviour:
   memory: Hsvunzpkl aol luapyl hyjopwlshnv, dl dhajo aol buruvdu huk whapluasf vizlycl
     aol hyypchs vm aovzl svvtpun vu aol ovypgvu.
   cardType: 0
-  cardImage: {fileID: 21300000, guid: 226d9f0845463294c9b564a06ec23daa, type: 3}
+  cardImage: {fileID: 21300000, guid: 30a053daf034ea643b17f116183a1105, type: 3}
   toyoPersona: {fileID: 11400000, guid: 650c1b6890a00584d8beef301fb3f8aa, type: 2}
   correctCombination:
   - {fileID: 11400000, guid: 6972b2ae28210d742acc8a134bffc9bd, type: 2}
@@ -26,3 +26,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d706991f93291e04e8177ff43423b89e, type: 2}
   - {fileID: 11400000, guid: a65c319791929f74f9429a91abdc0aff, type: 2}
   - {fileID: 11400000, guid: a65c319791929f74f9429a91abdc0aff, type: 2}
+  imageURL: 

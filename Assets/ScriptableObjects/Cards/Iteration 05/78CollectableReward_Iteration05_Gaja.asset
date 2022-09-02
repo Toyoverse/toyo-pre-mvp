@@ -19,7 +19,7 @@ MonoBehaviour:
   memory: Hvsm bssr hc ibwhs hckofr o gwbuzs ucoz.  Cif Asbhcfg ybck hvwg kszz, obr
     gc rc ks.
   cardType: 0
-  cardImage: {fileID: 21300000, guid: 226d9f0845463294c9b564a06ec23daa, type: 3}
+  cardImage: {fileID: 21300000, guid: 3589e6ee1a669044aadd541a178ace0b, type: 3}
   toyoPersona: {fileID: 11400000, guid: 8ae07a4a9bca8ba4e819ba4a9e8008b3, type: 2}
   correctCombination:
   - {fileID: 11400000, guid: 6972b2ae28210d742acc8a134bffc9bd, type: 2}
@@ -27,3 +27,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a65c319791929f74f9429a91abdc0aff, type: 2}
   - {fileID: 11400000, guid: 6972b2ae28210d742acc8a134bffc9bd, type: 2}
   - {fileID: 11400000, guid: f272dbe45c053de4b8a7c033afc59054, type: 2}
+  imageURL: 
