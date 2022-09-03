@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.Serialization;
 
 namespace Database
 {
@@ -111,8 +112,8 @@ namespace Database
         {
             foreach (var _toyo in toyoList)
             {
-                yield return new WaitForSeconds(2f);
-                
+                //yield return new WaitForSeconds(2f); //TODO: HARD TEST TO VALIDATE IF THIS IS NECESSARY
+
                 _url = baseURL + toyosDetailSuffixURL + _toyo.objectId;
                 var _request = GenerateRequest(HTTP_REQUEST.GET);
                 yield return ProcessRequestCoroutine(callback, _request);
