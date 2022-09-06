@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventTitle: TrainingModule_Template_Test
   inTrainingMessage: Toyo in training...
-  rewardTitle: Default Title
   losesMessage: Discover the correct combination to unlock this week's secret collectible.
   alreadyWon: You've already received this week's collectible.
   eventStory: Here's a pretty cool story...
@@ -49,7 +48,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 18409e1f7eaf281499613c5ebd158506, type: 2}
   - {fileID: 11400000, guid: f87c225c2b8e2e2448724ad830eb9ef9, type: 2}
   - {fileID: 11400000, guid: 01a87f46e947e714f8ddb1dcb46d47db, type: 2}
-  minimumActionsToPlay: 3
   blowConfigs:
   - qty: 3
     duration: 360
@@ -59,6 +57,5 @@ MonoBehaviour:
     duration: 420
   cardRewards:
   - {fileID: 11400000, guid: 5838ba98f1eca694b8ceff4188c27c7e, type: 2}
-  boundReward: 0.35
-  bonusBoundReward: 1.35
-  id: 
+  bondReward: 0
+  bonusBondReward: 0

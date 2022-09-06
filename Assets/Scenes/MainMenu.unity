@@ -463,7 +463,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &361548218
 RectTransform:
   m_ObjectHideFlags: 0
@@ -881,10 +881,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 241d492b8b8ec0c46a18118d7067ee5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disableTrainingModule: 1
+  disableTrainingModule: 0
   ignoreTrainingTimer: 0
   useOfflineData: 0
   trainingConfigSo: {fileID: 11400000, guid: ba24712e20df32c4c8b0c530c796f2e8, type: 2}
+  useOfflineTrainingControl: 0
   allTrainingActionsInProject:
   - {fileID: 11400000, guid: 6972b2ae28210d742acc8a134bffc9bd, type: 2}
   - {fileID: 11400000, guid: f272dbe45c053de4b8a7c033afc59054, type: 2}
@@ -907,6 +908,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9f6b423abf4fc5c48842aa3465f674ba, type: 2}
   - {fileID: 11400000, guid: e15c76381798e6a49a8d61e5dc137a02, type: 2}
   - {fileID: 11400000, guid: 367df68e40fc12746a8ba65708f551ab, type: 2}
+  trainingEventID: 
   possibleActions: []
   blowConfigs: []
   cardRewards: []
@@ -943,7 +945,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &741288179
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1432,6 +1434,8 @@ MonoBehaviour:
   trainingBaseURL: https://ts-trainning-web-bff.herokuapp.com
   registerTrainingSuffixURL: /training-events
   getCurrentTrainingSuffixURL: /training-events/search/current
+  registerCardRewardSuffixURL: /toyo-persona-training-events
+  toyoTrainingSuffixURL: /training
 --- !u!4 &1082540500
 Transform:
   m_ObjectHideFlags: 0
@@ -1498,7 +1502,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isProduction: 0
   skipLogin: 0
-  tokenForTests: 
+  tokenForTests: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ3YWxsZXRJZCI6IjB4ZDZkNmU2NmJjNjAxOTQ0MDgzYzA0ZWJjZDEyYTIxMjc1MTU3MWY3MCIsInRyYW5zYWN0aW9uIjoiMHg2YWYwYTM3N2RjZTdkMzY1MTUxZjVlYjUxMzg1YTViYWI3NDkyNjc0OGQ2NGI0M2ExODk1ZmQ1ZDNjOWM2YTZmNzNiNmFlZTRmY2ZhZmE4ZjhkYzdkYzdlNjMzZDJmZDVjOTczN2RkMTgyODk3ZTZkZDk4ODBiYTU1NzlmM2QzNzFiIiwiaWF0IjoxNjYxOTYzNDMyLCJleHAiOjE2NjI1NjgyMzJ9.rfPO8QyG4G_3_4ghcu_nhJ-6Bsqm3eyRuy7Vo5O-auI
   rememberMe: {fileID: 0}
 --- !u!1 &1084469477
 GameObject:
@@ -2043,50 +2047,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &2115861890
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2115861892}
-  - component: {fileID: 2115861891}
-  m_Layer: 0
-  m_Name: AsyncCoroutineRunner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2115861891
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2115861890}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f11ec4617f62c224b99e34972dc917a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &2115861892
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2115861890}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 12
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &3921953553170400136
 PrefabInstance:
   m_ObjectHideFlags: 0

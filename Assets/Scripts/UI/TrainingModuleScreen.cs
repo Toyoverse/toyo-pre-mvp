@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Database;
 using UI;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
@@ -52,7 +53,7 @@ public class TrainingModuleScreen : UIController
     {
         base.ActiveScreen();
         ResetCombinationPool();
-        TrainingConfig.Instance.SetIsInTraining();
+        TrainingConfig.Instance.SetSelectedToyoIsInTraining();
         ApplyInTrainingActions();
         UpdateUI();
     }
@@ -121,7 +122,7 @@ public class TrainingModuleScreen : UIController
     {
         var _startButton = Root.Q<Button>(startTrainingButtonName);
         if (_startButton == null) return;
-        _startButton.visible = (!TrainingConfig.Instance.IsInTraining() && TrainingConfig.Instance.IsMinimumActionsToPlay());
+        _startButton.visible = (!TrainingConfig.Instance.SelectedToyoIsInTraining() && TrainingConfig.Instance.IsMinimumActionsToPlay());
     }
 
     public void RevealNextAction()
@@ -155,7 +156,7 @@ public class TrainingModuleScreen : UIController
     private void ApplyInTrainingActions()
     {
         DisableAllProgressImages();
-        if (!TrainingConfig.Instance.IsInTraining())
+        if (!TrainingConfig.Instance.SelectedToyoIsInTraining())
             return;
         for (var _i = 0; _i < TrainingConfig.Instance.selectedTrainingActions.Count; _i++)
         {
@@ -173,15 +174,21 @@ public class TrainingModuleScreen : UIController
 
     public void StartButton()
         => GenericPopUp.Instance.ShowPopUp(TrainingConfig.Instance.sendToyoToTrainingPopUp,
-            SendToyoToTraining, () => {});
+            CallBlockchainTrainingTransactions, () => {});
 
-    private void SendToyoToTraining()
+    private void CallBlockchainTrainingTransactions()
     {
-        //TrainingConfig.Instance.SetInTraining(true);
+        Loading.StartLoading?.Invoke();
+        DatabaseConnection.Instance.blockchainIntegration.ToyoApproveNftTransfer(ToyoManager.GetSelectedToyo().tokenId);
+    }
+    
+    public void SendToyoToTraining()
+    {
         TrainingConfig.Instance.SetInTrainingOnServer();
         EnableAllProgressImages();
         DisableLastEmptyAction();
         UpdateUI();
+        Loading.EndLoading?.Invoke();
     }
     
     private void DisableLastEmptyAction()
@@ -220,7 +227,7 @@ public class TrainingModuleScreen : UIController
 
     private void EnableTrainingUI() 
     {
-        if (TrainingConfig.Instance.IsInTraining())
+        if (TrainingConfig.Instance.SelectedToyoIsInTraining())
         {
             EnableVisualElement(inTrainingBoxName);
             SetTextInButton(inTrainingTimeButtonName, ConvertMinutesToString(TrainingConfig.Instance.GetTrainingTimeRemainInMinutes()));
@@ -262,7 +269,7 @@ public class TrainingModuleScreen : UIController
 
     private void UpdateProgressTraining()
     {
-        if (!TrainingConfig.Instance.IsInTraining())
+        if (!TrainingConfig.Instance.SelectedToyoIsInTraining())
             return;
         BlowConfig _blowConfig = null;
         if (TrainingConfig.Instance.GetSelectedBlowConfig() == null)

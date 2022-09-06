@@ -33,7 +33,7 @@ public class TrainingConfigSO : ScriptableObject
     
     //Intern control to send cardRewards
     private string _trainingID;
-    private int _cardCount = 0;
+    private int _cardCount;
 
     public void SendToServer()
     {
@@ -45,7 +45,7 @@ public class TrainingConfigSO : ScriptableObject
     {
         var _myObject = JsonUtility.FromJson<TrainingConfigCallbackID>(json);
         _trainingID = _myObject.body;
-        Debug.Log("ResultMessage:" + _myObject.message + " | Body: " + _trainingID);
+        _cardCount = 0;
         CallPostCardReward();
     }
 
@@ -59,13 +59,14 @@ public class TrainingConfigSO : ScriptableObject
             return;
         }
         var _cardJson = GetCardRewardInJSONString(cardRewards[_cardCount]);
-        DatabaseConnection.Instance.PostCardReward(CallPostCardReward, _cardJson);
+        Debug.Log("Send card to server in JSON: " + _cardJson);
         _cardCount++;
+        DatabaseConnection.Instance.PostCardReward(CallPostCardReward, _cardJson);
     }
 
     private string GetTrainingParametersInJSONString()
     {
-        var _trainingConfigJson = new TrainingConfigJSON()
+        var _trainingConfigJson = new TrainingConfigJSON
         {
             name = eventTitle,
             startAt = (int)ConvertDateInfoInTimeStamp(startEventDateInfo),
@@ -97,14 +98,15 @@ public class TrainingConfigSO : ScriptableObject
 
     private string GetCardRewardInJSONString(CardRewardSO card)
     {
-        var _cardRewardJson = new CardRewardEventJSON()
+        var _cardRewardJson = new CardRewardEventJSON
         {
             trainingEventId = _trainingID,
-            toyoPersonaId = card.toyoPersona.objectId,
-            correctBlowsCombinationIds = GetCombinationInStringArray(card.correctCombination),
-            cardReward = new()
+            toyoPersonaId = DatabaseConnection.Instance.blockchainIntegration.isProduction 
+                ? card.toyoPersona.objectId_prod : card.toyoPersona.objectId_dev,
+            correctBlowsCombinationIds = TrainingConfig.Instance.GetCombinationInStringArray(card.correctCombination),
+            cardReward = new CardRewardJSON
             {
-                name = card.name,
+                name = card.cardName,
                 description = card.description,
                 rotText = card.memory,
                 type = card.cardType.ToString(),
@@ -115,15 +117,6 @@ public class TrainingConfigSO : ScriptableObject
         
         var _jsonString = JsonUtility.ToJson(_cardRewardJson);
         return _jsonString;
-    }
-
-    private string[] GetCombinationInStringArray(TrainingActionSO[] combination)
-    {
-        var _result = new string[combination.Length];
-        for (var _i = 0; _i < combination.Length; _i++)
-            _result[_i] = combination[_i].id.ToString();
-        
-        return _result;
     }
 }
 

@@ -1157,7 +1157,7 @@
 }
 
 .valueMarging {
-    margin-left: 0;
+    margin-left: 96px;
 }
 
 .textMarging {

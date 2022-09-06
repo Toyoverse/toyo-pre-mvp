@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.Serialization;
 
 namespace Database
 {
@@ -60,7 +61,8 @@ namespace Database
         [SerializeField] private string registerTrainingSuffixURL = "/training-events";
         [SerializeField] private string getCurrentTrainingSuffixURL = "/training-events/search/current";
         [SerializeField] private string registerCardRewardSuffixURL = "/toyo-persona-training-events";
-        
+        [SerializeField] private string toyoTrainingSuffixURL = "/training";
+
         private void Awake()
         {
             loginURL = blockchainIntegration.isProduction ? productionLoginURL : testLoginURL;
@@ -111,8 +113,8 @@ namespace Database
         {
             foreach (var _toyo in toyoList)
             {
-                yield return new WaitForSeconds(2f);
-                
+                //yield return new WaitForSeconds(2f); //TODO: HARD TEST TO VALIDATE IF THIS IS NECESSARY
+
                 _url = baseURL + toyosDetailSuffixURL + _toyo.objectId;
                 var _request = GenerateRequest(HTTP_REQUEST.GET);
                 yield return ProcessRequestCoroutine(callback, _request);
@@ -144,9 +146,15 @@ namespace Database
 
         public void CallGetInTrainingList(Action<string> callback)
         {
-            //TODO: Set correct URL 
-            _url = trainingBaseURL + "/training/trainingList"; 
+            _url = trainingBaseURL + toyoTrainingSuffixURL; 
             var _request = GenerateRequest(HTTP_REQUEST.GET);
+            StartCoroutine(ProcessRequestCoroutine(callback, _request));
+        }
+
+        public void PostToyoInTraining(Action<string> callback, string jsonString)
+        {
+            _url = trainingBaseURL + toyoTrainingSuffixURL /*+ "/" + ToyoManager.GetSelectedToyo().tokenId*/;
+            var _request = GeneratePost(_url, jsonString);
             StartCoroutine(ProcessRequestCoroutine(callback, _request));
         }
         

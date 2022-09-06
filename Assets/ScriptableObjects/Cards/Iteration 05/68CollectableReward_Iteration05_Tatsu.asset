@@ -18,7 +18,7 @@ MonoBehaviour:
   memory: Uphfuifs xjui puifs Upzpt boe ivnbot, xf tuboe vq bhbjotu boz boe bmm uisfbut. 
     Xf xjmm bmxbzt gjhiu gps Lzuvou!
   cardType: 1
-  cardImage: {fileID: 21300000, guid: 226d9f0845463294c9b564a06ec23daa, type: 3}
+  cardImage: {fileID: 21300000, guid: 82f788ce49303b74bb97f0dc71a4183b, type: 3}
   toyoPersona: {fileID: 11400000, guid: a24b304f0592779449a93653cef018ae, type: 2}
   correctCombination:
   - {fileID: 11400000, guid: f87c225c2b8e2e2448724ad830eb9ef9, type: 2}
@@ -26,3 +26,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 694ab762af5fbbf42b0974ce7ec9b4d0, type: 2}
   - {fileID: 11400000, guid: b52184bde60566241a65593e40c2bf2f, type: 2}
   - {fileID: 11400000, guid: 694ab762af5fbbf42b0974ce7ec9b4d0, type: 2}
+  imageURL: 

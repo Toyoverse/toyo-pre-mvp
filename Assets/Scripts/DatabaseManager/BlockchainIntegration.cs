@@ -18,6 +18,7 @@ public class BlockchainIntegration : MonoBehaviour
 
     public bool isProduction;
     
+    //BOXES
     private const string productionApproveContractForTokenUntil9476 = "0x07AE3987C679c0aFd2eC1ED2945278c37918816c";
     private const string productionApproveContractForTokenOver9476 = "0x5c29302b5ae9e99f866704e28528d5be9b7b6a40";
     private const string productionApprovedTo = "0xB86743535e2716E2cea0D285A3fc3c1A58e44318";
@@ -30,8 +31,17 @@ public class BlockchainIntegration : MonoBehaviour
 
     private const string testApproveContract = "0xc02173691984D68625C455e0AB45f52581c008Da";
     private const string testApprovedTo = "0x53904b4640474d2f79b822ad4e2c40597d886bd5";
-    
     private const string testSwapTokenContract = "0x53904b4640474d2f79b822ad4e2c40597d886bd5";
+    
+    #endregion
+
+    #region Toyos contracts
+
+    private const string testToyoApproved = "0xb9F84081B4a621C819f8D206036F7548aa06638a";
+    private const string testToyoApprovedTo = "0x39a66bb85ec5f0ba8572b6e2452f78b6301843d1";
+
+    private const string productionToyoApproveContractForTokenOver9476 = "0xaf5107e0a3Ea679B6Fc23A9756075559e2e4649b";
+    private const string productionToyoApprovedTo = ""; //TODO
 
     #endregion
     
@@ -49,6 +59,7 @@ public class BlockchainIntegration : MonoBehaviour
     private List<Toyo> _toyoList = new();
 
     private readonly string _openBoxFailMessage = "Metamask Transaction Fail. Click to open box again.";
+    private readonly string _genericFailMessage = "Metamask Transaction Fail. Try again.";
 
     public async void StartLoginMetamask()
     {
@@ -221,6 +232,88 @@ public class BlockchainIntegration : MonoBehaviour
             Debug.LogException(e, this);
             Loading.EndLoading?.Invoke();
             GenericPopUp.Instance.ShowPopUp(_openBoxFailMessage);
+        }
+    }
+    
+    public async void ToyoApproveNftTransfer(string tokenID)
+    {
+        // APPROVE
+        const string approveABI = "[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"}],\"name\":\"approve\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]";
+
+        // NftTokenSwap (Mumbai)
+        var _approvedTo = isProduction ? productionToyoApprovedTo : testToyoApprovedTo;
+
+        // NftToken (Mumbai)
+        var _approveContract = "";
+        if (isProduction)
+            _approveContract = int.Parse(tokenID) <= 9476
+                ? productionApproveContractForTokenUntil9476
+                : productionToyoApproveContractForTokenOver9476;
+        else
+            _approveContract = testToyoApproved;
+        
+        const string approveMethod = "approve";
+
+        string[] _approveObj = { _approvedTo, tokenID };
+        var _approveArgs = JsonConvert.SerializeObject(_approveObj);
+
+        const string approveValue = "0";
+        const string approveGasLimit = "";
+        const string approveGasPrice = "80000000000";
+        
+        Debug.Log("SendContractValues { approveMethod:" + approveMethod + ", approveABI: " + approveABI 
+                  + ", _approveContract: " + _approveContract + ", _approveArgs: " + _approveArgs + ", approveValue: "
+                  + approveValue + ", approveGasLimit: " + approveGasLimit + ", approveGasPrice: " + approveGasPrice);
+
+        try {
+
+            var _hash = await Web3GL.SendContract(approveMethod, approveABI, _approveContract, _approveArgs, approveValue, approveGasLimit, approveGasPrice);
+            Debug.Log("TransactionHash: " + _hash);
+            
+            ToyoStake(tokenID);
+
+        } catch (Exception _exception) {
+            Debug.LogException(_exception, this);
+            Loading.EndLoading?.Invoke();
+            GenericPopUp.Instance.ShowPopUp(_genericFailMessage);
+        }
+    }
+
+    public async void ToyoStake(string tokenID)
+    {
+        // abi in json format
+        var _abi = "[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_tokenId\",\"type\":\"uint256\"}],\"name\":\"stakeToken\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]";
+        
+        // address of contract
+        var _contract = isProduction ? productionToyoApprovedTo : testToyoApprovedTo;
+
+        // smart contract method to call
+        var _method = "stakeToken";
+
+        string[] _obj = { tokenID };
+        var _args = JsonConvert.SerializeObject(_obj);
+
+        // value in wei
+        var _value = "0";
+        // gas limit OPTIONAL
+        var _gasLimit = "";
+        // gas price OPTIONAL
+        var _gasPrice = "80000000000";
+        // connects to user's browser wallet (metamask) to update contract state
+        
+        Debug.Log("SendContractValues { _abi:" + _abi + ", _contract: " + _contract + ", _method: " + _method 
+                  + ", _args: " + _args + ", _value: " + _value + ", _gasLimit: " + _gasLimit + ", _gasPrice: " + _gasPrice);
+        
+        try
+        {
+            var _hash = await Web3GL.SendContract(_method, _abi, _contract, _args, _value, _gasLimit, _gasPrice);
+            Debug.Log("StakeHash: " + _hash);
+            ScreenManager.Instance.trainingModuleScript.SendToyoToTraining();
+
+        } catch (Exception e) {
+            Debug.LogException(e, this);
+            Loading.EndLoading?.Invoke();
+            GenericPopUp.Instance.ShowPopUp(_genericFailMessage);
         }
     }
 
