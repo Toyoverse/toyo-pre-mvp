@@ -103,7 +103,7 @@ public class TrainingConfigSO : ScriptableObject
             trainingEventId = _trainingID,
             toyoPersonaId = DatabaseConnection.Instance.blockchainIntegration.isProduction 
                 ? card.toyoPersona.objectId_prod : card.toyoPersona.objectId_dev,
-            correctBlowsCombinationIds = GetCombinationInStringArray(card.correctCombination),
+            correctBlowsCombinationIds = TrainingConfig.Instance.GetCombinationInStringArray(card.correctCombination),
             cardReward = new CardRewardJSON
             {
                 name = card.cardName,
@@ -117,15 +117,6 @@ public class TrainingConfigSO : ScriptableObject
         
         var _jsonString = JsonUtility.ToJson(_cardRewardJson);
         return _jsonString;
-    }
-
-    private string[] GetCombinationInStringArray(TrainingActionSO[] combination)
-    {
-        var _result = new string[combination.Length];
-        for (var _i = 0; _i < combination.Length; _i++)
-            _result[_i] = combination[_i].id.ToString();
-        
-        return _result;
     }
 }
 

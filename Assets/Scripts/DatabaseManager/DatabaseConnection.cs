@@ -61,7 +61,8 @@ namespace Database
         [SerializeField] private string registerTrainingSuffixURL = "/training-events";
         [SerializeField] private string getCurrentTrainingSuffixURL = "/training-events/search/current";
         [SerializeField] private string registerCardRewardSuffixURL = "/toyo-persona-training-events";
-        
+        [SerializeField] private string toyoTrainingSuffixURL = "/training";
+
         private void Awake()
         {
             loginURL = blockchainIntegration.isProduction ? productionLoginURL : testLoginURL;
@@ -145,9 +146,15 @@ namespace Database
 
         public void CallGetInTrainingList(Action<string> callback)
         {
-            //TODO: Set correct URL 
-            _url = trainingBaseURL + "/training/trainingList"; 
+            _url = trainingBaseURL + toyoTrainingSuffixURL; 
             var _request = GenerateRequest(HTTP_REQUEST.GET);
+            StartCoroutine(ProcessRequestCoroutine(callback, _request));
+        }
+
+        public void PostToyoInTraining(Action<string> callback, string jsonString)
+        {
+            _url = trainingBaseURL + toyoTrainingSuffixURL /*+ "/" + ToyoManager.GetSelectedToyo().tokenId*/;
+            var _request = GeneratePost(_url, jsonString);
             StartCoroutine(ProcessRequestCoroutine(callback, _request));
         }
         

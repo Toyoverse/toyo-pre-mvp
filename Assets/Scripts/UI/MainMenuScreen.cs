@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -13,6 +14,7 @@ namespace UI
         public string normalModeName = "NormalMode";
         public string rankedModeName = "RankedMode"; 
         public string trainingModeName = "TrainingMode";
+        public string brbName = "Brb_Sign";
         
         public List<CustomButton> trainingModuleButtons;
 
@@ -27,7 +29,11 @@ namespace UI
                 FadeTrainingModuleButtons();
             }
             else
+            {
                 RevealTrainingModuleButtons();
+                TrainingConfig.Instance.SetSelectedToyoIsInTraining();
+                ApplyBrbIfIsInTraining();
+            }
             
             EnableButtonEvents(trainingModuleButtons);
         }
@@ -139,6 +145,26 @@ namespace UI
                 _cb.onClickEvent = new UnityEvent();
                 _cb.onClickEvent.AddListener(ShowComingSoonPopUp);
             }
+        }
+
+        private void ApplyBrbIfIsInTraining()
+        {
+            if (TrainingConfig.Instance.SelectedToyoIsInTraining())
+                EnableBRB();
+            else
+                DisableBRB();
+        }
+
+        private void EnableBRB()
+        {
+            EnableVisualElement(brbName);
+            ToyoManager.Instance.mainMenuToyoPivot.gameObject.SetActive(false);
+        }
+        
+        private void DisableBRB()
+        {
+            DisableVisualElement(brbName);
+            ToyoManager.Instance.mainMenuToyoPivot.gameObject.SetActive(true);
         }
     }
 }

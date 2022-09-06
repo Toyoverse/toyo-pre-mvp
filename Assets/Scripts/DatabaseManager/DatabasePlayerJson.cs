@@ -199,6 +199,7 @@ namespace Database
     [Serializable]
     public class TrainingConfigJSON
     {
+        public string id;
         public string name;
         public int startAt;
         public int endAt;
@@ -224,18 +225,24 @@ namespace Database
     [Serializable]
     public class ToyosInTrainingListJSON
     {
-        //TODO: COMPARE WITH SERVER AND VALIDATE THIS
-        public List<ToyoTrainingInfo> trainingInfos;
+        public ToyoTrainingInfo[] body;
     }
 
     [Serializable]
     public class ToyoTrainingInfo
     {
-        private TrainingConfigJSON training;
-        public Toyo toyo;
+        public string id;
+        public string toyoTokenId;
         public int startAt;
         public int endAt;
-        public bool isInTraining;
+        public string[] combination;
+    }
+    
+    [Serializable]
+    public class ToyoTrainingSendInfo
+    {
+        public string trainingId;
+        public string toyoTokenId;
         public string[] combination;
     }
 

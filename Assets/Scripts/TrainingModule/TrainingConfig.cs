@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Database;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -17,6 +18,8 @@ public class TrainingConfig : Singleton<TrainingConfig>
     [Header("If offline - base data")] 
     public bool useOfflineData;
     public TrainingConfigSO trainingConfigSo;
+    public bool useOfflineTrainingControl;
+    private Dictionary<string, ToyoTrainingInfo> _tempServerTraining = new();
 
     [Header("Source - Required to find objects when receiving information from the server")]
     public List<TrainingActionSO> allTrainingActionsInProject;
@@ -25,6 +28,7 @@ public class TrainingConfig : Singleton<TrainingConfig>
     public void SetSelectedToyoObject(ToyoObject toyoObject) => selectedToyoObject = toyoObject;
 
     //Current config usable
+    [HideInInspector] public string trainingEventID;
     [HideInInspector] public TrainingActionSO[] possibleActions;
     [HideInInspector] public BlowConfig[] blowConfigs;
     [HideInInspector] public CardRewardSO[] cardRewards;
@@ -50,24 +54,23 @@ public class TrainingConfig : Singleton<TrainingConfig>
     [HideInInspector] public void SetSelectedBlowConfig(BlowConfig blowConfig) => _selectedBlowConfig = blowConfig;
     private TOYO_RARITY _selectedToyoRarity = TOYO_RARITY.COMMON; //TODO: Get rarity of Toyo selected
     [HideInInspector] public TOYO_RARITY GetSelectedToyoRarity() => _selectedToyoRarity;
-    
-    //TODO: Get real variables in server
-    [HideInInspector] public long startEventTimeStamp = 0;
-    [HideInInspector] public long endEventTimeStamp = 0;
-    //[HideInInspector] public float investValue = 0;
-    [HideInInspector] public float receiveValue = 0;
-    [HideInInspector] public int durationValue = 0; //Duration in minutes
 
-    public long endTrainingTimeStamp { get; private set; }
-    //
+    [HideInInspector] public long startEventTimeStamp;
+    [HideInInspector] public long endEventTimeStamp;
+    [HideInInspector] public float receiveValue;
+    [HideInInspector] public int durationValue; //Duration in minutes
     
+    public int GetSelectedToyoEndTrainingTimeStamp()
+    => GetToyoTrainingInfo(ToyoManager.GetSelectedToyo().tokenId).endAt;
+
     private TrainingActionType _oldTypeSelected;
     public void SetOldTypeActionSelected(TrainingActionType type) => _oldTypeSelected = type;
     public TrainingActionType GetOldTypeActionSelected() => _oldTypeSelected;
     public bool OldTypeSelectedIsNone() => _oldTypeSelected == TrainingActionType.None;
     
     private List<ToyoTrainingInfo> _listOfToyosInTraining;
-    public List<ToyoTrainingInfo> GetListOfToyosInTraining => _listOfToyosInTraining;
+    public ToyoTrainingInfo GetToyoTrainingInfo(string tokenID)
+        => _listOfToyosInTraining.FirstOrDefault(training => tokenID == training.toyoTokenId);
 
     //
     public int selectedActionID { get; private set; }
@@ -79,56 +82,82 @@ public class TrainingConfig : Singleton<TrainingConfig>
 
     //
     private bool _selectedToyoIsInTraining;
-    public bool IsInTraining() => _selectedToyoIsInTraining;
+    public bool SelectedToyoIsInTraining() => _selectedToyoIsInTraining;
 
-    public void SetIsInTraining()
+    public void SetSelectedToyoIsInTraining()
     {
         var _tokenID = ToyoManager.GetSelectedToyo().tokenId;
         var _isInTraining = IsInTrainingCheckInServer(_tokenID);
         if (_isInTraining)
-        {
-            SetTrainingTimeStamp();
-            SetTrainingActionList(GetTrainingInfoById(_tokenID).combination);
-        }
+            SetTrainingActionList(GetToyoTrainingInfo(_tokenID).combination);
+        
         _selectedToyoIsInTraining = _isInTraining;
     }
     
-    private Dictionary<string, ToyoTrainingInfo> _tempServerTraining = new();
     private bool IsInTrainingCheckInServer(string tokenID)
     {
-        if (!_tempServerTraining.ContainsKey(tokenID))
-            _tempServerTraining.Add(tokenID, new ToyoTrainingInfo()
-            {
-                isInTraining = false,
-                combination = new []
-                {
-                    "3",
-                    "2",
-                    "4"
-                }
-            });
-        return _tempServerTraining[tokenID].isInTraining;
-        //TODO: GET TOYO TRAINING IN SERVER
-    }
+        if(!useOfflineTrainingControl)
+            return GetToyoTrainingInfo(tokenID) != null;
 
-    private ToyoTrainingInfo GetTrainingInfoById(string tokenID)
-    {
-        //TODO: GET REAL TRAINING INFO
-        return _tempServerTraining[tokenID];
+        if (!_tempServerTraining.ContainsKey(tokenID))
+            _tempServerTraining.Add(tokenID, new ToyoTrainingInfo());
+        return IsBiggerThenCurrentTimestamp(_tempServerTraining[tokenID].endAt);
     }
 
     public void SetInTrainingOnServer()
     {
         var _tokenID = ToyoManager.GetSelectedToyo().tokenId;
-        _tempServerTraining[_tokenID].isInTraining = true;
-        //TODO: SEND TOYO TO TRAINING IN SERVER ...AND BLOCKCHAIN?
+        UpdateSelectedActionsByDict();
+        
+        if (useOfflineTrainingControl)
+        {
+            _tempServerTraining[_tokenID].startAt = (int)GetActualTimeStamp();
+            _tempServerTraining[_tokenID].endAt = (int)GetActualTimeStamp() + 60;
+            _tempServerTraining[_tokenID].combination = GetCombinationInStringArray(selectedTrainingActions.ToArray());
+            return;
+        }
+        
+        DatabaseConnection.Instance.PostToyoInTraining(LogPostTrainingResult, GetSelectedToyoTrainingInJSON());
     }
+
+    private string GetSelectedToyoTrainingInJSON()
+    {
+        var _toyoTraining = new ToyoTrainingSendInfo
+        {
+            trainingId = trainingEventID,
+            toyoTokenId = ToyoManager.GetSelectedToyo().tokenId,
+            combination = GetCombinationInStringArray(selectedTrainingActions.ToArray())
+        };
+        var _jsonString = JsonUtility.ToJson(_toyoTraining);
+        Debug.Log("ToyoTrainingBody: " + _jsonString);
+        return _jsonString;
+    }
+    
+    public string[] GetCombinationInStringArray(TrainingActionSO[] combination)
+    {
+        Debug.Log("comb.length: " + combination.Length);
+        var _result = new string[combination.Length];
+        for (var _i = 0; _i < combination.Length; _i++)
+        {
+            Debug.Log("Comb[" + _i + "]: " + combination[_i].id);
+            _result[_i] = combination[_i].id.ToString();
+        }
+        
+        return _result;
+    }
+
+    private void LogPostTrainingResult(string json) => Debug.Log("PostTrainingResult: " + json);
 
     public void ClaimCallInServer()
     {
         var _tokenID = ToyoManager.GetSelectedToyo().tokenId;
-        _tempServerTraining[_tokenID].isInTraining = false;
-        //TODO: SEND CLAIM TO SERVER ...AND BLOCKCHAIN?
+        if (useOfflineTrainingControl)
+        {
+            _tempServerTraining[_tokenID].endAt = (int)GetActualTimeStamp();
+            return;
+        }
+        
+        //TODO: CLAIM CALL ON SERVER, ...AND BLOCKCHAIN?
     }
     
     public void InitializeTrainingModule()
@@ -149,17 +178,18 @@ public class TrainingConfig : Singleton<TrainingConfig>
     {
         var _myObject = JsonUtility.FromJson<TrainingConfigJSON>(json);
         SetTrainingConfigValues(_myObject);
-        ToyoManager.StartGame();
-        return; //TODO: Remover StartGame e return quando API de Toyos em treinamento estiver pronta
+        /*ToyoManager.StartGame();
+        return; //TODO: Remover StartGame e return quando API de Toyos em treinamento estiver pronta*/
         DatabaseConnection.Instance.CallGetInTrainingList(CreateToyosInTrainingList);
     }
     
     public void CreateToyosInTrainingList(string json)
     {
+        Debug.Log("InTrainingListResult: " + json);
         var _myObject = JsonUtility.FromJson<ToyosInTrainingListJSON>(json);
         //TODO: GET ALL TRAININGS AND CREATE LIST
         _listOfToyosInTraining = new();
-        foreach (var _trainingInfo in _myObject.trainingInfos)
+        foreach (var _trainingInfo in _myObject.body)
             _listOfToyosInTraining.Add(_trainingInfo);
         
         Debug.Log("InTrainingList Details Success! Toyos in training: " + _listOfToyosInTraining.Count);
@@ -168,7 +198,7 @@ public class TrainingConfig : Singleton<TrainingConfig>
 
     public int GetTrainingTimeRemainInMinutes()
     {
-        var _secondsRemain = endTrainingTimeStamp - GetActualTimeStamp();
+        var _secondsRemain = GetSelectedToyoEndTrainingTimeStamp() - GetActualTimeStamp();
         return ConvertSecondsInMinutes((int)_secondsRemain);
     }
     
@@ -206,6 +236,8 @@ public class TrainingConfig : Singleton<TrainingConfig>
             Debug.LogError("TrainingConfig Json is null.");
             return;
         }
+
+        trainingEventID = trainingConfigJson.id;
         possibleActions = GetActionsFromIDs(trainingConfigJson.blows);
         //cardRewards = trainingConfigJson.cardRewards; //TODO GET CARDS
         blowConfigs = trainingConfigJson.blowsConfig;
@@ -254,7 +286,7 @@ public class TrainingConfig : Singleton<TrainingConfig>
         return _resultList;
     }
     
-    private TrainingActionSO GetActionFromID(string id)
+    private TrainingActionSO GetActionByID(string id)
     {
         foreach (var _trainingAction in allTrainingActionsInProject)
         {
@@ -345,7 +377,7 @@ public class TrainingConfig : Singleton<TrainingConfig>
     
     private void SetTrainingActionList(Dictionary<int, TrainingActionSO> actionsDict)
     {
-        selectedTrainingActions = new();
+        selectedTrainingActions = new List<TrainingActionSO>();
         var _i = 0;
         var _timeOut = 0;
         while (_i < actionsDict.Count)
@@ -354,12 +386,10 @@ public class TrainingConfig : Singleton<TrainingConfig>
                 _i = 99;
             foreach (var _action in actionsDict)
             {
-                if (_i == _action.Key)
-                {
-                    selectedTrainingActions.Add(_action.Value);
-                    _i++;
-                    break;
-                }
+                if (_i != _action.Key) continue;
+                selectedTrainingActions.Add(_action.Value);
+                _i++;
+                break;
             }
 
             _timeOut++;
@@ -368,12 +398,10 @@ public class TrainingConfig : Singleton<TrainingConfig>
     
     private void SetTrainingActionList(string[] actionsIDs)
     {
-        selectedTrainingActions = new();
+        selectedTrainingActions = new List<TrainingActionSO>();
 
         for (var _i = 0; _i < actionsIDs.Length; _i++)
-        {
-            selectedTrainingActions.Add(GetActionFromID(actionsIDs[_i]));
-        }
+            selectedTrainingActions.Add(GetActionByID(actionsIDs[_i]));
     }
     
     public void ResetAllTrainingModule()
@@ -390,17 +418,17 @@ public class TrainingConfig : Singleton<TrainingConfig>
     public List<TrainingActionSO> GetFilteredActionsOnOldType() 
         => possibleActions.Where(action => action.type == _oldTypeSelected).ToList();
 
-    public void SetTrainingTimeStamp()
+    /*public void SetTrainingTimeStamp()
     {
         if (GetSelectedBlowConfig() == null)
             return;
         SetEndTrainingTimeStamp(GetFinishTrainingEpoch(GetActualTimeStamp(), GetSelectedBlowConfig().duration));
     }
     
-    private void SetEndTrainingTimeStamp(long timeStamp) => endTrainingTimeStamp = timeStamp;
+    /*private void SetEndTrainingTimeStamp(long timeStamp) => endTrainingTimeStamp = timeStamp;
 
     private long GetFinishTrainingEpoch(long startTrainingEpoch, int trainingDurationInMinutes) 
-        => startTrainingEpoch + GetSecondsInMinutes(trainingDurationInMinutes);
+        => startTrainingEpoch + GetSecondsInMinutes(trainingDurationInMinutes);*/
 
     public void AddToSelectedActionsDict(int key, TrainingActionSO action)
     {
@@ -426,17 +454,12 @@ public class TrainingConfig : Singleton<TrainingConfig>
         return null;
     }
 
-    /*private List<TrainingActionSO> GetAllTrainingActionInProject()
-    {
-        var _guids = AssetDatabase.FindAssets("t:", new[] { "Assets/ScriptableObjects/TrainingActions" });
-        var _count = _guids.Length;
-        var _result = new List<TrainingActionSO>(_count);
-        for(var _i = 0; _i < _count; _i++)
-        {
-            var _path = AssetDatabase.GUIDToAssetPath(_guids[_i]);
-            _result[_i] = AssetDatabase.LoadAssetAtPath<TrainingActionSO>(_path);
-        }
+    private bool IsBiggerThenCurrentTimestamp(int timestamp) => timestamp > GetActualTimeStamp();
 
-        return _result;
-    }*/
+    private void UpdateSelectedActionsByDict()
+    {
+        selectedTrainingActions = new List<TrainingActionSO>();
+        for (var _i = 0; _i < selectedActionsDict.Count; _i++)
+            selectedTrainingActions.Add(selectedActionsDict[_i]);
+    }
 }
