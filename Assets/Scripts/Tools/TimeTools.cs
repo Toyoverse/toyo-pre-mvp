@@ -6,12 +6,11 @@ public static class TimeTools
     private static readonly DateTime _epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
     
     public static long GetActualTimeStamp()
-        => (long)System.DateTime.UtcNow.Subtract(new System.DateTime(
-            1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalSeconds;
-    
+        => (long)DateTime.UtcNow.Subtract(_epoch).TotalSeconds;
+
     public static long GetTimeStampFromDate(DateTime date)
     {
-        var _elapsedTime = date - _epoch;
+        var _elapsedTime = DateTime.SpecifyKind(date, DateTimeKind.Utc) - _epoch;
         return (long)_elapsedTime.TotalSeconds;
     }
     
@@ -42,5 +41,15 @@ public static class TimeTools
             seconds -= 60;
         }
         return _result;
+    }
+
+    public static double ConvertSecondsToMilliseconds(long seconds)
+    {
+        return TimeSpan.FromSeconds(seconds).TotalMilliseconds;
+    }
+    
+    public static long ConvertMillisecondsToSeconds(double milliseconds)
+    {
+        return (long)TimeSpan.FromMilliseconds(milliseconds).TotalSeconds;
     }
 }

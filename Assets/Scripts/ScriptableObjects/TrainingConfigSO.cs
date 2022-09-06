@@ -69,8 +69,8 @@ public class TrainingConfigSO : ScriptableObject
         var _trainingConfigJson = new TrainingConfigJSON
         {
             name = eventTitle,
-            startAt = (int)ConvertDateInfoInTimeStamp(startEventDateInfo),
-            endAt = (int)ConvertDateInfoInTimeStamp(endEventDateInfo),
+            startAt = ConvertSecondsToMilliseconds(ConvertDateInfoInTimeStamp(startEventDateInfo)),
+            endAt = ConvertSecondsToMilliseconds(ConvertDateInfoInTimeStamp(endEventDateInfo)),
             story = eventStory,
             isOngoing = false,
             bondReward = this.bondReward,

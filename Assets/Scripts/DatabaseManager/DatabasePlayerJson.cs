@@ -201,8 +201,8 @@ namespace Database
     {
         public string id;
         public string name;
-        public int startAt;
-        public int endAt;
+        public double startAt;
+        public double endAt;
         public string story;
         public bool isOngoing;
         public float bondReward;

@@ -247,8 +247,8 @@ public class TrainingConfig : Singleton<TrainingConfig>
         eventTitle = trainingConfigJson.name;
         minimumActionsToPlay = GetMinimumActionsToPlay(blowConfigs); 
         inTrainingMessage = trainingConfigJson.inTrainingMessage;
-        startEventTimeStamp = trainingConfigJson.startAt;
-        endEventTimeStamp = trainingConfigJson.endAt;
+        startEventTimeStamp = ConvertMillisecondsToSeconds(trainingConfigJson.startAt);
+        endEventTimeStamp = ConvertMillisecondsToSeconds(trainingConfigJson.endAt);
         eventStory = trainingConfigJson.story;
         sendToyoToTrainingPopUp = trainingConfigJson.toyoTrainingConfirmationMessage;
         bondReward = trainingConfigJson.bondReward;
