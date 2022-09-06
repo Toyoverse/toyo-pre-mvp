@@ -72,7 +72,7 @@ public class TrainingConfigSO : ScriptableObject
             startAt = ConvertSecondsToMilliseconds(ConvertDateInfoInTimeStamp(startEventDateInfo)),
             endAt = ConvertSecondsToMilliseconds(ConvertDateInfoInTimeStamp(endEventDateInfo)),
             story = eventStory,
-            isOngoing = false,
+            isOngoing = true,
             bondReward = this.bondReward,
             bonusBondReward = this.bonusBondReward,
             toyoTrainingConfirmationMessage = sendToyoToTrainingPopUp,
