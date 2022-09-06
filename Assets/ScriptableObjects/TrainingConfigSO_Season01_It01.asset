@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventTitle: Welcome, Mentors!
   inTrainingMessage: Toyo in training...
-  rewardTitle: Congratulations! Here's your reward
   losesMessage: Discover the correct combination to unlock this week's secret collectable.
   alreadyWon: You've already received this week's collectable.
   eventStory: "Lucid Inc. informs you: the fun of our Mentors is of the highest priority. 
@@ -29,18 +28,18 @@ MonoBehaviour:
     of the extracted data.  Lucid Inc. wishes all Mentors good luck in this new adventure. "
   sendToyoToTrainingPopUp: Are you sure?
   startEventDateInfo:
-    day: 5
-    month: 8
+    day: 6
+    month: 9
     year: 2022
-    hour: 12
-    minute: 0
+    hour: 11
+    minute: 43
     second: 0
   endEventDateInfo:
-    day: 10
-    month: 8
+    day: 6
+    month: 9
     year: 2022
-    hour: 23
-    minute: 45
+    hour: 13
+    minute: 0
     second: 0
   possibleActions:
   - {fileID: 11400000, guid: 6972b2ae28210d742acc8a134bffc9bd, type: 2}
@@ -58,8 +57,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 18409e1f7eaf281499613c5ebd158506, type: 2}
   - {fileID: 11400000, guid: f87c225c2b8e2e2448724ad830eb9ef9, type: 2}
   - {fileID: 11400000, guid: 01a87f46e947e714f8ddb1dcb46d47db, type: 2}
-  minimumActionsToPlay: 3
-  blowConfigs: []
+  blowConfigs:
+  - qty: 3
+    duration: 360
+  - qty: 4
+    duration: 420
+  - qty: 5
+    duration: 480
   cardRewards:
   - {fileID: 11400000, guid: 3aeb987b54c8e7345ae1101a5f39bc27, type: 2}
   - {fileID: 11400000, guid: 208f4e3e0283c154bb2804981850f4ae, type: 2}
@@ -78,6 +82,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: eb5e8c36365c8b940a330135116f5450, type: 2}
   - {fileID: 11400000, guid: 2b11e78e0abc21a4698e0e4c51e19684, type: 2}
   - {fileID: 11400000, guid: 04c596c1d6e69cb4eb7c4fcb6706c2b6, type: 2}
-  boundReward: 0.35
-  bonusBoundReward: 1.35
-  id: 
+  bondReward: 0
+  bonusBondReward: 0
