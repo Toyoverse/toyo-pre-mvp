@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Database;
+using UI;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -83,6 +84,8 @@ public class TrainingConfig : Singleton<TrainingConfig>
     //
     private bool _selectedToyoIsInTraining;
     public bool SelectedToyoIsInTraining() => _selectedToyoIsInTraining;
+    
+    const string FailedGetEventMessage = "No training events are taking place at this time.";
 
     public void SetSelectedToyoIsInTraining()
     {
@@ -171,7 +174,7 @@ public class TrainingConfig : Singleton<TrainingConfig>
         if (useOfflineData)
             SetTrainingConfigValues();
         else
-            DatabaseConnection.Instance.GetCurrentTrainingConfig(OnGetTrainingSuccess);
+            DatabaseConnection.Instance.GetCurrentTrainingConfig(OnGetTrainingSuccess, OnGetTrainingFailed);
     }
 
     public void OnGetTrainingSuccess(string json)
@@ -181,6 +184,12 @@ public class TrainingConfig : Singleton<TrainingConfig>
         /*ToyoManager.StartGame();
         return; //TODO: Remover StartGame e return quando API de Toyos em treinamento estiver pronta*/
         DatabaseConnection.Instance.CallGetInTrainingList(CreateToyosInTrainingList);
+    }
+
+    public void OnGetTrainingFailed(string json)
+    {
+        Loading.EndLoading?.Invoke();
+        GenericPopUp.Instance.ShowPopUp(FailedGetEventMessage);
     }
     
     public void CreateToyosInTrainingList(string json)
@@ -417,18 +426,6 @@ public class TrainingConfig : Singleton<TrainingConfig>
     
     public List<TrainingActionSO> GetFilteredActionsOnOldType() 
         => possibleActions.Where(action => action.type == _oldTypeSelected).ToList();
-
-    /*public void SetTrainingTimeStamp()
-    {
-        if (GetSelectedBlowConfig() == null)
-            return;
-        SetEndTrainingTimeStamp(GetFinishTrainingEpoch(GetActualTimeStamp(), GetSelectedBlowConfig().duration));
-    }
-    
-    /*private void SetEndTrainingTimeStamp(long timeStamp) => endTrainingTimeStamp = timeStamp;
-
-    private long GetFinishTrainingEpoch(long startTrainingEpoch, int trainingDurationInMinutes) 
-        => startTrainingEpoch + GetSecondsInMinutes(trainingDurationInMinutes);*/
 
     public void AddToSelectedActionsDict(int key, TrainingActionSO action)
     {

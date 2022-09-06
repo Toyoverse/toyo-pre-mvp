@@ -137,7 +137,7 @@ namespace Database
             StartCoroutine(ProcessRequestCoroutine(callback, _request));
         }
 
-        public void GetCurrentTrainingConfig(Action<string> callback)
+        public void GetCurrentTrainingConfig(Action<string> callback, Action<string> failedCallback)
         {
             _url = trainingBaseURL + getCurrentTrainingSuffixURL;
             var _request = GenerateRequest(HTTP_REQUEST.GET);
@@ -202,7 +202,8 @@ namespace Database
             return _requestPost;
         }
         
-        private IEnumerator ProcessRequestCoroutine (Action<string> callback, UnityWebRequest request)
+        private IEnumerator ProcessRequestCoroutine (Action<string> callback, UnityWebRequest request,
+            Action<string> failedCallback = null)
         {
             if(!blockchainIntegration.isProduction)
                 request.SetRequestHeader("Access-Control-Allow-Origin", "*");
@@ -210,7 +211,11 @@ namespace Database
             yield return request.SendWebRequest();
 
             if (request.error != null)
-                 Debug.Log (request.error + " | " + request.downloadHandler.text + " / " + _url);
+            {
+                var _requestResult = request.downloadHandler.text;
+                Debug.Log (request.error + " | " + _requestResult + " / " + _url);
+                failedCallback?.Invoke(_requestResult);
+            }
             else
             {
                 var _requestResult = request.downloadHandler.text;
