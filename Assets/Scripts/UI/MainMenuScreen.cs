@@ -23,7 +23,8 @@ namespace UI
         public override void ActiveScreen()
         {
             base.ActiveScreen();
-            if (TrainingConfig.Instance.disableTrainingModule)
+            if (TrainingConfig.Instance.disableTrainingModule 
+                && !TrainingConfig.Instance.SelectedToyoIsInTraining())
             {
                 AddComingSoonPopUp(trainingModuleButtons);
                 FadeTrainingModuleButtons();
@@ -31,7 +32,7 @@ namespace UI
             else
             {
                 RevealTrainingModuleButtons();
-                TrainingConfig.Instance.SetSelectedToyoIsInTraining();
+                //TrainingConfig.Instance.SetSelectedToyoIsInTraining();
                 ApplyBrbIfIsInTraining();
             }
             
@@ -40,7 +41,7 @@ namespace UI
 
         public override void DisableScreen()
         {
-            if (TrainingConfig.Instance != null && TrainingConfig.Instance.disableTrainingModule)
+            //if (TrainingConfig.Instance != null && TrainingConfig.Instance.disableTrainingModule)
                 DisableButtonEvents(trainingModuleButtons);
             base.DisableScreen();
         }
@@ -124,10 +125,7 @@ namespace UI
         private void FadeTrainingModuleButtons()
         {
             foreach (var _cb in trainingModuleButtons)
-            {
-                Debug.Log(_cb.name);
                 ChangeVisualElementOpacity(_cb.name, 0.4f);
-            }
         }
         
         private void RevealTrainingModuleButtons()
@@ -147,6 +145,9 @@ namespace UI
             }
         }
 
+        private void ShowFailedGetEventPopUp()
+            => GenericPopUp.Instance.ShowPopUp(TrainingConfig.FailedGetEventMessage);
+        
         private void ApplyBrbIfIsInTraining()
         {
             if (TrainingConfig.Instance.SelectedToyoIsInTraining())

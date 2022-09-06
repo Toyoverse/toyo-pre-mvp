@@ -141,7 +141,7 @@ namespace Database
         {
             _url = trainingBaseURL + getCurrentTrainingSuffixURL;
             var _request = GenerateRequest(HTTP_REQUEST.GET);
-            StartCoroutine(ProcessRequestCoroutine(callback, _request));
+            StartCoroutine(ProcessRequestCoroutine(callback, _request, failedCallback));
         }
 
         public void CallGetInTrainingList(Action<string> callback)

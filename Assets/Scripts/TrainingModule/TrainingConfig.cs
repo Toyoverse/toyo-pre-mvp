@@ -71,7 +71,7 @@ public class TrainingConfig : Singleton<TrainingConfig>
     
     private List<ToyoTrainingInfo> _listOfToyosInTraining;
     public ToyoTrainingInfo GetToyoTrainingInfo(string tokenID)
-        => _listOfToyosInTraining.FirstOrDefault(training => tokenID == training.toyoTokenId);
+        => _listOfToyosInTraining?.FirstOrDefault(training => tokenID == training.toyoTokenId);
 
     //
     public int selectedActionID { get; private set; }
@@ -80,21 +80,18 @@ public class TrainingConfig : Singleton<TrainingConfig>
     public List<TrainingActionSO> selectedTrainingActions;
     
     public bool IsMinimumActionsToPlay() => selectedActionsDict.Count >= minimumActionsToPlay;
-
     //
-    private bool _selectedToyoIsInTraining;
-    public bool SelectedToyoIsInTraining() => _selectedToyoIsInTraining;
-    
-    const string FailedGetEventMessage = "No training events are taking place at this time.";
 
-    public void SetSelectedToyoIsInTraining()
+    public static string FailedGetEventMessage = "No training events are taking place at this time.";
+
+    public bool SelectedToyoIsInTraining()
     {
         var _tokenID = ToyoManager.GetSelectedToyo().tokenId;
         var _isInTraining = IsInTrainingCheckInServer(_tokenID);
         if (_isInTraining)
             SetTrainingActionList(GetToyoTrainingInfo(_tokenID).combination);
-        
-        _selectedToyoIsInTraining = _isInTraining;
+
+        return _isInTraining;
     }
     
     private bool IsInTrainingCheckInServer(string tokenID)
@@ -120,7 +117,7 @@ public class TrainingConfig : Singleton<TrainingConfig>
             return;
         }
         
-        DatabaseConnection.Instance.PostToyoInTraining(LogPostTrainingResult, GetSelectedToyoTrainingInJSON());
+        DatabaseConnection.Instance.PostToyoInTraining(PostTrainingSendCallback, GetSelectedToyoTrainingInJSON());
     }
 
     private string GetSelectedToyoTrainingInJSON()
@@ -138,18 +135,18 @@ public class TrainingConfig : Singleton<TrainingConfig>
     
     public string[] GetCombinationInStringArray(TrainingActionSO[] combination)
     {
-        Debug.Log("comb.length: " + combination.Length);
         var _result = new string[combination.Length];
         for (var _i = 0; _i < combination.Length; _i++)
-        {
-            Debug.Log("Comb[" + _i + "]: " + combination[_i].id);
             _result[_i] = combination[_i].id.ToString();
-        }
         
         return _result;
     }
 
-    private void LogPostTrainingResult(string json) => Debug.Log("PostTrainingResult: " + json);
+    private void PostTrainingSendCallback(string json)
+    {
+        Debug.Log("PostTrainingResult: " + json);
+        ScreenManager.Instance.trainingModuleScript.UpdateTrainingAfterTrainingSuccess();
+    }
 
     public void ClaimCallInServer()
     {
@@ -181,15 +178,15 @@ public class TrainingConfig : Singleton<TrainingConfig>
     {
         var _myObject = JsonUtility.FromJson<TrainingConfigJSON>(json);
         SetTrainingConfigValues(_myObject);
-        /*ToyoManager.StartGame();
-        return; //TODO: Remover StartGame e return quando API de Toyos em treinamento estiver pronta*/
         DatabaseConnection.Instance.CallGetInTrainingList(CreateToyosInTrainingList);
     }
 
     public void OnGetTrainingFailed(string json)
     {
-        Loading.EndLoading?.Invoke();
+        Instance.disableTrainingModule = true;
         GenericPopUp.Instance.ShowPopUp(FailedGetEventMessage);
+        ToyoManager.StartGame();
+        Loading.EndLoading?.Invoke();
     }
     
     public void CreateToyosInTrainingList(string json)
