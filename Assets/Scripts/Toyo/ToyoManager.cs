@@ -78,18 +78,27 @@ public class ToyoManager : Singleton<ToyoManager>
 
     public static void MoveToyoToCenterOpenBox()
     {
-        GetSelectedToyo().transform
-            .SetPositionAndRotation(Instance.openBoxToyoPivot.position, Instance.openBoxToyoPivot.rotation);
-        GetSelectedToyo().transform.SetParent(Instance.openBoxToyoPivot);
-        GetSelectedToyo().transform.LookAt(MainCamera.transform);
+        var _toyoTransform = GetSelectedToyo().transform;
+        _toyoTransform.SetPositionAndRotation(Instance.openBoxToyoPivot.position, Instance.openBoxToyoPivot.rotation);
+        _toyoTransform.transform.SetParent(Instance.openBoxToyoPivot);
+        _toyoTransform.transform.LookAt(MainCamera.transform);
     }
     
     public static void MoveToyoToCenterMainMenu()
     {
-        GetSelectedToyo().transform
-            .SetPositionAndRotation(Instance.mainMenuToyoPivot.position, Instance.mainMenuToyoPivot.rotation);
-        GetSelectedToyo().transform.SetParent(Instance.mainMenuToyoPivot);
-        GetSelectedToyo().transform.LookAt(MainCamera.transform);
+        var _toyoTransform = GetSelectedToyo().transform;
+        _toyoTransform.SetPositionAndRotation(Instance.mainMenuToyoPivot.position, Instance.mainMenuToyoPivot.rotation);
+        _toyoTransform.transform.SetParent(Instance.mainMenuToyoPivot);
+        _toyoTransform.transform.LookAt(MainCamera.transform);
+        CentralizePlatformInMainMenu();
+    }
+
+    private static void CentralizePlatformInMainMenu()
+    {
+        var _platform = GetSelectedToyo().transform.GetChild(1);
+        var _rotation = _platform.rotation;
+        _rotation.z = 0;
+        _platform.localRotation = _rotation;
     }
 
     public static void AddBoxToGlobalList(BoxConfig box) => Instance._allBoxesConfigInCarousel.Add(box);

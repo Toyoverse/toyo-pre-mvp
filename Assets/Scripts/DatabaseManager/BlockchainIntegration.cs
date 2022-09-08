@@ -237,13 +237,8 @@ public class BlockchainIntegration : MonoBehaviour
     
     public async void ToyoApproveNftTransfer(string tokenID)
     {
-        // APPROVE
         const string approveABI = "[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"}],\"name\":\"approve\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]";
-
-        // NftTokenSwap (Mumbai)
         var _approvedTo = isProduction ? productionToyoApprovedTo : testToyoApprovedTo;
-
-        // NftToken (Mumbai)
         var _approveContract = "";
         if (isProduction)
             _approveContract = int.Parse(tokenID) <= 9476
@@ -279,28 +274,19 @@ public class BlockchainIntegration : MonoBehaviour
         }
     }
 
-    public async void ToyoStake(string tokenID)
+    private async void ToyoStake(string tokenID)
     {
-        // abi in json format
         var _abi = "[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_tokenId\",\"type\":\"uint256\"}],\"name\":\"stakeToken\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]";
-        
-        // address of contract
         var _contract = isProduction ? productionToyoApprovedTo : testToyoApprovedTo;
-
-        // smart contract method to call
         var _method = "stakeToken";
 
         string[] _obj = { tokenID };
         var _args = JsonConvert.SerializeObject(_obj);
-
-        // value in wei
-        var _value = "0";
-        // gas limit OPTIONAL
-        var _gasLimit = "";
-        // gas price OPTIONAL
-        var _gasPrice = "80000000000";
-        // connects to user's browser wallet (metamask) to update contract state
         
+        var _value = "0";
+        var _gasLimit = "";
+        var _gasPrice = "80000000000";
+
         Debug.Log("SendContractValues { _abi:" + _abi + ", _contract: " + _contract + ", _method: " + _method 
                   + ", _args: " + _args + ", _value: " + _value + ", _gasLimit: " + _gasLimit + ", _gasPrice: " + _gasPrice);
         
@@ -310,8 +296,39 @@ public class BlockchainIntegration : MonoBehaviour
             Debug.Log("StakeHash: " + _hash);
             ScreenManager.Instance.trainingModuleScript.SendToyoToTraining();
 
-        } catch (Exception e) {
-            Debug.LogException(e, this);
+        } catch (Exception _exception) {
+            Debug.LogException(_exception, this);
+            Loading.EndLoading?.Invoke();
+            GenericPopUp.Instance.ShowPopUp(_genericFailMessage);
+        }
+    }
+
+    public async void ClaimToken(ClaimParameters parameters)
+    {
+        const string abi = "[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_tokenId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_bondAmount\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"_cardCode\",\"type\":\"string\"},{\"internalType\":\"bytes\",\"name\":\"_signature\",\"type\":\"bytes\"}],\"name\":\"claimToken\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]";
+
+        const string method = "claimToken";
+        
+        var _contract = isProduction ? productionToyoApprovedTo : testToyoApprovedTo;
+
+        string[] _obj = { /*parameters.claimID,*/ parameters.tokenID, parameters.bond, parameters.cardCode, parameters.signature };
+        var _args = JsonConvert.SerializeObject(_obj);
+        
+        const string value = "0";
+        const string gasLimit = "";
+        const string gasPrice = "80000000000";
+
+        Debug.Log("ClaimTokenValues { _abi:" + abi + ", _contract: " + _contract + ", _method: " + method 
+                  + ", _args: " + _args + ", _value: " + value + ", _gasLimit: " + gasLimit + ", _gasPrice: " + gasPrice);
+        
+        try
+        {
+            var _hash = await Web3GL.SendContract(method, abi, _contract, _args, value, gasLimit, gasPrice);
+            Debug.Log("ClaimHash: " + _hash);
+            TrainingConfig.Instance.SuccessClaim();
+
+        } catch (Exception _exception) {
+            Debug.LogException(_exception, this);
             Loading.EndLoading?.Invoke();
             GenericPopUp.Instance.ShowPopUp(_genericFailMessage);
         }
@@ -376,4 +393,14 @@ public class BlockchainIntegration : MonoBehaviour
             ? ScreenState.MainMenu
             : ScreenState.Welcome);
     }
+}
+
+public struct ClaimParameters
+{
+    public string tokenID;
+    public string bond;
+    public string cardCode;
+    public string signature;
+    //public string claimID;
+    public double claimedAt;
 }
