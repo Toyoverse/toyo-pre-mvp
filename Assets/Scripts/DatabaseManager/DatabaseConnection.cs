@@ -58,10 +58,11 @@ namespace Database
         private string openBoxSuffixURL = "/player/box/";
 
         [SerializeField] private string trainingBaseURL = "https://ts-trainning-web-bff.herokuapp.com";
-        [SerializeField] private string registerTrainingSuffixURL = "/training-events";
-        [SerializeField] private string getCurrentTrainingSuffixURL = "/training-events/search/current";
+        [SerializeField] private string registerTrainingEventSuffix = "/training-events";
+        [SerializeField] private string getCurrentTrainingEventSuffix = "/training-events/search/current";
         [SerializeField] private string registerCardRewardSuffixURL = "/toyo-persona-training-events";
         [SerializeField] private string toyoTrainingSuffixURL = "/training";
+        private string claimSuffixURL; //TODO 
 
         private void Awake()
         {
@@ -125,7 +126,7 @@ namespace Database
 
         public void PostTrainingConfig(Action<string> callback, string jsonString)
         {
-            _url = trainingBaseURL + registerTrainingSuffixURL;
+            _url = trainingBaseURL + registerTrainingEventSuffix;
             var _request = GeneratePost(_url, jsonString);
             StartCoroutine(ProcessRequestCoroutine(callback, _request));
         }
@@ -139,7 +140,7 @@ namespace Database
 
         public void GetCurrentTrainingConfig(Action<string> callback, Action<string> failedCallback)
         {
-            _url = trainingBaseURL + getCurrentTrainingSuffixURL;
+            _url = trainingBaseURL + getCurrentTrainingEventSuffix;
             var _request = GenerateRequest(HTTP_REQUEST.GET);
             StartCoroutine(ProcessRequestCoroutine(callback, _request, failedCallback));
         }
@@ -157,7 +158,14 @@ namespace Database
             var _request = GeneratePost(_url, jsonString);
             StartCoroutine(ProcessRequestCoroutine(callback, _request));
         }
-        
+
+        public void CallGetClaimParameters(Action<string> successCallback, Action<string> failedCallback, string jsonString)
+        {
+            _url = trainingBaseURL + claimSuffixURL;
+            var _request = GeneratePost(_url, jsonString);
+            StartCoroutine(ProcessRequestCoroutine(successCallback, _request, failedCallback));
+        }
+
         private UnityWebRequest GenerateRequest (HTTP_REQUEST requestType, List<(string,string)> parameters = null) {
             
             return requestType switch

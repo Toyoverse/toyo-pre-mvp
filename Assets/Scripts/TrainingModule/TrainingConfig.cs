@@ -61,8 +61,8 @@ public class TrainingConfig : Singleton<TrainingConfig>
     [HideInInspector] public float receiveValue;
     [HideInInspector] public int durationValue; //Duration in minutes
     
-    public int GetSelectedToyoEndTrainingTimeStamp()
-    => GetToyoTrainingInfo(ToyoManager.GetSelectedToyo().tokenId).endAt;
+    public long GetSelectedToyoEndTrainingTimeStamp()
+    => ConvertMillisecondsToSeconds(GetToyoTrainingInfo(ToyoManager.GetSelectedToyo().tokenId).endAt);
 
     private TrainingActionType _oldTypeSelected;
     public void SetOldTypeActionSelected(TrainingActionType type) => _oldTypeSelected = type;
@@ -83,6 +83,10 @@ public class TrainingConfig : Singleton<TrainingConfig>
     //
 
     public static string FailedGetEventMessage = "No training events are taking place at this time.";
+    public static string GenericFailMessage = "Something went wrong, please reload the page and try again.";
+    public static string SuccessClaimMessage = "You have successfully redeemed your reward!";
+
+    public bool trainingEventNotFound = false;
 
     public bool SelectedToyoIsInTraining()
     {
@@ -101,7 +105,7 @@ public class TrainingConfig : Singleton<TrainingConfig>
 
         if (!_tempServerTraining.ContainsKey(tokenID))
             _tempServerTraining.Add(tokenID, new ToyoTrainingInfo());
-        return IsBiggerThenCurrentTimestamp(_tempServerTraining[tokenID].endAt);
+        return IsBiggerThenCurrentTimestamp(ConvertMillisecondsToSeconds(_tempServerTraining[tokenID].endAt));
     }
 
     public void SetInTrainingOnServer()
@@ -111,8 +115,8 @@ public class TrainingConfig : Singleton<TrainingConfig>
         
         if (useOfflineTrainingControl)
         {
-            _tempServerTraining[_tokenID].startAt = (int)GetActualTimeStamp();
-            _tempServerTraining[_tokenID].endAt = (int)GetActualTimeStamp() + 60;
+            _tempServerTraining[_tokenID].startAt = GetActualTimeStampInSeconds();
+            _tempServerTraining[_tokenID].endAt = GetActualTimeStampInSeconds() + 60;
             _tempServerTraining[_tokenID].combination = GetCombinationInStringArray(selectedTrainingActions.ToArray());
             return;
         }
@@ -145,20 +149,67 @@ public class TrainingConfig : Singleton<TrainingConfig>
     private void PostTrainingSendCallback(string json)
     {
         Debug.Log("PostTrainingResult: " + json);
+        //TODO: TEST UPDATE TOYO TRAINING LIST
+        DatabaseConnection.Instance.CallGetInTrainingList(CreateToyosInTrainingList);
         ScreenManager.Instance.trainingModuleScript.UpdateTrainingAfterTrainingSuccess();
     }
 
     public void ClaimCallInServer()
     {
         var _tokenID = ToyoManager.GetSelectedToyo().tokenId;
-        if (useOfflineTrainingControl)
+        if (!useOfflineTrainingControl)
         {
-            _tempServerTraining[_tokenID].endAt = (int)GetActualTimeStamp();
+            DatabaseConnection.Instance.CallGetClaimParameters(SuccessGetClaimParameters, 
+                FailedGetClaimParameters, _tokenID);
             return;
         }
         
-        //TODO: CLAIM CALL ON SERVER, ...AND BLOCKCHAIN?
+        //Using offline training control
+        _tempServerTraining[_tokenID].endAt = GetActualTimeStampInSeconds();
     }
+
+    private void SuccessGetClaimParameters(string json)
+    {
+        var _trainingResult = JsonUtility.FromJson<TrainingResult>(json);
+        if (_trainingResult.statusCode != 200)
+        {
+            GenericPopUp.Instance.ShowPopUp(GenericFailMessage);
+            Loading.EndLoading?.Invoke();
+            return;
+        }
+
+        var _claimParameters = new ClaimParameters
+        {
+            tokenID = _trainingResult.id,
+            bond = _trainingResult.bond,
+            cardCode = _trainingResult.cardCode,
+            signature = _trainingResult.signature,
+            claimedAt = _trainingResult.claimedAt
+        };
+        
+        DatabaseConnection.Instance.blockchainIntegration.ClaimToken(_claimParameters);
+    }
+
+    private void FailedGetClaimParameters(string json)
+    {
+        Loading.EndLoading?.Invoke();
+        GenericPopUp.Instance.ShowPopUp(GenericFailMessage);
+        Debug.Log("FailedGetClaimJSON: " + json);
+    }
+    
+    public void GenericFailedMessage()
+    {
+        Loading.EndLoading?.Invoke();
+        GenericPopUp.Instance.ShowPopUp(GenericFailMessage);
+    }
+
+    public void SuccessClaim()
+    {
+        Loading.EndLoading?.Invoke();
+        GenericPopUp.Instance.ShowPopUp(SuccessClaimMessage, GoToMainMenu);
+    }
+    
+    private void GoToMainMenu() => ScreenManager.Instance.GoToScreen(ScreenState.MainMenu);
     
     public void InitializeTrainingModule()
     {
@@ -183,10 +234,11 @@ public class TrainingConfig : Singleton<TrainingConfig>
 
     public void OnGetTrainingFailed(string json)
     {
-        Instance.disableTrainingModule = true;
+        Instance.trainingEventNotFound = true;
         GenericPopUp.Instance.ShowPopUp(FailedGetEventMessage);
-        ToyoManager.StartGame();
-        Loading.EndLoading?.Invoke();
+        /*ToyoManager.StartGame();
+        Loading.EndLoading?.Invoke();*/
+        DatabaseConnection.Instance.CallGetInTrainingList(CreateToyosInTrainingList);
     }
     
     public void CreateToyosInTrainingList(string json)
@@ -204,13 +256,13 @@ public class TrainingConfig : Singleton<TrainingConfig>
 
     public int GetTrainingTimeRemainInMinutes()
     {
-        var _secondsRemain = GetSelectedToyoEndTrainingTimeStamp() - GetActualTimeStamp();
+        var _secondsRemain = GetSelectedToyoEndTrainingTimeStamp() - GetActualTimeStampInSeconds();
         return ConvertSecondsInMinutes((int)_secondsRemain);
     }
     
     public int GetEventTimeRemain()
     {
-        var _secondsRemain = endEventTimeStamp - GetActualTimeStamp();
+        var _secondsRemain = endEventTimeStamp - GetActualTimeStampInSeconds();
         return ConvertSecondsInMinutes((int)_secondsRemain);
     }
 
@@ -227,8 +279,8 @@ public class TrainingConfig : Singleton<TrainingConfig>
             eventTitle = trainingConfigSo.eventTitle;
             minimumActionsToPlay = GetMinimumActionsToPlay(blowConfigs); 
             inTrainingMessage = trainingConfigSo.inTrainingMessage;
-            startEventTimeStamp = ConvertDateInfoInTimeStamp(trainingConfigSo.startEventDateInfo);
-            endEventTimeStamp = ConvertDateInfoInTimeStamp(trainingConfigSo.endEventDateInfo);
+            startEventTimeStamp = ConvertDateInfoInSecondsTimeStamp(trainingConfigSo.startEventDateInfo);
+            endEventTimeStamp = ConvertDateInfoInSecondsTimeStamp(trainingConfigSo.endEventDateInfo);
             eventStory = trainingConfigSo.eventStory;
             sendToyoToTrainingPopUp = trainingConfigSo.sendToyoToTrainingPopUp;
             bondReward = trainingConfigSo.bondReward;
@@ -448,12 +500,21 @@ public class TrainingConfig : Singleton<TrainingConfig>
         return null;
     }
 
-    private bool IsBiggerThenCurrentTimestamp(int timestamp) => timestamp > GetActualTimeStamp();
+    private bool IsBiggerThenCurrentTimestamp(long timestamp) => timestamp > GetActualTimeStampInSeconds();
 
     private void UpdateSelectedActionsByDict()
     {
         selectedTrainingActions = new List<TrainingActionSO>();
         for (var _i = 0; _i < selectedActionsDict.Count; _i++)
             selectedTrainingActions.Add(selectedActionsDict[_i]);
+    }
+
+    public int GetTrainingTotalDuration(ToyoTrainingInfo trainingInfo)
+    {
+        Debug.Log("end: " + trainingInfo.endAt + "start: " + trainingInfo.startAt);
+        var _sub = trainingInfo.endAt - trainingInfo.startAt;
+        var _result = ConvertSecondsInMinutes((int)_sub);
+        Debug.Log("trainingTotalDuration: " + _result);
+        return _result;
     }
 }
