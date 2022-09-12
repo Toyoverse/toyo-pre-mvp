@@ -17,7 +17,8 @@ MonoBehaviour:
   losesMessage: Discover the correct combination to unlock this week's secret collectible.
   alreadyWon: You've already received this week's collectible.
   eventStory: Here's a pretty cool story...
-  sendToyoToTrainingPopUp: Are you sure?
+  sendToyoToTrainingPopUp: Right! Next step is approve metamask transactions to stake
+    your NFT for some hours under our smart contract. Continue?
   startEventDateInfo:
     day: 1
     month: 8
