@@ -47,18 +47,9 @@ public class TrainingModuleRewardScreen : UIController
 
     public void ClaimButton()
     {
-        //TODO: Claim Rewards
         Debug.Log("Claim Rewards");
+        Loading.StartLoading?.Invoke();
         TrainingConfig.Instance.ClaimCallInServer();
-        CallRewardsTransaction(GoToMainMenu);
-    }
-    
-    private void GoToMainMenu() => ScreenManager.Instance.GoToScreen(ScreenState.MainMenu);
-
-    private void CallRewardsTransaction(Action callback)
-    {
-        //TODO
-        callback?.Invoke();
     }
 
     private void ApplySelectedActions()

@@ -20,27 +20,33 @@ namespace UI
 
         public static GAME_MODE GameMode { get; private set; }
 
+        private List<CustomButton> _trainingButtonsBkp = null;
+
         public override void ActiveScreen()
         {
             base.ActiveScreen();
-            if (TrainingConfig.Instance.disableTrainingModule)
+            if(_trainingButtonsBkp == null)
+                SaveButtonEventsBkp();
+            if (TrainingConfig.Instance.disableTrainingModule
+                || (TrainingConfig.Instance.trainingEventNotFound
+                && !TrainingConfig.Instance.SelectedToyoIsInTraining()))
             {
                 AddComingSoonPopUp(trainingModuleButtons);
                 FadeTrainingModuleButtons();
             }
-            else
+            else if(TrainingConfig.Instance.SelectedToyoIsInTraining())
             {
+                ReassignDefaultTrainingButtons();
                 RevealTrainingModuleButtons();
-                TrainingConfig.Instance.SetSelectedToyoIsInTraining();
-                ApplyBrbIfIsInTraining();
             }
             
+            ApplyBrbIfIsInTraining();
             EnableButtonEvents(trainingModuleButtons);
         }
 
         public override void DisableScreen()
         {
-            if (TrainingConfig.Instance != null && TrainingConfig.Instance.disableTrainingModule)
+            //if (TrainingConfig.Instance != null && TrainingConfig.Instance.disableTrainingModule)
                 DisableButtonEvents(trainingModuleButtons);
             base.DisableScreen();
         }
@@ -92,7 +98,7 @@ namespace UI
         public void StartButton()
         {
             TrainingConfig.Instance.SetSelectedToyoObject(ToyoManager.GetSelectedToyo());
-            if(TrainingConfig.Instance.loreScreenAlreadyOpen)
+            if(TrainingConfig.Instance.loreScreenAlreadyOpen || TrainingConfig.Instance.trainingEventNotFound)
                 ScreenManager.Instance.GoToScreen(ScreenState.TrainingModule);
             else
             {
@@ -124,10 +130,7 @@ namespace UI
         private void FadeTrainingModuleButtons()
         {
             foreach (var _cb in trainingModuleButtons)
-            {
-                Debug.Log(_cb.name);
                 ChangeVisualElementOpacity(_cb.name, 0.4f);
-            }
         }
         
         private void RevealTrainingModuleButtons()
@@ -147,6 +150,9 @@ namespace UI
             }
         }
 
+        private void ShowFailedGetEventPopUp()
+            => GenericPopUp.Instance.ShowPopUp(TrainingConfig.FailedGetEventMessage);
+        
         private void ApplyBrbIfIsInTraining()
         {
             if (TrainingConfig.Instance.SelectedToyoIsInTraining())
@@ -163,8 +169,38 @@ namespace UI
         
         private void DisableBRB()
         {
-            DisableVisualElement(brbName);
             ToyoManager.Instance.mainMenuToyoPivot.gameObject.SetActive(true);
+            DisableVisualElement(brbName);
+        }
+
+        private void SaveButtonEventsBkp()
+        {
+            _trainingButtonsBkp = new List<CustomButton>();
+            foreach (var _button in trainingModuleButtons)
+            {
+                var _customButton = new CustomButton
+                {
+                    name = _button.name,
+                    Button = _button.Button,
+                    onClickEvent = _button.onClickEvent
+                };
+                _trainingButtonsBkp.Add(_customButton);
+            }
+        }
+
+        private void ReassignDefaultTrainingButtons()
+        {
+            if (_trainingButtonsBkp == null)
+                return;
+            for (var _i = 0; _i < _trainingButtonsBkp.Count; _i++)
+            {
+                trainingModuleButtons[_i] = new CustomButton
+                {
+                    name = _trainingButtonsBkp[_i].name,
+                    Button = _trainingButtonsBkp[_i].Button,
+                    onClickEvent = _trainingButtonsBkp[_i].onClickEvent
+                };
+            }
         }
     }
 }

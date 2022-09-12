@@ -101,6 +101,7 @@ namespace Database
         [FormerlySerializedAs("toyoPersona")] public ToyoPersona toyoPersonaOrigin; // Todo : remove, this is temporary only for the wrong JSON
         //public ToyoPersona toyoPersonaOrigin; 
         public ToyoPart[] parts;
+        public bool isStaked;
     }
 
     [Serializable]
@@ -233,8 +234,8 @@ namespace Database
     {
         public string id;
         public string toyoTokenId;
-        public int startAt;
-        public int endAt;
+        public double startAt;
+        public double endAt;
         public string[] combination;
     }
     
@@ -264,5 +265,21 @@ namespace Database
         public string type;
         public string cardId;
         public string imageUrl;
+    }
+
+    [Serializable]
+    public class TrainingResult
+    {
+        public int statusCode;
+        public string message;
+        public string id;
+        public double startAt;
+        public double endAt;
+        public double claimedAt;
+        public string signature;
+        public string[] combination;
+        //TODO: Solicitar pro backend adicionar
+        public string bond;
+        public string cardCode;
     }
 }

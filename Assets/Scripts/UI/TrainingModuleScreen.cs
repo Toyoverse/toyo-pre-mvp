@@ -53,7 +53,7 @@ public class TrainingModuleScreen : UIController
     {
         base.ActiveScreen();
         ResetCombinationPool();
-        TrainingConfig.Instance.SetSelectedToyoIsInTraining();
+        //TrainingConfig.Instance.SetSelectedToyoIsInTraining();
         ApplyInTrainingActions();
         UpdateUI();
     }
@@ -185,6 +185,14 @@ public class TrainingModuleScreen : UIController
     public void SendToyoToTraining()
     {
         TrainingConfig.Instance.SetInTrainingOnServer();
+        /*EnableAllProgressImages();
+        DisableLastEmptyAction();
+        UpdateUI();
+        Loading.EndLoading?.Invoke();*/
+    }
+
+    public void UpdateTrainingAfterTrainingSuccess()
+    {
         EnableAllProgressImages();
         DisableLastEmptyAction();
         UpdateUI();
@@ -271,14 +279,22 @@ public class TrainingModuleScreen : UIController
     {
         if (!TrainingConfig.Instance.SelectedToyoIsInTraining())
             return;
-        BlowConfig _blowConfig = null;
-        if (TrainingConfig.Instance.GetSelectedBlowConfig() == null)
+        //BlowConfig _blowConfig = null;
+        var _toyoTrainingInfo = TrainingConfig.Instance.GetToyoTrainingInfo(ToyoManager.GetSelectedToyo().tokenId);
+        var _blowConfig = new BlowConfig
+        {
+            duration = TrainingConfig.Instance.GetTrainingTotalDuration(_toyoTrainingInfo),
+            qty = _toyoTrainingInfo.combination.Length
+        };
+        
+        /*if (TrainingConfig.Instance.GetSelectedBlowConfig() == null)
             TrainingConfig.Instance.ApplyBlowConfig();
-        _blowConfig = TrainingConfig.Instance.GetSelectedBlowConfig();
+        _blowConfig = TrainingConfig.Instance.GetSelectedBlowConfig();*/
         
         var _actualPercent = (((float)_blowConfig.duration - TrainingConfig.Instance.GetTrainingTimeRemainInMinutes())
                               / _blowConfig.duration) * 100;
         var _unitPercent = 100 / _blowConfig.qty;
+        ActiveProgressImagesInActiveActions();
         for (var _i = 0; _i < _blowConfig.qty; _i++)
         {
             if (_actualPercent > (_unitPercent * (_i + 1)))
@@ -295,6 +311,15 @@ public class TrainingModuleScreen : UIController
 
     private List<Image> GetProgressActiveImages()
         =>  progressImages.Where(img => img.gameObject.activeInHierarchy).ToList();
+    
+    private void ActiveProgressImagesInActiveActions()
+    {
+        for (var _i = 0; _i < combPoolImages.Length; _i++)
+        {
+            if(combPoolImages[_i].gameObject.activeInHierarchy)
+                progressImages[_i].gameObject.SetActive(true);
+        }
+    }
 }
 
 public enum TrainingActionType

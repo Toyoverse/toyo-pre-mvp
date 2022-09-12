@@ -5,20 +5,20 @@ public static class TimeTools
 {
     private static readonly DateTime _epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
     
-    public static long GetActualTimeStamp()
+    public static long GetActualTimeStampInSeconds()
         => (long)DateTime.UtcNow.Subtract(_epoch).TotalSeconds;
 
-    public static long GetTimeStampFromDate(DateTime date)
+    public static long GetTimeStampFromDateInSeconds(DateTime date)
     {
         var _elapsedTime = DateTime.SpecifyKind(date, DateTimeKind.Utc) - _epoch;
         return (long)_elapsedTime.TotalSeconds;
     }
     
-    public static long ConvertDateInfoInTimeStamp(DateInfo dateInfo)
+    public static long ConvertDateInfoInSecondsTimeStamp(DateInfo dateInfo)
     {
         var _dateTime = new DateTime(dateInfo.year, dateInfo.month, dateInfo.day, 
             dateInfo.hour, dateInfo.minute, dateInfo.second, DateTimeKind.Utc);
-        return GetTimeStampFromDate(_dateTime);
+        return GetTimeStampFromDateInSeconds(_dateTime);
     }
 
     public static int GetSecondsInMinutes(int minutes)
