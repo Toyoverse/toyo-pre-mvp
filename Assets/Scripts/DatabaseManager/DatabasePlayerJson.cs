@@ -265,21 +265,45 @@ namespace Database
         public string type;
         public string cardId;
         public string imageUrl;
+        public string cardCode;
     }
 
     [Serializable]
-    public class TrainingResult
+    public class TrainingResultJson
     {
         public int statusCode;
         public string message;
+        public TrainingResultBody body;
+    }
+
+    [Serializable]
+    public class TrainingResultBody
+    {
         public string id;
         public double startAt;
         public double endAt;
+        public string bond;
+        public string[] combination;
+        public bool isCombinationCorrect;
+        public CardRewardJSON card;
         public double claimedAt;
         public string signature;
-        public string[] combination;
-        //TODO: Solicitar pro backend adicionar
-        public string bond;
-        public string cardCode;
+        public CombinationResult combinationResult;
+    }
+
+    [Serializable]
+    public class CombinationResult
+    {
+        public string[] user;
+        public BlowResult[] result;
+        public bool isCombinationCorrect;
+    }
+
+    [Serializable]
+    public class BlowResult
+    {
+        public bool includes;
+        public bool position;
+        public string blow;
     }
 }

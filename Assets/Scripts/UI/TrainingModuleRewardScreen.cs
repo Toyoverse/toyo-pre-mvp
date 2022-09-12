@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Database;
 using UI;
 using UnityEngine;
 using Image = UnityEngine.UI.Image;
@@ -26,23 +27,25 @@ public class TrainingModuleRewardScreen : UIController
     private int _eventTime => TrainingConfig.Instance.GetEventTimeRemain();
 
     //TODO: Get correct variables in server
-    public bool cardCollected;
-    private string _coinPrefix = "$TOYO";
+    //public bool cardCollected;
+    private string _coinPrefix = "$BOND";
+    private int _maxCharactersInBondValue = 3;
 
     private List<TrainingActionSO> GetTrainingActions() => TrainingConfig.Instance.selectedTrainingActions;
 
     public override void ActiveScreen()
     {
         base.ActiveScreen();
-        CheckAndSetBordersAfterCompare();
+        DatabaseConnection.Instance.GetRewardValues(ShowResults, FailedGetParameters,
+            TrainingConfig.Instance.GetCurrentTrainingInfo().id);
     }
 
     protected override void UpdateUI()
     {
         ApplySelectedActions();
         SetTextInLabel(eventTitleName, _eventTitle);
-        SetTextInLabel(eventTimeName, ConvertMinutesToString(_eventTime));
-        ShowRewards();
+        SetTextInLabel(eventTimeName, TrainingConfig.EventTimeDefaultText + ConvertMinutesToString(_eventTime));
+        //ShowRewards();
     }
 
     public void ClaimButton()
@@ -64,20 +67,81 @@ public class TrainingModuleRewardScreen : UIController
         }
     }
 
-    private void ShowRewards()
+    private void ShowRewards(TrainingResultJson trainingResult)
     {
-        SetTextInLabel(rewardTitleName, TrainingConfig.Instance.rewardTitle);
-        SetTextInLabel(rewardValueName, TrainingConfig.Instance.bondReward + " " + _coinPrefix);
-        CheckAndRewardCard();
+        //SetTextInLabel(rewardTitleName, TrainingConfig.Instance.rewardTitle);
+        var _bondString = trainingResult.body.bond.Substring(0, _maxCharactersInBondValue);
+        SetTextInLabel(rewardValueName, trainingResult.body.bond + " " + _coinPrefix);
+        CheckCard(trainingResult);
     }
 
-    private void CheckAndSetBordersAfterCompare()
+    private void CheckCard(TrainingResultJson trainingResult)
+    {
+        if (trainingResult.body.isCombinationCorrect)
+        {
+            var _card = TrainingConfig.Instance.GetCardFromID(int.Parse(trainingResult.body.card.cardId));
+            if (_card == null) //TODO TEST
+            {
+                SetVisualElementSprite(rewardImageName, null);
+                SetTextInLabel(rewardDescriptionName, TrainingConfig.Instance.alreadyWon); 
+                return;
+            }
+            SetVisualElementSprite(rewardImageName, _card.cardImage);
+            SetTextInLabel(rewardDescriptionName, _card.description);
+        }
+        else
+        {
+            SetVisualElementSprite(rewardImageName, null); //TODO: Add default image for no card won
+            SetTextInLabel(rewardDescriptionName, TrainingConfig.Instance.losesMiniGame);
+        }
+    }
+
+    private void SetAllBordersCorrect()
+    {
+        for (var _i = 0; _i < correctPoolObjects.Length; _i++)
+        {
+            totallyWrongObjects[_i].SetActive(false);
+            wrongPositionObjects[_i].SetActive(false);
+            correctPoolObjects[_i].SetActive(true);
+        }
+    }
+    
+    private void SetAllBordersWrong()
+    {
+        for (var _i = 0; _i < correctPoolObjects.Length; _i++)
+        {
+            wrongPositionObjects[_i].SetActive(false);
+            correctPoolObjects[_i].SetActive(false);
+            totallyWrongObjects[_i].SetActive(true);
+        }
+    }
+
+    private void DisableAllBorders()
+    {
+        for (var _i = 0; _i < GetTrainingActions().Count; _i++)
+        {
+            correctPoolObjects[_i].SetActive(false);
+            wrongPositionObjects[_i].SetActive(false);
+            totallyWrongObjects[_i].SetActive(false);
+        }
+    }
+
+    private void ShowResults(string jsonParameters)
+    {
+        //CheckAndSetBordersAfterCompare();
+        var _trainingResult = JsonUtility.FromJson<TrainingResultJson>(jsonParameters);
+        SetCombinationResult(TrainingConfig.Instance.GetResultsByCombinationResult
+            (_trainingResult.body.combinationResult.result));
+        ShowRewards(_trainingResult);
+        Loading.EndLoading?.Invoke();
+    }
+
+    private void SetCombinationResult(List<TRAINING_RESULT> results)
     {
         DisableAllBorders();
-        var _results = TrainingConfig.Instance.CompareCombination(GetTrainingActions());
-        for (var _i = 0; _i < _results.Count; _i++)
+        for (var _i = 0; _i < results.Count; _i++)
         {
-            switch (_results[_i])
+            switch (results[_i])
             {
                 case TRAINING_RESULT.TOTALLY_WRONG:
                     totallyWrongObjects[_i].SetActive(true);
@@ -95,73 +159,10 @@ public class TrainingModuleRewardScreen : UIController
         }
     }
 
-    private void DisableAllBorders()
+    private void FailedGetParameters(string json)
     {
-        for (var _i = 0; _i < GetTrainingActions().Count; _i++)
-        {
-            correctPoolObjects[_i].SetActive(false);
-            wrongPositionObjects[_i].SetActive(false);
-            totallyWrongObjects[_i].SetActive(false);
-        }
-    }
-
-    private void CheckAndRewardCard()
-    {
-        if (IsCardCollected())
-        {
-            SetVisualElementSprite(rewardImageName, null); //TODO: Add default image for card has already been collected
-            SetTextInLabel(rewardDescriptionName, TrainingConfig.Instance.alreadyWon);
-            return;
-        }
-
-        if (!WonTheCard())
-        {
-            SetVisualElementSprite(rewardImageName, null); //TODO: Add default image for no card won
-            SetTextInLabel(rewardDescriptionName, TrainingConfig.Instance.losesMiniGame);
-            return;
-        }
-
-        var _card = TrainingConfig.Instance.GetCardReward();
-        SetVisualElementSprite(rewardImageName, _card.cardImage);
-        SetTextInLabel(rewardDescriptionName, _card.description);
-        SetCardCollected();
-    }
-
-    private void SetCardCollected()
-    {
-        if(IsCardCollected())
-            return;
-        cardCollected = true;
-    }
-
-    private bool IsCardCollected() => cardCollected;
-
-    private bool WonTheCard()
-    {
-        return WinCardWithExactAmountOfMoves(); 
-        //I made three methods to test if we should deliver the letter because
-        //I didn't know if this would vary according to the training mode
-        //or if it would only be possible with 5 hits.
-    }
-
-    private bool WonCardWithOnlyFiveHits()
-    {
-        var _trainingResults = TrainingConfig.Instance.CompareCombination(GetTrainingActions());
-        var _hits = _trainingResults.Count(result => result == TRAINING_RESULT.TOTALLY_CORRECT);
-        return _hits > 4;
-    }
-    
-    private bool WonCardWithSpecificTrainingMode() 
-    {
-        var _trainingResults = TrainingConfig.Instance.CompareCombination(GetTrainingActions());
-        var _hits = _trainingResults.Count(result => result == TRAINING_RESULT.TOTALLY_CORRECT);
-        return _hits == TrainingConfig.Instance.GetSelectedBlowConfig().qty;
-    }
-
-    private bool WinCardWithExactAmountOfMoves()
-    {
-        var _trainingResults = TrainingConfig.Instance.CompareCombination(GetTrainingActions());
-        var _hits = _trainingResults.Count(result => result == TRAINING_RESULT.TOTALLY_CORRECT);
-        return _hits == TrainingConfig.Instance.GetCardReward()?.correctCombination?.Length;
+        Debug.Log("FailedGetParameters: " + json);
+        Loading.EndLoading?.Invoke();
+        TrainingConfig.Instance.GenericFailedMessage();
     }
 }

@@ -4,19 +4,23 @@ using UnityEngine;
 public static class TimeTools
 {
     private static readonly DateTime _epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-    
+
     public static long GetActualTimeStampInSeconds()
-        => (long)DateTime.UtcNow.Subtract(_epoch).TotalSeconds;
+    {
+        var _result = (long)DateTime.UtcNow.Subtract(_epoch).TotalSeconds;
+        Debug.Log("ActualTimeStamp: " + _result);
+        return _result;
+    }
 
     public static long GetTimeStampFromDateInSeconds(DateTime date)
     {
         var _elapsedTime = DateTime.SpecifyKind(date, DateTimeKind.Utc) - _epoch;
         return (long)_elapsedTime.TotalSeconds;
     }
-    
+
     public static long ConvertDateInfoInSecondsTimeStamp(DateInfo dateInfo)
     {
-        var _dateTime = new DateTime(dateInfo.year, dateInfo.month, dateInfo.day, 
+        var _dateTime = new DateTime(dateInfo.year, dateInfo.month, dateInfo.day,
             dateInfo.hour, dateInfo.minute, dateInfo.second, DateTimeKind.Utc);
         return GetTimeStampFromDateInSeconds(_dateTime);
     }
@@ -29,6 +33,7 @@ public static class TimeTools
             _result += 60;
             minutes--;
         }
+
         return _result;
     }
 
@@ -40,16 +45,13 @@ public static class TimeTools
             _result++;
             seconds -= 60;
         }
+
         return _result;
     }
 
     public static double ConvertSecondsToMilliseconds(long seconds)
-    {
-        return TimeSpan.FromSeconds(seconds).TotalMilliseconds;
-    }
-    
+        => TimeSpan.FromSeconds(seconds).TotalMilliseconds;
+
     public static long ConvertMillisecondsToSeconds(double milliseconds)
-    {
-        return (long)TimeSpan.FromMilliseconds(milliseconds).TotalSeconds;
-    }
+        => (long)TimeSpan.FromMilliseconds(milliseconds).TotalSeconds;
 }

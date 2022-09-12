@@ -47,4 +47,10 @@ The link between them may keep immutable if their Heart Bound was pure but may b
     }
 
     public void StartButton() => ScreenManager.Instance.GoToScreen(ScreenState.TrainingModule);
+
+    public override void ActiveScreen()
+    {
+        base.ActiveScreen();
+        TrainingConfig.Instance.LoreScreenOpen();
+    }
 }

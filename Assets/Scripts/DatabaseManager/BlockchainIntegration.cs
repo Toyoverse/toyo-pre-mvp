@@ -305,13 +305,14 @@ public class BlockchainIntegration : MonoBehaviour
 
     public async void ClaimToken(ClaimParameters parameters)
     {
-        const string abi = "[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_tokenId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_bondAmount\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"_cardCode\",\"type\":\"string\"},{\"internalType\":\"bytes\",\"name\":\"_signature\",\"type\":\"bytes\"}],\"name\":\"claimToken\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]";
-
+        const string abi =
+            "[{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_claimId\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"_tokenId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_bondAmount\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"_cardCode\",\"type\":\"string\"},{\"internalType\":\"bytes\",\"name\":\"_signature\",\"type\":\"bytes\"}],\"name\":\"claimToken\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]";
+            
         const string method = "claimToken";
         
         var _contract = isProduction ? productionToyoApprovedTo : testToyoApprovedTo;
 
-        string[] _obj = { /*parameters.claimID,*/ parameters.tokenID, parameters.bond, parameters.cardCode, parameters.signature };
+        string[] _obj = { parameters.claimID, parameters.tokenID, parameters.bond, parameters.cardCode, parameters.signature };
         var _args = JsonConvert.SerializeObject(_obj);
         
         const string value = "0";
@@ -397,10 +398,9 @@ public class BlockchainIntegration : MonoBehaviour
 
 public struct ClaimParameters
 {
+    public string claimID;
     public string tokenID;
     public string bond;
     public string cardCode;
     public string signature;
-    //public string claimID;
-    public double claimedAt;
 }

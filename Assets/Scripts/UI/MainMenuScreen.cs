@@ -31,11 +31,15 @@ namespace UI
                 || (TrainingConfig.Instance.trainingEventNotFound
                 && !TrainingConfig.Instance.SelectedToyoIsInTraining()))
             {
+                SetStartOnStartButton();
+                EnableModeSelectButton();
                 AddComingSoonPopUp(trainingModuleButtons);
                 FadeTrainingModuleButtons();
             }
             else if(TrainingConfig.Instance.SelectedToyoIsInTraining())
             {
+                SetInTrainingOnStartButton();
+                DisableModeSelectButton();
                 ReassignDefaultTrainingButtons();
                 RevealTrainingModuleButtons();
             }
@@ -95,16 +99,21 @@ namespace UI
 
         protected override void UpdateUI() => ToyoManager.MoveToyoToCenterMainMenu();
 
-        public void StartButton()
+        public void StartButton() => GoToNextScreen();
+
+        private void GoToNextScreen()
         {
-            TrainingConfig.Instance.SetSelectedToyoObject(ToyoManager.GetSelectedToyo());
-            if(TrainingConfig.Instance.loreScreenAlreadyOpen || TrainingConfig.Instance.trainingEventNotFound)
-                ScreenManager.Instance.GoToScreen(ScreenState.TrainingModule);
-            else
-            {
-                TrainingConfig.Instance.LoreScreenOpen();
-                ScreenManager.Instance.GoToScreen(ScreenState.LoreTheme);
-            }
+            var _screenState = ScreenState.LoreTheme;
+
+            if(TrainingConfig.Instance.loreScreenAlreadyOpen 
+               || TrainingConfig.Instance.SelectedToyoIsInTraining())
+                _screenState = ScreenState.TrainingModule;
+
+            if (TrainingConfig.Instance.SelectedToyoIsInTraining()
+                && TrainingConfig.Instance.GetTrainingTimeRemainInSeconds() <= 0)
+                _screenState = ScreenState.TrainingModuleRewards;
+            
+            ScreenManager.Instance.GoToScreen(_screenState);
         }
 
         private void SetMode(GAME_MODE newGameMode) => GameMode = newGameMode;
@@ -202,6 +211,23 @@ namespace UI
                 };
             }
         }
+
+        private void SetStartOnStartButton()
+        {
+            var _text = "START";
+            SetTextInButton(trainingModuleButtons[1].name, _text);
+        }
+
+        private void SetInTrainingOnStartButton()
+        {
+            var _text = "TRAINING";
+            //_text += ConvertMinutesToString(TrainingConfig.Instance.GetTrainingTimeRemainInMinutes());
+            SetTextInButton(trainingModuleButtons[1].name, _text);
+            DisableVisualElement(trainingModuleButtons[0].name);
+        }
+
+        private void EnableModeSelectButton() => EnableVisualElement(trainingModuleButtons[0].name);
+        private void DisableModeSelectButton() => DisableVisualElement(trainingModuleButtons[0].name);
     }
 }
 

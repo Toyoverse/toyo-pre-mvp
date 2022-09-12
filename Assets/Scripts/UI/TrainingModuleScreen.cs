@@ -11,7 +11,8 @@ public class TrainingModuleScreen : UIController
 {
     public string eventTitleName;
     public string eventTimeName;
-    
+    public string actionTitleName;
+
     public string startTrainingButtonName;
     public GameObject[] combPoolObjects;
     public GameObject[] removeButtonsPool;
@@ -34,17 +35,20 @@ public class TrainingModuleScreen : UIController
 
     protected override void UpdateUI()
     {
-        CheckAndRevealStartButton();
         TrainingConfig.Instance.ApplyRewardsCalculation();
         UpdateTextsInUI();
         EnableTrainingUI();
         UpdateProgressTraining();
+        CheckAndRevealStartButton();
+        ChangeTrainingTitleName();
     }
 
     private void UpdateTextsInUI()
     {
         SetTextInLabel(eventTitleName, TrainingConfig.Instance.eventTitle);
-        SetTextInLabel(eventTimeName, ConvertMinutesToString(TrainingConfig.Instance.GetEventTimeRemain()));
+        SetTextInLabel(eventTimeName, TrainingConfig.EventTimeDefaultText 
+                                      + ConvertMinutesToString(TrainingConfig.Instance.GetEventTimeRemain()));
+        TrainingConfig.Instance.ApplyBlowConfig();
         SetTextInLabel(receiveName, /*"Receive: $" + */TrainingConfig.Instance.receiveValue.ToString());
         SetTextInLabel(durationName, /*"Duration: " + */ConvertMinutesToString(TrainingConfig.Instance.durationValue));
     }
@@ -125,6 +129,16 @@ public class TrainingModuleScreen : UIController
         _startButton.visible = (!TrainingConfig.Instance.SelectedToyoIsInTraining() && TrainingConfig.Instance.IsMinimumActionsToPlay());
     }
 
+    private void ChangeTrainingTitleName()
+    {
+        var _text = "";
+        if (TrainingConfig.Instance.SelectedToyoIsInTraining())
+            _text = TrainingConfig.Instance.inTrainingMessage;
+        else
+            _text = TrainingConfig.Instance.selectActionsMessage;
+        SetTextInLabel(actionTitleName, _text);
+    }
+
     public void RevealNextAction()
     {
         if (GetActionsRevealCount() > TrainingConfig.Instance.selectedActionsDict.Count)
@@ -148,6 +162,7 @@ public class TrainingModuleScreen : UIController
     {
         if (ScreenManager.OldScreenState == ScreenState.TrainingActionSelect)
             return;
+        DisableAllRemoveButtons();
         foreach (var _obj in combPoolObjects)
             _obj.gameObject.SetActive(false);
         combPoolObjects[0].SetActive(true);
@@ -228,25 +243,23 @@ public class TrainingModuleScreen : UIController
 
     public void FinishTraining()
     {
-        if (TrainingConfig.Instance.GetTrainingTimeRemainInMinutes() > 0 && !TrainingConfig.Instance.ignoreTrainingTimer)
+        if (TrainingConfig.Instance.GetTrainingTimeRemainInSeconds() > 0 && !TrainingConfig.Instance.ignoreTrainingTimer)
             return;
         GoToRewardScreen();
     }
 
     private void EnableTrainingUI() 
     {
-        if (TrainingConfig.Instance.SelectedToyoIsInTraining())
-        {
-            EnableVisualElement(inTrainingBoxName);
-            SetTextInButton(inTrainingTimeButtonName, ConvertMinutesToString(TrainingConfig.Instance.GetTrainingTimeRemainInMinutes()));
-            DisableAllRemoveButtons(); 
-            DisableInteractableActionButtons();
-        }
-        else
-        {
-            DisableVisualElement(inTrainingBoxName);
-            EnableInteractableActionButtons();
-        }
+        DisableVisualElement(inTrainingBoxName);
+        EnableInteractableActionButtons();
+
+        if (!TrainingConfig.Instance.SelectedToyoIsInTraining()) 
+            return;
+        
+        EnableVisualElement(inTrainingBoxName);
+        SetTextInButton(inTrainingTimeButtonName, ConvertMinutesToString(TrainingConfig.Instance.GetTrainingTimeRemainInMinutes()));
+        DisableAllRemoveButtons(); 
+        DisableInteractableActionButtons();
     }
 
     private void EnableInteractableActionButtons() => ActionButtonsInteractable(true);
@@ -280,7 +293,7 @@ public class TrainingModuleScreen : UIController
         if (!TrainingConfig.Instance.SelectedToyoIsInTraining())
             return;
         //BlowConfig _blowConfig = null;
-        var _toyoTrainingInfo = TrainingConfig.Instance.GetToyoTrainingInfo(ToyoManager.GetSelectedToyo().tokenId);
+        var _toyoTrainingInfo = TrainingConfig.Instance.GetCurrentTrainingInfo();
         var _blowConfig = new BlowConfig
         {
             duration = TrainingConfig.Instance.GetTrainingTotalDuration(_toyoTrainingInfo),

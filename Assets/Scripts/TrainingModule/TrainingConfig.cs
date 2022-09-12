@@ -2,11 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Database;
+using Newtonsoft.Json;
 using UI;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.Serialization;
 using static TimeTools;
 
 [Serializable]
@@ -24,17 +22,21 @@ public class TrainingConfig : Singleton<TrainingConfig>
 
     [Header("Source - Required to find objects when receiving information from the server")]
     public List<TrainingActionSO> allTrainingActionsInProject;
+
+    [Header("Source - Required to find objects when receiving information from the server")]
+    public List<CardRewardSO> allCardRewardsInProject;
     
-    public ToyoObject selectedToyoObject { get; private set; }
-    public void SetSelectedToyoObject(ToyoObject toyoObject) => selectedToyoObject = toyoObject;
+    /*public ToyoObject selectedToyoObject { get; private set; }
+    public void SetSelectedToyoObject(ToyoObject toyoObject) => selectedToyoObject = toyoObject;*/
 
     //Current config usable
     [HideInInspector] public string trainingEventID;
     [HideInInspector] public TrainingActionSO[] possibleActions;
     [HideInInspector] public BlowConfig[] blowConfigs;
-    [HideInInspector] public CardRewardSO[] cardRewards;
     [HideInInspector] public int minimumActionsToPlay;
     [HideInInspector] public float bondReward;
+    //Only offline use
+    [HideInInspector] public CardRewardSO[] cardRewards; 
     [HideInInspector] public float bonusBondReward;
     
     //Default strings
@@ -42,9 +44,10 @@ public class TrainingConfig : Singleton<TrainingConfig>
     [HideInInspector] public string inTrainingMessage;
     [HideInInspector] public string eventStory;
     [HideInInspector] public string sendToyoToTrainingPopUp;
+    [HideInInspector] public string selectActionsMessage = "Select your actions...";
 
     //Default phrases for reward description
-    [HideInInspector] public string rewardTitle = "Congratulations! Here's your reward";
+    [HideInInspector] public string rewardTitle = "TRAINING RESULTS";
     [HideInInspector] public string losesMiniGame;
     [HideInInspector] public string alreadyWon;
 
@@ -62,7 +65,12 @@ public class TrainingConfig : Singleton<TrainingConfig>
     [HideInInspector] public int durationValue; //Duration in minutes
     
     public long GetSelectedToyoEndTrainingTimeStamp()
-    => ConvertMillisecondsToSeconds(GetToyoTrainingInfo(ToyoManager.GetSelectedToyo().tokenId).endAt);
+    {
+        //var _result = ConvertMillisecondsToSeconds(GetCurrentTrainingInfo().endAt);
+        var _result = GetCurrentTrainingInfo().endAt;
+        Debug.Log("SelectedToyoEndTrainingTimeStamp: " + _result);
+        return (long)_result;
+    }
 
     private TrainingActionType _oldTypeSelected;
     public void SetOldTypeActionSelected(TrainingActionType type) => _oldTypeSelected = type;
@@ -72,6 +80,12 @@ public class TrainingConfig : Singleton<TrainingConfig>
     private List<ToyoTrainingInfo> _listOfToyosInTraining;
     public ToyoTrainingInfo GetToyoTrainingInfo(string tokenID)
         => _listOfToyosInTraining?.FirstOrDefault(training => tokenID == training.toyoTokenId);
+
+    public ToyoTrainingInfo GetCurrentTrainingInfo()
+    {
+        var _tokenID = ToyoManager.GetSelectedToyo().tokenId;
+        return Instance.GetToyoTrainingInfo(_tokenID);
+    }
 
     //
     public int selectedActionID { get; private set; }
@@ -85,6 +99,7 @@ public class TrainingConfig : Singleton<TrainingConfig>
     public static string FailedGetEventMessage = "No training events are taking place at this time.";
     public static string GenericFailMessage = "Something went wrong, please reload the page and try again.";
     public static string SuccessClaimMessage = "You have successfully redeemed your reward!";
+    public static string EventTimeDefaultText = "This event ends in: ";
 
     public bool trainingEventNotFound = false;
 
@@ -149,28 +164,29 @@ public class TrainingConfig : Singleton<TrainingConfig>
     private void PostTrainingSendCallback(string json)
     {
         Debug.Log("PostTrainingResult: " + json);
-        //TODO: TEST UPDATE TOYO TRAINING LIST
         DatabaseConnection.Instance.CallGetInTrainingList(CreateToyosInTrainingList);
-        ScreenManager.Instance.trainingModuleScript.UpdateTrainingAfterTrainingSuccess();
     }
 
     public void ClaimCallInServer()
     {
-        var _tokenID = ToyoManager.GetSelectedToyo().tokenId;
+        var _trainingInfo = Instance.GetCurrentTrainingInfo();
         if (!useOfflineTrainingControl)
         {
-            DatabaseConnection.Instance.CallGetClaimParameters(SuccessGetClaimParameters, 
-                FailedGetClaimParameters, _tokenID);
+            DatabaseConnection.Instance.CallCloseTraining(SuccessGetClaimParameters, 
+                FailedGetClaimParameters, _trainingInfo.id);
             return;
         }
         
         //Using offline training control
-        _tempServerTraining[_tokenID].endAt = GetActualTimeStampInSeconds();
+        _tempServerTraining[ToyoManager.GetSelectedToyo().tokenId].endAt = GetActualTimeStampInSeconds();
     }
+
+    /*public void GetRewardValues() => DatabaseConnection.Instance.GetRewardValues(SuccessGetClaimParameters,
+                FailedGetClaimParameters, Instance.GetCurrentTrainingInfo().id);*/
 
     private void SuccessGetClaimParameters(string json)
     {
-        var _trainingResult = JsonUtility.FromJson<TrainingResult>(json);
+        var _trainingResult = JsonUtility.FromJson<TrainingResultJson>(json);
         if (_trainingResult.statusCode != 200)
         {
             GenericPopUp.Instance.ShowPopUp(GenericFailMessage);
@@ -180,11 +196,11 @@ public class TrainingConfig : Singleton<TrainingConfig>
 
         var _claimParameters = new ClaimParameters
         {
-            tokenID = _trainingResult.id,
-            bond = _trainingResult.bond,
-            cardCode = _trainingResult.cardCode,
-            signature = _trainingResult.signature,
-            claimedAt = _trainingResult.claimedAt
+            tokenID = ToyoManager.GetSelectedToyo().tokenId,
+            bond = _trainingResult.body.bond,
+            cardCode = _trainingResult.body.card.cardCode ?? "",
+            signature = _trainingResult.body.signature,
+            claimID = _trainingResult.body.id
         };
         
         DatabaseConnection.Instance.blockchainIntegration.ClaimToken(_claimParameters);
@@ -203,12 +219,8 @@ public class TrainingConfig : Singleton<TrainingConfig>
         GenericPopUp.Instance.ShowPopUp(GenericFailMessage);
     }
 
-    public void SuccessClaim()
-    {
-        Loading.EndLoading?.Invoke();
-        GenericPopUp.Instance.ShowPopUp(SuccessClaimMessage, GoToMainMenu);
-    }
-    
+    public void SuccessClaim() => DatabaseConnection.Instance.CallGetInTrainingList(UpdateInTrainingListAfterClaim);
+
     private void GoToMainMenu() => ScreenManager.Instance.GoToScreen(ScreenState.MainMenu);
     
     public void InitializeTrainingModule()
@@ -243,23 +255,44 @@ public class TrainingConfig : Singleton<TrainingConfig>
     
     public void CreateToyosInTrainingList(string json)
     {
+        var _trainingScreen = _listOfToyosInTraining != null;
+        CreateInTrainingList(json);
+        Debug.Log("InTrainingList Details Success! Toyos in training: " + _listOfToyosInTraining.Count);
+        if(!_trainingScreen)
+            ToyoManager.StartGame();
+        else 
+            ScreenManager.Instance.trainingModuleScript.UpdateTrainingAfterTrainingSuccess();
+    }
+    
+    public void UpdateInTrainingListAfterClaim(string json)
+    {
+        CreateInTrainingList(json);
+        Debug.Log("InTrainingList Details Success! Toyos in training: " + _listOfToyosInTraining.Count);
+        Loading.EndLoading?.Invoke();
+        GenericPopUp.Instance.ShowPopUp(SuccessClaimMessage, GoToMainMenu);
+    }
+
+    private void CreateInTrainingList(string json)
+    {
         Debug.Log("InTrainingListResult: " + json);
         var _myObject = JsonUtility.FromJson<ToyosInTrainingListJSON>(json);
-        //TODO: GET ALL TRAININGS AND CREATE LIST
         _listOfToyosInTraining = new();
         foreach (var _trainingInfo in _myObject.body)
             _listOfToyosInTraining.Add(_trainingInfo);
-        
-        Debug.Log("InTrainingList Details Success! Toyos in training: " + _listOfToyosInTraining.Count);
-        ToyoManager.StartGame();
     }
 
     public int GetTrainingTimeRemainInMinutes()
     {
         var _secondsRemain = GetSelectedToyoEndTrainingTimeStamp() - GetActualTimeStampInSeconds();
+        Debug.Log("TrainingRemainInSeconds: " + _secondsRemain);
+        if (_secondsRemain < 0)
+            _secondsRemain = 0;
         return ConvertSecondsInMinutes((int)_secondsRemain);
     }
     
+    public long GetTrainingTimeRemainInSeconds()
+        => (GetSelectedToyoEndTrainingTimeStamp() - GetActualTimeStampInSeconds());
+
     public int GetEventTimeRemain()
     {
         var _secondsRemain = endEventTimeStamp - GetActualTimeStampInSeconds();
@@ -357,40 +390,28 @@ public class TrainingConfig : Singleton<TrainingConfig>
         return null;
     }
 
-    public List<TRAINING_RESULT> CompareCombination(List<TrainingActionSO> selectedActions)
+    public List<TRAINING_RESULT> GetResultsByCombinationResult(BlowResult[] blowResults)
     {
         var _listResult = new List<TRAINING_RESULT>();
-        for (var _i = 0; _i < selectedActions.Count; _i++)
-            _listResult.Add(GetResultToAction(selectedActions[_i], _i));
+        for (var _i = 0; _i < blowResults.Length; _i++)
+        {
+            Debug.Log("BlowResult[" + _i + "]: inc: " + blowResults[_i].includes 
+                      + ", pos: " + blowResults[_i].position + ", blow: " + blowResults[_i].blow);
+            var _result = GetResultToAction(blowResults[_i]);
+            _listResult.Add(_result);
+            Debug.Log("BlowTrainingResult[" + _i + "]: " + _result);
+        }
 
         return _listResult;
     }
 
-    private TRAINING_RESULT GetResultToAction(TrainingActionSO selectedAction, int position)
+    private TRAINING_RESULT GetResultToAction(BlowResult blowResult)
     {
-        var _result = TRAINING_RESULT.TOTALLY_WRONG; 
-        TrainingActionSO[] _correctCombination = null;
-        foreach (var _card in cardRewards)
-        {
-            if (Instance.selectedToyoObject.GetToyoName() != _card.toyoPersona.toyoName) //TODO: Need testing
-                continue;
-            _correctCombination = _card.correctCombination; //TODO: Need testing
-        }
-
-        if (_correctCombination == null)
-        {
-            Debug.LogError("Correct combination not found - ToyoPersona: " + Instance.selectedToyoObject.GetToyoName());
-            return TRAINING_RESULT.NONE;
-        }
-
-        for (var _i = 0; _i < _correctCombination.Length; _i++)
-        {
-            if (_correctCombination[_i] != selectedAction) continue;
-            _result += 1; 
-            if (position == _i)
-                _result += 1;
-        }
-        //Debug.Log(_result);
+        var _result = TRAINING_RESULT.TOTALLY_WRONG;
+        if (blowResult.position)
+            _result += 1;
+        if (blowResult.includes)
+            _result += 1;
         return _result;
     }
 
@@ -486,19 +507,6 @@ public class TrainingConfig : Singleton<TrainingConfig>
     }
 
     public void RemoveActionToDict(int key) => selectedActionsDict.Remove(key);
-    
-    public CardRewardSO GetCardReward()
-    {
-        for (var _i = 0; _i < Instance.cardRewards.Length; _i++)
-        {
-            if(Instance.cardRewards[_i].toyoPersona.toyoName != Instance.selectedToyoObject.GetToyoName())
-                continue;
-            return Instance.cardRewards[_i];
-        }
-
-        Debug.LogError("CardReward not found - Persona: " + Instance.selectedToyoObject.GetToyoName());
-        return null;
-    }
 
     private bool IsBiggerThenCurrentTimestamp(long timestamp) => timestamp > GetActualTimeStampInSeconds();
 
@@ -511,10 +519,24 @@ public class TrainingConfig : Singleton<TrainingConfig>
 
     public int GetTrainingTotalDuration(ToyoTrainingInfo trainingInfo)
     {
-        Debug.Log("end: " + trainingInfo.endAt + "start: " + trainingInfo.startAt);
+        Debug.Log("end: " + trainingInfo.endAt + " start: " + trainingInfo.startAt);
+        //var _sub = ConvertMillisecondsToSeconds(trainingInfo.endAt - trainingInfo.startAt);
         var _sub = trainingInfo.endAt - trainingInfo.startAt;
         var _result = ConvertSecondsInMinutes((int)_sub);
         Debug.Log("trainingTotalDuration: " + _result);
         return _result;
+    }
+
+    public CardRewardSO GetCardFromID(int id)
+    {
+        for (var _i = 0; _i > allCardRewardsInProject.Count; _i++)
+        {
+            if (allCardRewardsInProject[_i].id != id)
+                continue;
+            return allCardRewardsInProject[_i];
+        }
+
+        Debug.Log("CardReward not fond - ID: " + id);
+        return null;
     }
 }

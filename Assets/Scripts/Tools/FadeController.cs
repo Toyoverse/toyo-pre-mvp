@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using System;
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,7 +18,7 @@ public enum AnimationMode
     Fade
 }
 
-public class FadeController : MonoBehaviour
+public class FadeController : Singleton<FadeController>
 {
     private static UnityEvent<FadeMode, AnimationMode, onFinishAnimation> InEvent = new FadeEvent();
     private static UnityEvent<FadeMode, AnimationMode, onFinishAnimation> OutEvent = new FadeEvent();
@@ -27,6 +28,8 @@ public class FadeController : MonoBehaviour
     public delegate void onFinishAnimation();
     public Canvas canvas;
     public Image panel;
+    
+    private static void ResetCanvasOrder() => Instance.canvasOrder(0);
 
     private void OnEnable()
     {
@@ -68,6 +71,7 @@ public class FadeController : MonoBehaviour
         onFinishAnimation onFinished = null)
     {
         InFade = false;
+        onFinished ??= ResetCanvasOrder;
         OutEvent.Invoke(fadeMode, animationMode, onFinished);
     }
 
