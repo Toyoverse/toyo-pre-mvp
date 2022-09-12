@@ -31,14 +31,14 @@ MonoBehaviour:
     day: 6
     month: 9
     year: 2022
-    hour: 11
-    minute: 43
+    hour: 18
+    minute: 0
     second: 0
   endEventDateInfo:
     day: 6
     month: 9
     year: 2022
-    hour: 13
+    hour: 19
     minute: 0
     second: 0
   possibleActions:
