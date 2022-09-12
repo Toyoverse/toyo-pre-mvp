@@ -58,12 +58,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 18409e1f7eaf281499613c5ebd158506, type: 2}
   - {fileID: 11400000, guid: f87c225c2b8e2e2448724ad830eb9ef9, type: 2}
   - {fileID: 11400000, guid: 01a87f46e947e714f8ddb1dcb46d47db, type: 2}
-  - {fileID: 11400000, guid: 449aaa8f08b9e1f4cb254b4bd065acf1, type: 2}
-  - {fileID: 11400000, guid: d706991f93291e04e8177ff43423b89e, type: 2}
-  - {fileID: 11400000, guid: c2f28a95ea76bae4da370bfa95d538f8, type: 2}
-  - {fileID: 11400000, guid: 9f6b423abf4fc5c48842aa3465f674ba, type: 2}
-  - {fileID: 11400000, guid: e15c76381798e6a49a8d61e5dc137a02, type: 2}
-  - {fileID: 11400000, guid: 367df68e40fc12746a8ba65708f551ab, type: 2}
   blowConfigs:
   - qty: 3
     duration: 360
