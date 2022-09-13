@@ -30,6 +30,7 @@ public class TrainingModuleRewardScreen : UIController
     //public bool cardCollected;
     private string _coinPrefix = "$BOND";
     private int _maxCharactersInBondValue = 3;
+    public Sprite defaultCardWrong;
 
     private List<TrainingActionSO> GetTrainingActions() => TrainingConfig.Instance.selectedTrainingActions;
 
@@ -57,7 +58,7 @@ public class TrainingModuleRewardScreen : UIController
 
     private void ApplySelectedActions()
     {
-        //TODO: Get selected actions to database
+        DisableAllPoolObjects(); //TODO TEST
         for (var _i = 0; _i < GetTrainingActions().Count; _i++)
         {
             combinationPoolObjects[_i].SetActive(true);
@@ -71,7 +72,7 @@ public class TrainingModuleRewardScreen : UIController
     {
         //SetTextInLabel(rewardTitleName, TrainingConfig.Instance.rewardTitle);
         var _bondString = trainingResult.body.bond.Substring(0, _maxCharactersInBondValue);
-        SetTextInLabel(rewardValueName, trainingResult.body.bond + " " + _coinPrefix);
+        SetTextInLabel(rewardValueName, _bondString + " " + _coinPrefix);
         CheckCard(trainingResult);
     }
 
@@ -82,7 +83,7 @@ public class TrainingModuleRewardScreen : UIController
             var _card = TrainingConfig.Instance.GetCardFromID(int.Parse(trainingResult.body.card.cardId));
             if (_card == null) //TODO TEST
             {
-                SetVisualElementSprite(rewardImageName, null);
+                SetVisualElementSprite(rewardImageName, defaultCardWrong);
                 SetTextInLabel(rewardDescriptionName, TrainingConfig.Instance.alreadyWon); 
                 return;
             }
@@ -91,28 +92,8 @@ public class TrainingModuleRewardScreen : UIController
         }
         else
         {
-            SetVisualElementSprite(rewardImageName, null); //TODO: Add default image for no card won
+            SetVisualElementSprite(rewardImageName, defaultCardWrong); 
             SetTextInLabel(rewardDescriptionName, TrainingConfig.Instance.losesMiniGame);
-        }
-    }
-
-    private void SetAllBordersCorrect()
-    {
-        for (var _i = 0; _i < correctPoolObjects.Length; _i++)
-        {
-            totallyWrongObjects[_i].SetActive(false);
-            wrongPositionObjects[_i].SetActive(false);
-            correctPoolObjects[_i].SetActive(true);
-        }
-    }
-    
-    private void SetAllBordersWrong()
-    {
-        for (var _i = 0; _i < correctPoolObjects.Length; _i++)
-        {
-            wrongPositionObjects[_i].SetActive(false);
-            correctPoolObjects[_i].SetActive(false);
-            totallyWrongObjects[_i].SetActive(true);
         }
     }
 
@@ -164,5 +145,11 @@ public class TrainingModuleRewardScreen : UIController
         Debug.Log("FailedGetParameters: " + json);
         Loading.EndLoading?.Invoke();
         TrainingConfig.Instance.GenericFailedMessage();
+    }
+
+    private void DisableAllPoolObjects()
+    {
+        for(var _i = 0; _i < combinationPoolObjects.Length; _i++)
+            combinationPoolObjects[_i].SetActive(false);
     }
 }

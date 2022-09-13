@@ -4,7 +4,9 @@ using System.Linq;
 using Database;
 using Newtonsoft.Json;
 using UI;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 using static TimeTools;
 
 [Serializable]
@@ -90,10 +92,10 @@ public class TrainingConfig : Singleton<TrainingConfig>
     //
     public int selectedActionID { get; private set; }
     public void SetSelectedID(int newID) => selectedActionID = newID;
-    public Dictionary<int, TrainingActionSO> selectedActionsDict = new ();
+    public List<TrainingActionSO> selectedActionsBKP = new ();
     public List<TrainingActionSO> selectedTrainingActions;
     
-    public bool IsMinimumActionsToPlay() => selectedActionsDict.Count >= minimumActionsToPlay;
+    public bool IsMinimumActionsToPlay() => selectedActionsBKP.Count >= minimumActionsToPlay;
     //
 
     public static string FailedGetEventMessage = "No training events are taking place at this time.";
@@ -419,14 +421,14 @@ public class TrainingConfig : Singleton<TrainingConfig>
     {
         foreach (var _blowConfig in blowConfigs)
         {
-            if(_blowConfig.qty != selectedActionsDict.Count)
+            if(_blowConfig.qty != selectedActionsBKP.Count)
                 continue;
             SetSelectedBlowConfig(_blowConfig);
             return;
         }
 
         SetSelectedBlowConfig(null);
-        Debug.Log("BlowConfig not found. - ActionsCount: " + selectedActionsDict.Count);
+        Debug.Log("BlowConfig not found. - ActionsCount: " + selectedActionsBKP.Count);
     }
 
     private void SetBlowConfigCalculationValues()
@@ -454,25 +456,11 @@ public class TrainingConfig : Singleton<TrainingConfig>
         SetBlowConfigCalculationValues();
     }
     
-    private void SetTrainingActionList(Dictionary<int, TrainingActionSO> actionsDict)
+    private void SetTrainingActionList(List<TrainingActionSO> actionsDict)
     {
         selectedTrainingActions = new List<TrainingActionSO>();
-        var _i = 0;
-        var _timeOut = 0;
-        while (_i < actionsDict.Count)
-        {
-            if (_i != _timeOut)
-                _i = 99;
-            foreach (var _action in actionsDict)
-            {
-                if (_i != _action.Key) continue;
-                selectedTrainingActions.Add(_action.Value);
-                _i++;
-                break;
-            }
-
-            _timeOut++;
-        }
+        for (var _index = 0; _index < actionsDict.Count; _index++)
+            selectedTrainingActions.Add(actionsDict[_index]);
     }
     
     private void SetTrainingActionList(string[] actionsIDs)
@@ -485,12 +473,16 @@ public class TrainingConfig : Singleton<TrainingConfig>
     
     public void ResetAllTrainingModule()
     {
-        SetTrainingActionList(selectedActionsDict);
+        SetTrainingActionList(selectedActionsBKP);
         ResetSelectedActionsDictionary();
     }
     
-    private void ResetSelectedActionsDictionary() => selectedActionsDict = new Dictionary<int, TrainingActionSO>();
-    
+    private void ResetSelectedActionsDictionary()
+    {
+        selectedActionsBKP.Clear();
+        selectedActionsBKP = new List<TrainingActionSO>();
+    }
+
     public List<TrainingActionSO> GetFilteredActions(TrainingActionType filter) 
         => possibleActions.Where(action => action.type == filter).ToList();
     
@@ -500,21 +492,40 @@ public class TrainingConfig : Singleton<TrainingConfig>
     public void AddToSelectedActionsDict(int key, TrainingActionSO action)
     {
         Debug.Log("Try add selectedActionDict: key_" + key + "|action_" + action.name);
-        if (selectedActionsDict.ContainsKey(key))
-            selectedActionsDict[key] = action;
+        //if (selectedActionsBKP[key] == null)
+        if (selectedActionsBKP.ElementAtOrDefault(key) == null)
+            selectedActionsBKP.Add(action);
         else
-            selectedActionsDict.Add(key, action);
+            selectedActionsBKP[key] = action;
     }
 
-    public void RemoveActionToDict(int key) => selectedActionsDict.Remove(key);
+    public void RemoveActionToBKP(int key)
+    {
+        var _newList = new List<TrainingActionSO>();
+        for (var _i = 0; _i < selectedActionsBKP.Count; _i++)
+        {
+            if(_i == key)
+                continue;
+            _newList.Add(selectedActionsBKP[_i]);
+        }
+        //selectedActionsBKP.Remove(selectedActionsBKP[key]);
+        selectedActionsBKP.Clear();
+        selectedActionsBKP = new List<TrainingActionSO>();
+        for (var _i = 0; _i < _newList.Count; _i++)
+        {
+            if(_i == key)
+                continue;
+            selectedActionsBKP.Add(_newList[_i]);
+        }
+    }
 
     private bool IsBiggerThenCurrentTimestamp(long timestamp) => timestamp > GetActualTimeStampInSeconds();
 
     private void UpdateSelectedActionsByDict()
     {
         selectedTrainingActions = new List<TrainingActionSO>();
-        for (var _i = 0; _i < selectedActionsDict.Count; _i++)
-            selectedTrainingActions.Add(selectedActionsDict[_i]);
+        for (var _i = 0; _i < selectedActionsBKP.Count; _i++)
+            selectedTrainingActions.Add(selectedActionsBKP[_i]);
     }
 
     public int GetTrainingTotalDuration(ToyoTrainingInfo trainingInfo)

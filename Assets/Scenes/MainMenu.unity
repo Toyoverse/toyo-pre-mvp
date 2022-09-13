@@ -1804,6 +1804,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GlobalManager
       objectReference: {fileID: 0}
+    - target: {fileID: 1421983677662904393, guid: 0551b33d1f297084ea0890c31eee10be, type: 3}
+      propertyPath: isProduction
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1421983677662904394, guid: 0551b33d1f297084ea0890c31eee10be, type: 3}
       propertyPath: carouselToyo
       value: 
@@ -1994,6 +1998,18 @@ PrefabInstance:
     - target: {fileID: 5676323602504740691, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5826308791896677097, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
+      propertyPath: m_Size.x
+      value: 20.83
+      objectReference: {fileID: 0}
+    - target: {fileID: 5826308791896677097, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
+      propertyPath: m_Size.y
+      value: 29.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 5826308791896677097, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6346065880333187647, guid: e08ae28c883539a45a7e3b4ce0165bd7, type: 3}
       propertyPath: m_IsActive

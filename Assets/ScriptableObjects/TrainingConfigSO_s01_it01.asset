@@ -36,11 +36,11 @@ MonoBehaviour:
     minute: 0
     second: 0
   endEventDateInfo:
-    day: 28
+    day: 19
     month: 9
     year: 2022
-    hour: 13
-    minute: 0
+    hour: 2
+    minute: 58
     second: 0
   possibleActions:
   - {fileID: 11400000, guid: 6972b2ae28210d742acc8a134bffc9bd, type: 2}

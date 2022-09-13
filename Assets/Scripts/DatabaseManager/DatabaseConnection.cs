@@ -21,7 +21,7 @@ namespace Database
         private string productionOpenBoxBaseURL = "https://v49y0yol5a.execute-api.us-east-1.amazonaws.com/production";
 
         [SerializeField] private string productionTrainingBaseURL =
-            " https://la5bj71yml.execute-api.us-east-1.amazonaws.com/production";
+            "https://la5bj71yml.execute-api.us-east-1.amazonaws.com/production";
 
         #endregion
         
@@ -60,10 +60,9 @@ namespace Database
         [SerializeField]
         private string openBoxSuffixURL = "/player/box/";
 
-        [SerializeField] private string trainingBaseURL = "https://ts-trainning-web-bff.herokuapp.com";
-
-        private string GetTrainingBaseURL() =>
-            blockchainIntegration.isProduction ? productionTrainingBaseURL : trainingBaseURL;
+        [SerializeField] private string testTrainingBaseURL = "https://ts-trainning-web-bff.herokuapp.com";
+        [SerializeField] private string trainingBaseURL;
+        
         [SerializeField] private string registerTrainingEventSuffix = "/training-events";
         [SerializeField] private string getCurrentTrainingEventSuffix = "/training-events/search/current";
         [SerializeField] private string registerCardRewardSuffixURL = "/toyo-persona-training-events";
@@ -74,6 +73,7 @@ namespace Database
             loginURL = blockchainIntegration.isProduction ? productionLoginURL : testLoginURL;
             baseURL = blockchainIntegration.isProduction ? productionBaseURL : testBaseURL;
             openBoxBaseURL = blockchainIntegration.isProduction ? productionOpenBoxBaseURL : testOpenBoxBaseURL;
+            trainingBaseURL = blockchainIntegration.isProduction ? productionTrainingBaseURL : testTrainingBaseURL;
             
             if (!isDebug) return;
             var _jsonTextAsset = Resources.Load<TextAsset>("DatabasePlaceholder");
@@ -131,49 +131,50 @@ namespace Database
 
         public void PostTrainingConfig(Action<string> callback, string jsonString)
         {
-            _url = GetTrainingBaseURL() + registerTrainingEventSuffix;
+            _url = trainingBaseURL + registerTrainingEventSuffix;
+            Debug.Log(_url);
             var _request = GeneratePost(_url, jsonString);
             StartCoroutine(ProcessRequestCoroutine(callback, _request));
         }
 
         public void PostCardReward(Action<string> callback, string jsonString)
         {
-            _url = GetTrainingBaseURL() + registerCardRewardSuffixURL;
+            _url = trainingBaseURL + registerCardRewardSuffixURL;
             var _request = GeneratePost(_url, jsonString);
             StartCoroutine(ProcessRequestCoroutine(callback, _request));
         }
 
         public void GetCurrentTrainingConfig(Action<string> callback, Action<string> failedCallback)
         {
-            _url = GetTrainingBaseURL() + getCurrentTrainingEventSuffix;
+            _url = trainingBaseURL + getCurrentTrainingEventSuffix;
             var _request = GenerateRequest(HTTP_REQUEST.GET);
             StartCoroutine(ProcessRequestCoroutine(callback, _request, failedCallback));
         }
 
         public void CallGetInTrainingList(Action<string> callback)
         {
-            _url = GetTrainingBaseURL() + toyoTrainingSuffixURL; 
+            _url = trainingBaseURL + toyoTrainingSuffixURL; 
             var _request = GenerateRequest(HTTP_REQUEST.GET);
             StartCoroutine(ProcessRequestCoroutine(callback, _request));
         }
 
         public void PostToyoInTraining(Action<string> callback, string jsonString)
         {
-            _url = GetTrainingBaseURL() + toyoTrainingSuffixURL /*+ "/" + ToyoManager.GetSelectedToyo().tokenId*/;
+            _url = trainingBaseURL + toyoTrainingSuffixURL /*+ "/" + ToyoManager.GetSelectedToyo().tokenId*/;
             var _request = GeneratePost(_url, jsonString);
             StartCoroutine(ProcessRequestCoroutine(callback, _request));
         }
 
         public void CallCloseTraining(Action<string> successCallback, Action<string> failedCallback, string trainingID)
         {
-            _url = GetTrainingBaseURL() + toyoTrainingSuffixURL + "/" + trainingID;
+            _url = trainingBaseURL + toyoTrainingSuffixURL + "/" + trainingID;
             var _request = GeneratePut(_url);
             StartCoroutine(ProcessRequestCoroutine(successCallback, _request, failedCallback));
         }
 
         public void GetRewardValues(Action<string> successCallback, Action<string> failedCallback, string trainingID)
         {
-            _url = GetTrainingBaseURL() + toyoTrainingSuffixURL + "/" + trainingID;
+            _url = trainingBaseURL + toyoTrainingSuffixURL + "/" + trainingID;
             var _request = GenerateRequest(HTTP_REQUEST.GET);
             StartCoroutine(ProcessRequestCoroutine(successCallback, _request, failedCallback));
         }

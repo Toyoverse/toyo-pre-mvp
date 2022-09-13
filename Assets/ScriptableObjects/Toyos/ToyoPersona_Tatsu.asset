@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: ToyoPersona_Tatsu
   m_EditorClassIdentifier: 
   objectId_dev: G2FNb70T2m
-  objectId_prod: MeQgZKuDiY
+  objectId_prod: VmIUitJp2q
   toyoName: Tatsu
   toyoPrefab: {fileID: 1945413062895215098, guid: 34f52eb6c6a1cbc479556421b9808fc7, type: 3}

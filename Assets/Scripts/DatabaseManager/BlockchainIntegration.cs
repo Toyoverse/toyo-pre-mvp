@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Database;
 using Newtonsoft.Json;
 using UI;
 using UnityEngine;
-using UnityEngine.Networking;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Runtime.InteropServices;
-using UnityEngine.Serialization;
 
 public class BlockchainIntegration : MonoBehaviour
 {
@@ -41,7 +37,7 @@ public class BlockchainIntegration : MonoBehaviour
     private const string testToyoApprovedTo = "0x39a66bb85ec5f0ba8572b6e2452f78b6301843d1";
 
     private const string productionToyoApproveContractForTokenOver9476 = "0xaf5107e0a3Ea679B6Fc23A9756075559e2e4649b";
-    private const string productionToyoApprovedTo = ""; //TODO
+    private const string productionToyoApprovedTo = "0xd44ad19885a9a20dbd3f7022409804d8636a8243"; 
 
     #endregion
     
