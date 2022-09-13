@@ -1,8 +1,6 @@
 using System;
-using Database;
-using UnityEditor.Rendering;
 using UnityEngine;
-using Object = System.Object;
+using Object = UnityEngine.Object;
 
 namespace Tools
 {
