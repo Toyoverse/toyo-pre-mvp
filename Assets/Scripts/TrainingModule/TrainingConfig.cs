@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Database;
 using Newtonsoft.Json;
+using Tools;
 using UI;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -70,7 +71,7 @@ public class TrainingConfig : Singleton<TrainingConfig>
     {
         //var _result = ConvertMillisecondsToSeconds(GetCurrentTrainingInfo().endAt);
         var _result = GetCurrentTrainingInfo().endAt;
-        Debug.Log("SelectedToyoEndTrainingTimeStamp: " + _result);
+        Print.Log("SelectedToyoEndTrainingTimeStamp: " + _result);
         return (long)_result;
     }
 
@@ -150,7 +151,7 @@ public class TrainingConfig : Singleton<TrainingConfig>
             combination = GetCombinationInStringArray(selectedTrainingActions.ToArray())
         };
         var _jsonString = JsonUtility.ToJson(_toyoTraining);
-        Debug.Log("ToyoTrainingBody: " + _jsonString);
+        Print.Log("ToyoTrainingBody: " + _jsonString);
         return _jsonString;
     }
     
@@ -165,7 +166,7 @@ public class TrainingConfig : Singleton<TrainingConfig>
 
     private void PostTrainingSendCallback(string json)
     {
-        Debug.Log("PostTrainingResult: " + json);
+        Print.Log("PostTrainingResult: " + json);
         DatabaseConnection.Instance.CallGetInTrainingList(CreateToyosInTrainingList);
     }
 
@@ -212,7 +213,7 @@ public class TrainingConfig : Singleton<TrainingConfig>
     {
         Loading.EndLoading?.Invoke();
         GenericPopUp.Instance.ShowPopUp(GenericFailMessage);
-        Debug.Log("FailedGetClaimJSON: " + json);
+        Print.Log("FailedGetClaimJSON: " + json);
     }
     
     public void GenericFailedMessage()
@@ -259,7 +260,7 @@ public class TrainingConfig : Singleton<TrainingConfig>
     {
         var _trainingScreen = _listOfToyosInTraining != null;
         CreateInTrainingList(json);
-        Debug.Log("InTrainingList Details Success! Toyos in training: " + _listOfToyosInTraining.Count);
+        Print.Log("InTrainingList Details Success! Toyos in training: " + _listOfToyosInTraining.Count);
         if(!_trainingScreen)
             ToyoManager.StartGame();
         else 
@@ -269,14 +270,14 @@ public class TrainingConfig : Singleton<TrainingConfig>
     public void UpdateInTrainingListAfterClaim(string json)
     {
         CreateInTrainingList(json);
-        Debug.Log("InTrainingList Details Success! Toyos in training: " + _listOfToyosInTraining.Count);
+        Print.Log("InTrainingList Details Success! Toyos in training: " + _listOfToyosInTraining.Count);
         Loading.EndLoading?.Invoke();
         GenericPopUp.Instance.ShowPopUp(SuccessClaimMessage, GoToMainMenu);
     }
 
     private void CreateInTrainingList(string json)
     {
-        Debug.Log("InTrainingListResult: " + json);
+        Print.Log("InTrainingListResult: " + json);
         var _myObject = JsonUtility.FromJson<ToyosInTrainingListJSON>(json);
         _listOfToyosInTraining = new();
         foreach (var _trainingInfo in _myObject.body)
@@ -286,7 +287,7 @@ public class TrainingConfig : Singleton<TrainingConfig>
     public int GetTrainingTimeRemainInMinutes()
     {
         var _secondsRemain = GetSelectedToyoEndTrainingTimeStamp() - GetActualTimeStampInSeconds();
-        Debug.Log("TrainingRemainInSeconds: " + _secondsRemain);
+        Print.Log("TrainingRemainInSeconds: " + _secondsRemain);
         if (_secondsRemain < 0)
             _secondsRemain = 0;
         return ConvertSecondsInMinutes((int)_secondsRemain);
@@ -326,7 +327,7 @@ public class TrainingConfig : Singleton<TrainingConfig>
 
         if (trainingConfigJson == null)
         {
-            Debug.LogError("TrainingConfig Json is null.");
+            Print.LogError("TrainingConfig Json is null.");
             return;
         }
 
@@ -371,7 +372,7 @@ public class TrainingConfig : Singleton<TrainingConfig>
                 if (int.Parse(ids[_index]) != _trainingAction.id)
                     continue;
                 _resultList[_index] = _trainingAction;
-                Debug.Log("POSSIBLE ACTION [" + _index + "]: " + _resultList[_index].name);
+                Print.Log("POSSIBLE ACTION [" + _index + "]: " + _resultList[_index].name);
                 break;
             }
         }
@@ -388,7 +389,7 @@ public class TrainingConfig : Singleton<TrainingConfig>
             return _trainingAction;
         }
 
-        Debug.LogError("ID " + id + " not found in TrainingActionsList.");
+        Print.LogError("ID " + id + " not found in TrainingActionsList.");
         return null;
     }
 
@@ -397,11 +398,11 @@ public class TrainingConfig : Singleton<TrainingConfig>
         var _listResult = new List<TRAINING_RESULT>();
         for (var _i = 0; _i < blowResults.Length; _i++)
         {
-            Debug.Log("BlowResult[" + _i + "]: inc: " + blowResults[_i].includes 
+            Print.Log("BlowResult[" + _i + "]: inc: " + blowResults[_i].includes 
                       + ", pos: " + blowResults[_i].position + ", blow: " + blowResults[_i].blow);
             var _result = GetResultToAction(blowResults[_i]);
             _listResult.Add(_result);
-            Debug.Log("BlowTrainingResult[" + _i + "]: " + _result);
+            Print.Log("BlowTrainingResult[" + _i + "]: " + _result);
         }
 
         return _listResult;
@@ -428,7 +429,7 @@ public class TrainingConfig : Singleton<TrainingConfig>
         }
 
         SetSelectedBlowConfig(null);
-        Debug.Log("BlowConfig not found. - ActionsCount: " + selectedActionsBKP.Count);
+        Print.Log("BlowConfig not found. - ActionsCount: " + selectedActionsBKP.Count);
     }
 
     private void SetBlowConfigCalculationValues()
@@ -491,7 +492,7 @@ public class TrainingConfig : Singleton<TrainingConfig>
 
     public void AddToSelectedActionsDict(int key, TrainingActionSO action)
     {
-        Debug.Log("Try add selectedActionDict: key_" + key + "|action_" + action.name);
+        Print.Log("Try add selectedActionDict: key_" + key + "|action_" + action.name);
         //if (selectedActionsBKP[key] == null)
         if (selectedActionsBKP.ElementAtOrDefault(key) == null)
             selectedActionsBKP.Add(action);
@@ -530,11 +531,11 @@ public class TrainingConfig : Singleton<TrainingConfig>
 
     public int GetTrainingTotalDuration(ToyoTrainingInfo trainingInfo)
     {
-        Debug.Log("end: " + trainingInfo.endAt + " start: " + trainingInfo.startAt);
+        Print.Log("end: " + trainingInfo.endAt + " start: " + trainingInfo.startAt);
         //var _sub = ConvertMillisecondsToSeconds(trainingInfo.endAt - trainingInfo.startAt);
         var _sub = trainingInfo.endAt - trainingInfo.startAt;
         var _result = ConvertSecondsInMinutes((int)_sub);
-        Debug.Log("trainingTotalDuration: " + _result);
+        Print.Log("trainingTotalDuration: " + _result);
         return _result;
     }
 
@@ -547,7 +548,7 @@ public class TrainingConfig : Singleton<TrainingConfig>
             return allCardRewardsInProject[_i];
         }
 
-        Debug.Log("CardReward not fond - ID: " + id);
+        Print.Log("CardReward not fond - ID: " + id);
         return null;
     }
 }

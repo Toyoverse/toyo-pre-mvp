@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Database;
+using Tools;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -37,7 +38,7 @@ public class TrainingConfigSO : ScriptableObject
 
     public void SendToServer()
     {
-        Debug.Log("Send TrainingConfig to server in JSON: " + GetTrainingParametersInJSONString());
+        Print.Log("Send TrainingConfig to server in JSON: " + GetTrainingParametersInJSONString());
         DatabaseConnection.Instance.PostTrainingConfig(PostTrainingCallback, GetTrainingParametersInJSONString());
     }
 
@@ -52,14 +53,14 @@ public class TrainingConfigSO : ScriptableObject
     private void CallPostCardReward(string json = null)
     {
         if(json != null)
-            Debug.Log("CardPostResult: " + json);
+            Print.Log("CardPostResult: " + json);
         if (_cardCount >= cardRewards.Length)
         {
-            Debug.Log("All card rewards have been posted on the server!");
+            Print.Log("All card rewards have been posted on the server!");
             return;
         }
         var _cardJson = GetCardRewardInJSONString(cardRewards[_cardCount]);
-        Debug.Log("Send card to server in JSON: " + _cardJson);
+        Print.Log("Send card to server in JSON: " + _cardJson);
         _cardCount++;
         DatabaseConnection.Instance.PostCardReward(CallPostCardReward, _cardJson);
     }

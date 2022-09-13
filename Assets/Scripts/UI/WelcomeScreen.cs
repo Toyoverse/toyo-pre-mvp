@@ -1,3 +1,4 @@
+using Tools;
 using UnityEngine;
 using UnityTemplateProjects.Audio;
 
@@ -15,6 +16,6 @@ namespace UI
             => ScreenManager.Instance.GoToScreen(ScreenState.BoxInfo);
 
         public void OtherButton()
-            => Debug.Log("Other button has clicked!");
+            => Print.Log("Other button has clicked!");
     }
 }

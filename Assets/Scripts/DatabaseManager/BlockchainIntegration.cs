@@ -7,6 +7,7 @@ using UI;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Runtime.InteropServices;
+using Tools;
 
 public class BlockchainIntegration : MonoBehaviour
 {
@@ -87,18 +88,18 @@ public class BlockchainIntegration : MonoBehaviour
         } 
         catch (Exception e) 
         {
-            Debug.LogException(e, this);
+            Print.LogException(e, this);
             Loading.EndLoading?.Invoke();
         }
         #else
         try 
         {
             _signature = await Web3Wallet.Sign(_message);
-            Debug.Log(_signature);
+            Print.Log(_signature);
         } 
         catch (Exception e) 
         {
-            Debug.LogException(e, this);
+            Print.LogException(e, this);
             Loading.EndLoading?.Invoke();
         }
         #endif
@@ -139,7 +140,7 @@ public class BlockchainIntegration : MonoBehaviour
         ToyoManager.InitializeBoxes();
         ToyoManager.SetPlayerBoxes();
         _databaseConnection.CallGetPlayerToyo(OnToyoListSuccess);
-        Debug.Log("Boxes update success!");
+        Print.Log("Boxes update success!");
     }
 
     public void CallOpenBox(string json)
@@ -185,7 +186,7 @@ public class BlockchainIntegration : MonoBehaviour
                 ScreenManager.Instance.boxInfoScript.GetBoxSelected().GetFirstUnopenedBoxId());
             
         } catch (Exception e) {
-            Debug.LogException(e, this);
+            Print.LogException(e, this);
             Loading.EndLoading?.Invoke();
         }
 
@@ -225,7 +226,7 @@ public class BlockchainIntegration : MonoBehaviour
             OpenBox(myBox);
 
         } catch (Exception e) {
-            Debug.LogException(e, this);
+            Print.LogException(e, this);
             Loading.EndLoading?.Invoke();
             GenericPopUp.Instance.ShowPopUp(_openBoxFailMessage);
         }
@@ -252,19 +253,19 @@ public class BlockchainIntegration : MonoBehaviour
         const string approveGasLimit = "";
         const string approveGasPrice = "80000000000";
         
-        Debug.Log("SendContractValues { approveMethod:" + approveMethod + ", approveABI: " + approveABI 
+        Print.Log("SendContractValues { approveMethod:" + approveMethod + ", approveABI: " + approveABI 
                   + ", _approveContract: " + _approveContract + ", _approveArgs: " + _approveArgs + ", approveValue: "
                   + approveValue + ", approveGasLimit: " + approveGasLimit + ", approveGasPrice: " + approveGasPrice);
 
         try {
 
             var _hash = await Web3GL.SendContract(approveMethod, approveABI, _approveContract, _approveArgs, approveValue, approveGasLimit, approveGasPrice);
-            Debug.Log("TransactionHash: " + _hash);
+            Print.Log("TransactionHash: " + _hash);
             
             ToyoStake(tokenID);
 
         } catch (Exception _exception) {
-            Debug.LogException(_exception, this);
+            Print.LogException(_exception, this);
             Loading.EndLoading?.Invoke();
             GenericPopUp.Instance.ShowPopUp(_genericFailMessage);
         }
@@ -283,17 +284,17 @@ public class BlockchainIntegration : MonoBehaviour
         var _gasLimit = "";
         var _gasPrice = "80000000000";
 
-        Debug.Log("SendContractValues { _abi:" + _abi + ", _contract: " + _contract + ", _method: " + _method 
+        Print.Log("SendContractValues { _abi:" + _abi + ", _contract: " + _contract + ", _method: " + _method 
                   + ", _args: " + _args + ", _value: " + _value + ", _gasLimit: " + _gasLimit + ", _gasPrice: " + _gasPrice);
         
         try
         {
             var _hash = await Web3GL.SendContract(_method, _abi, _contract, _args, _value, _gasLimit, _gasPrice);
-            Debug.Log("StakeHash: " + _hash);
+            Print.Log("StakeHash: " + _hash);
             ScreenManager.Instance.trainingModuleScript.SendToyoToTraining();
 
         } catch (Exception _exception) {
-            Debug.LogException(_exception, this);
+            Print.LogException(_exception, this);
             Loading.EndLoading?.Invoke();
             GenericPopUp.Instance.ShowPopUp(_genericFailMessage);
         }
@@ -315,17 +316,17 @@ public class BlockchainIntegration : MonoBehaviour
         const string gasLimit = "";
         const string gasPrice = "80000000000";
 
-        Debug.Log("ClaimTokenValues { _abi:" + abi + ", _contract: " + _contract + ", _method: " + method 
+        Print.Log("ClaimTokenValues { _abi:" + abi + ", _contract: " + _contract + ", _method: " + method 
                   + ", _args: " + _args + ", _value: " + value + ", _gasLimit: " + gasLimit + ", _gasPrice: " + gasPrice);
         
         try
         {
             var _hash = await Web3GL.SendContract(method, abi, _contract, _args, value, gasLimit, gasPrice);
-            Debug.Log("ClaimHash: " + _hash);
+            Print.Log("ClaimHash: " + _hash);
             TrainingConfig.Instance.SuccessClaim();
 
         } catch (Exception _exception) {
-            Debug.LogException(_exception, this);
+            Print.LogException(_exception, this);
             Loading.EndLoading?.Invoke();
             GenericPopUp.Instance.ShowPopUp(_genericFailMessage);
         }
@@ -347,7 +348,7 @@ public class BlockchainIntegration : MonoBehaviour
         var _myObject = JsonUtility.FromJson<CallbackToyoDetails>(json);
         _toyoList.Add(_myObject.toyo);
         UpdateToyoDetails(_myObject.toyo);
-        Debug.Log("Toyo Details Success: " + _myObject.toyo.name);
+        Print.Log("Toyo Details Success: " + _myObject.toyo.name);
     }
 
     private void UpdateToyoDetails(Toyo toyoWithDetails)
@@ -381,7 +382,7 @@ public class BlockchainIntegration : MonoBehaviour
         Loading.StartLoading?.Invoke();
         _databaseConnection.CallGetPlayerBoxes(OnBoxesSuccess);
         ScreenManager.Instance.GetActualScreen().CallUpdateUI();
-        Debug.Log("Refresh clicked!");
+        Print.Log("Refresh clicked!");
     }
 
     private void GoToNextScreen()

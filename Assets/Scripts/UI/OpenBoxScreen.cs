@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Database;
+using Tools;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -81,7 +82,7 @@ namespace UI
                     continue;
                 return _rarityColor.color;
             }
-            Debug.Log("RarityColor not found.");
+            Print.Log("RarityColor not found.");
             return Color.white;
         }
 
@@ -107,7 +108,7 @@ namespace UI
 
             var _progressFieldName = GetFieldName(stat, "Value");
             SetTextInLabel(_progressFieldName, _progressBar.lowValue.ToString() /*_statValue.ToString()*/);
-            //Debug.Log(_progressFieldName + _statValue);
+            //Print.Log(_progressFieldName + _statValue);
             SetTextInLabel(toyoHearthBoundField, selectedToyo.GetToyoHearthBound().ToString());
             SetTextInLabel(toyoLevelField, selectedToyo.GetToyoLevel().ToString());
         }

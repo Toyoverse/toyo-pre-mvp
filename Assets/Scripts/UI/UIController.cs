@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using Tools;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.TextCore.Text;
@@ -48,7 +49,7 @@ namespace UI
                         });
                 }
                 else
-                    Debug.Log(_cb.name + " not found in " + uiDoc.name);
+                    Print.Log(_cb.name + " not found in " + uiDoc.name);
             }
 
             UpdateUI();
@@ -72,7 +73,7 @@ namespace UI
                         });
                 }
                 else
-                    Debug.LogWarning(_cb.name + " not found in " + uiDoc.name);
+                    Print.LogWarning(_cb.name + " not found in " + uiDoc.name);
             }
         }
 
@@ -133,7 +134,7 @@ namespace UI
             var _visualE = Root?.Q<VisualElement>(elementName);
             if (_visualE != null)
                 _visualE.style.opacity = opacity;
-            //Debug.Log(_visualE.name + "OPACITY: " + _visualE.style.opacity);
+            //Print.Log(_visualE.name + "OPACITY: " + _visualE.style.opacity);
         }
 
         protected Label CreateNewLabel(string labelName, string labelText, FontAsset fontAsset, int fontSize, 

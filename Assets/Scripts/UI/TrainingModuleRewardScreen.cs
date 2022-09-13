@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Database;
+using Tools;
 using UI;
 using UnityEngine;
 using Image = UnityEngine.UI.Image;
@@ -51,7 +52,7 @@ public class TrainingModuleRewardScreen : UIController
 
     public void ClaimButton()
     {
-        Debug.Log("Claim Rewards");
+        Print.Log("Claim Rewards");
         Loading.StartLoading?.Invoke();
         TrainingConfig.Instance.ClaimCallInServer();
     }
@@ -142,7 +143,7 @@ public class TrainingModuleRewardScreen : UIController
 
     private void FailedGetParameters(string json)
     {
-        Debug.Log("FailedGetParameters: " + json);
+        Print.Log("FailedGetParameters: " + json);
         Loading.EndLoading?.Invoke();
         TrainingConfig.Instance.GenericFailedMessage();
     }

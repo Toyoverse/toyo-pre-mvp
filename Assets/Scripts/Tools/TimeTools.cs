@@ -1,4 +1,5 @@
 using System;
+using Tools;
 using UnityEngine;
 
 public static class TimeTools
@@ -8,7 +9,7 @@ public static class TimeTools
     public static long GetActualTimeStampInSeconds()
     {
         var _result = (long)DateTime.UtcNow.Subtract(_epoch).TotalSeconds;
-        Debug.Log("ActualTimeStamp: " + _result);
+        Print.Log("ActualTimeStamp: " + _result);
         return _result;
     }
 

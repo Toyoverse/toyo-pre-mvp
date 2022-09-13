@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using Tools;
 
 public class SpriteAnimator : MonoBehaviour
 {
@@ -63,7 +64,7 @@ public class SpriteAnimator : MonoBehaviour
 		}
 		else
 		{
-			Debug.LogWarning("could not find animation: " + name);
+			Print.LogWarning("could not find animation: " + name);
 		}
 	}
 

@@ -6,6 +6,7 @@ using Database;
 using UnityEngine;
 using Extensions;
 using System.Linq;
+using Tools;
 using UnityEngine.Serialization;
 
 
@@ -31,7 +32,7 @@ public class ToyoManager : Singleton<ToyoManager>
     {
         if (Instance.ToyoList.Count == 0)
         {
-            Debug.Log("No toyo to select. Toyo List is empty!");
+            Print.Log("No toyo to select. Toyo List is empty!");
             return null;
         }
         if (Instance.ToyoList.Find(toyoObject => toyoObject.IsToyoSelected) == null)

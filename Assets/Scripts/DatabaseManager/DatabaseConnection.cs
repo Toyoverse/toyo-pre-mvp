@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Tools;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.Serialization;
@@ -132,7 +133,7 @@ namespace Database
         public void PostTrainingConfig(Action<string> callback, string jsonString)
         {
             _url = trainingBaseURL + registerTrainingEventSuffix;
-            Debug.Log(_url);
+            Print.Log(_url);
             var _request = GeneratePost(_url, jsonString);
             StartCoroutine(ProcessRequestCoroutine(callback, _request));
         }
@@ -255,7 +256,7 @@ namespace Database
             if (request.error != null)
             {
                 var _requestResult = request.downloadHandler.text;
-                Debug.Log (request.error + " | " + _requestResult + " / " + _url);
+                Print.Log (request.error + " | " + _requestResult + " / " + _url);
                 failedCallback?.Invoke(_requestResult);
             }
             else
@@ -263,7 +264,7 @@ namespace Database
                 var _requestResult = request.downloadHandler.text;
                 var _responseCode = request.responseCode;
                 callback.Invoke(_requestResult);
-                Debug.Log("ResponseCode: " + _responseCode + " | RequestResult: " 
+                Print.Log("ResponseCode: " + _responseCode + " | RequestResult: " 
                           + _requestResult + " | URL: " + _url);
             }
 
@@ -274,7 +275,7 @@ namespace Database
         private void OnConnectionSuccess(string json)
         {
             var _myObject = JsonUtility.FromJson<DatabasePlayerJson>(json);    
-            Debug.Log(_myObject.player);
+            Print.Log(_myObject.player.ToString());
             ToyoManager.SetPlayerData(_myObject.player);
         }
     }
