@@ -102,6 +102,7 @@ public class TrainingConfig : Singleton<TrainingConfig>
     public static string FailedGetEventMessage = "No training events are taking place at this time.";
     public static string GenericFailMessage = "Something went wrong, please reload the page and try again.";
     public static string SuccessClaimMessage = "You have successfully redeemed your reward!";
+    private static string FailedClaimMessage = "Metamask Transaction Fail. Please try again.";
     public static string EventTimeDefaultText = "This event ends in: ";
 
     public bool trainingEventNotFound = false;
@@ -222,7 +223,20 @@ public class TrainingConfig : Singleton<TrainingConfig>
         GenericPopUp.Instance.ShowPopUp(GenericFailMessage);
     }
 
-    public void SuccessClaim() => DatabaseConnection.Instance.CallGetInTrainingList(UpdateInTrainingListAfterClaim);
+    public void SuccessClaim()
+    {
+        Loading.EndLoading += ShowSuccessClaimPopUp;
+        DatabaseConnection.Instance.CallGetInTrainingList(UpdateInTrainingListAfterClaim);
+    }
+
+    private void ShowSuccessClaimPopUp() => GenericPopUp.Instance.ShowPopUp(SuccessClaimMessage, GoToMainMenu);
+    private void ShowFailedClaimPopUp() => GenericPopUp.Instance.ShowPopUp(FailedClaimMessage, GoToMainMenu);
+
+    public void FailedClaim()
+    {
+        Loading.EndLoading += ShowFailedClaimPopUp;
+        DatabaseConnection.Instance.CallGetInTrainingList(UpdateInTrainingListAfterClaim);
+    }
 
     private void GoToMainMenu() => ScreenManager.Instance.GoToScreen(ScreenState.MainMenu);
     
@@ -272,7 +286,6 @@ public class TrainingConfig : Singleton<TrainingConfig>
         CreateInTrainingList(json);
         Print.Log("InTrainingList Details Success! Toyos in training: " + _listOfToyosInTraining.Count);
         Loading.EndLoading?.Invoke();
-        GenericPopUp.Instance.ShowPopUp(SuccessClaimMessage, GoToMainMenu);
     }
 
     private void CreateInTrainingList(string json)

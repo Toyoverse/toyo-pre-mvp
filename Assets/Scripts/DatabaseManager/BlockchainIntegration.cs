@@ -327,8 +327,9 @@ public class BlockchainIntegration : MonoBehaviour
 
         } catch (Exception _exception) {
             Print.LogException(_exception, this);
-            Loading.EndLoading?.Invoke();
-            GenericPopUp.Instance.ShowPopUp(_genericFailMessage);
+            //Loading.EndLoading?.Invoke();
+            //GenericPopUp.Instance.ShowPopUp(_genericFailMessage);
+            TrainingConfig.Instance.FailedClaim();
         }
     }
 
