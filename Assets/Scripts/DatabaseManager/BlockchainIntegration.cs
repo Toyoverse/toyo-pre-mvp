@@ -339,6 +339,7 @@ public class BlockchainIntegration : MonoBehaviour
         {
             _myObject.toyos = Array.Empty<Toyo>();    
         }
+        ToyoManager.SaveIsStakeBackup(_myObject.toyos);
         ToyoManager.Instance.Player.toyos = _myObject.toyos;
         StartCoroutine(_databaseConnection.CallGetToyoData(OnToyoDetailSuccess, _myObject.toyos));
     }

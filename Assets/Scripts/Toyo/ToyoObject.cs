@@ -12,6 +12,7 @@ public class ToyoObject : MonoBehaviour
     public string tokenId;
     public GameObject model;
     public SpriteAnimator spriteAnimator;
+    public bool isStaked;
     
     private Dictionary<TOYO_STAT, float> _toyoStats = new(){
         {TOYO_STAT.VITALITY, 0.0f},

@@ -30,7 +30,7 @@ public class TrainingModuleRewardScreen : UIController
     //TODO: Get correct variables in server
     //public bool cardCollected;
     private string _coinPrefix = "$BOND";
-    private int _maxCharactersInBondValue = 3;
+    private int _maxCharactersInBondValue = 4;
     public Sprite defaultCardWrong;
 
     private List<TrainingActionSO> GetTrainingActions() => TrainingConfig.Instance.selectedTrainingActions;
@@ -81,8 +81,9 @@ public class TrainingModuleRewardScreen : UIController
     {
         if (trainingResult.body.isCombinationCorrect)
         {
+            Print.Log("card: " + JsonUtility.ToJson(trainingResult.body.card));
             var _card = TrainingConfig.Instance.GetCardFromID(int.Parse(trainingResult.body.card.cardId));
-            if (_card == null) //TODO TEST
+            if (_card == null) 
             {
                 SetVisualElementSprite(rewardImageName, defaultCardWrong);
                 SetTextInLabel(rewardDescriptionName, TrainingConfig.Instance.alreadyWon); 

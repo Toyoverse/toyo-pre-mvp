@@ -194,7 +194,10 @@ public class TrainingModuleScreen : UIController
     private void CallBlockchainTrainingTransactions()
     {
         Loading.StartLoading?.Invoke();
-        DatabaseConnection.Instance.blockchainIntegration.ToyoApproveNftTransfer(ToyoManager.GetSelectedToyo().tokenId);
+        if(ToyoManager.GetSelectedToyo().isStaked)
+            ScreenManager.Instance.trainingModuleScript.SendToyoToTraining();
+        else
+            DatabaseConnection.Instance.blockchainIntegration.ToyoApproveNftTransfer(ToyoManager.GetSelectedToyo().tokenId);
     }
     
     public void SendToyoToTraining()

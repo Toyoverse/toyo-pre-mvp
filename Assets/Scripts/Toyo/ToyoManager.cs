@@ -27,6 +27,7 @@ public class ToyoManager : Singleton<ToyoManager>
     public List<ToyoObject> ToyoList => _toyoList ??= CreateToyoObjectList();
 
     public RarityColorConfigSO rarityColorsConfig;
+    private Dictionary<string, bool> _isStakeBackup = new ();
 
     public static ToyoObject GetSelectedToyo()
     {
@@ -127,6 +128,7 @@ public class ToyoManager : Singleton<ToyoManager>
         var _toyoObjectInstance = _toyoPrefab.AddComponent<ToyoObject, Toyo>(databaseToyo);
         _toyoObjectInstance.tokenId = databaseToyo.tokenId;
         _toyoObjectInstance.spriteAnimator = _toyoPrefab.GetComponentInChildren<SpriteAnimator>();
+        _toyoObjectInstance.isStaked = GetIsStakedById(_toyoObjectInstance.tokenId);
         carouselToyo.allObjects.Add(_toyoPrefab.transform);
         toyoObjectList.Add(_toyoObjectInstance);
         return _toyoPrefab;
@@ -214,5 +216,20 @@ public class ToyoManager : Singleton<ToyoManager>
             "JAKANA" => BOX_REGION.Jakana,
             _ => BOX_REGION.None
         };
+    }
+    
+    public static void SaveIsStakeBackup(Toyo[] toyos)
+    {
+        foreach (var _toyo in toyos)
+            Instance._isStakeBackup.Add(_toyo.tokenId, _toyo.isStaked);
+    }
+
+    public static bool GetIsStakedById(string tokenID)
+    {
+        foreach (var _stake in Instance._isStakeBackup)
+            if (tokenID == _stake.Key)
+                return _stake.Value;
+        Print.Log("isStaked not found in dictionary backup;");
+        return false;
     }
 }

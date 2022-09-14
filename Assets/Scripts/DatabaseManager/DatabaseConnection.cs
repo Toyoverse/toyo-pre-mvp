@@ -120,8 +120,6 @@ namespace Database
         {
             foreach (var _toyo in toyoList)
             {
-                //yield return new WaitForSeconds(2f); //TODO: HARD TEST TO VALIDATE IF THIS IS NECESSARY
-
                 _url = baseURL + toyosDetailSuffixURL + _toyo.objectId;
                 var _request = GenerateRequest(HTTP_REQUEST.GET);
                 yield return ProcessRequestCoroutine(callback, _request);

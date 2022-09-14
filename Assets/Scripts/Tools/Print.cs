@@ -16,8 +16,6 @@ namespace Tools
             if (IsProduction)
                 return;
         #endif
-            if (IsProduction)
-                return;
             Debug.Log(message);
         }
         

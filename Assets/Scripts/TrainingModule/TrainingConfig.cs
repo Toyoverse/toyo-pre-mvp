@@ -372,7 +372,7 @@ public class TrainingConfig : Singleton<TrainingConfig>
                 if (int.Parse(ids[_index]) != _trainingAction.id)
                     continue;
                 _resultList[_index] = _trainingAction;
-                Print.Log("POSSIBLE ACTION [" + _index + "]: " + _resultList[_index].name);
+                //Print.Log("POSSIBLE ACTION [" + _index + "]: " + _resultList[_index].name);
                 break;
             }
         }
@@ -411,9 +411,9 @@ public class TrainingConfig : Singleton<TrainingConfig>
     private TRAINING_RESULT GetResultToAction(BlowResult blowResult)
     {
         var _result = TRAINING_RESULT.TOTALLY_WRONG;
-        if (blowResult.position)
-            _result += 1;
         if (blowResult.includes)
+            _result += 1;
+        if (blowResult.position)
             _result += 1;
         return _result;
     }
@@ -541,7 +541,7 @@ public class TrainingConfig : Singleton<TrainingConfig>
 
     public CardRewardSO GetCardFromID(int id)
     {
-        for (var _i = 0; _i > allCardRewardsInProject.Count; _i++)
+        for (var _i = 0; _i < allCardRewardsInProject.Count; _i++)
         {
             if (allCardRewardsInProject[_i].id != id)
                 continue;
