@@ -28,9 +28,6 @@ public class TrainingConfig : Singleton<TrainingConfig>
 
     [Header("Source - Required to find objects when receiving information from the server")]
     public List<CardRewardSO> allCardRewardsInProject;
-    
-    /*public ToyoObject selectedToyoObject { get; private set; }
-    public void SetSelectedToyoObject(ToyoObject toyoObject) => selectedToyoObject = toyoObject;*/
 
     //Current config usable
     [HideInInspector] public string trainingEventID;
@@ -93,10 +90,10 @@ public class TrainingConfig : Singleton<TrainingConfig>
     //
     public int selectedActionID { get; private set; }
     public void SetSelectedID(int newID) => selectedActionID = newID;
-    public List<TrainingActionSO> selectedActionsBKP = new ();
+    public List<ActionBkp> selectedActionsBkp = new ();
     public List<TrainingActionSO> selectedTrainingActions;
     
-    public bool IsMinimumActionsToPlay() => selectedActionsBKP.Count >= minimumActionsToPlay;
+    public bool IsMinimumActionsToPlay() => selectedActionsBkp.Count >= minimumActionsToPlay;
     //
 
     public static string FailedGetEventMessage = "No training events are taking place at this time.";
@@ -435,14 +432,14 @@ public class TrainingConfig : Singleton<TrainingConfig>
     {
         foreach (var _blowConfig in blowConfigs)
         {
-            if(_blowConfig.qty != selectedActionsBKP.Count)
+            if(_blowConfig.qty != selectedActionsBkp.Count)
                 continue;
             SetSelectedBlowConfig(_blowConfig);
             return;
         }
 
         SetSelectedBlowConfig(null);
-        Print.Log("BlowConfig not found. - ActionsCount: " + selectedActionsBKP.Count);
+        Print.Log("BlowConfig not found. - ActionsCount: " + selectedActionsBkp.Count);
     }
 
     private void SetBlowConfigCalculationValues()
@@ -470,11 +467,27 @@ public class TrainingConfig : Singleton<TrainingConfig>
         SetBlowConfigCalculationValues();
     }
     
-    private void SetTrainingActionList(List<TrainingActionSO> actionsDict)
+    private void SetTrainingActionList()
     {
         selectedTrainingActions = new List<TrainingActionSO>();
-        for (var _index = 0; _index < actionsDict.Count; _index++)
-            selectedTrainingActions.Add(actionsDict[_index]);
+        for (var _index = 0; _index < selectedActionsBkp.Count; _index++)
+            selectedTrainingActions.Add(FindActionOrderByPosition(_index).action);
+    }
+
+    private ActionBkp FindActionOrderByPosition(int position)
+    {
+        for(var _i = 0; _i < selectedActionsBkp.Count; _i++)
+            if (selectedActionsBkp[_i].position == position)
+                return selectedActionsBkp[_i];
+        return null;
+    }
+    
+    private ActionBkp FindActionOrderByButtonID(int buttonID)
+    {
+        for(var _i = 0; _i < selectedActionsBkp.Count; _i++)
+            if (selectedActionsBkp[_i].buttonID == buttonID)
+                return selectedActionsBkp[_i];
+        return null;
     }
     
     private void SetTrainingActionList(string[] actionsIDs)
@@ -487,14 +500,14 @@ public class TrainingConfig : Singleton<TrainingConfig>
     
     public void ResetAllTrainingModule()
     {
-        SetTrainingActionList(selectedActionsBKP);
+        SetTrainingActionList();
         ResetSelectedActionsDictionary();
     }
     
     private void ResetSelectedActionsDictionary()
     {
-        selectedActionsBKP.Clear();
-        selectedActionsBKP = new List<TrainingActionSO>();
+        selectedActionsBkp.Clear();
+        selectedActionsBkp = new List<ActionBkp>();
     }
 
     public List<TrainingActionSO> GetFilteredActions(TrainingActionType filter) 
@@ -503,33 +516,35 @@ public class TrainingConfig : Singleton<TrainingConfig>
     public List<TrainingActionSO> GetFilteredActionsOnOldType() 
         => possibleActions.Where(action => action.type == _oldTypeSelected).ToList();
 
-    public void AddToSelectedActionsDict(int key, TrainingActionSO action)
+    public void AddToSelectedActionsDict(int buttonID, TrainingActionSO trainingActionSo)
     {
-        Print.Log("Try add selectedActionDict: key_" + key + "|action_" + action.name);
-        //if (selectedActionsBKP[key] == null)
-        if (selectedActionsBKP.ElementAtOrDefault(key) == null)
-            selectedActionsBKP.Add(action);
+        Print.Log("Try add selectedActionDict: key_" + buttonID + "|action_" + trainingActionSo.name);
+
+        if (FindActionOrderByButtonID(buttonID) == null)
+            selectedActionsBkp.Add(new ActionBkp
+            {
+                buttonID = buttonID,
+                position = selectedActionsBkp.Count,
+                action = trainingActionSo
+            });
         else
-            selectedActionsBKP[key] = action;
+            FindActionOrderByButtonID(buttonID).action = trainingActionSo;
     }
 
-    public void RemoveActionToBKP(int key)
+    public void RemoveActionFromBKP(int buttonID)
     {
-        var _newList = new List<TrainingActionSO>();
-        for (var _i = 0; _i < selectedActionsBKP.Count; _i++)
+        var _position = FindActionOrderByButtonID(buttonID).position;
+        selectedActionsBkp.Remove(FindActionOrderByButtonID(buttonID));
+        ReloadActionsBkpAfterRemove(_position);
+    }
+
+    private void ReloadActionsBkpAfterRemove(int positionRemoved)
+    {
+        for (var _i = 0; _i < selectedActionsBkp.Count; _i++)
         {
-            if(_i == key)
+            if(_i < positionRemoved)
                 continue;
-            _newList.Add(selectedActionsBKP[_i]);
-        }
-        //selectedActionsBKP.Remove(selectedActionsBKP[key]);
-        selectedActionsBKP.Clear();
-        selectedActionsBKP = new List<TrainingActionSO>();
-        for (var _i = 0; _i < _newList.Count; _i++)
-        {
-            if(_i == key)
-                continue;
-            selectedActionsBKP.Add(_newList[_i]);
+            selectedActionsBkp[_i].position -= 1;
         }
     }
 
@@ -538,8 +553,8 @@ public class TrainingConfig : Singleton<TrainingConfig>
     private void UpdateSelectedActionsByDict()
     {
         selectedTrainingActions = new List<TrainingActionSO>();
-        for (var _i = 0; _i < selectedActionsBKP.Count; _i++)
-            selectedTrainingActions.Add(selectedActionsBKP[_i]);
+        for (var _index = 0; _index < selectedActionsBkp.Count; _index++)
+            selectedTrainingActions.Add(FindActionOrderByPosition(_index).action);
     }
 
     public int GetTrainingTotalDuration(ToyoTrainingInfo trainingInfo)
@@ -564,4 +579,12 @@ public class TrainingConfig : Singleton<TrainingConfig>
         Print.Log("CardReward not fond - ID: " + id);
         return null;
     }
+}
+
+[Serializable]
+public class ActionBkp
+{
+    public int buttonID;
+    public int position;
+    public TrainingActionSO action;
 }

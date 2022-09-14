@@ -82,7 +82,9 @@ public class TrainingModuleRewardScreen : UIController
         if (trainingResult.body.isCombinationCorrect)
         {
             Print.Log("card: " + JsonUtility.ToJson(trainingResult.body.card));
-            var _card = TrainingConfig.Instance.GetCardFromID(int.Parse(trainingResult.body.card.cardId));
+            var _cardID = string.IsNullOrEmpty(trainingResult.body.card.cardId) ? -1 : int.Parse(trainingResult.body.card.cardId);
+            
+            var _card = TrainingConfig.Instance.GetCardFromID(_cardID);
             if (_card == null) 
             {
                 SetVisualElementSprite(rewardImageName, defaultCardWrong);

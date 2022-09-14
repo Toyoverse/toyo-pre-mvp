@@ -89,7 +89,7 @@ public class TrainingModuleScreen : UIController
         DisableRemoveButton(id);
         SetActionSprite(id, null);
         SetProgressSprite(id, progressDefaultSprite);
-        TrainingConfig.Instance.RemoveActionToBKP(id);
+        TrainingConfig.Instance.RemoveActionFromBKP(id);
         DisableActionObject(id);
         TrainingConfig.Instance.ApplyBlowConfig();
         RevealNextAction();
@@ -141,7 +141,7 @@ public class TrainingModuleScreen : UIController
 
     public void RevealNextAction()
     {
-        if (GetActionsRevealCount() > TrainingConfig.Instance.selectedActionsBKP.Count)
+        if (GetActionsRevealCount() > TrainingConfig.Instance.selectedActionsBkp.Count)
             return;
         for (var _i = 0; _i < combPoolObjects.Length; _i++)
         {
@@ -219,7 +219,7 @@ public class TrainingModuleScreen : UIController
     
     private void DisableLastEmptyAction()
     {
-        if (GetActionsRevealCount() <= TrainingConfig.Instance.selectedActionsBKP.Count)
+        if (GetActionsRevealCount() <= TrainingConfig.Instance.selectedActionsBkp.Count)
             return;
         GetLastActionRevealed().SetActive(false);
     }
