@@ -15,6 +15,9 @@ namespace UI
         [Header("UI Document")]
         public UIDocument uiDoc;
 
+        protected bool carouselButtonsAreInteractable = true;
+        private string[] carouselButtons = { "previousToyoButton", "nextToyoButton", "selectToyoButton"};
+
         protected VisualElement Root => uiDoc.rootVisualElement;
         public List<CustomButton> buttons;
 
@@ -198,6 +201,30 @@ namespace UI
             _result += _hours > 0 ? _hours + "h " : "";
             _result += _minutes + "m";
             return _result;
+        }
+        
+        protected void DisableCarouselButtons()
+        {
+            if (!carouselButtonsAreInteractable) return;
+
+            carouselButtonsAreInteractable = false;
+            foreach (var button in carouselButtons)
+            {
+                var _label = Root?.Q<Button>(button);
+                _label.SetEnabled(false);
+            }
+        }
+
+        protected void EnableCarouselButtons()
+        {
+            if (carouselButtonsAreInteractable) return;
+            
+            carouselButtonsAreInteractable = true;
+            foreach (var button in carouselButtons)
+            {
+                var _label = Root?.Q<Button>(button);
+                _label.SetEnabled(true);
+            }
         }
         
         protected void ShowComingSoonPopUp() => GenericPopUp.Instance.ShowPopUp("Coming soon...");

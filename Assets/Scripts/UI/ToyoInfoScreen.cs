@@ -16,12 +16,21 @@ namespace UI
 
         public override void ActiveScreen()
         {
+            carousel.OnEndRotation += EnableCarouselButtons;
             base.ActiveScreen();
             UpdateUI();
+        }
+        
+        public override void DisableScreen()
+        {
+            carousel.OnEndRotation -= EnableCarouselButtons;
+            base.DisableScreen();
         }
 
         public void NextToyoButton()
         {
+            if(!carouselButtonsAreInteractable) return;
+            DisableCarouselButtons();
             _carouselToyoAnimator.StopAnimation();
             carousel.SwipeRight();
             UpdateUI();
@@ -29,6 +38,8 @@ namespace UI
         
         public void PreviousToyoButton()
         {
+            if(!carouselButtonsAreInteractable) return;
+            DisableCarouselButtons();
             _carouselToyoAnimator.StopAnimation();
             carousel.SwipeLeft();
             UpdateUI();
