@@ -345,6 +345,19 @@ public class BlockchainIntegration : MonoBehaviour
         StartCoroutine(_databaseConnection.CallGetToyoData(OnToyoDetailSuccess, _myObject.toyos));
     }
 
+    public void UpdateToyoIsStakedList(string json)
+    {
+        var _myObject = JsonUtility.FromJson<CallbackToyoList>(json);
+        if (_myObject.toyos == null || _myObject.toyos.Length == 0)
+        {
+            _myObject.toyos = Array.Empty<Toyo>();    
+        }
+        ToyoManager.SaveIsStakeBackup(_myObject.toyos);
+        foreach (var _toyoObject in ToyoManager.Instance.ToyoList)
+            _toyoObject.isStaked = ToyoManager.GetIsStakedById(_toyoObject.tokenId);
+        Loading.EndLoading?.Invoke();
+    }
+
     public void OnToyoDetailSuccess(string json)
     {
         var _myObject = JsonUtility.FromJson<CallbackToyoDetails>(json);

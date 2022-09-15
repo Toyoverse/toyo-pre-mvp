@@ -220,6 +220,7 @@ public class ToyoManager : Singleton<ToyoManager>
     
     public static void SaveIsStakeBackup(Toyo[] toyos)
     {
+        Instance._isStakeBackup = new();
         foreach (var _toyo in toyos)
             Instance._isStakeBackup.Add(_toyo.tokenId, _toyo.isStaked);
     }
