@@ -23,7 +23,9 @@ MonoBehaviour:
   cardImage: {fileID: 21300000, guid: befe1861c46df3c489343e8c5473b9ec, type: 3}
   toyoPersona: {fileID: 11400000, guid: dad42110bac49994aa84d18ba921ff00, type: 2}
   correctCombination:
-  - {fileID: 11400000, guid: f87c225c2b8e2e2448724ad830eb9ef9, type: 2}
+  - {fileID: 11400000, guid: 5514c49a076910b4080f65249ad698d3, type: 2}
+  - {fileID: 11400000, guid: 5514c49a076910b4080f65249ad698d3, type: 2}
+  - {fileID: 11400000, guid: 01a87f46e947e714f8ddb1dcb46d47db, type: 2}
   - {fileID: 11400000, guid: c2f28a95ea76bae4da370bfa95d538f8, type: 2}
-  - {fileID: 11400000, guid: c2f28a95ea76bae4da370bfa95d538f8, type: 2}
+  - {fileID: 11400000, guid: 9f6b423abf4fc5c48842aa3465f674ba, type: 2}
   imageURL: https://game.toyoverse.com/training/cards/INTERACTION_3/JAKANA/JAKANA-iteration-3-Uzi.png

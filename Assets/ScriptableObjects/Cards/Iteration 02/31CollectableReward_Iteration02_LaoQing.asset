@@ -22,7 +22,8 @@ MonoBehaviour:
   cardImage: {fileID: 21300000, guid: 33a908803969f4949a9005bd011c20c1, type: 3}
   toyoPersona: {fileID: 11400000, guid: 108edc6dd21513d4e961c22eff4f7ad4, type: 2}
   correctCombination:
+  - {fileID: 11400000, guid: 01a87f46e947e714f8ddb1dcb46d47db, type: 2}
   - {fileID: 11400000, guid: 18409e1f7eaf281499613c5ebd158506, type: 2}
-  - {fileID: 11400000, guid: 01a87f46e947e714f8ddb1dcb46d47db, type: 2}
-  - {fileID: 11400000, guid: 01a87f46e947e714f8ddb1dcb46d47db, type: 2}
+  - {fileID: 11400000, guid: f87c225c2b8e2e2448724ad830eb9ef9, type: 2}
+  - {fileID: 11400000, guid: 449aaa8f08b9e1f4cb254b4bd065acf1, type: 2}
   imageURL: https://game.toyoverse.com/training/cards/INTERACTION_2/JAKANA/JAKANA-iteration-2-LaoQing.png

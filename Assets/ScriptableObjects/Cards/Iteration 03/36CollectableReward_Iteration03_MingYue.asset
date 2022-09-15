@@ -23,6 +23,8 @@ MonoBehaviour:
   toyoPersona: {fileID: 11400000, guid: 1d7755e1b7a73f04799b8c189bd9fa63, type: 2}
   correctCombination:
   - {fileID: 11400000, guid: 01a87f46e947e714f8ddb1dcb46d47db, type: 2}
-  - {fileID: 11400000, guid: 01a87f46e947e714f8ddb1dcb46d47db, type: 2}
+  - {fileID: 11400000, guid: f87c225c2b8e2e2448724ad830eb9ef9, type: 2}
+  - {fileID: 11400000, guid: 18409e1f7eaf281499613c5ebd158506, type: 2}
+  - {fileID: 11400000, guid: a65c319791929f74f9429a91abdc0aff, type: 2}
   - {fileID: 11400000, guid: a65c319791929f74f9429a91abdc0aff, type: 2}
   imageURL: https://game.toyoverse.com/training/cards/INTERACTION_3/KYTUNT/KYTUNT-iteration-3-MingYue.png

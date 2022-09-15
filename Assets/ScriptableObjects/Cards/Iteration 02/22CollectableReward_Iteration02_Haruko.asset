@@ -22,8 +22,7 @@ MonoBehaviour:
   cardImage: {fileID: 21300000, guid: 254e5401b779d2740aa60adacc9903de, type: 3}
   toyoPersona: {fileID: 11400000, guid: d3f6f63f02ee18246a597077bcf2ad01, type: 2}
   correctCombination:
-  - {fileID: 11400000, guid: c6fa47c00270c1945a28a4949269d00c, type: 2}
-  - {fileID: 11400000, guid: 6972b2ae28210d742acc8a134bffc9bd, type: 2}
-  - {fileID: 11400000, guid: 612bb1d0f701d1249964c2958a92895b, type: 2}
-  - {fileID: 11400000, guid: f272dbe45c053de4b8a7c033afc59054, type: 2}
+  - {fileID: 11400000, guid: f87c225c2b8e2e2448724ad830eb9ef9, type: 2}
+  - {fileID: 11400000, guid: a65c319791929f74f9429a91abdc0aff, type: 2}
+  - {fileID: 11400000, guid: a65c319791929f74f9429a91abdc0aff, type: 2}
   imageURL: https://game.toyoverse.com/training/cards/INTERACTION_2/KYTUNT/KYTUNT-iteration-2-Haruko.png
