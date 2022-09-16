@@ -20,9 +20,8 @@ namespace Database
         private string productionBaseURL = "https://r99i910fe6.execute-api.us-east-1.amazonaws.com/production";
         [SerializeField]
         private string productionOpenBoxBaseURL = "https://v49y0yol5a.execute-api.us-east-1.amazonaws.com/production";
-
-        [SerializeField] private string productionTrainingBaseURL =
-            "https://la5bj71yml.execute-api.us-east-1.amazonaws.com/production";
+        [SerializeField]
+        private string productionTrainingBaseURL = "https://la5bj71yml.execute-api.us-east-1.amazonaws.com/production";
 
         #endregion
         
@@ -34,6 +33,8 @@ namespace Database
         private string testBaseURL = "https://ts-toyo-web-bff.herokuapp.com";
         [SerializeField]
         private string testOpenBoxBaseURL = "https://ts-unboxing-web-bff.herokuapp.com";
+        [SerializeField] 
+        private string testTrainingBaseURL = "https://ts-trainning-web-bff.herokuapp.com";
 
         #endregion
         
@@ -42,32 +43,29 @@ namespace Database
         private IEnumerator _requestCoroutine;
         
         private string _url = "";
-        private string loginURL;
-        private string baseURL;
-        private string openBoxBaseURL;
+        private string loginURL = "";
+        private string baseURL = "";
+        private string openBoxBaseURL = "";
+        private string trainingBaseURL = "";
 
         [SerializeField]
         private string boxesSuffixURL = "/player/boxes";
-
         [SerializeField]
         private string toyosSuffixURL = "/player/toyos";
-        
         [SerializeField]
         private string toyosDetailSuffixURL = "/player/toyo/";
-
         [SerializeField]
         private string closedBoxSuffixURL = "/player/box/closedbox/";
-
         [SerializeField]
         private string openBoxSuffixURL = "/player/box/";
-
-        [SerializeField] private string testTrainingBaseURL = "https://ts-trainning-web-bff.herokuapp.com";
-        [SerializeField] private string trainingBaseURL;
-        
-        [SerializeField] private string registerTrainingEventSuffix = "/training-events";
-        [SerializeField] private string getCurrentTrainingEventSuffix = "/training-events/search/current";
-        [SerializeField] private string registerCardRewardSuffixURL = "/toyo-persona-training-events";
-        [SerializeField] private string toyoTrainingSuffixURL = "/training";
+        [SerializeField]
+        private string registerTrainingEventSuffix = "/training-events";
+        [SerializeField]
+        private string getCurrentTrainingEventSuffix = "/training-events/search/current";
+        [SerializeField]
+        private string registerCardRewardSuffixURL = "/toyo-persona-training-events";
+        [SerializeField]
+        private string toyoTrainingSuffixURL = "/training";
 
         private void Awake()
         {
@@ -167,7 +165,7 @@ namespace Database
         public void CallCloseTraining(Action<string> successCallback, Action<string> failedCallback, string trainingID)
         {
             _url = trainingBaseURL + toyoTrainingSuffixURL + "/" + trainingID;
-            var _request = GeneratePut(_url);
+            var _request = GenerateRequest(HTTP_REQUEST.PUT);
             StartCoroutine(ProcessRequestCoroutine(successCallback, _request, failedCallback));
         }
 
@@ -183,7 +181,7 @@ namespace Database
             return requestType switch
             {
                 HTTP_REQUEST.GET => GenerateGet(_url),
-                HTTP_REQUEST.PUT => GeneratePost(_url),
+                HTTP_REQUEST.PUT => GeneratePut(_url),
                 HTTP_REQUEST.POST => GeneratePost(_url, parameters),
                 _ => throw new ArgumentOutOfRangeException(nameof(requestType), requestType, null)
             };

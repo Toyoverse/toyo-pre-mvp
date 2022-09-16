@@ -176,7 +176,7 @@ public class BlockchainIntegration : MonoBehaviour
         // gas limit OPTIONAL
         string gasLimit = "";
         // gas price OPTIONAL
-        string gasPrice = "2000000000";
+        string gasPrice = "50000000000";
         // connects to user's browser wallet (metamask) to update contract state
         try
         {
@@ -218,7 +218,7 @@ public class BlockchainIntegration : MonoBehaviour
 
         string approve_value = "0";
         string approve_gasLimit = "";
-        string approve_gasPrice = "2000000000";
+        string approve_gasPrice = "50000000000";
 
         try {
 
@@ -252,7 +252,7 @@ public class BlockchainIntegration : MonoBehaviour
 
         const string approveValue = "0";
         const string approveGasLimit = "";
-        const string approveGasPrice = "80000000000";
+        const string approveGasPrice = "50000000000";
         
         Print.Log("SendContractValues { approveMethod:" + approveMethod + ", approveABI: " + approveABI 
                   + ", _approveContract: " + _approveContract + ", _approveArgs: " + _approveArgs + ", approveValue: "
@@ -283,7 +283,7 @@ public class BlockchainIntegration : MonoBehaviour
         
         var _value = "0";
         var _gasLimit = "";
-        var _gasPrice = "80000000000";
+        var _gasPrice = "50000000000";
 
         Print.Log("SendContractValues { _abi:" + _abi + ", _contract: " + _contract + ", _method: " + _method 
                   + ", _args: " + _args + ", _value: " + _value + ", _gasLimit: " + _gasLimit + ", _gasPrice: " + _gasPrice);
@@ -315,7 +315,7 @@ public class BlockchainIntegration : MonoBehaviour
         
         const string value = "0";
         const string gasLimit = "";
-        const string gasPrice = "80000000000";
+        const string gasPrice = "50000000000";
 
         Print.Log("ClaimTokenValues { _abi:" + abi + ", _contract: " + _contract + ", _method: " + method 
                   + ", _args: " + _args + ", _value: " + value + ", _gasLimit: " + gasLimit + ", _gasPrice: " + gasPrice);

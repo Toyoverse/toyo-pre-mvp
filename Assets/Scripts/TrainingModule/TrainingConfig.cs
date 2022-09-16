@@ -281,7 +281,6 @@ public class TrainingConfig : Singleton<TrainingConfig>
     public void UpdateInTrainingListAfterClaim(string json)
     {
         CreateInTrainingList(json);
-        Print.Log("InTrainingList Details Success! Toyos in training: " + _listOfToyosInTraining.Count);
         DatabaseConnection.Instance.CallGetPlayerToyo(DatabaseConnection.Instance.blockchainIntegration.UpdateToyoIsStakedList);
     }
 
