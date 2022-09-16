@@ -8,7 +8,9 @@ namespace Tools
 {
     public static class Print 
     {
-        private static bool IsProduction => DatabaseConnection.Instance != null && DatabaseConnection.Instance.blockchainIntegration.isProduction;
+        private static bool IsProduction => DatabaseConnection.Instance != null && 
+             (DatabaseConnection.Instance.blockchainIntegration.isProduction && 
+              !DatabaseConnection.Instance.blockchainIntegration.enableLogInProduction);
         
         public static void Log(string message)
         {
