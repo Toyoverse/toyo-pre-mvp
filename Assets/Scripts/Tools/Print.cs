@@ -10,7 +10,7 @@ namespace Tools
     {
         private static bool IsProduction => DatabaseConnection.Instance != null && 
              (DatabaseConnection.Instance.blockchainIntegration.isProduction && 
-              !DatabaseConnection.Instance.blockchainIntegration.enableLogInProduction);
+              !DatabaseConnection.Instance.blockchainIntegration.enableLogsInProduction);
         
         public static void Log(string message)
         {

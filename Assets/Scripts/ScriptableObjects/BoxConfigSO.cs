@@ -29,20 +29,6 @@ public class BoxConfigSO : ScriptableObject
     }
 }
 
-public enum BOX_TYPE
-{
-    None = 0,
-    Regular = 1,
-    Fortified = 2,
-}
-
-public enum BOX_REGION
-{
-    None = 0,
-    Kytunt = 1,
-    Jakana = 2
-}
-
 [Serializable]
 public class DropRate
 {
