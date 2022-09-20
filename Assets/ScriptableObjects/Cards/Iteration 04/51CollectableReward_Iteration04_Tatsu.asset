@@ -21,6 +21,8 @@ MonoBehaviour:
   toyoPersona: {fileID: 11400000, guid: a24b304f0592779449a93653cef018ae, type: 2}
   correctCombination:
   - {fileID: 11400000, guid: 6972b2ae28210d742acc8a134bffc9bd, type: 2}
+  - {fileID: 11400000, guid: 397e62aea6dd26a4ba6d1f93d2ac251c, type: 2}
   - {fileID: 11400000, guid: 6972b2ae28210d742acc8a134bffc9bd, type: 2}
   - {fileID: 11400000, guid: 6972b2ae28210d742acc8a134bffc9bd, type: 2}
+  - {fileID: 11400000, guid: 397e62aea6dd26a4ba6d1f93d2ac251c, type: 2}
   imageURL: https://game.toyoverse.com/training/cards/INTERACTION_4/KYTUNT/KYTUNT-iteration-4-Tatsu.png

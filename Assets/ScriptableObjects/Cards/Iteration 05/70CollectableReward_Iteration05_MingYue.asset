@@ -21,9 +21,9 @@ MonoBehaviour:
   cardImage: {fileID: 21300000, guid: da052a4b70f601c47850e0d8130c59e2, type: 3}
   toyoPersona: {fileID: 11400000, guid: 1d7755e1b7a73f04799b8c189bd9fa63, type: 2}
   correctCombination:
+  - {fileID: 11400000, guid: 5514c49a076910b4080f65249ad698d3, type: 2}
   - {fileID: 11400000, guid: 01a87f46e947e714f8ddb1dcb46d47db, type: 2}
-  - {fileID: 11400000, guid: f87c225c2b8e2e2448724ad830eb9ef9, type: 2}
-  - {fileID: 11400000, guid: 18409e1f7eaf281499613c5ebd158506, type: 2}
-  - {fileID: 11400000, guid: a65c319791929f74f9429a91abdc0aff, type: 2}
-  - {fileID: 11400000, guid: a65c319791929f74f9429a91abdc0aff, type: 2}
+  - {fileID: 11400000, guid: 01a87f46e947e714f8ddb1dcb46d47db, type: 2}
+  - {fileID: 11400000, guid: c079688dbe8e6d7429dcf513ac43ceb3, type: 2}
+  - {fileID: 11400000, guid: be8d3a679087b3b4aa283b6d723b30be, type: 2}
   imageURL: https://game.toyoverse.com/training/cards/INTERACTION_5/KYTUNT/KYTUNT-iteration-5-MingYue.png
