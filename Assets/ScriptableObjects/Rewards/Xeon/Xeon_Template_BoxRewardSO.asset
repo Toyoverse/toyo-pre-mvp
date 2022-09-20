@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b6b454d731d1314f9083a9c4c64ec92, type: 3}
   m_Name: Xeon_Template_BoxRewardSO
   m_EditorClassIdentifier: 
-  rewardName: 
-  sprite: {fileID: 0}
-  toyoRarity: 0
+  rewardName: Template
+  sprite: {fileID: 21300000, guid: 226d9f0845463294c9b564a06ec23daa, type: 3}
+  toyoRarity: 1

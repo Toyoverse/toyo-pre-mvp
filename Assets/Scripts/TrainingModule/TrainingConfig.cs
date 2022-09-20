@@ -45,6 +45,7 @@ public class TrainingConfig : Singleton<TrainingConfig>
     [HideInInspector] public string eventStory;
     [HideInInspector] public string sendToyoToTrainingPopUp;
     [HideInInspector] public string selectActionsMessage = "Select your actions...";
+    private string _trainingEventEndMessage = "This event has now ended.";
 
     //Default phrases for reward description
     [HideInInspector] public string rewardTitle = "TRAINING RESULTS";
@@ -577,6 +578,14 @@ public class TrainingConfig : Singleton<TrainingConfig>
 
         Print.Log("CardReward not fond - ID: " + id);
         return null;
+    }
+    
+    public string GetEventNameByActualTrainingId()
+    {
+        var _result = eventTitle;
+        if (Instance.GetCurrentTrainingInfo().startAt < startEventTimeStamp)
+            _result = _trainingEventEndMessage;
+        return _result;
     }
 }
 
