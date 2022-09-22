@@ -127,11 +127,11 @@ public class TrainingConfig : Singleton<TrainingConfig>
 
     public void SetInTrainingOnServer()
     {
-        var _tokenID = ToyoManager.GetSelectedToyo().tokenId;
         UpdateSelectedActionsByDict();
         
         if (useOfflineTrainingControl)
         {
+            var _tokenID = ToyoManager.GetSelectedToyo().tokenId;
             _tempServerTraining[_tokenID].startAt = GetActualTimeStampInSeconds();
             _tempServerTraining[_tokenID].endAt = GetActualTimeStampInSeconds() + 60;
             _tempServerTraining[_tokenID].combination = GetCombinationInStringArray(selectedTrainingActions.ToArray());

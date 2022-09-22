@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e20a67061cbbbb4daca2926ea086278, type: 3}
   m_Name: Box_Xeon_Pier0_template
   m_EditorClassIdentifier: 
-  boxName: Xeon Pier0 Template
+  boxName: Pier-0 Seed Box
   boxRegion: 3
   boxType: 1
   possibleRewards:
