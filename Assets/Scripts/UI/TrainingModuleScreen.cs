@@ -200,14 +200,7 @@ public class TrainingModuleScreen : UIController
             DatabaseConnection.Instance.blockchainIntegration.ToyoApproveNftTransfer(ToyoManager.GetSelectedToyo().tokenId);
     }
     
-    public void SendToyoToTraining()
-    {
-        TrainingConfig.Instance.SetInTrainingOnServer();
-        /*EnableAllProgressImages();
-        DisableLastEmptyAction();
-        UpdateUI();
-        Loading.EndLoading?.Invoke();*/
-    }
+    public void SendToyoToTraining() => TrainingConfig.Instance.SetInTrainingOnServer();
 
     public void UpdateTrainingAfterTrainingSuccess()
     {
@@ -221,19 +214,22 @@ public class TrainingModuleScreen : UIController
     {
         if (GetActionsRevealCount() <= TrainingConfig.Instance.selectedActionsBkp.Count)
             return;
-        GetLastActionRevealed().SetActive(false);
+        GetLastActionRevealed()?.SetActive(false);
     }
 
     private GameObject GetLastActionRevealed()
     {
-        for (var _i = 0; _i < combPoolObjects.Length; _i++)
+        for (var _i = 0; _i < combPoolObjects.Length; _i++) 
         {
-            if(combPoolObjects[_i].activeInHierarchy)
-                continue;
-            return combPoolObjects[_i - 1];
+            if (combPoolObjects[_i].activeInHierarchy && !IsButtonIdExistInSelectedActions(_i))
+                return combPoolObjects[_i];
         }
-        return combPoolObjects.Last();
+
+        return null;
     }
+
+    private bool IsButtonIdExistInSelectedActions(int id) 
+        =>  TrainingConfig.Instance.selectedActionsBkp.Any(_actionBkp => _actionBkp.buttonID == id);
 
     private void EnableAllProgressImages() => AllProgressImagesSetActive(true);
     private void DisableAllProgressImages() => AllProgressImagesSetActive(false);
@@ -295,20 +291,16 @@ public class TrainingModuleScreen : UIController
     {
         if (!TrainingConfig.Instance.SelectedToyoIsInTraining())
             return;
-        //BlowConfig _blowConfig = null;
+
         var _toyoTrainingInfo = TrainingConfig.Instance.GetCurrentTrainingInfo();
         var _blowConfig = new BlowConfig
         {
             duration = TrainingConfig.Instance.GetTrainingTotalDuration(_toyoTrainingInfo),
             qty = _toyoTrainingInfo.combination.Length
         };
-        
-        /*if (TrainingConfig.Instance.GetSelectedBlowConfig() == null)
-            TrainingConfig.Instance.ApplyBlowConfig();
-        _blowConfig = TrainingConfig.Instance.GetSelectedBlowConfig();*/
-        
-        var _actualPercent = (((float)_blowConfig.duration - TrainingConfig.Instance.GetTrainingTimeRemainInMinutes())
-                              / _blowConfig.duration) * 100;
+
+        var _actualPercent = Mathf.Round((_blowConfig.duration - TrainingConfig.Instance.GetTrainingTimeRemainInMinutes())
+                              / (_blowConfig.duration != 0 ? _blowConfig.duration : 1) * 100);
         var _unitPercent = 100 / _blowConfig.qty;
         ActiveProgressImagesInActiveActions();
         for (var _i = 0; _i < _blowConfig.qty; _i++)
