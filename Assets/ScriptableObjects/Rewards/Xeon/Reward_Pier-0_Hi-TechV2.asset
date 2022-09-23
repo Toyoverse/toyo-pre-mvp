@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7b6b454d731d1314f9083a9c4c64ec92, type: 3}
-  m_Name: Xeon_Template_BoxRewardSO
+  m_Name: Reward_Pier-0_Hi-TechV2
   m_EditorClassIdentifier: 
-  rewardName: Template
-  sprite: {fileID: 21300000, guid: 226d9f0845463294c9b564a06ec23daa, type: 3}
-  toyoRarity: 1
+  rewardName: Pier-0 Hi-Tech V2
+  sprite: {fileID: 21300000, guid: 69f5fa75b93951642938762c5f717364, type: 3}
+  toyoRarity: 6
