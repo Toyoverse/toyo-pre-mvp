@@ -16,16 +16,17 @@ MonoBehaviour:
   boxRegion: 3
   boxType: 1
   possibleRewards:
+  - {fileID: 11400000, guid: 2af73bc5fb24f3743998a2de73615d2a, type: 2}
   - {fileID: 11400000, guid: ca33daa4536caee418214200a14f3dfb, type: 2}
-  - {fileID: 11400000, guid: ca33daa4536caee418214200a14f3dfb, type: 2}
-  - {fileID: 11400000, guid: ca33daa4536caee418214200a14f3dfb, type: 2}
-  - {fileID: 11400000, guid: ca33daa4536caee418214200a14f3dfb, type: 2}
-  - {fileID: 11400000, guid: ca33daa4536caee418214200a14f3dfb, type: 2}
+  - {fileID: 11400000, guid: af77e27752d2cad4b821ce4341b95dba, type: 2}
+  - {fileID: 11400000, guid: f612addba4292fd43ba84e08d19efb1a, type: 2}
+  - {fileID: 11400000, guid: f764056a66d51e545b5c416891bd06a9, type: 2}
+  - {fileID: 11400000, guid: 431794f8722a4a24ba33ed01bab5fde6, type: 2}
   dropRate:
   - Rarity: 1
-    DropChance: 52
+    DropChance: 50
   - Rarity: 2
-    DropChance: 32
+    DropChance: 34
   - Rarity: 3
     DropChance: 10
   - Rarity: 4
