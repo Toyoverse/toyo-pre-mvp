@@ -24,7 +24,7 @@ namespace UI
             "undone! \n You will receive a wallet request to transfer your closed box momentarily to us. We will " +
             "then swap it by your Toyo and opened box NFTs and make another wallet request to transfer it back to you.";
 
-        private const string UnavailableMessage = "Opening this box is not currently available.";
+        private const string UnavailableMessage = "Unboxing Coming Soon!";
 
         public override void ActiveScreen()
         {
