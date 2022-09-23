@@ -9,7 +9,7 @@ public static class TimeTools
     public static long GetActualTimeStampInSeconds()
     {
         var _result = (long)DateTime.UtcNow.Subtract(_epoch).TotalSeconds;
-        Print.Log("ActualTimeStamp: " + _result);
+        //Print.Log("ActualTimeStamp: " + _result);
         return _result;
     }
 

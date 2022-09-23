@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Database;
@@ -46,11 +47,23 @@ public class TrainingModuleScreen : UIController
     private void UpdateTextsInUI()
     {
         SetTextInLabel(eventTitleName, TrainingConfig.Instance.eventTitle);
-        SetTextInLabel(eventTimeName, TrainingConfig.EventTimeDefaultText 
-                                      + ConvertMinutesToString(TrainingConfig.Instance.GetEventTimeRemain()));
+        UpdateEventTimeRemainUI();
         TrainingConfig.Instance.ApplyBlowConfig();
         SetTextInLabel(receiveName, /*"Receive: $" + */TrainingConfig.Instance.receiveValue.ToString());
         SetTextInLabel(durationName, /*"Duration: " + */ConvertMinutesToString(TrainingConfig.Instance.durationValue));
+    }
+
+    private void UpdateEventTimeRemainUI()
+    => SetTextInLabel(eventTimeName, TrainingConfig.EventTimeDefaultText 
+                                     + ConvertMinutesToString(TrainingConfig.Instance.GetEventTimeRemainInMinutes()));
+
+    private void UpdateTrainingTimeRemainUI()
+    {
+        if (!TrainingConfig.Instance.SelectedToyoIsInTraining())
+            return;
+        var _trainSecRemain = (int)TrainingConfig.Instance.GetTrainingTimeRemainInSeconds();
+        if(_trainSecRemain < 60)
+            SetTextInButton(inTrainingTimeButtonName, _trainSecRemain + "s");
     }
 
     public override void ActiveScreen()
@@ -61,10 +74,14 @@ public class TrainingModuleScreen : UIController
         //TrainingConfig.Instance.SetSelectedToyoIsInTraining();
         ApplyInTrainingActions();
         UpdateUI();
+        InvokeRepeating(nameof(UpdateTrainingTimeRemainUI), 0, 1.0f);
+        InvokeRepeating(nameof(UpdateEventTimeRemainUI), 0, 60);
     }
 
     public override void DisableScreen()
     {
+        CancelInvoke(nameof(UpdateProgressTraining));
+        CancelInvoke(nameof(UpdateEventTimeRemainUI));
         CheckToResetTrainingModule();
         base.DisableScreen();
     }

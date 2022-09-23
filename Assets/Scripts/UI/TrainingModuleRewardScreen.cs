@@ -25,7 +25,7 @@ public class TrainingModuleRewardScreen : UIController
 
     private string _eventTitle => TrainingConfig.Instance.GetEventNameByActualTrainingId();
 
-    private int _eventTime => TrainingConfig.Instance.GetEventTimeRemain();
+    private int _eventTime => TrainingConfig.Instance.GetEventTimeRemainInMinutes();
 
     //TODO: Get correct variables in server
     //public bool cardCollected;
@@ -40,15 +40,25 @@ public class TrainingModuleRewardScreen : UIController
         base.ActiveScreen();
         DatabaseConnection.Instance.GetRewardValues(ShowResults, FailedGetParameters,
             TrainingConfig.Instance.GetCurrentTrainingInfo().id);
+        InvokeRepeating(nameof(UpdateEventTime), 0, 60);
+    }
+
+    public override void DisableScreen()
+    {
+        CancelInvoke(nameof(UpdateEventTime));
+        base.DisableScreen();
     }
 
     protected override void UpdateUI()
     {
         ApplySelectedActions();
         SetTextInLabel(eventTitleName, _eventTitle);
-        SetTextInLabel(eventTimeName, TrainingConfig.EventTimeDefaultText + ConvertMinutesToString(_eventTime));
+        UpdateEventTime();
         //ShowRewards();
     }
+
+    private void UpdateEventTime()
+        => SetTextInLabel(eventTimeName, TrainingConfig.EventTimeDefaultText + ConvertMinutesToString(_eventTime));
 
     public void ClaimButton()
     {

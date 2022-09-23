@@ -18,21 +18,7 @@ public class LoreThemeScreen : UIController
 When a Toyo makes much choices by its own, it slowly rises the ability to become rogue which isn't bad by definition. 
 A rogue second generation Toyo is nothing more than a Toyo that don't depend on the Mentor's Heart link anymore. 
 The link between them may keep immutable if their Heart Bound was pure but may be completely dismantled if it was corrupted.";*/
-    public string timer => ConvertMinutesToString(TrainingConfig.Instance.GetEventTimeRemain());
-
-    private float _count = 0;
-
-    private void Update()
-    {
-        if (ScreenManager.ScreenState != ScreenState.LoreTheme) 
-            return;
-        _count += Time.deltaTime;
-        if (_count > 60)
-        {
-            UpdateTimerText();
-            _count = 0;
-        }
-    }
+    public string timer => ConvertMinutesToString(TrainingConfig.Instance.GetEventTimeRemainInMinutes());
 
     private string GetTimerString() => timeRemainString + timer;
 
@@ -52,5 +38,12 @@ The link between them may keep immutable if their Heart Bound was pure but may b
     {
         base.ActiveScreen();
         TrainingConfig.Instance.LoreScreenOpen();
+        InvokeRepeating(nameof(UpdateTimerText), 0, 60);
+    }
+
+    public override void DisableScreen()
+    {
+        CancelInvoke(nameof(UpdateTimerText));
+        base.DisableScreen();
     }
 }

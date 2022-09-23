@@ -69,7 +69,7 @@ public class TrainingConfig : Singleton<TrainingConfig>
     {
         //var _result = ConvertMillisecondsToSeconds(GetCurrentTrainingInfo().endAt);
         var _result = GetCurrentTrainingInfo().endAt;
-        Print.Log("SelectedToyoEndTrainingTimeStamp: " + _result);
+        //Print.Log("SelectedToyoEndTrainingTimeStamp: " + _result);
         return (long)_result;
     }
 
@@ -302,15 +302,22 @@ public class TrainingConfig : Singleton<TrainingConfig>
             _secondsRemain = 0;
         return ConvertSecondsInMinutes((int)_secondsRemain);
     }
-    
-    public long GetTrainingTimeRemainInSeconds()
-        => (GetSelectedToyoEndTrainingTimeStamp() - GetActualTimeStampInSeconds());
 
-    public int GetEventTimeRemain()
+    public long GetTrainingTimeRemainInSeconds()
+    {
+        var _secondsRemain = GetSelectedToyoEndTrainingTimeStamp() - GetActualTimeStampInSeconds();
+        if (_secondsRemain < 0)
+            _secondsRemain = 0;
+        return _secondsRemain;
+    }
+
+    public int GetEventTimeRemainInMinutes()
     {
         var _secondsRemain = endEventTimeStamp - GetActualTimeStampInSeconds();
         return ConvertSecondsInMinutes((int)_secondsRemain);
     }
+    
+    public int GetEventTimeRemainInSeconds() => (int)(endEventTimeStamp - GetActualTimeStampInSeconds());
 
     private void SetTrainingConfigValues(TrainingConfigJSON trainingConfigJson = null)
     {
