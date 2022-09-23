@@ -173,6 +173,7 @@ namespace Database
         public string thumbnail;
         public string region;
         public string rarity;
+        public bool isAutomata;
     }
 
     [Serializable]

@@ -57,6 +57,7 @@ public class TrainingModuleScreen : UIController
     {
         base.ActiveScreen();
         ResetCombinationPool();
+        CheckIfIsToyoOrAutomata();
         //TrainingConfig.Instance.SetSelectedToyoIsInTraining();
         ApplyInTrainingActions();
         UpdateUI();
@@ -326,6 +327,20 @@ public class TrainingModuleScreen : UIController
         {
             if(combPoolImages[_i].gameObject.activeInHierarchy)
                 progressImages[_i].gameObject.SetActive(true);
+        }
+    }
+
+    private void CheckIfIsToyoOrAutomata()
+    {
+        if (ToyoManager.GetSelectedToyo().isAutomata)
+        {
+            EnableVisualElement("rewardsBackgroundAutomata");
+            DisableVisualElement("rewardsBackgroundToyo");
+        }
+        else
+        {
+            EnableVisualElement("rewardsBackgroundToyo");
+            DisableVisualElement("rewardsBackgroundAutomata");
         }
     }
 }
