@@ -1,7 +1,7 @@
 .unity-scroller--vertical > .unity-scroller__high-button {
     left: -830%;
     top: 680px;
-    background-image: url('project://database/Assets/Images/Buttons/mini_rightarrow_normal.png?fileID=2800000&guid=70732642e89da434e923af6c3df80fb2&type=3#mini_rightarrow_normal');
+    background-image: url('project://database/Assets/Images/Buttons/Mini-Down_Arrow-normal.png?fileID=2800000&guid=af8e9672cab7f6740ae43f71f742a0b3&type=3#Mini-Down_Arrow-normal');
     -unity-background-scale-mode: stretch-to-fill;
     background-color: rgba(0, 0, 0, 0);
     border-left-color: rgba(0, 0, 0, 0);
@@ -11,7 +11,7 @@
     width: 200px;
     height: 200px;
     -unity-background-image-tint-color: rgb(255, 255, 255);
-    rotate: 90deg;
+    rotate: 0;
     margin-left: 250px;
     margin-top: -270px;
 }
@@ -19,7 +19,7 @@
 .unity-scroller--vertical > .unity-scroller__high-button:hover {
     left: -830%;
     top: 680px;
-    background-image: url('project://database/Assets/Images/Buttons/mini_rightarrow_hover.png?fileID=2800000&guid=445cf528487b3bd4596b9f61637ee848&type=3#mini_rightarrow_hover');
+    background-image: url('project://database/Assets/Images/Buttons/Mini-Down_Arrow-hover.png?fileID=2800000&guid=1313b156dc8499e448681438ebc7ec3d&type=3#Mini-Down_Arrow-hover');
     -unity-background-scale-mode: stretch-to-fill;
     background-color: rgba(0, 0, 0, 0);
     border-left-color: rgba(0, 0, 0, 0);
@@ -29,7 +29,7 @@
     width: 200px;
     height: 200px;
     -unity-background-image-tint-color: rgb(255, 255, 255);
-    rotate: 90deg;
+    rotate: 0;
     translate: 0 40px;
     transition-duration: 0.3s;
     margin-left: 250px;
@@ -39,7 +39,7 @@
 .unity-scroller--vertical > .unity-scroller__high-button:active {
     left: -830%;
     top: 680px;
-    background-image: url('project://database/Assets/Images/Buttons/mini_rightarrow_pressed.png?fileID=2800000&guid=1a3944abd7646ec498d4c72f3941a71f&type=3#mini_rightarrow_pressed');
+    background-image: url('project://database/Assets/Images/Buttons/Mini-Down_Arrow-pressed.png?fileID=2800000&guid=dbfbaf8d00f2c7b4ea9ebedc0add6bcf&type=3#Mini-Down_Arrow-pressed');
     -unity-background-scale-mode: stretch-to-fill;
     background-color: rgba(0, 0, 0, 0);
     border-left-color: rgba(0, 0, 0, 0);
@@ -49,7 +49,7 @@
     width: 200px;
     height: 200px;
     -unity-background-image-tint-color: rgb(255, 255, 255);
-    rotate: 90deg;
+    rotate: 0;
     translate: 0 40px;
     margin-left: 250px;
     margin-top: -270px;
@@ -62,10 +62,10 @@
     display: flex;
     justify-content: space-around;
     align-items: flex-start;
-    rotate: 90deg;
+    rotate: 0;
     left: -830%;
     top: -185px;
-    background-image: url('project://database/Assets/Images/Buttons/mini_leftarrow_normal.png?fileID=2800000&guid=4518f4fe95d84c34ea7308d7ba449feb&type=3#mini_leftarrow_normal');
+    background-image: url('project://database/Assets/Images/Buttons/Mini-Up_Arrow-normal.png?fileID=2800000&guid=de0b395fef8b1bb418f037c2123d23bd&type=3#Mini-Up_Arrow-normal');
     -unity-background-image-tint-color: rgb(255, 255, 255);
     border-left-color: rgba(0, 0, 0, 0);
     border-right-color: rgba(0, 0, 0, 0);
@@ -82,8 +82,8 @@
     display: flex;
     justify-content: space-around;
     align-items: flex-start;
-    background-image: url('project://database/Assets/Images/Buttons/mini_leftarrow_hover.png?fileID=2800000&guid=8a09ceaee94ddb74f8e583881ec2f769&type=3#mini_leftarrow_hover');
-    rotate: 90deg;
+    background-image: url('project://database/Assets/Images/Buttons/Mini-Up_Arrow-hover.png?fileID=2800000&guid=78feed6c278b26345b203fa159eab9bb&type=3#Mini-Up_Arrow-hover');
+    rotate: 0;
     left: -830%;
     top: -185px;
     translate: 0 -40px;
@@ -103,8 +103,8 @@
     display: flex;
     justify-content: space-around;
     align-items: flex-start;
-    background-image: url('project://database/Assets/Images/Buttons/mini_leftarrow_pressed.png?fileID=2800000&guid=8df616d5ddc007147b81714fe6f1a77e&type=3#mini_leftarrow_pressed');
-    rotate: 90deg;
+    background-image: url('project://database/Assets/Images/Buttons/Mini-Up_Arrow-pressed.png?fileID=2800000&guid=fbe2a72808ad44042ae620274edd7ed0&type=3#Mini-Up_Arrow-pressed');
+    rotate: 0;
     left: -830%;
     top: -185px;
     translate: 0 -40px;
