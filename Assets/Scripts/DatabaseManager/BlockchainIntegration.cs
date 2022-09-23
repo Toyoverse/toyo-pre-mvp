@@ -8,13 +8,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Runtime.InteropServices;
 using Tools;
+using UnityEngine.Serialization;
 
 public class BlockchainIntegration : MonoBehaviour
 {
     #region Production Ambient BlockchainInformation
 
     public bool isProduction;
-    public bool enableLogInProduction;
+    public bool enableLogsInProduction;
     
     //BOXES
     private const string productionApproveContractForTokenUntil9476 = "0x07AE3987C679c0aFd2eC1ED2945278c37918816c";

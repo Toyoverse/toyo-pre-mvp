@@ -23,7 +23,7 @@ public class TrainingModuleRewardScreen : UIController
     public GameObject[] wrongPositionObjects;
     public GameObject[] totallyWrongObjects;
 
-    private string _eventTitle => TrainingConfig.Instance.eventTitle;
+    private string _eventTitle => TrainingConfig.Instance.GetEventNameByActualTrainingId();
 
     private int _eventTime => TrainingConfig.Instance.GetEventTimeRemain();
 

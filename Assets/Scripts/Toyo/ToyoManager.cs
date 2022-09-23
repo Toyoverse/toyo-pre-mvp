@@ -214,6 +214,7 @@ public class ToyoManager : Singleton<ToyoManager>
         {
             "KYTUNT" => BOX_REGION.Kytunt,
             "JAKANA" => BOX_REGION.Jakana,
+            "XEON" => BOX_REGION.Xeon,
             _ => BOX_REGION.None
         };
     }

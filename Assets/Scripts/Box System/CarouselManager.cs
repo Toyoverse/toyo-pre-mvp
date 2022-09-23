@@ -211,8 +211,11 @@ public class CarouselManager : MonoBehaviour
 
         if (allObjects.Count <= 1)
             return;
-        if(allObjects.Count < 4 && _carouselUnder4Pos == CAROUSEL_UNDER_4_POS.RIGHT)
+        if (allObjects.Count < 4 && _carouselUnder4Pos == CAROUSEL_UNDER_4_POS.RIGHT)
+        {
+            OnEndRotation?.Invoke();
             return;
+        }
 
         if (allObjects.Count == 2)
             _carouselUnder4Pos = CAROUSEL_UNDER_4_POS.RIGHT;
@@ -242,8 +245,11 @@ public class CarouselManager : MonoBehaviour
         
         if (allObjects.Count <= 1)
             return;
-        if(allObjects.Count < 4 && _carouselUnder4Pos == CAROUSEL_UNDER_4_POS.LEFT)
+        if (allObjects.Count < 4 && _carouselUnder4Pos == CAROUSEL_UNDER_4_POS.LEFT)
+        {
+            OnEndRotation?.Invoke();
             return;
+        }
 
         if (allObjects.Count == 2)
             _carouselUnder4Pos = CAROUSEL_UNDER_4_POS.LEFT;
