@@ -174,7 +174,7 @@ public class TrainingConfig : Singleton<TrainingConfig>
         var _trainingInfo = Instance.GetCurrentTrainingInfo();
         if (!useOfflineTrainingControl)
         {
-            DatabaseConnection.Instance.CallCloseTraining(SuccessGetClaimParameters, 
+            DatabaseConnection.Instance.PutCloseTrainingValues(SuccessGetClaimParameters, 
                 FailedGetClaimParameters, _trainingInfo.id);
             return;
         }
@@ -223,6 +223,12 @@ public class TrainingConfig : Singleton<TrainingConfig>
 
     public void SuccessClaim()
     {
+        var _trainingInfo = Instance.GetCurrentTrainingInfo();
+        DatabaseConnection.Instance.PostCloseTraining(PostCloseTrainingCallback, _trainingInfo.id);
+    }
+
+    private void PostCloseTrainingCallback(string json)
+    {
         Loading.EndLoading += ShowSuccessClaimPopUp;
         DatabaseConnection.Instance.CallGetInTrainingList(UpdateInTrainingListAfterClaim);
     }
@@ -232,8 +238,10 @@ public class TrainingConfig : Singleton<TrainingConfig>
 
     public void FailedClaim()
     {
-        Loading.EndLoading += ShowFailedClaimPopUp;
-        DatabaseConnection.Instance.CallGetInTrainingList(UpdateInTrainingListAfterClaim);
+        /*Loading.EndLoading += ShowFailedClaimPopUp;
+        DatabaseConnection.Instance.CallGetInTrainingList(UpdateInTrainingListAfterClaim);*/
+        Loading.EndLoading?.Invoke();
+        ShowFailedClaimPopUp();
     }
 
     private void GoToMainMenu() => ScreenManager.Instance.GoToScreen(ScreenState.MainMenu);

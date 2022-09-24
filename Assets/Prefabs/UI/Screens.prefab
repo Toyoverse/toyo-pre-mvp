@@ -9814,6 +9814,7 @@ MonoBehaviour:
   - {fileID: 7264091221456017460}
   - {fileID: 7264091222593931999}
   - {fileID: 7264091221572580988}
+  - {fileID: 4349198798357199459}
   anchor: {fileID: 8643416932932090321}
   _selectedPlatformRotation: {x: 0, y: 0, z: 0}
   _leftPlatformRotation: {x: 0, y: 0, z: 0}
@@ -11527,7 +11528,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8499880556114670832, guid: 3903de43eabf89d45ab21f81c7056fcf, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3903de43eabf89d45ab21f81c7056fcf, type: 3}

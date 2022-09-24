@@ -162,7 +162,14 @@ namespace Database
             StartCoroutine(ProcessRequestCoroutine(callback, _request));
         }
 
-        public void CallCloseTraining(Action<string> successCallback, Action<string> failedCallback, string trainingID)
+        public void PostCloseTraining(Action<string> successCallback, string trainingID)
+        {
+            _url = trainingBaseURL + toyoTrainingSuffixURL + "/" + trainingID;
+            var _request = GenerateRequest(HTTP_REQUEST.POST);
+            StartCoroutine(ProcessRequestCoroutine(successCallback, _request));
+        }
+        
+        public void PutCloseTrainingValues(Action<string> successCallback, Action<string> failedCallback, string trainingID)
         {
             _url = trainingBaseURL + toyoTrainingSuffixURL + "/" + trainingID;
             var _request = GenerateRequest(HTTP_REQUEST.PUT);
@@ -220,7 +227,7 @@ namespace Database
             return _requestPost;
         }
         
-        private UnityWebRequest GeneratePut(string uri, string jsonString)
+        /*private UnityWebRequest GeneratePut(string uri, string jsonString)
         {
             var _requestPost = new UnityWebRequest(uri, "PUT");
             var _jsonToSend = new UTF8Encoding().GetBytes(jsonString);
@@ -231,7 +238,7 @@ namespace Database
             _requestPost.SetRequestHeader("Content-Type", "application/json");
 
             return _requestPost;
-        }
+        }*/
         
         private UnityWebRequest GeneratePut(string uri)
         {
