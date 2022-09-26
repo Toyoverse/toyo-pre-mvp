@@ -38,6 +38,7 @@ public class TrainingModuleRewardScreen : UIController
     public override void ActiveScreen()
     {
         base.ActiveScreen();
+        CheckIfIsToyoOrAutomata();
         DatabaseConnection.Instance.GetRewardValues(ShowResults, FailedGetParameters,
             TrainingConfig.Instance.GetCurrentTrainingInfo().id);
         InvokeRepeating(nameof(UpdateEventTime), 0, 60);
@@ -165,5 +166,21 @@ public class TrainingModuleRewardScreen : UIController
     {
         for(var _i = 0; _i < combinationPoolObjects.Length; _i++)
             combinationPoolObjects[_i].SetActive(false);
+    }
+    
+    private void CheckIfIsToyoOrAutomata()
+    {
+        if (ToyoManager.GetSelectedToyo().isAutomata)
+        {
+            DisableVisualElement(rewardImageName);
+            DisableVisualElement(rewardValueName);
+            DisableVisualElement(rewardTitleName);
+        }
+        else
+        {
+            EnableVisualElement(rewardImageName);
+            EnableVisualElement(rewardValueName);
+            EnableVisualElement(rewardTitleName);
+        }
     }
 }
