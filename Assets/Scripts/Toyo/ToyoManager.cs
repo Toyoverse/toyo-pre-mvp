@@ -185,8 +185,11 @@ public class ToyoManager : Singleton<ToyoManager>
     public static void SetPlayerBoxes()
     {
         foreach (var _boxFromPlayer in Instance.Player.boxes)
-            foreach (var _boxConfigInCarousel in Instance._allBoxesConfigInCarousel)
-                CompareBoxModifiers(_boxFromPlayer, _boxConfigInCarousel);
+        foreach (var _boxConfigInCarousel in Instance._allBoxesConfigInCarousel)
+        {
+            //Print.Log("box: " + _boxFromPlayer.region + " | " + _boxFromPlayer.type);
+            CompareBoxModifiers(_boxFromPlayer, _boxConfigInCarousel);
+        }
     }
 
     private static void CompareBoxModifiers(Box boxFromPlayer, BoxConfig boxConfigInCarousel)

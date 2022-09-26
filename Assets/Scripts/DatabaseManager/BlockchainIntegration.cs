@@ -293,7 +293,7 @@ public class BlockchainIntegration : MonoBehaviour
         {
             var _hash = await Web3GL.SendContract(_method, _abi, _contract, _args, _value, _gasLimit, _gasPrice);
             Print.Log("StakeHash: " + _hash);
-            ScreenManager.Instance.trainingModuleScript.SendToyoToTraining();
+            ScreenManager.Instance.trainingModuleScript.SendToyoToTrainingOnServer();
 
         } catch (Exception _exception) {
             Print.LogException(_exception, this);
@@ -347,17 +347,18 @@ public class BlockchainIntegration : MonoBehaviour
         StartCoroutine(_databaseConnection.CallGetToyoData(OnToyoDetailSuccess, _myObject.toyos));
     }
 
-    public void UpdateToyoIsStakedList(string json)
+    public void UpdateToyoIsStakedList(string json, Action callback = null)
     {
         var _myObject = JsonUtility.FromJson<CallbackToyoList>(json);
         if (_myObject.toyos == null || _myObject.toyos.Length == 0)
         {
-            _myObject.toyos = Array.Empty<Toyo>();    
+            callback?.Invoke();
+            return;
         }
         ToyoManager.SaveIsStakeBackup(_myObject.toyos);
         foreach (var _toyoObject in ToyoManager.Instance.ToyoList)
             _toyoObject.isStaked = ToyoManager.GetIsStakedById(_toyoObject.tokenId);
-        Loading.EndLoading?.Invoke();
+        callback?.Invoke();
     }
 
     public void OnToyoDetailSuccess(string json)

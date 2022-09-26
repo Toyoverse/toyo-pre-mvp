@@ -1806,7 +1806,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1421983677662904393, guid: 0551b33d1f297084ea0890c31eee10be, type: 3}
       propertyPath: isProduction
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1421983677662904393, guid: 0551b33d1f297084ea0890c31eee10be, type: 3}
       propertyPath: enableLogInProduction

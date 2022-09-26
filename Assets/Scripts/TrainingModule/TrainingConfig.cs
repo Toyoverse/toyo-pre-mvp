@@ -290,8 +290,11 @@ public class TrainingConfig : Singleton<TrainingConfig>
     public void UpdateInTrainingListAfterClaim(string json)
     {
         CreateInTrainingList(json);
-        DatabaseConnection.Instance.CallGetPlayerToyo(DatabaseConnection.Instance.blockchainIntegration.UpdateToyoIsStakedList);
+        DatabaseConnection.Instance.CallGetPlayerToyo(PlayerToyoCallback);
     }
+
+    private void PlayerToyoCallback(string json) 
+        => DatabaseConnection.Instance.blockchainIntegration.UpdateToyoIsStakedList(json, Loading.EndLoading);
 
     private void CreateInTrainingList(string json)
     {

@@ -207,18 +207,26 @@ public class TrainingModuleScreen : UIController
 
     public void StartButton()
         => GenericPopUp.Instance.ShowPopUp(TrainingConfig.Instance.sendToyoToTrainingPopUp,
-            CallBlockchainTrainingTransactions, () => {});
+            CallSendToyoToTrainingFlux, () => {});
 
-    private void CallBlockchainTrainingTransactions()
+    private void CallSendToyoToTrainingFlux()
     {
         Loading.StartLoading?.Invoke();
+        DatabaseConnection.Instance.CallGetPlayerToyo(PlayerToyoCallback);
+    }
+
+    private void PlayerToyoCallback(string json)
+        => DatabaseConnection.Instance.blockchainIntegration.UpdateToyoIsStakedList(json, ConfirmSendTraining);
+
+    private void ConfirmSendTraining()
+    {
         if(ToyoManager.GetSelectedToyo().isStaked)
-            ScreenManager.Instance.trainingModuleScript.SendToyoToTraining();
+            SendToyoToTrainingOnServer();
         else
             DatabaseConnection.Instance.blockchainIntegration.ToyoApproveNftTransfer(ToyoManager.GetSelectedToyo().tokenId);
     }
     
-    public void SendToyoToTraining() => TrainingConfig.Instance.SetInTrainingOnServer();
+    public void SendToyoToTrainingOnServer() => TrainingConfig.Instance.SetInTrainingOnServer();
 
     public void UpdateTrainingAfterTrainingSuccess()
     {
