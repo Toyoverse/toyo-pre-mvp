@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3e20a67061cbbbb4daca2926ea086278, type: 3}
-  m_Name: Box_Xeon_Pier0_template
+  m_Name: Box_Xeon_Pier0_SeedBox
   m_EditorClassIdentifier: 
   boxName: Pier-0 Seed Box
   boxRegion: 3
@@ -24,9 +24,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 431794f8722a4a24ba33ed01bab5fde6, type: 2}
   dropRate:
   - Rarity: 1
-    DropChance: 50
+    DropChance: 52
   - Rarity: 2
-    DropChance: 34
+    DropChance: 32
   - Rarity: 3
     DropChance: 10
   - Rarity: 4
