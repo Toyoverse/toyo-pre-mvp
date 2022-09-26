@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Jumping Side Kick
   type: 2
-  sprite: {fileID: 21300000, guid: 41fa728a4436b0044861cba9a0b3718e, type: 3}
+  sprite: {fileID: 21300000, guid: e8e12db131bdad64cad5f5d8f121e9d2, type: 3}
   id: 20

@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Headbutt
   type: 3
-  sprite: {fileID: 21300000, guid: 41fa728a4436b0044861cba9a0b3718e, type: 3}
+  sprite: {fileID: 21300000, guid: 562171665c71d624f8b6bc835876bdf3, type: 3}
   id: 19
