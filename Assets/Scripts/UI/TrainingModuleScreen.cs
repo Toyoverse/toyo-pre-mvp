@@ -33,6 +33,8 @@ public class TrainingModuleScreen : UIController
     public string actionScrollName;
     public string previewActionName;
     public FontAsset fontAsset;
+    
+    private bool _inSecondTimeCheck = false;
 
     protected override void UpdateUI()
     {
@@ -57,13 +59,29 @@ public class TrainingModuleScreen : UIController
     => SetTextInLabel(eventTimeName, TrainingConfig.EventTimeDefaultText 
                                      + ConvertMinutesToString(TrainingConfig.Instance.GetEventTimeRemainInMinutes()));
 
+    private void ChangeUpdateTrainingTimeToSecond()
+    {
+        CancelInvoke(nameof(UpdateTrainingTimeRemainUI));
+        InvokeRepeating(nameof(UpdateTrainingTimeRemainUI), 0, 1.0f);
+        _inSecondTimeCheck = true;
+    }
+    
     private void UpdateTrainingTimeRemainUI()
     {
         if (!TrainingConfig.Instance.SelectedToyoIsInTraining())
             return;
         var _trainSecRemain = (int)TrainingConfig.Instance.GetTrainingTimeRemainInSeconds();
-        if(_trainSecRemain < 60)
+        if (_trainSecRemain < 60)
+        {
             SetTextInButton(inTrainingTimeButtonName, _trainSecRemain + "s");
+            if (!_inSecondTimeCheck)
+                ChangeUpdateTrainingTimeToSecond();
+        }
+        else
+        {
+            SetTextInButton(inTrainingTimeButtonName, ConvertMinutesToString(TrainingConfig.Instance.GetTrainingTimeRemainInMinutes()));
+            UpdateProgressTraining();
+        }
     }
 
     public override void ActiveScreen()
@@ -74,14 +92,15 @@ public class TrainingModuleScreen : UIController
         //TrainingConfig.Instance.SetSelectedToyoIsInTraining();
         ApplyInTrainingActions();
         UpdateUI();
-        InvokeRepeating(nameof(UpdateTrainingTimeRemainUI), 0, 1.0f);
+        InvokeRepeating(nameof(UpdateTrainingTimeRemainUI), 0, 60);
         InvokeRepeating(nameof(UpdateEventTimeRemainUI), 0, 60);
     }
 
     public override void DisableScreen()
     {
-        CancelInvoke(nameof(UpdateProgressTraining));
+        CancelInvoke(nameof(UpdateTrainingTimeRemainUI));
         CancelInvoke(nameof(UpdateEventTimeRemainUI));
+        _inSecondTimeCheck = false;
         CheckToResetTrainingModule();
         base.DisableScreen();
     }
@@ -313,34 +332,55 @@ public class TrainingModuleScreen : UIController
             _gameObject.SetActive(false);
     }
 
+    private BlowConfig GetBlowConfigByTrainingInfo(ToyoTrainingInfo trainingInfo)
+    {
+        var _blowConfig = new BlowConfig
+        {
+            duration = TrainingConfig.Instance.GetTrainingTotalDuration(trainingInfo),
+            qty = trainingInfo.combination.Length
+        };
+        return _blowConfig;
+    }
+
+    private int GetActualPercentInActualTraining(BlowConfig blowConfig)
+    {
+        var _pastTime = blowConfig.duration - TrainingConfig.Instance.GetTrainingTimeRemainInMinutes();
+        var _totalDuration = blowConfig.duration != 0 ? blowConfig.duration : 1;
+        return (_pastTime * 100) / _totalDuration;
+    }
+    
+    private int GetUnitPercentByBlowConfig(BlowConfig blowConfig) => 100 / blowConfig.qty;
+
+    private void SetCorrectProgress(BlowConfig blowConfig, int actualPercent, int unitPercent)
+    {
+        var _progressActiveImages = GetProgressActiveImages();
+        for (var _i = 0; _i < blowConfig.qty; _i++)
+        {
+            if (actualPercent > (unitPercent * (_i + 1)))
+            {
+                _progressActiveImages[_i].fillAmount = 0;
+                continue;
+            }
+            var _inverseFill = ((float)actualPercent / (blowConfig.qty - _i)) / 100;
+            var _correctFill = _inverseFill != 0 ? 1 - _inverseFill : 1;
+            _progressActiveImages[_i].fillAmount = _correctFill;
+            break;
+        }
+    }
+    
     private void UpdateProgressTraining()
     {
         if (!TrainingConfig.Instance.SelectedToyoIsInTraining())
             return;
-
-        var _toyoTrainingInfo = TrainingConfig.Instance.GetCurrentTrainingInfo();
-        var _blowConfig = new BlowConfig
-        {
-            duration = TrainingConfig.Instance.GetTrainingTotalDuration(_toyoTrainingInfo),
-            qty = _toyoTrainingInfo.combination.Length
-        };
-
-        var _actualPercent = Mathf.Round((_blowConfig.duration - TrainingConfig.Instance.GetTrainingTimeRemainInMinutes())
-                              / (_blowConfig.duration != 0 ? _blowConfig.duration : 1) * 100);
-        var _unitPercent = 100 / _blowConfig.qty;
+        
+        var _blowConfig = GetBlowConfigByTrainingInfo(TrainingConfig.Instance.GetCurrentTrainingInfo());
+        var _actualPercent = GetActualPercentInActualTraining(_blowConfig);
+        var _unitPercent = GetUnitPercentByBlowConfig(_blowConfig);
+        
         ActiveProgressImagesInActiveActions();
-        for (var _i = 0; _i < _blowConfig.qty; _i++)
-        {
-            if (_actualPercent > (_unitPercent * (_i + 1)))
-            {
-                GetProgressActiveImages()[_i].fillAmount = 0;
-                continue;
-            }
-            var _inverseFill = (_actualPercent / (_blowConfig.qty - _i)) / 100;
-            var _correctFill = _inverseFill != 0 ? 1 - _inverseFill : 1;
-            GetProgressActiveImages()[_i].fillAmount = _correctFill;
-            break;
-        }
+        ResetProgressImages();
+
+        SetCorrectProgress(_blowConfig, _actualPercent, _unitPercent);
     }
 
     private List<Image> GetProgressActiveImages()
@@ -353,6 +393,13 @@ public class TrainingModuleScreen : UIController
             if(combPoolImages[_i].gameObject.activeInHierarchy)
                 progressImages[_i].gameObject.SetActive(true);
         }
+    }
+
+    private void ResetProgressImages()
+    {
+        var _images = GetProgressActiveImages();
+        for (var _i = 0; _i < _images.Count; _i++)
+            _images[_i].fillAmount = 1;
     }
 
     private void CheckIfIsToyoOrAutomata()
