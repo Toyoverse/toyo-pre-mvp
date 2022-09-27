@@ -1,7 +1,8 @@
 using System;
-using Unity.Collections;
 using UnityEngine;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 
 [CreateAssetMenu(fileName = "CardSO", menuName = "ScriptableObject/CardSO")]
 public class CardRewardSO : ScriptableObject
@@ -18,10 +19,12 @@ public class CardRewardSO : ScriptableObject
     public TrainingActionSO[] correctCombination;
     public string imageURL;
     
+    #if UNITY_EDITOR
     private void OnValidate()
     {
         var path = AssetDatabase.GetAssetPath(this);
         _guid = new Guid(AssetDatabase.AssetPathToGUID(path));
         guidString = _guid.ToString();
     }
+    #endif
 }
