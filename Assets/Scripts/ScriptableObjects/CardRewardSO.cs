@@ -1,8 +1,13 @@
+using System;
+using Unity.Collections;
 using UnityEngine;
+using UnityEditor;
 
 [CreateAssetMenu(fileName = "CardSO", menuName = "ScriptableObject/CardSO")]
 public class CardRewardSO : ScriptableObject
 {
+    private Guid _guid;
+    [SerializeField] private string guidString;
     public int id;
     public string cardName;
     public string description;
@@ -12,4 +17,11 @@ public class CardRewardSO : ScriptableObject
     public ToyoPersonaSO toyoPersona;
     public TrainingActionSO[] correctCombination;
     public string imageURL;
+    
+    private void OnValidate()
+    {
+        var path = AssetDatabase.GetAssetPath(this);
+        _guid = new Guid(AssetDatabase.AssetPathToGUID(path));
+        guidString = _guid.ToString();
+    }
 }

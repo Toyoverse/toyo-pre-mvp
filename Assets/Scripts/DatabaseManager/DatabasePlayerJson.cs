@@ -102,6 +102,7 @@ namespace Database
         //public ToyoPersona toyoPersonaOrigin; 
         public ToyoPart[] parts;
         public bool isStaked;
+        public bool isAutomata;
     }
 
     [Serializable]
@@ -173,7 +174,6 @@ namespace Database
         public string thumbnail;
         public string region;
         public string rarity;
-        public bool isAutomata;
     }
 
     [Serializable]
