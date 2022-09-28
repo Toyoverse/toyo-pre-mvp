@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7740a3cfd3d819e4db2ae8142f88ebcc, type: 3}
-  m_Name: 24TA_Action_Bite
+  m_Name: 24TA_Action_RisingKick
   m_EditorClassIdentifier: 
-  name: Bite
-  type: 3
+  name: Rising Kick
+  type: 2
   sprite: {fileID: 21300000, guid: 41fa728a4436b0044861cba9a0b3718e, type: 3}
   id: 24
