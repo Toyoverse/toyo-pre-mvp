@@ -356,12 +356,14 @@ public class TrainingModuleScreen : UIController
         var _progressActiveImages = GetProgressActiveImages();
         for (var _i = 0; _i < blowConfig.qty; _i++)
         {
-            if (actualPercent > (unitPercent * (_i + 1)))
+            if (actualPercent > unitPercent)
             {
                 _progressActiveImages[_i].fillAmount = 0;
+                actualPercent -= unitPercent;
                 continue;
             }
-            var _inverseFill = ((float)actualPercent / (blowConfig.qty - _i)) / 100;
+            var _percent = ((float)actualPercent / unitPercent)  * 100;
+            var _inverseFill = _percent  * 0.01f;
             var _correctFill = _inverseFill != 0 ? 1 - _inverseFill : 1;
             _progressActiveImages[_i].fillAmount = _correctFill;
             break;
