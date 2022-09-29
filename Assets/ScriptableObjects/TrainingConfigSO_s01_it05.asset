@@ -1,0 +1,106 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3020270f1234b574e8857d492173beb3, type: 3}
+  m_Name: TrainingConfigSO_s01_it05
+  m_EditorClassIdentifier: 
+  eventTitle: New levels of safety
+  inTrainingMessage: Toyo in training...
+  losesMessage: Discover the correct combination to unlock this week's secret collectible.
+  alreadyWon: You've already received this week's collectible.
+  eventStory: 'Lucid Inc. warns: there''s no way to spell saFety without the F of
+    Fun!  We are sure that you, dear Mentors, have loved learning more about the
+    past of Earth H64, and we thank you for the reports you sent us containing these
+    files.  You have helped us so much to understand what happened in this simulation,
+    and we, like you, are curious and love to discover new things.  We have been
+    simulating attacks to the external walls of the Laboratory. Yes, us! That''s
+    completely, totally, and solely us! Using a good old red team strategy, just
+    in case. That''s also why we are building extra security measures in the facility.
+    Absolutely nothing to worry about.  Now, back to work! Which is: selecting from
+    3 to 5 fighting moves for yout Toyo to train. We know its becoming harder to
+    identify the perfect combinations, but they grant you special rewards! So why
+    don''t you coordinate with your fellow mentors on the community to create the
+    best strategies in your training sessions?  Keep training your Toyos and you,
+    Mentors, stick together at all times. '
+  sendToyoToTrainingPopUp: Right! Next step is approve metamask transactions to stake
+    your NFT for some hours under our smart contract. Continue?
+  startEventDateInfo:
+    day: 17
+    month: 10
+    year: 2022
+    hour: 23
+    minute: 0
+    second: 0
+  endEventDateInfo:
+    day: 23
+    month: 10
+    year: 2022
+    hour: 2
+    minute: 58
+    second: 0
+  possibleActions:
+  - {fileID: 11400000, guid: 6972b2ae28210d742acc8a134bffc9bd, type: 2}
+  - {fileID: 11400000, guid: f272dbe45c053de4b8a7c033afc59054, type: 2}
+  - {fileID: 11400000, guid: a65c319791929f74f9429a91abdc0aff, type: 2}
+  - {fileID: 11400000, guid: 612bb1d0f701d1249964c2958a92895b, type: 2}
+  - {fileID: 11400000, guid: c6fa47c00270c1945a28a4949269d00c, type: 2}
+  - {fileID: 11400000, guid: b52184bde60566241a65593e40c2bf2f, type: 2}
+  - {fileID: 11400000, guid: 4c2e13054469c004d970dfcd33e4a613, type: 2}
+  - {fileID: 11400000, guid: 694ab762af5fbbf42b0974ce7ec9b4d0, type: 2}
+  - {fileID: 11400000, guid: 9bbd07f6cf5019245bcbea678cab3c35, type: 2}
+  - {fileID: 11400000, guid: 47d4a8d4c445fde438d3a62c220dfe9a, type: 2}
+  - {fileID: 11400000, guid: 5514c49a076910b4080f65249ad698d3, type: 2}
+  - {fileID: 11400000, guid: ae7ac8b49618038408c4481540f1fc13, type: 2}
+  - {fileID: 11400000, guid: 18409e1f7eaf281499613c5ebd158506, type: 2}
+  - {fileID: 11400000, guid: f87c225c2b8e2e2448724ad830eb9ef9, type: 2}
+  - {fileID: 11400000, guid: 01a87f46e947e714f8ddb1dcb46d47db, type: 2}
+  - {fileID: 11400000, guid: 449aaa8f08b9e1f4cb254b4bd065acf1, type: 2}
+  - {fileID: 11400000, guid: d706991f93291e04e8177ff43423b89e, type: 2}
+  - {fileID: 11400000, guid: c2f28a95ea76bae4da370bfa95d538f8, type: 2}
+  - {fileID: 11400000, guid: 9f6b423abf4fc5c48842aa3465f674ba, type: 2}
+  - {fileID: 11400000, guid: e15c76381798e6a49a8d61e5dc137a02, type: 2}
+  - {fileID: 11400000, guid: 367df68e40fc12746a8ba65708f551ab, type: 2}
+  - {fileID: 11400000, guid: ccbc7f57c11e2eb4f9715e910adc06b1, type: 2}
+  - {fileID: 11400000, guid: 90b1d501a10c7964cb1e0f7fccd02227, type: 2}
+  - {fileID: 11400000, guid: 397e62aea6dd26a4ba6d1f93d2ac251c, type: 2}
+  - {fileID: 11400000, guid: 3c155da6a2d72004688010a1871e45a0, type: 2}
+  - {fileID: 11400000, guid: 9fe33ed68801eed4b8766164cd00a913, type: 2}
+  - {fileID: 11400000, guid: 373eaea66a93ab74085637f1b5415e7c, type: 2}
+  - {fileID: 11400000, guid: 7f108ecf9e1d86f4e967ee233f674013, type: 2}
+  - {fileID: 11400000, guid: c079688dbe8e6d7429dcf513ac43ceb3, type: 2}
+  - {fileID: 11400000, guid: be8d3a679087b3b4aa283b6d723b30be, type: 2}
+  blowConfigs:
+  - qty: 3
+    duration: 360
+  - qty: 4
+    duration: 380
+  - qty: 5
+    duration: 420
+  cardRewards:
+  - {fileID: 11400000, guid: 9755e8a0c1bb4ce4d8e949861a3dcc86, type: 2}
+  - {fileID: 11400000, guid: a6d802b4c6a3a7a448d2a6be9eeb8e2d, type: 2}
+  - {fileID: 11400000, guid: bf32a60bbd54f3640975b75022ff9755, type: 2}
+  - {fileID: 11400000, guid: afdf3e81e952ec4429328ce8a9046990, type: 2}
+  - {fileID: 11400000, guid: b954e4605d0d9554f8da1f3946c24c3c, type: 2}
+  - {fileID: 11400000, guid: 2951a0287d6548245a9973e80f80abbb, type: 2}
+  - {fileID: 11400000, guid: b6a3de1b63655a4439b8378112fd9870, type: 2}
+  - {fileID: 11400000, guid: 4f8103688bf36034f80241a87d2c8359, type: 2}
+  - {fileID: 11400000, guid: e3ad971140af30443a9f2f3cc147957c, type: 2}
+  - {fileID: 11400000, guid: e73b9b07a09a45e4f8d68dd239bfbedf, type: 2}
+  - {fileID: 11400000, guid: 64c9437fae8ad364e8e73f1c4f869bea, type: 2}
+  - {fileID: 11400000, guid: b6c6f2293f90c774b8af29aa361d1e56, type: 2}
+  - {fileID: 11400000, guid: 1bd46bbcf7e5614488c815ed9b2591ee, type: 2}
+  - {fileID: 11400000, guid: 6c6a5af45f25f7846b9247a4c2a3b105, type: 2}
+  - {fileID: 11400000, guid: 37893088608d8bf42891a23f7de013f1, type: 2}
+  - {fileID: 11400000, guid: 6403c4d129f7bd543b6c0c00a5737de3, type: 2}
+  - {fileID: 11400000, guid: 16627a1550aa2f24abf66db8793b5d6a, type: 2}
+  bondReward: 0.5
+  bonusBondReward: 1.35
