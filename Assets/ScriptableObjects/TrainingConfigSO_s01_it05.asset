@@ -81,9 +81,9 @@ MonoBehaviour:
   - qty: 3
     duration: 360
   - qty: 4
-    duration: 380
-  - qty: 5
     duration: 420
+  - qty: 5
+    duration: 480
   cardRewards:
   - {fileID: 11400000, guid: 9755e8a0c1bb4ce4d8e949861a3dcc86, type: 2}
   - {fileID: 11400000, guid: a6d802b4c6a3a7a448d2a6be9eeb8e2d, type: 2}
