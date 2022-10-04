@@ -88,6 +88,26 @@ public class TrainingConfig : Singleton<TrainingConfig>
         return Instance.GetToyoTrainingInfo(_tokenID);
     }
 
+    public TRAINING_STATUS GetTrainingInfoStatus(ToyoTrainingInfo trainingInfo)
+    {
+        var _trainingStatus = trainingInfo.status switch
+        {
+            "STAKE_PENDING" => TRAINING_STATUS.STAKE_PENDING,
+            "STAKE_ERROR" => TRAINING_STATUS.STAKE_ERROR,
+            "IN_TRAINING" => TRAINING_STATUS.IN_TRAINING,
+            "CLAIM_PENDING" => TRAINING_STATUS.CLAIM_PENDING,
+            "CLAIM_ERROR" => TRAINING_STATUS.CLAIM_ERROR,
+            "FINISHED" => TRAINING_STATUS.FINISHED,
+            "FINISHED_ERROR" => TRAINING_STATUS.FINISHED_ERROR,
+            "USER_CANCEL" => TRAINING_STATUS.USER_CANCEL,
+            _ => TRAINING_STATUS.NONE
+        };
+        if(_trainingStatus == TRAINING_STATUS.NONE)
+            Print.LogError("TrainingInfo status not found.");
+        Print.Log("TrainingInfo status: " + _trainingStatus);
+        return _trainingStatus;
+    }
+
     //
     public int selectedActionID { get; private set; }
     public void SetSelectedID(int newID) => selectedActionID = newID;

@@ -128,3 +128,16 @@ public enum BOX_REGION
     Xeon = 3
 }
 
+public enum TRAINING_STATUS
+{
+    NONE = 0,
+    STAKE_PENDING = 1,
+    STAKE_ERROR = 2,
+    IN_TRAINING = 3,
+    CLAIM_PENDING = 4,
+    CLAIM_ERROR = 5,
+    FINISHED = 6,
+    FINISHED_ERROR = 7,
+    USER_CANCEL = 8
+}
+
