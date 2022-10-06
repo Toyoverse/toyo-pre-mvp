@@ -166,7 +166,7 @@ public class TrainingConfig : Singleton<TrainingConfig>
     private void PostTrainingSendCallback(string json)
     {
         Print.Log("PostTrainingResult: " + json);
-        DatabaseConnection.Instance.CallGetInTrainingList(CreateToyosInTrainingList);
+        DatabaseConnection.Instance.CallGetInTrainingList(AfterSendTraining);
     }
 
     public void ClaimCallInServer()
@@ -230,7 +230,7 @@ public class TrainingConfig : Singleton<TrainingConfig>
     private void PostCloseTrainingCallback(string json)
     {
         Loading.EndLoading += ShowSuccessClaimPopUp;
-        DatabaseConnection.Instance.CallGetInTrainingList(UpdateInTrainingListAfterClaim);
+        UpdateTrainingModuleToyos();
     }
 
     private void ShowSuccessClaimPopUp() => GenericPopUp.Instance.ShowPopUp(SuccessClaimMessage, GoToMainMenu);
@@ -264,45 +264,48 @@ public class TrainingConfig : Singleton<TrainingConfig>
     {
         var _myObject = JsonUtility.FromJson<TrainingConfigJSON>(json);
         SetTrainingConfigValues(_myObject);
-        DatabaseConnection.Instance.CallGetInTrainingList(CreateToyosInTrainingList);
+        UpdateTrainingModuleToyos();
     }
 
     public void OnGetTrainingFailed(string json)
     {
         Instance.trainingEventNotFound = true;
         GenericPopUp.Instance.ShowPopUp(FailedGetEventMessage);
-        /*ToyoManager.StartGame();
-        Loading.EndLoading?.Invoke();*/
-        DatabaseConnection.Instance.CallGetInTrainingList(CreateToyosInTrainingList);
+        UpdateTrainingModuleToyos();
     }
     
-    public void CreateToyosInTrainingList(string json)
+    public void UpdateTrainingModuleToyos()
+        => DatabaseConnection.Instance.CallGetInTrainingList(UpdateTrainingModuleToyosCallback);
+    
+    public void UpdateTrainingModuleToyosCallback(string json)
     {
-        var _trainingScreen = _listOfToyosInTraining != null;
         CreateInTrainingList(json);
-        Print.Log("InTrainingList Details Success! Toyos in training: " + _listOfToyosInTraining.Count);
-        if(!_trainingScreen)
-            ToyoManager.StartGame();
-        else 
-            ScreenManager.Instance.trainingModuleScript.UpdateTrainingAfterTrainingSuccess();
+        UpdateToyosIsStaked();
     }
     
-    public void UpdateInTrainingListAfterClaim(string json)
+    public void AfterSendTraining(string json)
     {
         CreateInTrainingList(json);
-        DatabaseConnection.Instance.CallGetPlayerToyo(PlayerToyoCallback);
+        //Print.Log("InTrainingList Details Success! Toyos in training: " + _listOfToyosInTraining.Count);
+        ScreenManager.Instance.trainingModuleScript.UpdateTrainingAfterTrainingSuccess();
     }
 
-    private void PlayerToyoCallback(string json) 
+    public void UpdateToyosIsStaked()
+        => DatabaseConnection.Instance.CallGetPlayerToyo(UpdateIsStakeInToyoList);
+
+    private void UpdateIsStakeInToyoList(string json) 
         => DatabaseConnection.Instance.blockchainIntegration.UpdateToyoIsStakedList(json, Loading.EndLoading);
-
+    
     private void CreateInTrainingList(string json)
     {
+        var _firstTime = _listOfToyosInTraining == null;
         Print.Log("InTrainingListResult: " + json);
         var _myObject = JsonUtility.FromJson<ToyosInTrainingListJSON>(json);
         _listOfToyosInTraining = new();
         foreach (var _trainingInfo in _myObject.body)
             _listOfToyosInTraining.Add(_trainingInfo);
+        if(_firstTime)
+            ToyoManager.StartGame();
     }
 
     public int GetTrainingTimeRemainInMinutes()
