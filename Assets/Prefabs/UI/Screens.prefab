@@ -11808,6 +11808,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3000773223063702233, guid: 9857632b292329e488aca92049878cf1, type: 3}
+      propertyPath: m_Size.x
+      value: 20.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 3000773223063702233, guid: 9857632b292329e488aca92049878cf1, type: 3}
+      propertyPath: m_Size.y
+      value: 20.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 3000773223063702233, guid: 9857632b292329e488aca92049878cf1, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8775167020104820363, guid: 9857632b292329e488aca92049878cf1, type: 3}
       propertyPath: m_Name
       value: Box_Kytunt_Fort_temp
@@ -11939,6 +11951,10 @@ PrefabInstance:
     - target: {fileID: 2237913123204743640, guid: 37c309da232f76c4ea61fe9a3ba26b6e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2821682316191633791, guid: 37c309da232f76c4ea61fe9a3ba26b6e, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4462061578632821497, guid: 37c309da232f76c4ea61fe9a3ba26b6e, type: 3}
       propertyPath: rotateSpeed
