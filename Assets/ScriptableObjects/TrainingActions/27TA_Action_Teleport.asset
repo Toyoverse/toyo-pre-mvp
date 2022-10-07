@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Teleport
   type: 3
-  sprite: {fileID: 21300000, guid: 41fa728a4436b0044861cba9a0b3718e, type: 3}
+  sprite: {fileID: 21300000, guid: bbedaad53ff7ffe4c91d764e9f1c18ec, type: 3}
   id: 27
