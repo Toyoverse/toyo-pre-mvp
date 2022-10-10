@@ -39,5 +39,5 @@ Material:
     m_Ints: []
     m_Floats: []
     m_Colors:
-    - _Override_Color: {r: 1, g: 1, b: 1, a: 0}
+    - _Override_Color: {r: 1, g: 0.43632746, b: 0, a: 0}
   m_BuildTextureStacks: []
