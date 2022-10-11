@@ -71,6 +71,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9f6b423abf4fc5c48842aa3465f674ba, type: 2}
   - {fileID: 11400000, guid: e15c76381798e6a49a8d61e5dc137a02, type: 2}
   - {fileID: 11400000, guid: 367df68e40fc12746a8ba65708f551ab, type: 2}
+  - {fileID: 11400000, guid: ccbc7f57c11e2eb4f9715e910adc06b1, type: 2}
+  - {fileID: 11400000, guid: 90b1d501a10c7964cb1e0f7fccd02227, type: 2}
+  - {fileID: 11400000, guid: 397e62aea6dd26a4ba6d1f93d2ac251c, type: 2}
+  - {fileID: 11400000, guid: 3c155da6a2d72004688010a1871e45a0, type: 2}
+  - {fileID: 11400000, guid: 9fe33ed68801eed4b8766164cd00a913, type: 2}
+  - {fileID: 11400000, guid: 373eaea66a93ab74085637f1b5415e7c, type: 2}
+  - {fileID: 11400000, guid: 7f108ecf9e1d86f4e967ee233f674013, type: 2}
+  - {fileID: 11400000, guid: c079688dbe8e6d7429dcf513ac43ceb3, type: 2}
+  - {fileID: 11400000, guid: be8d3a679087b3b4aa283b6d723b30be, type: 2}
   allCardRewardsInProject:
   - {fileID: 11400000, guid: 3aeb987b54c8e7345ae1101a5f39bc27, type: 2}
   - {fileID: 11400000, guid: 208f4e3e0283c154bb2804981850f4ae, type: 2}
@@ -160,14 +169,15 @@ MonoBehaviour:
   trainingEventID: 
   possibleActions: []
   blowConfigs: []
-  cardRewards: []
   minimumActionsToPlay: 0
   bondReward: 0
+  cardRewards: []
   bonusBondReward: 0
   eventTitle: 
   inTrainingMessage: 
   eventStory: 
   sendToyoToTrainingPopUp: 
+  selectActionsMessage: Select your actions...
   rewardTitle: 
   losesMiniGame: 
   alreadyWon: 
@@ -175,6 +185,7 @@ MonoBehaviour:
   endEventTimeStamp: 0
   receiveValue: 0
   durationValue: 0
+  selectedActionsBkp: []
   selectedTrainingActions: []
   trainingEventNotFound: 0
 --- !u!1 &1421983676198268567
@@ -261,9 +272,11 @@ MonoBehaviour:
   productionLoginURL: https://4nwemmj4hh.execute-api.us-east-1.amazonaws.com/production/player/login
   productionBaseURL: https://r99i910fe6.execute-api.us-east-1.amazonaws.com/production
   productionOpenBoxBaseURL: https://v49y0yol5a.execute-api.us-east-1.amazonaws.com/production
+  productionTrainingBaseURL: https://la5bj71yml.execute-api.us-east-1.amazonaws.com/production
   testLoginURL: https://players-web-bff-dev.herokuapp.com/player/login
   testBaseURL: https://ts-toyo-web-bff.herokuapp.com
   testOpenBoxBaseURL: https://ts-unboxing-web-bff.herokuapp.com
+  testTrainingBaseURL: https://ts-trainning-web-bff.herokuapp.com
   isDebug: 0
   blockchainIntegration: {fileID: 1421983677662904393}
   boxesSuffixURL: /player/boxes
@@ -271,7 +284,6 @@ MonoBehaviour:
   toyosDetailSuffixURL: /player/toyo/
   closedBoxSuffixURL: /player/box/closedbox/
   openBoxSuffixURL: /player/box/
-  trainingBaseURL: https://ts-trainning-web-bff.herokuapp.com
   registerTrainingEventSuffix: /training-events
   getCurrentTrainingEventSuffix: /training-events/search/current
   registerCardRewardSuffixURL: /toyo-persona-training-events
@@ -326,6 +338,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isProduction: 0
+  enableLogsInProduction: 0
   skipLogin: 0
   tokenForTests: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ3YWxsZXRJZCI6IjB4ZDZkNmU2NmJjNjAxOTQ0MDgzYzA0ZWJjZDEyYTIxMjc1MTU3MWY3MCIsInRyYW5zYWN0aW9uIjoiMHg2YWYwYTM3N2RjZTdkMzY1MTUxZjVlYjUxMzg1YTViYWI3NDkyNjc0OGQ2NGI0M2ExODk1ZmQ1ZDNjOWM2YTZmNzNiNmFlZTRmY2ZhZmE4ZjhkYzdkYzdlNjMzZDJmZDVjOTczN2RkMTgyODk3ZTZkZDk4ODBiYTU1NzlmM2QzNzFiIiwiaWF0IjoxNjYxOTYzNDMyLCJleHAiOjE2NjI1NjgyMzJ9.rfPO8QyG4G_3_4ghcu_nhJ-6Bsqm3eyRuy7Vo5O-auI
   rememberMe: {fileID: 0}
