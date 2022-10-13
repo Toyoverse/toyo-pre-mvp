@@ -89,7 +89,6 @@ public class TrainingModuleScreen : UIController
         base.ActiveScreen();
         ResetCombinationPool();
         CheckIfIsToyoOrAutomata();
-        //TrainingConfig.Instance.SetSelectedToyoIsInTraining();
         ApplyInTrainingActions();
         UpdateUI();
         InvokeRepeating(nameof(UpdateTrainingTimeRemainUI), 0, 60);
@@ -107,10 +106,9 @@ public class TrainingModuleScreen : UIController
 
     private void CheckToResetTrainingModule()
     {
-        if (ScreenManager.ScreenState == ScreenState.TrainingActionSelect
-            /*|| TrainingConfig.Instance.IsInTraining()*/)
+        if (ScreenManager.ScreenState == ScreenState.TrainingActionSelect)
             return;
-        TrainingConfig.Instance?.ResetAllTrainingModule( /*ClearPossibleActionsEvents*/);
+        TrainingConfig.Instance?.ResetAllTrainingModule();
         ClearActionsImages();
     }
 
@@ -141,7 +139,6 @@ public class TrainingModuleScreen : UIController
         SetActionsSprites(_selectedID, actionSo.sprite);
         TrainingConfig.Instance.AddToSelectedActionsDict(_selectedID, actionSo);
         TrainingConfig.Instance.ApplyBlowConfig();
-        //UpdateUI();
     }
 
     public void SetActionsSprites(int id, Sprite sprite)
@@ -231,6 +228,11 @@ public class TrainingModuleScreen : UIController
     private void CallSendToyoToTrainingFlux()
     {
         Loading.StartLoading?.Invoke();
+        if (ToyoManager.GetSelectedToyo().isAutomata)
+        {
+            SendToyoToTrainingOnServer();
+            return;
+        }
         DatabaseConnection.Instance.CallGetPlayerToyo(PlayerToyoCallback);
     }
 

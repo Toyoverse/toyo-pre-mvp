@@ -26,12 +26,12 @@ public class TrainingModuleRewardScreen : UIController
     private string _eventTitle => TrainingConfig.Instance.GetEventNameByActualTrainingId();
 
     private int _eventTime => TrainingConfig.Instance.GetEventTimeRemainInMinutes();
-
-    //TODO: Get correct variables in server
-    //public bool cardCollected;
+    
     private string _coinPrefix = "$BOND";
     private int _maxCharactersInBondValue = 4;
     public Sprite defaultCardWrong;
+
+    private const string FailedGetResultsMessage = "Something went wrong. Failed to get training results. Please reload the page and try again.";
 
     private List<TrainingActionSO> GetTrainingActions() => TrainingConfig.Instance.selectedTrainingActions;
 
@@ -70,7 +70,7 @@ public class TrainingModuleRewardScreen : UIController
 
     private void ApplySelectedActions()
     {
-        DisableAllPoolObjects(); //TODO TEST
+        DisableAllPoolObjects(); 
         for (var _i = 0; _i < GetTrainingActions().Count; _i++)
         {
             combinationPoolObjects[_i].SetActive(true);
@@ -124,7 +124,6 @@ public class TrainingModuleRewardScreen : UIController
 
     private void ShowResults(string jsonParameters)
     {
-        //CheckAndSetBordersAfterCompare();
         var _trainingResult = JsonUtility.FromJson<TrainingResultJson>(jsonParameters);
         SetCombinationResult(TrainingConfig.Instance.GetResultsByCombinationResult
             (_trainingResult.body.combinationResult.result));
@@ -159,7 +158,8 @@ public class TrainingModuleRewardScreen : UIController
     {
         Print.Log("FailedGetParameters: " + json);
         Loading.EndLoading?.Invoke();
-        TrainingConfig.Instance.GenericFailedMessage();
+        //TrainingConfig.Instance.GenericFailedMessage();
+        GenericPopUp.Instance.ShowPopUp(FailedGetResultsMessage);
     }
 
     private void DisableAllPoolObjects()

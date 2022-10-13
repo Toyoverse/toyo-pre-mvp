@@ -171,22 +171,28 @@ public class TrainingConfig : Singleton<TrainingConfig>
 
     public void ClaimCallInServer()
     {
-        var _trainingInfo = Instance.GetCurrentTrainingInfo();
-        if (!useOfflineTrainingControl)
+        if (useOfflineTrainingControl)
         {
-            DatabaseConnection.Instance.PutCloseTrainingValues(SuccessGetClaimParameters, 
-                FailedGetClaimParameters, _trainingInfo.id);
+            //Using offline training control
+            _tempServerTraining[ToyoManager.GetSelectedToyo().tokenId].endAt = GetActualTimeStampInSeconds();
+            return;
+        }
+
+        if (ToyoManager.GetSelectedToyo().isAutomata)
+        {
+            CloseCurrentTrainingInServer();
             return;
         }
         
-        //Using offline training control
-        _tempServerTraining[ToyoManager.GetSelectedToyo().tokenId].endAt = GetActualTimeStampInSeconds();
+        var _trainingInfo = Instance.GetCurrentTrainingInfo();
+        DatabaseConnection.Instance.PutCloseTrainingValues(CallClaimToken, 
+            FailedGetClaimParameters, _trainingInfo.id);
     }
 
     /*public void GetRewardValues() => DatabaseConnection.Instance.GetRewardValues(SuccessGetClaimParameters,
                 FailedGetClaimParameters, Instance.GetCurrentTrainingInfo().id);*/
 
-    private void SuccessGetClaimParameters(string json)
+    private void CallClaimToken(string json)
     {
         var _trainingResult = JsonUtility.FromJson<TrainingResultJson>(json);
         if (_trainingResult.statusCode != 200)
@@ -196,16 +202,20 @@ public class TrainingConfig : Singleton<TrainingConfig>
             return;
         }
 
-        var _claimParameters = new ClaimParameters
+        var _claimParameters = GetClaimParameters(_trainingResult);
+        DatabaseConnection.Instance.blockchainIntegration.ClaimToken(_claimParameters);
+    }
+
+    private ClaimParameters GetClaimParameters(TrainingResultJson trainingResult)
+    {
+        return new ClaimParameters
         {
             tokenID = ToyoManager.GetSelectedToyo().tokenId,
-            bond = _trainingResult.body.bond,
-            cardCode = _trainingResult.body.card.cardCode ?? "",
-            signature = _trainingResult.body.signature,
-            claimID = _trainingResult.body.id
+            bond = trainingResult.body.bond,
+            cardCode = trainingResult.body.card.cardCode ?? "",
+            signature = trainingResult.body.signature,
+            claimID = trainingResult.body.id
         };
-        
-        DatabaseConnection.Instance.blockchainIntegration.ClaimToken(_claimParameters);
     }
 
     private void FailedGetClaimParameters(string json)
@@ -221,7 +231,7 @@ public class TrainingConfig : Singleton<TrainingConfig>
         GenericPopUp.Instance.ShowPopUp(GenericFailMessage);
     }
 
-    public void SuccessClaim()
+    public void CloseCurrentTrainingInServer()
     {
         var _trainingInfo = Instance.GetCurrentTrainingInfo();
         DatabaseConnection.Instance.PostCloseTraining(PostCloseTrainingCallback, _trainingInfo.id);
@@ -364,7 +374,6 @@ public class TrainingConfig : Singleton<TrainingConfig>
 
         trainingEventID = trainingConfigJson.id;
         possibleActions = GetActionsFromIDs(trainingConfigJson.blows);
-        //cardRewards = trainingConfigJson.cardRewards; //TODO GET CARDS
         blowConfigs = trainingConfigJson.blowsConfig;
         losesMiniGame = trainingConfigJson.losesMessage;
         alreadyWon = trainingConfigJson.rewardMessage;
@@ -394,7 +403,6 @@ public class TrainingConfig : Singleton<TrainingConfig>
 
     private TrainingActionSO[] GetActionsFromIDs(string[] ids)
     {
-        //allTrainingActionsInProject = GetAllTrainingActionInProject();
         var _resultList = new TrainingActionSO[ids.Length];
         for (var _index = 0; _index < ids.Length; _index++)
         {
