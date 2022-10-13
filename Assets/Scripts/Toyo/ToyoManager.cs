@@ -129,7 +129,8 @@ public class ToyoManager : Singleton<ToyoManager>
         _toyoObjectInstance.tokenId = databaseToyo.tokenId;
         _toyoObjectInstance.spriteAnimator = _toyoPrefab.GetComponentInChildren<SpriteAnimator>();
         _toyoObjectInstance.isStaked = GetIsStakedById(_toyoObjectInstance.tokenId);
-        _toyoObjectInstance.isAutomata = databaseToyo.isAutomata;
+        //_toyoObjectInstance.isAutomata = databaseToyo.isAutomata;
+        _toyoObjectInstance.isAutomata = false; //TODO: Remove this for automata functions
         carouselToyo.allObjects.Add(_toyoPrefab.transform);
         toyoObjectList.Add(_toyoObjectInstance);
         return _toyoPrefab;

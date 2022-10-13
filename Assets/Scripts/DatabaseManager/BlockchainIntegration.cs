@@ -60,6 +60,8 @@ public class BlockchainIntegration : MonoBehaviour
     private readonly string _openBoxFailMessage = "Metamask Transaction Fail. Click to open box again.";
     private readonly string _genericFailMessage = "Metamask Transaction Fail. Try again.";
 
+    private readonly string _baseGasPrice = "120000000000";
+
     public async void StartLoginMetamask()
     {
         Loading.StartLoading?.Invoke();
@@ -176,13 +178,12 @@ public class BlockchainIntegration : MonoBehaviour
         string value = "0";
         // gas limit OPTIONAL
         string gasLimit = "";
-        // gas price OPTIONAL
-        string gasPrice = "50000000000";
+
         // connects to user's browser wallet (metamask) to update contract state
         try
         {
             
-            string tx = await Web3GL.SendContract(method, abi, contract, args, value, gasLimit, gasPrice);
+            string tx = await Web3GL.SendContract(method, abi, contract, args, value, gasLimit, _baseGasPrice);
             
             _databaseConnection.PostOpenBox(ScreenManager.Instance.boxInfoScript.CallOpenBoxAnimation, 
                 ScreenManager.Instance.boxInfoScript.GetBoxSelected().GetFirstUnopenedBoxId());
@@ -219,11 +220,10 @@ public class BlockchainIntegration : MonoBehaviour
 
         string approve_value = "0";
         string approve_gasLimit = "";
-        string approve_gasPrice = "50000000000";
 
         try {
 
-            string tx = await Web3GL.SendContract(approve_method, approve_abi, approve_contract, approve_args, approve_value, approve_gasLimit, approve_gasPrice);
+            string tx = await Web3GL.SendContract(approve_method, approve_abi, approve_contract, approve_args, approve_value, approve_gasLimit, _baseGasPrice);
             
             OpenBox(myBox);
 
@@ -253,15 +253,15 @@ public class BlockchainIntegration : MonoBehaviour
 
         const string approveValue = "0";
         const string approveGasLimit = "";
-        const string approveGasPrice = "50000000000";
-        
+
         Print.Log("SendContractValues { approveMethod:" + approveMethod + ", approveABI: " + approveABI 
                   + ", _approveContract: " + _approveContract + ", _approveArgs: " + _approveArgs + ", approveValue: "
-                  + approveValue + ", approveGasLimit: " + approveGasLimit + ", approveGasPrice: " + approveGasPrice);
+                  + approveValue + ", approveGasLimit: " + approveGasLimit + ", approveGasPrice: " + _baseGasPrice);
 
         try {
 
-            var _hash = await Web3GL.SendContract(approveMethod, approveABI, _approveContract, _approveArgs, approveValue, approveGasLimit, approveGasPrice);
+            var _hash = await Web3GL.SendContract(approveMethod, approveABI, _approveContract, _approveArgs,
+                approveValue, approveGasLimit, _baseGasPrice);
             Print.Log("TransactionHash: " + _hash);
             
             ToyoStake(tokenID);
@@ -284,14 +284,13 @@ public class BlockchainIntegration : MonoBehaviour
         
         var _value = "0";
         var _gasLimit = "";
-        var _gasPrice = "50000000000";
 
         Print.Log("SendContractValues { _abi:" + _abi + ", _contract: " + _contract + ", _method: " + _method 
-                  + ", _args: " + _args + ", _value: " + _value + ", _gasLimit: " + _gasLimit + ", _gasPrice: " + _gasPrice);
+                  + ", _args: " + _args + ", _value: " + _value + ", _gasLimit: " + _gasLimit + ", _gasPrice: " + _baseGasPrice);
         
         try
         {
-            var _hash = await Web3GL.SendContract(_method, _abi, _contract, _args, _value, _gasLimit, _gasPrice);
+            var _hash = await Web3GL.SendContract(_method, _abi, _contract, _args, _value, _gasLimit, _baseGasPrice);
             Print.Log("StakeHash: " + _hash);
             ScreenManager.Instance.trainingModuleScript.SendToyoToTrainingOnServer();
 
@@ -316,21 +315,18 @@ public class BlockchainIntegration : MonoBehaviour
         
         const string value = "0";
         const string gasLimit = "";
-        const string gasPrice = "50000000000";
 
         Print.Log("ClaimTokenValues { _abi:" + abi + ", _contract: " + _contract + ", _method: " + method 
-                  + ", _args: " + _args + ", _value: " + value + ", _gasLimit: " + gasLimit + ", _gasPrice: " + gasPrice);
+                  + ", _args: " + _args + ", _value: " + value + ", _gasLimit: " + gasLimit + ", _gasPrice: " + _baseGasPrice);
         
         try
         {
-            var _hash = await Web3GL.SendContract(method, abi, _contract, _args, value, gasLimit, gasPrice);
+            var _hash = await Web3GL.SendContract(method, abi, _contract, _args, value, gasLimit, _baseGasPrice);
             Print.Log("ClaimHash: " + _hash);
-            TrainingConfig.Instance.SuccessClaim();
+            TrainingConfig.Instance.CloseCurrentTrainingInServer();
 
         } catch (Exception _exception) {
             Print.LogException(_exception, this);
-            //Loading.EndLoading?.Invoke();
-            //GenericPopUp.Instance.ShowPopUp(_genericFailMessage);
             TrainingConfig.Instance.FailedClaim();
         }
     }
