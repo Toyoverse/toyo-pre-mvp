@@ -97,7 +97,12 @@ public class TrainingConfig : Singleton<TrainingConfig>
     public TRAINING_STATUS GetActualTrainingInfoStatus()
     {
         var _trainingInfo = GetCurrentTrainingInfo();
-        var _trainingStatus = _trainingInfo.status switch
+        if (_trainingInfo is null)
+        {
+            Print.LogError("TrainingInfo is null, so TrainingStatus will be NONE.");
+            return TRAINING_STATUS.NONE;
+        }
+        var _trainingStatus = _trainingInfo.status.ToUpper() switch
         {
             "STAKE_PENDING" => TRAINING_STATUS.STAKE_PENDING,
             "STAKE_ERROR" => TRAINING_STATUS.STAKE_ERROR,
@@ -111,7 +116,7 @@ public class TrainingConfig : Singleton<TrainingConfig>
         };
         if(_trainingStatus == TRAINING_STATUS.NONE)
             Print.LogError("TrainingInfo status not found.");
-        Print.Log("TrainingInfo status: " + _trainingStatus);
+        Print.Log("TrainingInfo string: " + _trainingInfo.status);
         return _trainingStatus;
     }
 
@@ -134,22 +139,27 @@ public class TrainingConfig : Singleton<TrainingConfig>
 
     public bool SelectedToyoIsInTraining()
     {
-        var _tokenID = ToyoManager.GetSelectedToyo().tokenId;
-        var _isInTraining = IsInTrainingCheckInServer(_tokenID);
+        var _isInTraining = IsInTrainingCheckInList();
         if (_isInTraining)
-            SetTrainingActionList(GetToyoTrainingInfo(_tokenID).combination);
+            SetTrainingActionList(GetCurrentTrainingInfo().combination);
 
         return _isInTraining;
     }
     
-    private bool IsInTrainingCheckInServer(string tokenID)
+    private bool IsInTrainingCheckInList()
     {
-        if(!useOfflineTrainingControl)
-            return GetToyoTrainingInfo(tokenID) != null;
+        if (!useOfflineTrainingControl)
+        {
+            var _trainingInfo = GetCurrentTrainingInfo();
+            if (_trainingInfo == null)
+                return false;
+            return GetActualTrainingInfoStatus() != TRAINING_STATUS.FINISHED;
+        }
 
-        if (!_tempServerTraining.ContainsKey(tokenID))
-            _tempServerTraining.Add(tokenID, new ToyoTrainingInfo());
-        return IsBiggerThenCurrentTimestamp(ConvertMillisecondsToSeconds(_tempServerTraining[tokenID].endAt));
+        var _tokenID = ToyoManager.GetSelectedToyo().tokenId;
+        if (!_tempServerTraining.ContainsKey(_tokenID))
+            _tempServerTraining.Add(_tokenID, new ToyoTrainingInfo());
+        return IsBiggerThenCurrentTimestamp(ConvertMillisecondsToSeconds(_tempServerTraining[_tokenID].endAt));
     }
 
     public void SetInTrainingOnServer()

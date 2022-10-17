@@ -103,11 +103,7 @@ namespace UI
 
         private void CheckTrainingStatus()
         {
-            var _selectedToyoIsInTraining = TrainingConfig.Instance.SelectedToyoIsInTraining();
-            
-            var _trainingStatus = TRAINING_STATUS.NONE;
-            if (_selectedToyoIsInTraining)
-                _trainingStatus = TrainingConfig.Instance.GetActualTrainingInfoStatus();
+            var _trainingStatus = TrainingConfig.Instance.GetActualTrainingInfoStatus();
 
             switch (_trainingStatus)
             {
