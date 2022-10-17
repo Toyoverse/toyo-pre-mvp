@@ -72,10 +72,14 @@ namespace UI
         
         public void SelectToyoButton()
         {
+            //Loading.StartLoading?.Invoke();
             SelectCarouselToyo();
             UpdateUI();
-            BackButton();
+            Loading.EndLoading += GoToMainMenu;
+            TrainingConfig.Instance.UpdateTrainingModuleToyos();
         }
+        
+        private void GoToMainMenu() => ScreenManager.Instance.GoToScreen(ScreenState.MainMenu);
     }
 }
 

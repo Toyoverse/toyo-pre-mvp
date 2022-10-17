@@ -99,18 +99,42 @@ namespace UI
 
         protected override void UpdateUI() => ToyoManager.MoveToyoToCenterMainMenu();
 
-        public void StartButton() => GoToNextScreen();
+        public void StartButton() => CheckTrainingStatus();
+
+        private void CheckTrainingStatus()
+        {
+            var _selectedToyoIsInTraining = TrainingConfig.Instance.SelectedToyoIsInTraining();
+            
+            var _trainingStatus = TRAINING_STATUS.NONE;
+            if (_selectedToyoIsInTraining)
+                _trainingStatus = TrainingConfig.Instance.GetActualTrainingInfoStatus();
+
+            switch (_trainingStatus)
+            {
+                case TRAINING_STATUS.NONE or TRAINING_STATUS.IN_TRAINING:
+                    GoToNextScreen();
+                    break;
+                case TRAINING_STATUS.STAKE_PENDING:
+                    GenericPopUp.Instance.ShowPopUp(TrainingConfig.StakePendingMessage);
+                    break;
+                case TRAINING_STATUS.CLAIM_PENDING:
+                    GenericPopUp.Instance.ShowPopUp(TrainingConfig.ClaimPendingMessage);
+                    break;
+                case TRAINING_STATUS.FINISHED:
+                    GenericPopUp.Instance.ShowPopUp(TrainingConfig.FinishedMessage, GoToNextScreen);
+                    break;
+            }
+        }
 
         private void GoToNextScreen()
         {
+            var _selectedToyoIsInTraining = TrainingConfig.Instance.SelectedToyoIsInTraining();
             var _screenState = ScreenState.LoreTheme;
 
-            if(TrainingConfig.Instance.loreScreenAlreadyOpen 
-               || TrainingConfig.Instance.SelectedToyoIsInTraining())
+            if(TrainingConfig.Instance.loreScreenAlreadyOpen || _selectedToyoIsInTraining)
                 _screenState = ScreenState.TrainingModule;
 
-            if (TrainingConfig.Instance.SelectedToyoIsInTraining()
-                && TrainingConfig.Instance.GetTrainingTimeRemainInSeconds() <= 0)
+            if (_selectedToyoIsInTraining && TrainingConfig.Instance.GetTrainingTimeRemainInSeconds() <= 0)
                 _screenState = ScreenState.TrainingModuleRewards;
             
             ScreenManager.Instance.GoToScreen(_screenState);

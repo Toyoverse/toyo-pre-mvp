@@ -238,6 +238,7 @@ namespace Database
         public double startAt;
         public double endAt;
         public string[] combination;
+        public string status; //TODO: Compare to backend variable
     }
     
     [Serializable]

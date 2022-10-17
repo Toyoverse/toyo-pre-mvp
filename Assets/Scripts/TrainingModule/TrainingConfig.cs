@@ -47,6 +47,12 @@ public class TrainingConfig : Singleton<TrainingConfig>
     [HideInInspector] public string selectActionsMessage = "Select your actions...";
     private string _trainingEventEndMessage = "This event has now ended.";
 
+    public static string StakePendingMessage = "There is a stake transaction in progress, please try again later.";
+    public static string ClaimPendingMessage = "There is a claim transaction in progress, please try again later.";
+    public static string FinishedMessage = "Your claim transaction for this Toyo was successful! \n" +
+                                           "You can check your rewards on OpenSea. \n" +
+                                           "Now your Toyo is free to train again!";
+
     //Default phrases for reward description
     [HideInInspector] public string rewardTitle = "TRAINING RESULTS";
     [HideInInspector] public string losesMiniGame;
@@ -86,6 +92,27 @@ public class TrainingConfig : Singleton<TrainingConfig>
     {
         var _tokenID = ToyoManager.GetSelectedToyo().tokenId;
         return Instance.GetToyoTrainingInfo(_tokenID);
+    }
+
+    public TRAINING_STATUS GetActualTrainingInfoStatus()
+    {
+        var _trainingInfo = GetCurrentTrainingInfo();
+        var _trainingStatus = _trainingInfo.status switch
+        {
+            "STAKE_PENDING" => TRAINING_STATUS.STAKE_PENDING,
+            "STAKE_ERROR" => TRAINING_STATUS.STAKE_ERROR,
+            "IN_TRAINING" => TRAINING_STATUS.IN_TRAINING,
+            "CLAIM_PENDING" => TRAINING_STATUS.CLAIM_PENDING,
+            "CLAIM_ERROR" => TRAINING_STATUS.CLAIM_ERROR,
+            "FINISHED" => TRAINING_STATUS.FINISHED,
+            "FINISHED_ERROR" => TRAINING_STATUS.FINISHED_ERROR,
+            "USER_CANCEL" => TRAINING_STATUS.USER_CANCEL,
+            _ => TRAINING_STATUS.NONE
+        };
+        if(_trainingStatus == TRAINING_STATUS.NONE)
+            Print.LogError("TrainingInfo status not found.");
+        Print.Log("TrainingInfo status: " + _trainingStatus);
+        return _trainingStatus;
     }
 
     //
@@ -305,7 +332,7 @@ public class TrainingConfig : Singleton<TrainingConfig>
 
     private void UpdateIsStakeInToyoList(string json) 
         => DatabaseConnection.Instance.blockchainIntegration.UpdateToyoIsStakedList(json, Loading.EndLoading);
-    
+
     private void CreateInTrainingList(string json)
     {
         var _firstTime = _listOfToyosInTraining == null;
