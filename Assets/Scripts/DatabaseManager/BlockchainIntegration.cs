@@ -59,8 +59,13 @@ public class BlockchainIntegration : MonoBehaviour
 
     private readonly string _openBoxFailMessage = "Metamask Transaction Fail. Click to open box again.";
     private readonly string _genericFailMessage = "Metamask Transaction Fail. Try again.";
+    private readonly string _stakeInitializeMessage = "The stake transaction has started, check back later to view the training progress." +
+                                                      "This may take a while as it depends on the network.";
+    private readonly string _claimInitializeMessage = "Claim transaction has started, check back later to see your reward. " +
+                                                      "This may take a while as it depends on the network.";
+    private readonly string _transactionRefusedMessage = "Transaction on metamask was declined or failed for some reason, please try again.";
 
-    private readonly string _baseGasPrice = "120000000000";
+    private readonly string _baseGasPrice = "120" + "000000000"; //120 GWEI 
 
     public async void StartLoginMetamask()
     {
@@ -258,18 +263,32 @@ public class BlockchainIntegration : MonoBehaviour
                   + ", _approveContract: " + _approveContract + ", _approveArgs: " + _approveArgs + ", approveValue: "
                   + approveValue + ", approveGasLimit: " + approveGasLimit + ", approveGasPrice: " + _baseGasPrice);
 
-        try {
-
+        try 
+        {
             var _hash = await Web3GL.SendContract(approveMethod, approveABI, _approveContract, _approveArgs,
                 approveValue, approveGasLimit, _baseGasPrice);
             Print.Log("TransactionHash: " + _hash);
             
             ToyoStake(tokenID);
-
-        } catch (Exception _exception) {
+        } 
+        catch (Exception _exception) 
+        {
             Print.LogException(_exception, this);
             Loading.EndLoading?.Invoke();
             GenericPopUp.Instance.ShowPopUp(_genericFailMessage);
+            
+            switch (_exception.HResult) //TODO: CHANGE TO CORRECT ERROR CODES
+            {
+                case 0: //GENERIC ERROR
+                    GenericPopUp.Instance.ShowPopUp(_genericFailMessage);
+                    break;
+                case 1: //TODO: GET REFUSED ERROR CODE
+                    GenericPopUp.Instance.ShowPopUp(_transactionRefusedMessage);
+                    break;
+                case 2: //TODO: GET TIMEOUT ERROR CODE
+                    GenericPopUp.Instance.ShowPopUp("timeout", GoToCarousel); //Necessary?
+                    break;
+            }
         }
     }
 
@@ -292,12 +311,34 @@ public class BlockchainIntegration : MonoBehaviour
         {
             var _hash = await Web3GL.SendContract(_method, _abi, _contract, _args, _value, _gasLimit, _baseGasPrice);
             Print.Log("StakeHash: " + _hash);
-            ScreenManager.Instance.trainingModuleScript.SendToyoToTrainingOnServer();
+            //ScreenManager.Instance.trainingModuleScript.SendToyoToTrainingOnServer();
+            GenericPopUp.Instance.ShowPopUp(_stakeInitializeMessage, GoToCarousel);
 
-        } catch (Exception _exception) {
+        } 
+        catch (Exception _exception) 
+        {
             Print.LogException(_exception, this);
+            Print.LogError("exceptionMessage: " + _exception.Message);
+            Print.LogError("exceptionCode: " + _exception.HResult);
+            //TODO: Alert backend the stake error
             Loading.EndLoading?.Invoke();
-            GenericPopUp.Instance.ShowPopUp(_genericFailMessage);
+            
+            switch (_exception.HResult) //TODO: CHANGE TO CORRECT ERROR CODES
+            {
+                case 0: //GENERIC ERROR
+                    GenericPopUp.Instance.ShowPopUp(_genericFailMessage);
+                    break;
+                case 1: //TODO: GET REFUSED ERROR CODE
+                    GenericPopUp.Instance.ShowPopUp(_transactionRefusedMessage);
+                    break;
+                case 2: //TODO: GET TIMEOUT ERROR CODE
+                    GenericPopUp.Instance.ShowPopUp(_stakeInitializeMessage, GoToCarousel);
+                    break;
+            }
+            
+            /*GenericPopUp.Instance.ShowPopUp(_exception.Message.Contains("User denied transaction signature")
+                ? _transactionRefusedMessage
+                : _genericFailMessage);*/
         }
     }
 
@@ -323,13 +364,37 @@ public class BlockchainIntegration : MonoBehaviour
         {
             var _hash = await Web3GL.SendContract(method, abi, _contract, _args, value, gasLimit, _baseGasPrice);
             Print.Log("ClaimHash: " + _hash);
-            TrainingConfig.Instance.CloseCurrentTrainingInServer();
+            //TrainingConfig.Instance.CloseCurrentTrainingInServer();
+            GenericPopUp.Instance.ShowPopUp(_claimInitializeMessage, GoToCarousel);
 
-        } catch (Exception _exception) {
+        } 
+        catch (Exception _exception) 
+        {
             Print.LogException(_exception, this);
-            TrainingConfig.Instance.FailedClaim();
+            Print.LogError("exceptionMessage: " + _exception.Message);
+            Print.LogError("exceptionCode: " + _exception.HResult);
+            //TrainingConfig.Instance.FailedClaim();
+            
+            switch (_exception.HResult) //TODO: CHANGE TO CORRECT ERROR CODES
+            {
+                case 0: //GENERIC ERROR
+                    GenericPopUp.Instance.ShowPopUp(_genericFailMessage);
+                    break;
+                case 1: //TODO: GET REFUSED ERROR CODE
+                    GenericPopUp.Instance.ShowPopUp(_transactionRefusedMessage);
+                    break;
+                case 2: //TODO: GET TIMEOUT ERROR CODE
+                    GenericPopUp.Instance.ShowPopUp(_claimInitializeMessage, GoToCarousel);
+                    break;
+            }
+
+            /*GenericPopUp.Instance.ShowPopUp(_exception.Message.Contains("User denied transaction signature")
+                ? _transactionRefusedMessage
+                : _genericFailMessage);*/
         }
     }
+
+    private void GoToCarousel() => ScreenManager.Instance.GoToScreen(ScreenState.ToyoInfo);
 
     public void OnToyoListSuccess(string json)
     {
