@@ -72,7 +72,7 @@ namespace UI
         
         public void SelectToyoButton()
         {
-            //Loading.StartLoading?.Invoke();
+            Loading.StartLoading?.Invoke();
             SelectCarouselToyo();
             UpdateUI();
             Loading.EndLoading += GoToMainMenu;
