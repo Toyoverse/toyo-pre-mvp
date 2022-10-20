@@ -141,3 +141,11 @@ public enum TRAINING_STATUS
     USER_CANCEL = 8
 }
 
+public enum TRANSACTION_TYPE
+{
+    NONE = 0,
+    APPROVE = 1,
+    STAKE = 2,
+    CLAIM = 3
+}
+

@@ -64,6 +64,7 @@ public class BlockchainIntegration : MonoBehaviour
     private readonly string _claimInitializeMessage = "Claim transaction has started, check back later to see your reward. " +
                                                       "This may take a while as it depends on the network.";
     private readonly string _transactionRefusedMessage = "Transaction on metamask was declined or failed for some reason, please try again.";
+    private readonly string _transactionUnderpriced = "Undervalued transaction, please try again with a slightly higher gas fee.";
 
     private readonly string _baseGasPrice = "120" + "000000000"; //120 GWEI 
 
@@ -275,20 +276,8 @@ public class BlockchainIntegration : MonoBehaviour
         {
             Print.LogException(_exception, this);
             Loading.EndLoading?.Invoke();
-            GenericPopUp.Instance.ShowPopUp(_genericFailMessage);
-            
-            switch (_exception.HResult) //TODO: CHANGE TO CORRECT ERROR CODES
-            {
-                case 0: //GENERIC ERROR
-                    GenericPopUp.Instance.ShowPopUp(_genericFailMessage);
-                    break;
-                case 1: //TODO: GET REFUSED ERROR CODE
-                    GenericPopUp.Instance.ShowPopUp(_transactionRefusedMessage);
-                    break;
-                case 2: //TODO: GET TIMEOUT ERROR CODE
-                    GenericPopUp.Instance.ShowPopUp("timeout", GoToCarousel); //Necessary?
-                    break;
-            }
+            //GenericPopUp.Instance.ShowPopUp(_genericFailMessage);
+            HandleExceptionTMError(_exception, TRANSACTION_TYPE.APPROVE);
         }
     }
 
@@ -323,18 +312,7 @@ public class BlockchainIntegration : MonoBehaviour
             //TODO: Alert backend the stake error
             Loading.EndLoading?.Invoke();
             
-            switch (_exception.HResult) //TODO: CHANGE TO CORRECT ERROR CODES
-            {
-                case 0: //GENERIC ERROR
-                    GenericPopUp.Instance.ShowPopUp(_genericFailMessage);
-                    break;
-                case 1: //TODO: GET REFUSED ERROR CODE
-                    GenericPopUp.Instance.ShowPopUp(_transactionRefusedMessage);
-                    break;
-                case 2: //TODO: GET TIMEOUT ERROR CODE
-                    GenericPopUp.Instance.ShowPopUp(_stakeInitializeMessage, GoToCarousel);
-                    break;
-            }
+            HandleExceptionTMError(_exception, TRANSACTION_TYPE.STAKE);
             
             /*GenericPopUp.Instance.ShowPopUp(_exception.Message.Contains("User denied transaction signature")
                 ? _transactionRefusedMessage
@@ -374,19 +352,8 @@ public class BlockchainIntegration : MonoBehaviour
             Print.LogError("exceptionMessage: " + _exception.Message);
             Print.LogError("exceptionCode: " + _exception.HResult);
             //TrainingConfig.Instance.FailedClaim();
-            
-            switch (_exception.HResult) //TODO: CHANGE TO CORRECT ERROR CODES
-            {
-                case 0: //GENERIC ERROR
-                    GenericPopUp.Instance.ShowPopUp(_genericFailMessage);
-                    break;
-                case 1: //TODO: GET REFUSED ERROR CODE
-                    GenericPopUp.Instance.ShowPopUp(_transactionRefusedMessage);
-                    break;
-                case 2: //TODO: GET TIMEOUT ERROR CODE
-                    GenericPopUp.Instance.ShowPopUp(_claimInitializeMessage, GoToCarousel);
-                    break;
-            }
+
+            HandleExceptionTMError(_exception, TRANSACTION_TYPE.CLAIM);
 
             /*GenericPopUp.Instance.ShowPopUp(_exception.Message.Contains("User denied transaction signature")
                 ? _transactionRefusedMessage
@@ -469,6 +436,28 @@ public class BlockchainIntegration : MonoBehaviour
         ScreenManager.Instance.GoToScreen(ToyoManager.Instance.ToyoList.Count > 0
             ? ScreenState.MainMenu
             : ScreenState.Welcome);
+    }
+
+    private void HandleExceptionTMError(Exception exception, TRANSACTION_TYPE transactionType) //TM = Training Module
+    {
+        var _text = exception.Message;
+        if (_text.Contains("transaction underpriced")) //very low gas price
+        {
+            GenericPopUp.Instance.ShowPopUp(_transactionUnderpriced);
+        }
+        else if (_text.Contains("denied transaction signature")) //transaction refused
+        {
+            GenericPopUp.Instance.ShowPopUp(_transactionRefusedMessage);
+        }
+        else if (_text.Contains("was not mined within")) //timeout
+        {
+            if(transactionType == TRANSACTION_TYPE.CLAIM)
+                GenericPopUp.Instance.ShowPopUp(_claimInitializeMessage, GoToCarousel);
+            else if (transactionType == TRANSACTION_TYPE.STAKE)
+                GenericPopUp.Instance.ShowPopUp(_stakeInitializeMessage, GoToCarousel);
+        }
+        else
+            GenericPopUp.Instance.ShowPopUp(_genericFailMessage);
     }
 }
 
