@@ -226,20 +226,7 @@ namespace Database
 
             return _requestPost;
         }
-        
-        /*private UnityWebRequest GeneratePut(string uri, string jsonString)
-        {
-            var _requestPost = new UnityWebRequest(uri, "PUT");
-            var _jsonToSend = new UTF8Encoding().GetBytes(jsonString);
-            _requestPost.uploadHandler = new UploadHandlerRaw(_jsonToSend);
-            _requestPost.downloadHandler = new DownloadHandlerBuffer();
-            
-            _requestPost.SetRequestHeader("Authorization", PlayerPrefs.GetString("TokenJWT"));
-            _requestPost.SetRequestHeader("Content-Type", "application/json");
 
-            return _requestPost;
-        }*/
-        
         private UnityWebRequest GeneratePut(string uri)
         {
             var _postData = "";

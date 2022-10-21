@@ -65,6 +65,9 @@ public class BlockchainIntegration : MonoBehaviour
                                                       "This may take a while as it depends on the network.";
     private readonly string _transactionRefusedMessage = "Transaction on metamask was declined or failed for some reason, please try again.";
     private readonly string _transactionUnderpriced = "Undervalued transaction, please try again with a slightly higher gas fee.";
+    private readonly string _approveInitializeMessage = "The transaction to approve Toyo's stake has started, " +
+                                                        "check the progress in your Metamask and come back later when the transaction " +
+                                                        "is complete to continue your Toyo's stake.";
 
     private readonly string _baseGasPrice = "120" + "000000000"; //120 GWEI 
 
@@ -451,10 +454,18 @@ public class BlockchainIntegration : MonoBehaviour
         }
         else if (_text.Contains("was not mined within")) //timeout
         {
-            if(transactionType == TRANSACTION_TYPE.CLAIM)
-                GenericPopUp.Instance.ShowPopUp(_claimInitializeMessage, GoToCarousel);
-            else if (transactionType == TRANSACTION_TYPE.STAKE)
-                GenericPopUp.Instance.ShowPopUp(_stakeInitializeMessage, GoToCarousel);
+            switch (transactionType)
+            {
+                case TRANSACTION_TYPE.CLAIM:
+                    GenericPopUp.Instance.ShowPopUp(_claimInitializeMessage, GoToCarousel);
+                    break;
+                case TRANSACTION_TYPE.STAKE:
+                    GenericPopUp.Instance.ShowPopUp(_stakeInitializeMessage, GoToCarousel);
+                    break;
+                case TRANSACTION_TYPE.APPROVE:
+                    GenericPopUp.Instance.ShowPopUp(_approveInitializeMessage, GoToCarousel);
+                    break;
+            }
         }
         else
             GenericPopUp.Instance.ShowPopUp(_genericFailMessage);
