@@ -47,8 +47,9 @@ public class TrainingConfig : Singleton<TrainingConfig>
     [HideInInspector] public string selectActionsMessage = "Select your actions...";
     private string _trainingEventEndMessage = "This event has now ended.";
 
-    public static string StakePendingMessage = "There is a stake transaction in progress, please try again later.";
-    public static string ClaimPendingMessage = "There is a claim transaction in progress, please try again later.";
+    public static string ApprovePendingMessage = "There is a approve transaction in progress, check your Metamask and please try again later.";
+    public static string StakePendingMessage = "There is a stake transaction in progress, check your Metamask and please try again later.";
+    public static string ClaimPendingMessage = "There is a claim transaction in progress, check your Metamask and please try again later.";
     public static string FinishedMessage = "Your claim transaction for this Toyo was successful! \n" +
                                            "You can check your rewards on OpenSea. \n" +
                                            "Now your Toyo is free to train again!";
@@ -97,13 +98,15 @@ public class TrainingConfig : Singleton<TrainingConfig>
     public TRAINING_STATUS GetActualTrainingInfoStatus()
     {
         var _trainingInfo = GetCurrentTrainingInfo();
-        if (_trainingInfo is null)
+        if (_trainingInfo?.status is null)
         {
-            Print.LogError("TrainingInfo is null, so TrainingStatus will be NONE.");
+            Print.LogError("TrainingInfo or TrainingInfo.status is null, so TrainingStatus will be NONE.");
             return TRAINING_STATUS.NONE;
         }
         var _trainingStatus = _trainingInfo.status.ToUpper() switch
         {
+            "APPROVE_PENDING" => TRAINING_STATUS.APPROVE_PENDING,
+            "APPROVE_ERROR" => TRAINING_STATUS.APPROVE_ERROR,
             "STAKE_PENDING" => TRAINING_STATUS.STAKE_PENDING,
             "STAKE_ERROR" => TRAINING_STATUS.STAKE_ERROR,
             "IN_TRAINING" => TRAINING_STATUS.IN_TRAINING,

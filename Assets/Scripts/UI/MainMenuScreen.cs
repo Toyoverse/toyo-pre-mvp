@@ -110,17 +110,22 @@ namespace UI
                 case TRAINING_STATUS.NONE or TRAINING_STATUS.IN_TRAINING:
                     GoToNextScreen();
                     break;
+                case TRAINING_STATUS.APPROVE_PENDING:
+                    GenericPopUp.Instance.ShowPopUp(TrainingConfig.ApprovePendingMessage, GoToCarousel);
+                    break;
                 case TRAINING_STATUS.STAKE_PENDING:
-                    GenericPopUp.Instance.ShowPopUp(TrainingConfig.StakePendingMessage);
+                    GenericPopUp.Instance.ShowPopUp(TrainingConfig.StakePendingMessage, GoToCarousel);
                     break;
                 case TRAINING_STATUS.CLAIM_PENDING:
-                    GenericPopUp.Instance.ShowPopUp(TrainingConfig.ClaimPendingMessage);
+                    GenericPopUp.Instance.ShowPopUp(TrainingConfig.ClaimPendingMessage, GoToCarousel);
                     break;
                 case TRAINING_STATUS.FINISHED:
                     GenericPopUp.Instance.ShowPopUp(TrainingConfig.FinishedMessage, GoToNextScreen);
                     break;
             }
         }
+        
+        private void GoToCarousel() => ScreenManager.Instance.GoToScreen(ScreenState.ToyoInfo);
 
         private void GoToNextScreen()
         {

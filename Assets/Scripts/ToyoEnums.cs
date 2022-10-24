@@ -131,14 +131,16 @@ public enum BOX_REGION
 public enum TRAINING_STATUS
 {
     NONE = 0,
-    STAKE_PENDING = 1,
-    STAKE_ERROR = 2,
-    IN_TRAINING = 3,
-    CLAIM_PENDING = 4,
-    CLAIM_ERROR = 5,
-    FINISHED = 6,
-    FINISHED_ERROR = 7,
-    USER_CANCEL = 8
+    APPROVE_PENDING = 1,
+    APPROVE_ERROR = 2,
+    STAKE_PENDING = 3,
+    STAKE_ERROR = 4,
+    IN_TRAINING = 5,
+    CLAIM_PENDING = 6,
+    CLAIM_ERROR = 7,
+    FINISHED = 8,
+    FINISHED_ERROR = 9,
+    USER_CANCEL = 10
 }
 
 public enum TRANSACTION_TYPE

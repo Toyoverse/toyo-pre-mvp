@@ -219,7 +219,7 @@ public class TrainingModuleScreen : UIController
 
     public void TrainingInfoButton() => ScreenManager.Instance.GoToScreen(ScreenState.LoreTheme);
 
-    public override void BackButton() => ScreenManager.Instance.GoToScreen(ScreenState.MainMenu);
+    public override void BackButton() => ScreenManager.Instance.GoToScreen(ScreenState.ToyoInfo);
 
     public void StartButton()
         => GenericPopUp.Instance.ShowPopUp(TrainingConfig.Instance.sendToyoToTrainingPopUp,
