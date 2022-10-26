@@ -273,16 +273,20 @@ public class BlockchainIntegration : MonoBehaviour
                 approveValue, approveGasLimit, _baseGasPrice);
             Print.Log("TransactionHash: " + _hash);
             
-            ToyoStake(tokenID);
+            GenericPopUp.Instance.ShowPopUp(TrainingConfig.ApproveFinishedMessage, StakeSelectedToyo);
         } 
         catch (Exception _exception) 
         {
             Print.LogException(_exception, this);
-            Loading.EndLoading?.Invoke();
+            //TMV1
+            //Loading.EndLoading?.Invoke();
             //GenericPopUp.Instance.ShowPopUp(_genericFailMessage);
+            
             HandleExceptionTMError(_exception, TRANSACTION_TYPE.APPROVE);
         }
     }
+
+    public void StakeSelectedToyo() => ToyoStake(ToyoManager.GetSelectedToyo().tokenId);
 
     private async void ToyoStake(string tokenID)
     {
@@ -311,15 +315,8 @@ public class BlockchainIntegration : MonoBehaviour
         {
             Print.LogException(_exception, this);
             Print.LogError("exceptionMessage: " + _exception.Message);
-            Print.LogError("exceptionCode: " + _exception.HResult);
-            //TODO: Alert backend the stake error
-            Loading.EndLoading?.Invoke();
-            
+
             HandleExceptionTMError(_exception, TRANSACTION_TYPE.STAKE);
-            
-            /*GenericPopUp.Instance.ShowPopUp(_exception.Message.Contains("User denied transaction signature")
-                ? _transactionRefusedMessage
-                : _genericFailMessage);*/
         }
     }
 
@@ -345,22 +342,19 @@ public class BlockchainIntegration : MonoBehaviour
         {
             var _hash = await Web3GL.SendContract(method, abi, _contract, _args, value, gasLimit, _baseGasPrice);
             Print.Log("ClaimHash: " + _hash);
+            //TMV1
             //TrainingConfig.Instance.CloseCurrentTrainingInServer();
+            
             GenericPopUp.Instance.ShowPopUp(_claimInitializeMessage, GoToCarousel);
-
         } 
         catch (Exception _exception) 
         {
             Print.LogException(_exception, this);
             Print.LogError("exceptionMessage: " + _exception.Message);
-            Print.LogError("exceptionCode: " + _exception.HResult);
-            //TrainingConfig.Instance.FailedClaim();
+            //TMV1
+            //TrainingConfig.Instance.FailedClaim(); 
 
             HandleExceptionTMError(_exception, TRANSACTION_TYPE.CLAIM);
-
-            /*GenericPopUp.Instance.ShowPopUp(_exception.Message.Contains("User denied transaction signature")
-                ? _transactionRefusedMessage
-                : _genericFailMessage);*/
         }
     }
 
@@ -450,7 +444,8 @@ public class BlockchainIntegration : MonoBehaviour
         }
         else if (_text.Contains("denied transaction signature")) //transaction refused
         {
-            GenericPopUp.Instance.ShowPopUp(_transactionRefusedMessage);
+            _databaseConnection.ChangeTrainingStatus(TrainingConfig.Instance.GetCurrentTrainingInfo().id,
+                TRAINING_STATUS.USER_CANCEL, ShowRejectPopUpMessage);
         }
         else if (_text.Contains("was not mined within")) //timeout
         {
@@ -466,10 +461,14 @@ public class BlockchainIntegration : MonoBehaviour
                     GenericPopUp.Instance.ShowPopUp(_approveInitializeMessage, GoToCarousel);
                     break;
             }
+            return;
         }
         else
             GenericPopUp.Instance.ShowPopUp(_genericFailMessage);
+        Loading.EndLoading?.Invoke();
     }
+    
+    private void ShowRejectPopUpMessage(string json) => GenericPopUp.Instance.ShowPopUp(_transactionRefusedMessage);
 }
 
 public struct ClaimParameters

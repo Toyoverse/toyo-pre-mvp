@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Database;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
@@ -113,6 +114,10 @@ namespace UI
                 case TRAINING_STATUS.APPROVE_PENDING:
                     GenericPopUp.Instance.ShowPopUp(TrainingConfig.ApprovePendingMessage, GoToCarousel);
                     break;
+                case TRAINING_STATUS.APPROVE_FINISHED:
+                    GenericPopUp.Instance.ShowPopUp(TrainingConfig.ApproveFinishedMessage, 
+                        DatabaseConnection.Instance.blockchainIntegration.StakeSelectedToyo);
+                    break;
                 case TRAINING_STATUS.STAKE_PENDING:
                     GenericPopUp.Instance.ShowPopUp(TrainingConfig.StakePendingMessage, GoToCarousel);
                     break;
@@ -124,7 +129,7 @@ namespace UI
                     break;
             }
         }
-        
+
         private void GoToCarousel() => ScreenManager.Instance.GoToScreen(ScreenState.ToyoInfo);
 
         private void GoToNextScreen()

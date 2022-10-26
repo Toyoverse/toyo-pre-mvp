@@ -48,6 +48,8 @@ public class TrainingConfig : Singleton<TrainingConfig>
     private string _trainingEventEndMessage = "This event has now ended.";
 
     public static string ApprovePendingMessage = "There is a approve transaction in progress, check your Metamask and please try again later.";
+    public static string ApproveFinishedMessage = "Transaction to approve stake has been completed, please proceed " +
+                                                  "with Toyo's stake transaction to start training.";
     public static string StakePendingMessage = "There is a stake transaction in progress, check your Metamask and please try again later.";
     public static string ClaimPendingMessage = "There is a claim transaction in progress, check your Metamask and please try again later.";
     public static string FinishedMessage = "Your claim transaction for this Toyo was successful! \n" +
@@ -206,7 +208,7 @@ public class TrainingConfig : Singleton<TrainingConfig>
     private void PostTrainingSendCallback(string json)
     {
         Print.Log("PostTrainingResult: " + json);
-        DatabaseConnection.Instance.CallGetInTrainingList(AfterSendTraining);
+        DatabaseConnection.Instance.blockchainIntegration.ToyoApproveNftTransfer(ToyoManager.GetSelectedToyo().tokenId);
     }
 
     public void ClaimCallInServer()
@@ -228,10 +230,7 @@ public class TrainingConfig : Singleton<TrainingConfig>
         DatabaseConnection.Instance.PutCloseTrainingValues(CallClaimToken, 
             FailedGetClaimParameters, _trainingInfo.id);
     }
-
-    /*public void GetRewardValues() => DatabaseConnection.Instance.GetRewardValues(SuccessGetClaimParameters,
-                FailedGetClaimParameters, Instance.GetCurrentTrainingInfo().id);*/
-
+    
     private void CallClaimToken(string json)
     {
         var _trainingResult = JsonUtility.FromJson<TrainingResultJson>(json);
@@ -263,12 +262,6 @@ public class TrainingConfig : Singleton<TrainingConfig>
         Loading.EndLoading?.Invoke();
         GenericPopUp.Instance.ShowPopUp(GenericFailMessage);
         Print.Log("FailedGetClaimJSON: " + json);
-    }
-    
-    public void GenericFailedMessage()
-    {
-        Loading.EndLoading?.Invoke();
-        GenericPopUp.Instance.ShowPopUp(GenericFailMessage);
     }
 
     public void CloseCurrentTrainingInServer()

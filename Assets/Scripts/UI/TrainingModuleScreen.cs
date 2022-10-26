@@ -228,26 +228,10 @@ public class TrainingModuleScreen : UIController
     private void CallSendToyoToTrainingFlux()
     {
         Loading.StartLoading?.Invoke();
-        if (ToyoManager.GetSelectedToyo().isAutomata)
-        {
-            SendToyoToTrainingOnServer();
-            return;
-        }
-        DatabaseConnection.Instance.CallGetPlayerToyo(PlayerToyoCallback);
+        SendToyoToTrainingOnServer();
     }
 
-    private void PlayerToyoCallback(string json)
-        => DatabaseConnection.Instance.blockchainIntegration.UpdateToyoIsStakedList(json, ConfirmSendTraining);
-
-    private void ConfirmSendTraining()
-    {
-        if(ToyoManager.GetSelectedToyo().isStaked)
-            SendToyoToTrainingOnServer();
-        else
-            DatabaseConnection.Instance.blockchainIntegration.ToyoApproveNftTransfer(ToyoManager.GetSelectedToyo().tokenId);
-    }
-    
-    public void SendToyoToTrainingOnServer() => TrainingConfig.Instance.SetInTrainingOnServer();
+    private void SendToyoToTrainingOnServer() => TrainingConfig.Instance.SetInTrainingOnServer();
 
     public void UpdateTrainingAfterTrainingSuccess()
     {
@@ -419,12 +403,4 @@ public class TrainingModuleScreen : UIController
             DisableVisualElement("rewardsBackgroundAutomata");
         }
     }
-}
-
-public enum TrainingActionType
-{
-    None = 0,
-    Punch = 1,
-    Kick = 2,
-    Move = 3
 }

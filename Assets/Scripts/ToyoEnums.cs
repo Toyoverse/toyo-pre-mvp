@@ -105,6 +105,14 @@ public enum RANKING_TYPE
     MASTER = 7
 }
 
+public enum TrainingActionType
+{
+    None = 0,
+    Punch = 1,
+    Kick = 2,
+    Move = 3
+}
+
 public enum TRAINING_RESULT
 {
     NONE = 0,
@@ -133,14 +141,15 @@ public enum TRAINING_STATUS
     NONE = 0,
     APPROVE_PENDING = 1,
     APPROVE_ERROR = 2,
-    STAKE_PENDING = 3,
-    STAKE_ERROR = 4,
-    IN_TRAINING = 5,
-    CLAIM_PENDING = 6,
-    CLAIM_ERROR = 7,
-    FINISHED = 8,
-    FINISHED_ERROR = 9,
-    USER_CANCEL = 10
+    APPROVE_FINISHED = 3,
+    STAKE_PENDING = 4,
+    STAKE_ERROR = 5,
+    IN_TRAINING = 6,
+    CLAIM_PENDING = 7,
+    CLAIM_ERROR = 8,
+    FINISHED = 9,
+    FINISHED_ERROR = 10,
+    USER_CANCEL = 11
 }
 
 public enum TRANSACTION_TYPE

@@ -66,6 +66,8 @@ namespace Database
         private string registerCardRewardSuffixURL = "/toyo-persona-training-events";
         [SerializeField]
         private string toyoTrainingSuffixURL = "/training";
+        [SerializeField]
+        private string trainingStatusSuffixURL = "/status"; //TODO: GET CORRECT URL WITH BACKEND
 
         private void Awake()
         {
@@ -181,6 +183,14 @@ namespace Database
             _url = trainingBaseURL + toyoTrainingSuffixURL + "/" + trainingID;
             var _request = GenerateRequest(HTTP_REQUEST.GET);
             StartCoroutine(ProcessRequestCoroutine(successCallback, _request, failedCallback));
+        }
+
+        public void ChangeTrainingStatus(string trainingID, TRAINING_STATUS newStatus, Action<string> callback)
+        {
+            _url = trainingBaseURL + toyoTrainingSuffixURL + "/" + trainingID + trainingStatusSuffixURL;
+            var _jsonString = JsonUtility.ToJson(newStatus); //TODO: TEST THIS AND CONFIRM WITH BACKEND THE FORMAT TO SEND
+            var _request = GeneratePost(_url, _jsonString);
+            StartCoroutine(ProcessRequestCoroutine(callback, _request));
         }
 
         private UnityWebRequest GenerateRequest (HTTP_REQUEST requestType, List<(string,string)> parameters = null) {
